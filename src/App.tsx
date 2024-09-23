@@ -40,8 +40,6 @@ function App() {
       imgLink: "https://patchwiki.biligame.com/images/klbq/thumb/8/8e/p8mgyehvp4ah71xc5txnmhbuwgarxku.png/800px-%E5%9C%B0%E5%9B%BE-base404-0.png"
     }
   ]
-
-  const [visible, setVisible] = useState(false);
   const [togglevisible, setToggleVisible] = useState(false);
 
   const changePresentmap = (value: any) => {
@@ -56,40 +54,40 @@ function App() {
   const article = <div className="grid grid-flex">
     <Row gutter={[16, 24]} type="flex" justify="space-around" align="middle" style={{ marginLeft: "25px" }}>
       <Col span={4}>
-        <div className="col-content" onClick={() => { setpenColor("red"); setVisible(false) }}><ColorBtn color="red" /></div>
+        <div className="col-content" onClick={() => { setpenColor("red") }}><ColorBtn color="red" /></div>
       </Col>
       <Col span={4}>
-        <div className="col-content" onClick={() => { setpenColor("orange"); setVisible(false) }}><ColorBtn color="orange" /></div>
+        <div className="col-content" onClick={() => { setpenColor("orange") }}><ColorBtn color="orange" /></div>
       </Col>
       <Col span={4}>
-        <div className="col-content" onClick={() => { setpenColor("yellow"); setVisible(false) }}><ColorBtn color="yellow" /></div>
+        <div className="col-content" onClick={() => { setpenColor("yellow") }}><ColorBtn color="yellow" /></div>
       </Col>
       <Col span={4}>
-        <div className="col-content" onClick={() => { setpenColor("green"); setVisible(false) }}><ColorBtn color="green" /></div>
+        <div className="col-content" onClick={() => { setpenColor("green") }}><ColorBtn color="green" /></div>
       </Col>
       <Col span={4}>
-        <div className="col-content" onClick={() => { setpenColor("blue"); setVisible(false) }}><ColorBtn color="blue" /></div>
+        <div className="col-content" onClick={() => { setpenColor("blue") }}><ColorBtn color="blue" /></div>
       </Col>
       <Col span={4}>
-        <div className="col-content" onClick={() => { setpenColor("purple"); setVisible(false) }}><ColorBtn color="purple" /></div>
+        <div className="col-content" onClick={() => { setpenColor("purple") }}><ColorBtn color="purple" /></div>
       </Col>
       <Col span={4}>
-        <div className="col-content" onClick={() => { setpenColor("white"); setVisible(false) }}><ColorBtn color="white" /></div>
+        <div className="col-content" onClick={() => { setpenColor("white") }}><ColorBtn color="white" /></div>
       </Col>
       <Col span={4}>
-        <div className="col-content" onClick={() => { setpenColor("rgba(var(--semi-grey-0), 1)"); setVisible(false) }}><ColorBtn color="rgba(var(--semi-grey-0), 1)" /></div>
+        <div className="col-content" onClick={() => { setpenColor("rgba(var(--semi-grey-0), 1)") }}><ColorBtn color="rgba(var(--semi-grey-0), 1)" /></div>
       </Col>
       <Col span={4}>
-        <div className="col-content" onClick={() => { setpenColor("rgba(var(--semi-grey-2), 1)"); setVisible(false) }}><ColorBtn color="rgba(var(--semi-grey-2), 1)" /></div>
+        <div className="col-content" onClick={() => { setpenColor("rgba(var(--semi-grey-2), 1)") }}><ColorBtn color="rgba(var(--semi-grey-2), 1)" /></div>
       </Col>
       <Col span={4}>
-        <div className="col-content" onClick={() => { setpenColor("rgba(var(--semi-grey-4), 1)"); setVisible(false) }}><ColorBtn color="rgba(var(--semi-grey-4), 1)" /></div>
+        <div className="col-content" onClick={() => { setpenColor("rgba(var(--semi-grey-4), 1)") }}><ColorBtn color="rgba(var(--semi-grey-4), 1)" /></div>
       </Col>
       <Col span={4}>
-        <div className="col-content" onClick={() => { setpenColor("rgba(var(--semi-grey-6), 1)"); setVisible(false) }}><ColorBtn color="rgba(var(--semi-grey-6), 1)" /></div>
+        <div className="col-content" onClick={() => { setpenColor("rgba(var(--semi-grey-6), 1)") }}><ColorBtn color="rgba(var(--semi-grey-6), 1)" /></div>
       </Col>
       <Col span={4}>
-        <div className="col-content" onClick={() => { setpenColor("rgba(var(--semi-grey-8), 1)"); setVisible(false) }}><ColorBtn color="rgba(var(--semi-grey-8), 1)" /></div>
+        <div className="col-content" onClick={() => { setpenColor("rgba(var(--semi-grey-8), 1)") }}><ColorBtn color="rgba(var(--semi-grey-8), 1)" /></div>
       </Col>
     </Row>
   </div>;
