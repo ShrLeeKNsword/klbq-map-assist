@@ -6,69 +6,11 @@ import CharactorBtn from './components/charactorBtn.tsx';
 
 import './App.css';
 import DrawableMap, { canvasElement } from './components/drawableMap.tsx';
+import { i18nData } from './data/i18n.ts';
+import { mapList } from './data/maplist.ts';
 
 function App() {
-  const i18nData = [
-    {
-      language: "简体中文",
-      title: "卡拉彼丘地图助手",
-      sidebar: {
-        mapsetting: "地图设置",
-        charactor: "超弦体",
-        skill: "技能",
-        grenade: "战术道具",
-        lineup: "lineup点位"
-      },
-      charactors: {
-        PUS: {
-          Michele: "米雪儿·李",
-          Nobunaga: "信",
-          Kokona: "心夏",
-          Yvette: "伊薇特",
-          Flavia: "芙拉薇娅"
-        },
-        TS: {
-          Ming: "明",
-          Lawine: "拉薇",
-          Meredith: "梅瑞狄斯",
-          Reiichi: "令",
-          Kanami: "香奈美",
-          Eika: "艾卡",
-          Fragrans: "珐格兰丝"
-        },
-        Urbino: {
-          Celestia: "星绘",
-          Audrey: "奥黛丽",
-          Maddelena: "白墨",
-          Fuchsia: "玛德蕾娜",
-          BaiMo: "绯莎",
-          Galatea: "加拉蒂亚"
-        }
-      },
-      grenades: {
-        Flashbang: "闪光弹",
-        FragGrenade: "手雷",
-        HealingGrenade: "治疗雷",
-        Interceptor: "拦截者",
-        SlowGrenade: "减速雷",
-        SmokeBomb: "烟雾弹",
-        Tattletale: "警报器",
-        WindstormGrenade: "风场雷",
-        SnowBall: "雪球"
-      },
-      markbox: {
-        mark: "画笔",
-        straightline: "直线",
-        color: "颜色",
-        undo: "撤销",
-        clear: "清空",
-        clearwarning: {
-          title: "确认清除所有笔迹？",
-          content: "此操作不可撤销"
-        }
-      }
-    }
-  ];
+
   const { Header, Footer, Sider, Content } = Layout;
   const commonStyle = {
     height: 64,
@@ -80,31 +22,7 @@ function App() {
   const [presentLanguage, setPresentLanguage] = useState(i18nData[0]);
   const [penColor, setpenColor] = useState("red");
   const [penWidth, setpenWidth] = useState(5);
-  const [presentMapURL, setPresentMapURL] = useState("https://patchwiki.biligame.com/images/klbq/c/c2/5dzy2fxrj3ihqq2n9gfmpe2g91ofc0p.png");
-  const mapList = [
-    {
-      mapName: "风曳镇",
-      imgLink: "https://patchwiki.biligame.com/images/klbq/c/c2/5dzy2fxrj3ihqq2n9gfmpe2g91ofc0p.png"
-    }, {
-      mapName: "空间实验室",
-      imgLink: "https://patchwiki.biligame.com/images/klbq/thumb/6/66/jth3bp2k8eopctdj42xo52fewsxci1s.png/800px-%E5%9C%B0%E5%9B%BE-%E7%A9%BA%E9%97%B4%E5%AE%9E%E9%AA%8C%E5%AE%A42.png"
-    }, {
-      mapName: "科斯迷特",
-      imgLink: "https://patchwiki.biligame.com/images/klbq/thumb/c/c4/6pqvpjg5zvg14xtsydzeb95ok2ysq17.png/600px-%E5%9C%B0%E5%9B%BE-%E7%A7%91%E6%96%AF%E8%BF%B7%E7%89%B92.png"
-    }, {
-      mapName: "欧拉港口",
-      imgLink: "https://patchwiki.biligame.com/images/klbq/thumb/2/29/cjlkwy6ikzo7pehy7xf7h5edfn8b5xt.png/600px-%E5%9C%B0%E5%9B%BE-oula-0.png"
-    }, {
-      mapName: "柯西街区",
-      imgLink: "https://patchwiki.biligame.com/images/klbq/f/f6/jxevkldn7u4bx678t7hwqdcvxw7ta9m.png"
-    }, {
-      mapName: "88区",
-      imgLink: "https://patchwiki.biligame.com/images/klbq/thumb/3/35/a1wr3rbkbabvf5ijojx4ow0nikeonhl.png/800px-%E5%9C%B0%E5%9B%BE-88area-0.png"
-    }, {
-      mapName: "404基地",
-      imgLink: "https://patchwiki.biligame.com/images/klbq/thumb/8/8e/p8mgyehvp4ah71xc5txnmhbuwgarxku.png/800px-%E5%9C%B0%E5%9B%BE-base404-0.png"
-    }
-  ]
+  const [presentMapURL, setPresentMapURL] = useState(mapList[0].imgLink);
   const [togglevisible, setToggleVisible] = useState(false);
   const [canvasElements, setCanvasElements] = useState<canvasElement[]>([]);
 
