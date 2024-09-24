@@ -1,7 +1,7 @@
 import React, { useLayoutEffect, useRef, useState } from "react";
 import { RoughCanvas } from "roughjs/bin/canvas";
 import { RoughGenerator } from "roughjs/bin/generator";
-import { canvasElement, mapTools } from "../data/canvasConstants";
+import { canvasElement } from "../data/canvasConstants";
 
 interface DrawableMapProps {
 	presentMapURL: string;
@@ -20,7 +20,7 @@ function createElement(
 	y2: number,
 	color: string
 ) {
-	const roughElement = generator?.line(x1, y1, x2, y2, { stroke: color });
+	const roughElement = generator?.line(x1, y1, x2, y2, { stroke: color, roughness: 0 });
 
 	return {
 		type: "line",
@@ -43,7 +43,11 @@ function calculateWindow(container: HTMLDivElement, canvas: HTMLCanvasElement) {
 	canvas.style.height = `${containerHeight}px`;
 }
 
-
+export enum mapTools {
+	SELECT,
+	LINE,
+	PEN
+}
 
 const DrawableMap: React.FC<DrawableMapProps> = (props) => {
 	const [canvasMouseDown, setCanvasMouseDown] = useState(false);
