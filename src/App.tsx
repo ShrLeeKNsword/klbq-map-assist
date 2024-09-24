@@ -1,112 +1,50 @@
 import { useState } from 'react';
-import { Layout, Collapse, Typography, Select, Tooltip, Popover, Col, Row, Popconfirm, Slider, ColorPicker } from '@douyinfe/semi-ui';
+import { Layout, Collapse, Typography, Select, Tooltip, Popover, Col, Row, Popconfirm, ColorPicker } from '@douyinfe/semi-ui';
 import { IconEdit, IconDelete, IconUndo, IconLanguage, IconMinus, IconGithubLogo } from '@douyinfe/semi-icons';
 import ColorBtn from './components/colorBtb.tsx';
 import CharactorBtn from './components/charactorBtn.tsx';
 
 import './App.css';
-import DrawableMap, { canvasElement } from './components/drawableMap.tsx';
+import DrawableMap from './components/drawableMap.tsx';
+import StandardButton from './components/toolButtons/standardButton.tsx';
+import { i18nData } from './data/i18n.ts';
+import { mapList } from './data/maplist.ts';
+import { canvasElement, mapTools } from './data/canvasConstants.ts';
 
-function App() {
-  const i18nData = [
-    {
-      language: "简体中文",
-      title: "卡拉彼丘地图助手",
-      sidebar: {
-        mapsetting: "地图设置",
-        charactor: "超弦体",
-        skill: "技能",
-        grenade: "战术道具",
-        lineup: "lineup点位"
-      },
-      charactors: {
-        PUS: {
-          Michele: "米雪儿·李",
-          Nobunaga: "信",
-          Kokona: "心夏",
-          Yvette: "伊薇特",
-          Flavia: "芙拉薇娅"
-        },
-        TS: {
-          Ming: "明",
-          Lawine: "拉薇",
-          Meredith: "梅瑞狄斯",
-          Reiichi: "令",
-          Kanami: "香奈美",
-          Eika: "艾卡",
-          Fragrans: "珐格兰丝"
-        },
-        Urbino: {
-          Celestia: "星绘",
-          Audrey: "奥黛丽",
-          Maddelena: "白墨",
-          Fuchsia: "玛德蕾娜",
-          BaiMo: "绯莎",
-          Galatea: "加拉蒂亚"
-        }
-      },
-      grenades: {
-        Flashbang: "闪光弹",
-        FragGrenade: "手雷",
-        HealingGrenade: "治疗雷",
-        Interceptor: "拦截者",
-        SlowGrenade: "减速雷",
-        SmokeBomb: "烟雾弹",
-        Tattletale: "警报器",
-        WindstormGrenade: "风场雷",
-        SnowBall: "雪球"
-      },
-      markbox: {
-        mark: "画笔",
-        straightline: "直线",
-        color: "颜色",
-        undo: "撤销",
-        clear: "清空",
-        clearwarning: {
-          title: "确认清除所有笔迹？",
-          content: "此操作不可撤销"
-        }
-      }
-    }
-  ];
-  const { Header, Footer, Sider, Content } = Layout;
-  const commonStyle = {
+const styles = {
+  commonStyles: {
     height: 64,
     lineHeight: '64px',
     background: 'var(--semi-color-fill-0)'
-  };
+  },
+  canvasToolButtonStyle: {
+    borderRadius: "100%",
+    margin: "5px",
+    width: "50px",
+    height: "50px",
+    display: 'flex',
+    placeItems: 'center',
+    placeContent: 'center',
+    backgroundColor: "rgba(var(--semi-grey-0), 1)",
+    boxShadow: "0 0 0 3px rgba(var(--semi-grey-1), 1)",
+    marginTop: "35px",
+  }
+}
+
+function App() {
+  const { Header, Footer, Sider, Content } = Layout;
   const { Title } = Typography;
+
   const [presentMap, setPresentMap] = useState("风曳镇");
   const [presentLanguage, setPresentLanguage] = useState(i18nData[0]);
+
+  const [canvasTool, setTool] = useState<mapTools>(mapTools.LINE);
   const [penColor, setpenColor] = useState("red");
   const [penWidth, setpenWidth] = useState(5);
-  const [presentMapURL, setPresentMapURL] = useState("https://patchwiki.biligame.com/images/klbq/c/c2/5dzy2fxrj3ihqq2n9gfmpe2g91ofc0p.png");
-  const mapList = [
-    {
-      mapName: "风曳镇",
-      imgLink: "https://patchwiki.biligame.com/images/klbq/c/c2/5dzy2fxrj3ihqq2n9gfmpe2g91ofc0p.png"
-    }, {
-      mapName: "空间实验室",
-      imgLink: "https://patchwiki.biligame.com/images/klbq/thumb/6/66/jth3bp2k8eopctdj42xo52fewsxci1s.png/800px-%E5%9C%B0%E5%9B%BE-%E7%A9%BA%E9%97%B4%E5%AE%9E%E9%AA%8C%E5%AE%A42.png"
-    }, {
-      mapName: "科斯迷特",
-      imgLink: "https://patchwiki.biligame.com/images/klbq/thumb/c/c4/6pqvpjg5zvg14xtsydzeb95ok2ysq17.png/600px-%E5%9C%B0%E5%9B%BE-%E7%A7%91%E6%96%AF%E8%BF%B7%E7%89%B92.png"
-    }, {
-      mapName: "欧拉港口",
-      imgLink: "https://patchwiki.biligame.com/images/klbq/thumb/2/29/cjlkwy6ikzo7pehy7xf7h5edfn8b5xt.png/600px-%E5%9C%B0%E5%9B%BE-oula-0.png"
-    }, {
-      mapName: "柯西街区",
-      imgLink: "https://patchwiki.biligame.com/images/klbq/f/f6/jxevkldn7u4bx678t7hwqdcvxw7ta9m.png"
-    }, {
-      mapName: "88区",
-      imgLink: "https://patchwiki.biligame.com/images/klbq/thumb/3/35/a1wr3rbkbabvf5ijojx4ow0nikeonhl.png/800px-%E5%9C%B0%E5%9B%BE-88area-0.png"
-    }, {
-      mapName: "404基地",
-      imgLink: "https://patchwiki.biligame.com/images/klbq/thumb/8/8e/p8mgyehvp4ah71xc5txnmhbuwgarxku.png/800px-%E5%9C%B0%E5%9B%BE-base404-0.png"
-    }
-  ]
-  const [togglevisible, setToggleVisible] = useState(false);
   const [canvasElements, setCanvasElements] = useState<canvasElement[]>([]);
+
+  const [presentMapURL, setPresentMapURL] = useState("https://patchwiki.biligame.com/images/klbq/c/c2/5dzy2fxrj3ihqq2n9gfmpe2g91ofc0p.png");
+  const [togglevisible, setToggleVisible] = useState(false);
 
   const changePresentmap = (value: string) => {
     setPresentMap(value);
@@ -168,28 +106,17 @@ function App() {
     </Row>
   </div>;
 
-  const markPlate = <div className="grid grid-flex" style={{ width: "280px", height: "50px", display: "flex", justifyContent: "space-around" }}>
-    <Slider style={{ marginTop: "8px", marginLeft: "10px", width: "200px" }} min={1} max={20} defaultValue={penWidth} onChange={(value) => { setpenWidth(value as number) }}></Slider>
-    <div style={{ borderRadius: "100%", margin: "auto", width: penWidth, height: penWidth, display: 'flex', placeItems: 'center', placeContent: 'center', backgroundColor: penColor, overflow: "hidden" }}></div>
-  </div>;
+  function editButtonClicked(): void {
+    setTool(mapTools.PEN);
+  }
 
-
-  const canvasToolBtnStyle = {
-    borderRadius: "100%",
-    margin: "5px",
-    width: "50px",
-    height: "50px",
-    display: 'flex',
-    placeItems: 'center',
-    placeContent: 'center',
-    backgroundColor: "rgba(var(--semi-grey-0), 1)",
-    boxShadow: "0 0 0 3px rgba(var(--semi-grey-1), 1)",
-    marginTop: "35px",
+  function lineButtonClicked(): void {
+    setTool(mapTools.LINE);
   }
 
   return (
     <Layout className="components-layout-demo" style={{ height: 720, width: 1280 }}>
-      <Header style={commonStyle}>
+      <Header style={styles.commonStyles}>
         <Title heading={3} style={{ margin: '14px 0' }} >{presentLanguage.title} - {presentMap}</Title>
         <div style={{ position: "relative", left: "1100px", top: "-60px", height: "100%", width: "200px", display: "flex" }}>
           <div style={{ marginTop: "8px", marginRight: "12px" }}><IconLanguage size='extra-large' /></div>
@@ -266,22 +193,17 @@ function App() {
           </Collapse>
         </Sider>
         <Content style={{ height: "100%", lineHeight: '100px', width: '100%', margin: 'auto', display: 'flex', placeItems: 'center' }}>
-          <DrawableMap presentMapURL={presentMapURL} penColor={penColor} canvasElements={canvasElements} setCanvasElements={setCanvasElements} />
+          <DrawableMap presentMapURL={presentMapURL} canvasTool={canvasTool} penColor={penColor} canvasElements={canvasElements} setCanvasElements={setCanvasElements} />
           <div style={{ position: "relative", top: "-120px", right: "-150px", width: "58px", height: "max" }}>
-            <Popover
-              content={markPlate}
-              position={"left"}
-            >
-              <div style={canvasToolBtnStyle}><IconEdit size='extra-large' /></div>
-            </Popover>
-            <Tooltip content={presentLanguage.markbox.straightline}><div style={canvasToolBtnStyle}><IconMinus size='extra-large' /></div></Tooltip>
+            <StandardButton icon={IconEdit} penWidth={penWidth} penColor={penColor} setpenWidth={setpenWidth} onClick={editButtonClicked} isActiveTool={canvasTool === mapTools.PEN} />
+            <StandardButton icon={IconMinus} penWidth={penWidth} penColor={penColor} setpenWidth={setpenWidth} onClick={lineButtonClicked} isActiveTool={canvasTool === mapTools.LINE} />
             <Popover
               content={colorPlate}
               position={"left"}
             >
-              <div style={canvasToolBtnStyle}><ColorBtn color={penColor} /></div>
+              <div style={styles.canvasToolButtonStyle}><ColorBtn color={penColor} /></div>
             </Popover>
-            <Tooltip content={presentLanguage.markbox.undo}><div style={canvasToolBtnStyle}><IconUndo size='extra-large' /></div></Tooltip>
+            <Tooltip content={presentLanguage.markbox.undo}><div style={styles.canvasToolButtonStyle}><IconUndo size='extra-large' /></div></Tooltip>
             <Popconfirm
               visible={togglevisible}
               title={presentLanguage.markbox.clearwarning.title}
@@ -290,13 +212,13 @@ function App() {
               onCancel={() => { setToggleVisible(!togglevisible) }}
             >
               <Tooltip content={presentLanguage.markbox.clear}>
-                <div onClick={() => setToggleVisible(!togglevisible)} style={canvasToolBtnStyle}><IconDelete size='extra-large' /></div>
+                <div onClick={() => setToggleVisible(!togglevisible)} style={styles.canvasToolButtonStyle}><IconDelete size='extra-large' /></div>
               </Tooltip>
             </Popconfirm>
           </div>
         </Content>
       </Layout>
-      <Footer style={commonStyle}><div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginLeft: "120px" }}><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="nofollow"><img decoding="async" loading="lazy" src="https://s2.loli.net/2024/09/16/TPdoKCrgVb4i37J.png" width="107" height="38" style={{ marginRight: "20px", marginTop: "12px" }} /></a><div style={{ marginBottom: "12px" }}>© 番石榴网络科技工作室 & <IconGithubLogo style={{ margin: "6px" }} /><a href='https://github.com/ShrLeeKNsword/klbq-map-assist' target="_blank">Github Contributors</a></div></div></Footer>
+      <Footer style={styles.commonStyles}><div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginLeft: "120px" }}><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="nofollow"><img decoding="async" loading="lazy" src="https://s2.loli.net/2024/09/16/TPdoKCrgVb4i37J.png" width="107" height="38" style={{ marginRight: "20px", marginTop: "12px" }} /></a><div style={{ marginBottom: "12px" }}>© 番石榴网络科技工作室 & <IconGithubLogo style={{ margin: "6px" }} /><a href='https://github.com/ShrLeeKNsword/klbq-map-assist' target="_blank">Github Contributors</a></div></div></Footer>
     </Layout >
   )
 }
