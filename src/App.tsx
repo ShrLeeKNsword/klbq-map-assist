@@ -199,8 +199,6 @@ function App() {
           <div style={{ position: "relative", top: "-120px", right: "-150px", width: "58px", height: "max" }}>
             <StandardButton icon={IconEdit} penWidth={penWidth} penColor={penColor} setpenWidth={setpenWidth} onClick={editButtonClicked} isActiveTool={canvasTool === mapTools.PEN} />
             <StandardButton icon={IconMinus} penWidth={penWidth} penColor={penColor} setpenWidth={setpenWidth} onClick={lineButtonClicked} isActiveTool={canvasTool === mapTools.LINE} />
-
-            <div style={styles.canvasToolBtnStyle}><IconUndo size='extra-large' /></div>
             <Popover
               content={colorPlate}
               position={"left"}>
