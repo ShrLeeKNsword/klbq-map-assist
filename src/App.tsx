@@ -1,11 +1,70 @@
 import { useState } from 'react';
 import { Layout, Collapse, Typography, Select, Tooltip, Popover, Col, Row, Popconfirm } from '@douyinfe/semi-ui';
-import { IconEdit, IconDelete, IconUndo } from '@douyinfe/semi-icons';
+import { IconEdit, IconDelete, IconUndo, IconLanguage } from '@douyinfe/semi-icons';
 import ColorBtn from './components/colorBtb.tsx';
 
 import './App.css';
 
 function App() {
+  const i18nData = [
+    {
+      language: "简体中文",
+      title: "卡拉彼丘地图助手",
+      sidebar: {
+        mapsetting: "地图设置",
+        charactor: "超弦体",
+        skill: "技能",
+        grenade: "战术道具",
+        lineup: "lineup点位"
+      },
+      charactors: {
+        PUS: {
+          Michele: "米雪儿·李",
+          Nobunaga: "信",
+          Kokona: "心夏",
+          Yvette: "伊薇特",
+          Flavia: "芙拉薇娅"
+        },
+        TS: {
+          Ming: "明",
+          Lawine: "拉薇",
+          Meredith: "梅瑞狄斯",
+          Reiichi: "令",
+          Kanami: "香奈美",
+          Eika: "艾卡",
+          Fragrans: "珐格兰丝"
+        },
+        Urbino: {
+          Celestia: "星绘",
+          Audrey: "奥黛丽",
+          Maddelena: "白墨",
+          Fuchsia: "玛德蕾娜",
+          BaiMo: "绯莎",
+          Galatea: "加拉蒂亚"
+        }
+      },
+      grenades: {
+        Flashbang: "闪光弹",
+        FragGrenade: "手雷",
+        HealingGrenade: "治疗雷",
+        Interceptor: "拦截者",
+        SlowGrenade: "减速雷",
+        SmokeBomb: "烟雾弹",
+        Tattletale: "警报器",
+        WindstormGrenade: "风场雷",
+        SnowBall: "雪球"
+      },
+      markbox: {
+        mark: "画笔",
+        undo: "撤销",
+        clear: "清空",
+        clearwarning: {
+          title:"确认清除所有笔迹？",
+          content: "此操作不可撤销"
+        }
+      }
+    }
+  ];
   const { Header, Footer, Sider, Content } = Layout;
   const commonStyle = {
     height: 64,
@@ -14,6 +73,7 @@ function App() {
   };
   const { Title } = Typography;
   const [presentMap, setPresentMap] = useState("风曳镇");
+  const [presentLanguage, setPresentLanguage] = useState(i18nData[0]);
   const [penColor, setpenColor] = useState("red");
   const [presentMapURL, setPresentMapURL] = useState("https://patchwiki.biligame.com/images/klbq/c/c2/5dzy2fxrj3ihqq2n9gfmpe2g91ofc0p.png");
   const mapList = [
@@ -47,6 +107,14 @@ function App() {
     for (const mapinfo of mapList) {
       if (mapinfo.mapName === value) {
         setPresentMapURL(mapinfo.imgLink);
+      }
+    }
+  }
+
+  const changePresentlanguage = (value: any) => {
+    for (const languageinfo of i18nData) {
+      if (languageinfo.language === value) {
+        setPresentLanguage(languageinfo);
       }
     }
   }
@@ -109,12 +177,20 @@ function App() {
   return (
     <Layout className="components-layout-demo" style={{ height: 720, width: 1280 }}>
       <Header style={commonStyle}>
-        <Title heading={3} style={{ margin: '14px 0' }} >卡拉彼丘地图助手 - {presentMap}</Title>
+        <Title heading={3} style={{ margin: '14px 0' }} >{presentLanguage.title} - {presentMap}</Title>
+        <div style={{ position: "relative", left: "1100px", top: "-60px", height: "100%", width: "200px", display: "flex" }}>
+          <div style={{ marginTop: "8px", marginRight: "12px" }}><IconLanguage size='extra-large' /></div>
+          <Select defaultValue="简体中文" style={{ width: 120, marginTop: "18px" }} onChange={changePresentlanguage}>
+            <Select.Option value="简体中文">简体中文</Select.Option>
+            <Select.Option value="繁体中文">繁体中文</Select.Option>
+            <Select.Option value="日本語">日本語</Select.Option>
+            <Select.Option value="English">English</Select.Option>
+          </Select></div>
       </Header>
       <Layout>
         <Sider style={{ width: '180px', background: 'var(--semi-color-fill-2)' }}>
           <Collapse accordion defaultActiveKey="1">
-            <Collapse.Panel header="地图设置" itemKey="1">
+            <Collapse.Panel header={presentLanguage.sidebar.mapsetting} itemKey="1">
               <p>
                 <Select defaultValue="风曳镇" style={{ width: 120 }} onChange={changePresentmap}>
                   <Select.Option value="风曳镇">风曳镇</Select.Option>
@@ -127,13 +203,16 @@ function App() {
                 </Select>
               </p>
             </Collapse.Panel>
-            <Collapse.Panel header="超弦体" itemKey="2">
+            <Collapse.Panel header={presentLanguage.sidebar.charactor} itemKey="2">
               <p>Hi, bytedance dance dance. This is the docsite of Semi UI. </p>
             </Collapse.Panel>
-            <Collapse.Panel header="技能" itemKey="3">
+            <Collapse.Panel header={presentLanguage.sidebar.skill} itemKey="3">
               <p>Hi, bytedance dance dance. This is the docsite of Semi UI. </p>
             </Collapse.Panel>
-            <Collapse.Panel header="战术道具" itemKey="4">
+            <Collapse.Panel header={presentLanguage.sidebar.grenade} itemKey="4">
+              <p>Hi, bytedance dance dance. This is the docsite of Semi UI. </p>
+            </Collapse.Panel>
+            <Collapse.Panel header={presentLanguage.sidebar.lineup} itemKey="5">
               <p>Hi, bytedance dance dance. This is the docsite of Semi UI. </p>
             </Collapse.Panel>
           </Collapse>
@@ -141,18 +220,18 @@ function App() {
         <Content style={{ height: "100%", lineHeight: '100px', width: '100%', margin: 'auto', display: 'flex', placeItems: 'center' }}>
           <img src={presentMapURL} style={{ height: "700px", marginLeft: "100px" }}></img>
           <div style={{ position: "relative", top: "15%", right: "-200px", width: "58px", height: "max" }}>
-            <Tooltip content={'画笔'}><div style={canvasToolBtnStyle}><IconEdit size='extra-large' /></div></Tooltip>
+            <Tooltip content={presentLanguage.markbox.mark}><div style={canvasToolBtnStyle}><IconEdit size='extra-large' /></div></Tooltip>
             <Popover
               content={article}
               position={"left"}
             >
               <div style={canvasToolBtnStyle}><ColorBtn color={penColor} /></div>
             </Popover>
-            <Tooltip content={'撤销'}><div style={canvasToolBtnStyle}><IconUndo size='extra-large' /></div></Tooltip>
-            <Tooltip content={'清屏'}><Popconfirm
+            <Tooltip content={presentLanguage.markbox.undo}><div style={canvasToolBtnStyle}><IconUndo size='extra-large' /></div></Tooltip>
+            <Tooltip content={presentLanguage.markbox.clear}><Popconfirm
               visible={togglevisible}
-              title="确认清除所有笔迹？"
-              content="此修改将不可逆"
+              title={presentLanguage.markbox.clearwarning.title}
+              content={presentLanguage.markbox.clearwarning.content}
               onConfirm={() => { setToggleVisible(!togglevisible) }}
               onCancel={() => { setToggleVisible(!togglevisible) }}
             >
