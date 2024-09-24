@@ -182,9 +182,9 @@ function App() {
           <div style={{ marginTop: "8px", marginRight: "12px" }}><IconLanguage size='extra-large' /></div>
           <Select defaultValue="简体中文" style={{ width: 120, marginTop: "18px" }} onChange={changePresentlanguage}>
             <Select.Option value="简体中文">简体中文</Select.Option>
-            <Select.Option value="繁体中文">繁体中文</Select.Option>
-            <Select.Option value="日本語">日本語</Select.Option>
-            <Select.Option value="English">English</Select.Option>
+            <Select.Option disabled value="繁体中文">繁体中文</Select.Option>
+            <Select.Option disabled value="日本語">日本語</Select.Option>
+            <Select.Option disabled value="English">English</Select.Option>
           </Select></div>
       </Header>
       <Layout>
