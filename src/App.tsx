@@ -108,7 +108,7 @@ function App() {
   const [togglevisible, setToggleVisible] = useState(false);
   const [canvasElements, setCanvasElements] = useState<canvasElement[]>([]);
 
-  const changePresentmap = (value: any) => {
+  const changePresentmap = (value: string) => {
     setPresentMap(value);
     for (const mapinfo of mapList) {
       if (mapinfo.mapName === value) {
@@ -117,7 +117,7 @@ function App() {
     }
   }
 
-  const changePresentlanguage = (value: any) => {
+  const changePresentlanguage = (value: string) => {
     for (const languageinfo of i18nData) {
       if (languageinfo.language === value) {
         setPresentLanguage(languageinfo);
@@ -161,7 +161,7 @@ function App() {
         <div className="col-content" onClick={() => { setpenColor("rgba(var(--semi-grey-8), 1)") }}><ColorBtn color="rgba(var(--semi-grey-8), 1)" /></div>
       </Col>
       <Col span={4}>
-        <ColorPicker alpha={true} onChange={(value: any) => { setpenColor(value.hex) }} usePopover={true}>
+        <ColorPicker alpha={true} onChange={(value) => { setpenColor(value.hex) }} usePopover={true}>
           <div className="col-content"><ColorBtn linercolor="70deg, red, blue" /></div>
         </ColorPicker>
       </Col>
@@ -169,7 +169,7 @@ function App() {
   </div>;
 
   const markPlate = <div className="grid grid-flex" style={{ width: "280px", height: "50px", display: "flex", justifyContent: "space-around" }}>
-    <Slider style={{ marginTop: "8px", marginLeft: "10px", width: "200px" }} min={1} max={20} defaultValue={penWidth} onChange={(value: any) => { setpenWidth(value) }}></Slider>
+    <Slider style={{ marginTop: "8px", marginLeft: "10px", width: "200px" }} min={1} max={20} defaultValue={penWidth} onChange={(value) => { setpenWidth(value as number) }}></Slider>
     <div style={{ borderRadius: "100%", margin: "auto", width: penWidth, height: penWidth, display: 'flex', placeItems: 'center', placeContent: 'center', backgroundColor: penColor, overflow: "hidden" }}></div>
   </div>;
 
@@ -193,7 +193,7 @@ function App() {
         <Title heading={3} style={{ margin: '14px 0' }} >{presentLanguage.title} - {presentMap}</Title>
         <div style={{ position: "relative", left: "1100px", top: "-60px", height: "100%", width: "200px", display: "flex" }}>
           <div style={{ marginTop: "8px", marginRight: "12px" }}><IconLanguage size='extra-large' /></div>
-          <Select defaultValue="简体中文" style={{ width: 120, marginTop: "18px" }} onChange={changePresentlanguage}>
+          <Select defaultValue="简体中文" style={{ width: 120, marginTop: "18px" }} onChange={value => changePresentlanguage(value as string)}>
             <Select.Option value="简体中文">简体中文</Select.Option>
             <Select.Option disabled value="繁体中文">繁体中文</Select.Option>
             <Select.Option disabled value="日本語">日本語</Select.Option>
@@ -205,7 +205,7 @@ function App() {
           <Collapse accordion defaultActiveKey="1">
             <Collapse.Panel header={presentLanguage.sidebar.mapsetting} itemKey="1">
               <div>
-                <Select defaultValue="风曳镇" style={{ width: 120 }} onChange={changePresentmap}>
+                <Select defaultValue="风曳镇" style={{ width: 120 }} onChange={value => changePresentmap(value as string)}>
                   <Select.Option value="风曳镇">风曳镇</Select.Option>
                   <Select.Option value="空间实验室">空间实验室</Select.Option>
                   <Select.Option value="科斯迷特">科斯迷特</Select.Option>
