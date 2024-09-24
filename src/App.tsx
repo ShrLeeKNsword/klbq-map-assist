@@ -5,6 +5,7 @@ import ColorBtn from './components/colorBtb.tsx';
 import CharactorBtn from './components/charactorBtn.tsx';
 
 import './App.css';
+import DrawableMap, { canvasElement } from './components/drawableMap.tsx';
 
 function App() {
   const i18nData = [
@@ -105,6 +106,7 @@ function App() {
     }
   ]
   const [togglevisible, setToggleVisible] = useState(false);
+  const [canvasElements, setCanvasElements] = useState<canvasElement[]>([]);
 
   const changePresentmap = (value: any) => {
     setPresentMap(value);
@@ -264,7 +266,7 @@ function App() {
           </Collapse>
         </Sider>
         <Content style={{ height: "100%", lineHeight: '100px', width: '100%', margin: 'auto', display: 'flex', placeItems: 'center' }}>
-          <img src={presentMapURL} style={{ height: "700px", marginLeft: "100px" }}></img>
+          <DrawableMap presentMapURL={presentMapURL} penColor={penColor} canvasElements={canvasElements} setCanvasElements={setCanvasElements} />
           <div style={{ position: "relative", top: "-120px", right: "-150px", width: "58px", height: "max" }}>
             <Popover
               content={markPlate}
@@ -294,7 +296,7 @@ function App() {
           </div>
         </Content>
       </Layout>
-      <Footer style={commonStyle}><div style={{ display: "flex", justifyContent: "center", alignItems: "center",marginLeft: "120px"}}><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="nofollow"><img decoding="async" loading="lazy" src="https://s2.loli.net/2024/09/16/TPdoKCrgVb4i37J.png" width="107" height="38" style={{ marginRight: "20px", marginTop: "12px" }} /></a><div style={{ marginBottom: "12px" }}>© 番石榴网络科技工作室 & <IconGithubLogo style={{ margin: "6px" }} /><a href='https://github.com/ShrLeeKNsword/klbq-map-assist' target="_blank">Github Contributors</a></div></div></Footer>
+      <Footer style={commonStyle}><div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginLeft: "120px" }}><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="nofollow"><img decoding="async" loading="lazy" src="https://s2.loli.net/2024/09/16/TPdoKCrgVb4i37J.png" width="107" height="38" style={{ marginRight: "20px", marginTop: "12px" }} /></a><div style={{ marginBottom: "12px" }}>© 番石榴网络科技工作室 & <IconGithubLogo style={{ margin: "6px" }} /><a href='https://github.com/ShrLeeKNsword/klbq-map-assist' target="_blank">Github Contributors</a></div></div></Footer>
     </Layout >
   )
 }
