@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Layout, Collapse, Typography, Select, Tooltip, Popover, Col, Row, Popconfirm } from '@douyinfe/semi-ui';
+import { Layout, Collapse, Typography, Select, Tooltip, Popover, Col, Row, Popconfirm, Slider, ColorPicker } from '@douyinfe/semi-ui';
 import { IconEdit, IconDelete, IconUndo, IconLanguage } from '@douyinfe/semi-icons';
 import ColorBtn from './components/colorBtb.tsx';
 
@@ -56,10 +56,11 @@ function App() {
       },
       markbox: {
         mark: "画笔",
+        color: "颜色",
         undo: "撤销",
         clear: "清空",
         clearwarning: {
-          title:"确认清除所有笔迹？",
+          title: "确认清除所有笔迹？",
           content: "此操作不可撤销"
         }
       }
@@ -75,6 +76,7 @@ function App() {
   const [presentMap, setPresentMap] = useState("风曳镇");
   const [presentLanguage, setPresentLanguage] = useState(i18nData[0]);
   const [penColor, setpenColor] = useState("red");
+  const [penWidth, setpenWidth] = useState(5);
   const [presentMapURL, setPresentMapURL] = useState("https://patchwiki.biligame.com/images/klbq/c/c2/5dzy2fxrj3ihqq2n9gfmpe2g91ofc0p.png");
   const mapList = [
     {
@@ -119,7 +121,7 @@ function App() {
     }
   }
 
-  const article = <div className="grid grid-flex">
+  const colorPlate = <div className="grid grid-flex">
     <Row gutter={[16, 24]} type="flex" justify="space-around" align="middle" style={{ marginLeft: "25px" }}>
       <Col span={4}>
         <div className="col-content" onClick={() => { setpenColor("red") }}><ColorBtn color="red" /></div>
@@ -143,9 +145,6 @@ function App() {
         <div className="col-content" onClick={() => { setpenColor("white") }}><ColorBtn color="white" /></div>
       </Col>
       <Col span={4}>
-        <div className="col-content" onClick={() => { setpenColor("rgba(var(--semi-grey-0), 1)") }}><ColorBtn color="rgba(var(--semi-grey-0), 1)" /></div>
-      </Col>
-      <Col span={4}>
         <div className="col-content" onClick={() => { setpenColor("rgba(var(--semi-grey-2), 1)") }}><ColorBtn color="rgba(var(--semi-grey-2), 1)" /></div>
       </Col>
       <Col span={4}>
@@ -157,7 +156,17 @@ function App() {
       <Col span={4}>
         <div className="col-content" onClick={() => { setpenColor("rgba(var(--semi-grey-8), 1)") }}><ColorBtn color="rgba(var(--semi-grey-8), 1)" /></div>
       </Col>
+      <Col span={4}>
+        <ColorPicker alpha={true} onChange={(value: any) => { setpenColor(value.hex) }} usePopover={true}>
+          <div className="col-content"><ColorBtn linercolor="70deg, red, blue" /></div>
+        </ColorPicker>
+      </Col>
     </Row>
+  </div>;
+
+  const markPlate = <div className="grid grid-flex" style={{ width: "280px", height: "50px", display: "flex", justifyContent: "space-around" }}>
+    <Slider style={{ marginTop: "8px", marginLeft: "10px", width: "200px" }} min={1} max={20} defaultValue={5} onChange={(value: any) => { setpenWidth(value) }}></Slider>
+    <div style={{ borderRadius: "100%", margin: "auto", width: penWidth, height: penWidth, display: 'flex', placeItems: 'center', placeContent: 'center', backgroundColor: penColor, overflow: "hidden" }}></div>
   </div>;
 
 
@@ -172,6 +181,18 @@ function App() {
     backgroundColor: "rgba(var(--semi-grey-0), 1)",
     boxShadow: "0 0 0 3px rgba(var(--semi-grey-1), 1)",
     marginTop: "35px",
+  }
+  const draggableBtnStyle = {
+    borderRadius: "100%",
+    margin: "5px",
+    width: "35px",
+    height: "35px",
+    display: 'flex',
+    placeItems: 'center',
+    placeContent: 'center',
+    backgroundColor: "rgba(var(--semi-grey-0), 1)",
+    boxShadow: "0 0 0 3px rgba(var(--semi-grey-1), 1)",
+    overflow: "hidden",
   }
 
   return (
@@ -188,7 +209,7 @@ function App() {
           </Select></div>
       </Header>
       <Layout>
-        <Sider style={{ width: '180px', background: 'var(--semi-color-fill-2)' }}>
+        <Sider style={{ width: '340px', background: 'var(--semi-color-fill-2)' }}>
           <Collapse accordion defaultActiveKey="1">
             <Collapse.Panel header={presentLanguage.sidebar.mapsetting} itemKey="1">
               <div>
@@ -204,7 +225,12 @@ function App() {
               </div>
             </Collapse.Panel>
             <Collapse.Panel header={presentLanguage.sidebar.charactor} itemKey="2">
-              <p>Hi, bytedance dance dance. This is the docsite of Semi UI. </p>
+              <Row gutter={[16, 16]} type="flex" justify="space-around" align="middle">
+                <Col span={6}><div style={draggableBtnStyle}><img src='https://static.miraheze.org/strinovawiki/thumb/f/f9/Michele_Profile.png/150px-Michele_Profile.png' style={{ width: '100%', height: '100%' }} /></div></Col>
+                <Col span={6}><div style={draggableBtnStyle}></div></Col>
+                <Col span={6}><div style={draggableBtnStyle}></div></Col>
+                <Col span={6}><div style={draggableBtnStyle}></div></Col>
+              </Row>
             </Collapse.Panel>
             <Collapse.Panel header={presentLanguage.sidebar.skill} itemKey="3">
               <p>Hi, bytedance dance dance. This is the docsite of Semi UI. </p>
@@ -219,28 +245,35 @@ function App() {
         </Sider>
         <Content style={{ height: "100%", lineHeight: '100px', width: '100%', margin: 'auto', display: 'flex', placeItems: 'center' }}>
           <img src={presentMapURL} style={{ height: "700px", marginLeft: "100px" }}></img>
-          <div style={{ position: "relative", top: "15%", right: "-200px", width: "58px", height: "max" }}>
-            <Tooltip content={presentLanguage.markbox.mark}><div style={canvasToolBtnStyle}><IconEdit size='extra-large' /></div></Tooltip>
+          <div style={{ position: "relative", top: "10px", right: "-120px", width: "58px", height: "max" }}>
             <Popover
-              content={article}
+              content={markPlate}
+              position={"left"}
+            >
+              <div style={canvasToolBtnStyle}><IconEdit size='extra-large' /></div>
+            </Popover>
+            <Popover
+              content={colorPlate}
               position={"left"}
             >
               <div style={canvasToolBtnStyle}><ColorBtn color={penColor} /></div>
             </Popover>
             <Tooltip content={presentLanguage.markbox.undo}><div style={canvasToolBtnStyle}><IconUndo size='extra-large' /></div></Tooltip>
-            <Tooltip content={presentLanguage.markbox.clear}><Popconfirm
+            <Popconfirm
               visible={togglevisible}
               title={presentLanguage.markbox.clearwarning.title}
               content={presentLanguage.markbox.clearwarning.content}
               onConfirm={() => { setToggleVisible(!togglevisible) }}
               onCancel={() => { setToggleVisible(!togglevisible) }}
             >
-              <div onClick={() => setToggleVisible(!togglevisible)} style={canvasToolBtnStyle}><IconDelete size='extra-large' /></div>
-            </Popconfirm></Tooltip>
+              <Tooltip content={presentLanguage.markbox.clear}>
+                <div onClick={() => setToggleVisible(!togglevisible)} style={canvasToolBtnStyle}><IconDelete size='extra-large' /></div>
+              </Tooltip>
+            </Popconfirm>
           </div>
         </Content>
       </Layout>
-      <Footer style={commonStyle}><div style={{display:"flex", justifyContent:"center", alignItems:"center"}}><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="nofollow"><img decoding="async" loading="lazy" src="https://s2.loli.net/2024/09/16/TPdoKCrgVb4i37J.png" width="107" height="38" style={{marginRight:"20px",marginTop:"12px"}} /></a><div style={{marginBottom:"12px"}}>©番石榴网络科技工作室 2020-2024</div></div></Footer>
+      <Footer style={commonStyle}><div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="nofollow"><img decoding="async" loading="lazy" src="https://s2.loli.net/2024/09/16/TPdoKCrgVb4i37J.png" width="107" height="38" style={{ marginRight: "20px", marginTop: "12px" }} /></a><div style={{ marginBottom: "12px" }}>©番石榴网络科技工作室 2020-2024</div></div></Footer>
     </Layout >
   )
 }
