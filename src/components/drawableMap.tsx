@@ -20,7 +20,7 @@ function createElement(
 	y2: number,
 	color: string
 ) {
-	const roughElement = generator?.line(x1, y1, x2, y2, { stroke: color });
+	const roughElement = generator?.line(x1, y1, x2, y2, { stroke: color, roughness: 0 });
 
 	return {
 		type: "line",
@@ -42,8 +42,6 @@ function calculateWindow(container: HTMLDivElement, canvas: HTMLCanvasElement) {
 	canvas.style.width = `${containerWidth}px`;
 	canvas.style.height = `${containerHeight}px`;
 }
-
-
 
 const DrawableMap: React.FC<DrawableMapProps> = (props) => {
 	const [canvasMouseDown, setCanvasMouseDown] = useState(false);

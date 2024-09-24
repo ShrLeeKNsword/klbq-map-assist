@@ -6,22 +6,18 @@ import CharactorBtn from './components/charactorBtn.tsx';
 
 import './App.css';
 import DrawableMap from './components/drawableMap.tsx';
+import StandardButton from './components/toolButtons/standardButton.tsx';
 import { i18nData } from './data/i18n.ts';
 import { mapList } from './data/maplist.ts';
 import { canvasElement, mapTools } from './data/canvasConstants.ts';
-import StandardButton from './components/toolButtons/standardButton.tsx';
-
-const { Header, Footer, Sider, Content } = Layout;
-
-const { Title } = Typography;
 
 const styles = {
-  commonStyle: {
-    height: '4rem',
-    lineHeight: '4rem',
+  commonStyles: {
+    height: 64,
+    lineHeight: '64px',
     background: 'var(--semi-color-fill-0)'
   },
-  canvasToolBtnStyle: {
+  canvasToolButtonStyle: {
     borderRadius: "100%",
     margin: "5px",
     width: "50px",
@@ -36,20 +32,22 @@ const styles = {
 }
 
 function App() {
-  const [currentMap, setCurrentMap] = useState("风曳镇");
-  const [presentMapURL, setPresentMapURL] = useState(mapList[0].imgLink);
+  const { Header, Footer, Sider, Content } = Layout;
+  const { Title } = Typography;
 
+  const [presentMap, setPresentMap] = useState("风曳镇");
   const [presentLanguage, setPresentLanguage] = useState(i18nData[0]);
 
   const [canvasTool, setTool] = useState<mapTools>(mapTools.LINE);
   const [penColor, setpenColor] = useState("red");
   const [penWidth, setpenWidth] = useState(5);
-
-  const [togglevisible, setToggleVisible] = useState(false);
   const [canvasElements, setCanvasElements] = useState<canvasElement[]>([]);
 
+  const [presentMapURL, setPresentMapURL] = useState("https://patchwiki.biligame.com/images/klbq/c/c2/5dzy2fxrj3ihqq2n9gfmpe2g91ofc0p.png");
+  const [togglevisible, setToggleVisible] = useState(false);
+
   const changePresentmap = (value: string) => {
-    setCurrentMap(value);
+    setPresentMap(value);
     for (const mapinfo of mapList) {
       if (mapinfo.mapName === value) {
         setPresentMapURL(mapinfo.imgLink);
@@ -109,17 +107,17 @@ function App() {
   </div>;
 
   function editButtonClicked(): void {
-    throw new Error('Function not implemented.');
+    setTool(mapTools.PEN);
   }
 
   function lineButtonClicked(): void {
-    throw new Error('Function not implemented.');
+    setTool(mapTools.LINE);
   }
 
   return (
-    <Layout className="components-layout-demo" style={{ height: 700, width: 1280 }}>
-      <Header style={styles.commonStyle}>
-        <Title heading={3} style={{ margin: '14px 0' }} >{presentLanguage.title} - {currentMap}</Title>
+    <Layout className="components-layout-demo" style={{ height: 720, width: 1280 }}>
+      <Header style={styles.commonStyles}>
+        <Title heading={3} style={{ margin: '14px 0' }} >{presentLanguage.title} - {presentMap}</Title>
         <div style={{ position: "relative", left: "1100px", top: "-60px", height: "100%", width: "200px", display: "flex" }}>
           <div style={{ marginTop: "8px", marginRight: "12px" }}><IconLanguage size='extra-large' /></div>
           <Select defaultValue="简体中文" style={{ width: 120, marginTop: "18px" }} onChange={value => changePresentlanguage(value as string)}>
@@ -194,22 +192,18 @@ function App() {
             </Collapse.Panel>
           </Collapse>
         </Sider>
-        <Content style={{ height: "620px", lineHeight: '100px', width: '100%', margin: 'auto', display: 'flex', placeItems: 'center', overflow: "hidden" }}>
-          <DrawableMap presentMapURL={presentMapURL} penColor={penColor} canvasElements={canvasElements} setCanvasElements={setCanvasElements} canvasTool={canvasTool} />
+        <Content style={{ height: "100%", lineHeight: '100px', width: '100%', margin: 'auto', display: 'flex', placeItems: 'center' }}>
+          <DrawableMap presentMapURL={presentMapURL} canvasTool={canvasTool} penColor={penColor} canvasElements={canvasElements} setCanvasElements={setCanvasElements} />
           <div style={{ position: "relative", top: "-20px", right: "40px", width: "58px", height: "max" }}>
-
+            <StandardButton icon={IconEdit} penWidth={penWidth} penColor={penColor} setpenWidth={setpenWidth} onClick={editButtonClicked} isActiveTool={canvasTool === mapTools.PEN} />
+            <StandardButton icon={IconMinus} penWidth={penWidth} penColor={penColor} setpenWidth={setpenWidth} onClick={lineButtonClicked} isActiveTool={canvasTool === mapTools.LINE} />
             <Popover
               content={colorPlate}
-              position={"left"}>
-              <div style={styles.canvasToolBtnStyle}>
-                <Tooltip content={presentLanguage.markbox.color}>
-                  <ColorBtn color={penColor} />
-                </Tooltip>
-              </div>
+              position={"left"}
+            >
+              <div style={styles.canvasToolButtonStyle}><ColorBtn color={penColor} /></div>
             </Popover>
-            <StandardButton icon={IconEdit} penWidth={penWidth} penColor={penColor} setpenWidth={setpenWidth} onClick={editButtonClicked} />
-            <StandardButton icon={IconMinus} penWidth={penWidth} penColor={penColor} setpenWidth={setpenWidth} onClick={lineButtonClicked} />
-            <Tooltip content={presentLanguage.markbox.undo}><div style={styles.canvasToolBtnStyle}><IconUndo size='extra-large' /></div></Tooltip>
+            <Tooltip content={presentLanguage.markbox.undo}><div style={styles.canvasToolButtonStyle}><IconUndo size='extra-large' /></div></Tooltip>
             <Popconfirm
               visible={togglevisible}
               title={presentLanguage.markbox.clearwarning.title}
@@ -218,13 +212,13 @@ function App() {
               onCancel={() => { setToggleVisible(!togglevisible) }}
             >
               <Tooltip content={presentLanguage.markbox.clear}>
-                <div onClick={() => setToggleVisible(!togglevisible)} style={styles.canvasToolBtnStyle}><IconDelete size='extra-large' /></div>
+                <div onClick={() => setToggleVisible(!togglevisible)} style={styles.canvasToolButtonStyle}><IconDelete size='extra-large' /></div>
               </Tooltip>
             </Popconfirm>
           </div>
         </Content>
       </Layout>
-      <Footer style={styles.commonStyle}><div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginLeft: "120px" }}><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="nofollow"><img decoding="async" loading="lazy" src="https://s2.loli.net/2024/09/16/TPdoKCrgVb4i37J.png" width="107" height="38" style={{ marginRight: "20px", marginTop: "12px" }} /></a><div style={{ marginBottom: "12px" }}>© 番石榴网络科技工作室 & <IconGithubLogo style={{ margin: "6px" }} /><a href='https://github.com/ShrLeeKNsword/klbq-map-assist' target="_blank">Github Contributors</a></div></div></Footer>
+      <Footer style={styles.commonStyles}><div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginLeft: "120px" }}><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="nofollow"><img decoding="async" loading="lazy" src="https://s2.loli.net/2024/09/16/TPdoKCrgVb4i37J.png" width="107" height="38" style={{ marginRight: "20px", marginTop: "12px" }} /></a><div style={{ marginBottom: "12px" }}>© 番石榴网络科技工作室 & <IconGithubLogo style={{ margin: "6px" }} /><a href='https://github.com/ShrLeeKNsword/klbq-map-assist' target="_blank">Github Contributors</a></div></div></Footer>
     </Layout >
   )
 }
