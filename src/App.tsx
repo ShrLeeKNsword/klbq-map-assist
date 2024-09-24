@@ -9,25 +9,44 @@ import DrawableMap, { canvasElement } from './components/drawableMap.tsx';
 import { i18nData } from './data/i18n.ts';
 import { mapList } from './data/maplist.ts';
 
-function App() {
+const { Header, Footer, Sider, Content } = Layout;
 
-  const { Header, Footer, Sider, Content } = Layout;
-  const commonStyle = {
-    height: 64,
-    lineHeight: '64px',
+const { Title } = Typography;
+
+const styles = {
+  commonStyle: {
+    height: '4rem',
+    lineHeight: '4rem',
     background: 'var(--semi-color-fill-0)'
-  };
-  const { Title } = Typography;
-  const [presentMap, setPresentMap] = useState("风曳镇");
+  },
+  canvasToolBtnStyle: {
+    borderRadius: "100%",
+    margin: "5px",
+    width: "50px",
+    height: "50px",
+    display: 'flex',
+    placeItems: 'center',
+    placeContent: 'center',
+    backgroundColor: "rgba(var(--semi-grey-0), 1)",
+    boxShadow: "0 0 0 3px rgba(var(--semi-grey-1), 1)",
+    marginTop: "35px",
+  }
+}
+
+function App() {
+  const [currentMap, setCurrentMap] = useState("风曳镇");
+  const [presentMapURL, setPresentMapURL] = useState(mapList[0].imgLink);
+
   const [presentLanguage, setPresentLanguage] = useState(i18nData[0]);
+
   const [penColor, setpenColor] = useState("red");
   const [penWidth, setpenWidth] = useState(5);
-  const [presentMapURL, setPresentMapURL] = useState(mapList[0].imgLink);
+
   const [togglevisible, setToggleVisible] = useState(false);
   const [canvasElements, setCanvasElements] = useState<canvasElement[]>([]);
 
   const changePresentmap = (value: string) => {
-    setPresentMap(value);
+    setCurrentMap(value);
     for (const mapinfo of mapList) {
       if (mapinfo.mapName === value) {
         setPresentMapURL(mapinfo.imgLink);
@@ -91,24 +110,10 @@ function App() {
     <div style={{ borderRadius: "100%", margin: "auto", width: penWidth, height: penWidth, display: 'flex', placeItems: 'center', placeContent: 'center', backgroundColor: penColor, overflow: "hidden" }}></div>
   </div>;
 
-
-  const canvasToolBtnStyle = {
-    borderRadius: "100%",
-    margin: "5px",
-    width: "50px",
-    height: "50px",
-    display: 'flex',
-    placeItems: 'center',
-    placeContent: 'center',
-    backgroundColor: "rgba(var(--semi-grey-0), 1)",
-    boxShadow: "0 0 0 3px rgba(var(--semi-grey-1), 1)",
-    marginTop: "35px",
-  }
-
   return (
     <Layout className="components-layout-demo" style={{ height: 720, width: 1280 }}>
-      <Header style={commonStyle}>
-        <Title heading={3} style={{ margin: '14px 0' }} >{presentLanguage.title} - {presentMap}</Title>
+      <Header style={styles.commonStyle}>
+        <Title heading={3} style={{ margin: '14px 0' }} >{presentLanguage.title} - {currentMap}</Title>
         <div style={{ position: "relative", left: "1100px", top: "-60px", height: "100%", width: "200px", display: "flex" }}>
           <div style={{ marginTop: "8px", marginRight: "12px" }}><IconLanguage size='extra-large' /></div>
           <Select defaultValue="简体中文" style={{ width: 120, marginTop: "18px" }} onChange={value => changePresentlanguage(value as string)}>
@@ -190,16 +195,16 @@ function App() {
               content={markPlate}
               position={"left"}
             >
-              <div style={canvasToolBtnStyle}><IconEdit size='extra-large' /></div>
+              <div style={styles.canvasToolBtnStyle}><IconEdit size='extra-large' /></div>
             </Popover>
-            <Tooltip content={presentLanguage.markbox.straightline}><div style={canvasToolBtnStyle}><IconMinus size='extra-large' /></div></Tooltip>
+            <Tooltip content={presentLanguage.markbox.straightline}><div style={styles.canvasToolBtnStyle}><IconMinus size='extra-large' /></div></Tooltip>
             <Popover
               content={colorPlate}
               position={"left"}
             >
-              <div style={canvasToolBtnStyle}><ColorBtn color={penColor} /></div>
+              <div style={styles.canvasToolBtnStyle}><ColorBtn color={penColor} /></div>
             </Popover>
-            <Tooltip content={presentLanguage.markbox.undo}><div style={canvasToolBtnStyle}><IconUndo size='extra-large' /></div></Tooltip>
+            <Tooltip content={presentLanguage.markbox.undo}><div style={styles.canvasToolBtnStyle}><IconUndo size='extra-large' /></div></Tooltip>
             <Popconfirm
               visible={togglevisible}
               title={presentLanguage.markbox.clearwarning.title}
@@ -208,13 +213,13 @@ function App() {
               onCancel={() => { setToggleVisible(!togglevisible) }}
             >
               <Tooltip content={presentLanguage.markbox.clear}>
-                <div onClick={() => setToggleVisible(!togglevisible)} style={canvasToolBtnStyle}><IconDelete size='extra-large' /></div>
+                <div onClick={() => setToggleVisible(!togglevisible)} style={styles.canvasToolBtnStyle}><IconDelete size='extra-large' /></div>
               </Tooltip>
             </Popconfirm>
           </div>
         </Content>
       </Layout>
-      <Footer style={commonStyle}><div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginLeft: "120px" }}><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="nofollow"><img decoding="async" loading="lazy" src="https://s2.loli.net/2024/09/16/TPdoKCrgVb4i37J.png" width="107" height="38" style={{ marginRight: "20px", marginTop: "12px" }} /></a><div style={{ marginBottom: "12px" }}>© 番石榴网络科技工作室 & <IconGithubLogo style={{ margin: "6px" }} /><a href='https://github.com/ShrLeeKNsword/klbq-map-assist' target="_blank">Github Contributors</a></div></div></Footer>
+      <Footer style={styles.commonStyle}><div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginLeft: "120px" }}><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="nofollow"><img decoding="async" loading="lazy" src="https://s2.loli.net/2024/09/16/TPdoKCrgVb4i37J.png" width="107" height="38" style={{ marginRight: "20px", marginTop: "12px" }} /></a><div style={{ marginBottom: "12px" }}>© 番石榴网络科技工作室 & <IconGithubLogo style={{ margin: "6px" }} /><a href='https://github.com/ShrLeeKNsword/klbq-map-assist' target="_blank">Github Contributors</a></div></div></Footer>
     </Layout >
   )
 }
