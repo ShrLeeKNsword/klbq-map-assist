@@ -1,9 +1,9 @@
-/* eslint-disable no-case-declarations */
+
 import React, { useLayoutEffect, useRef, useState } from "react";
 import { RoughCanvas } from "roughjs/bin/canvas";
 import { RoughGenerator } from "roughjs/bin/generator";
 import { canvasElement, mapTools } from "../utils/canvasConstants";
-import { calculateWindow, drawElement, createElement } from "../utils/canvasUtils";
+import { calculateWindow, drawElements, createLineElement, createPathElement } from "../utils/canvasUtils";
 
 interface DrawableMapProps {
 	presentMapURL: string;
@@ -14,6 +14,7 @@ interface DrawableMapProps {
 	penWidth: number;
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export let generator: RoughGenerator | undefined = undefined;
 
 const DrawableMap: React.FC<DrawableMapProps> = (props) => {
@@ -45,7 +46,7 @@ const DrawableMap: React.FC<DrawableMapProps> = (props) => {
 				break;
 		}
 
-		drawElement(props.canvasElements, roughCanvas);
+		drawElements(props.canvasElements, roughCanvas, ctx!);
 	}, [props.canvasElements, props.canvasTool]);
 
 	const handleCanvasMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -54,7 +55,7 @@ const DrawableMap: React.FC<DrawableMapProps> = (props) => {
 
 		switch (props.canvasTool) {
 			case mapTools.LINE:
-				props.setCanvasElements((lastState) => [...lastState, createElement(
+				props.setCanvasElements((lastState) => [...lastState, createLineElement(
 					startPos.realX,
 					startPos.realY,
 					startPos.realX,
@@ -64,7 +65,7 @@ const DrawableMap: React.FC<DrawableMapProps> = (props) => {
 				)]);
 				break;
 			case mapTools.PEN:
-				props.setCanvasElements((lastState) => [...lastState]);
+				props.setCanvasElements((lastState) => [...lastState, createPathElement(startPos.realX, startPos.realY)]);
 				break;
 			case mapTools.SELECT:
 				// TODO: Selection Box
@@ -78,25 +79,35 @@ const DrawableMap: React.FC<DrawableMapProps> = (props) => {
 		const { realX, realY } = getMousePos(event);
 
 		const latestElement = props.canvasElements[props.canvasElements.length - 1];
-		const element = createElement(
+		const element = latestElement.type === 'line' ? createLineElement(
 			latestElement.x1,
 			latestElement.y1,
 			realX,
 			realY,
 			props.penWidth,
 			props.penColor
-		);
+		) : latestElement;
 
 		switch (props.canvasTool) {
 			case mapTools.LINE:
-				const updatedElements = [...props.canvasElements];
-				updatedElements[updatedElements.length - 1] = element;
+				if (element) {
+					const updatedElements = [...props.canvasElements];
+					updatedElements[updatedElements.length - 1] = element;
 
-				props.setCanvasElements(updatedElements);
+					props.setCanvasElements(updatedElements);
+				}
 				break;
 			case mapTools.PEN:
-				props.setCanvasElements((lastState) => [...lastState, element]);
-				break;
+				{
+					const updatedElements = [...props.canvasElements];
+					if (element.type === 'path') {
+						element.points.push({ x: realX, y: realY });
+					}
+
+					updatedElements[updatedElements.length - 1] = element;
+					props.setCanvasElements(updatedElements);
+					break;
+				}
 			case mapTools.SELECT:
 				props.setCanvasElements((lastState) => [...lastState]);
 				break;
