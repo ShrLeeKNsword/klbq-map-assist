@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Layout, Collapse, Typography, Select, Tooltip, Popover, Col, Row, Popconfirm, ColorPicker } from '@douyinfe/semi-ui';
-import { IconEdit, IconDelete, IconUndo, IconLanguage, IconMinus, IconGithubLogo } from '@douyinfe/semi-icons';
+import { IconEdit, IconDelete, IconUndo, IconLanguage, IconMinus, IconGithubLogo, IconMaximize } from '@douyinfe/semi-icons';
 import ColorBtn from './components/colorBtb.tsx';
 import CharactorBtn from './components/charactorBtn.tsx';
 import SkillBtn from './components/skillBtn.tsx';
@@ -11,7 +11,8 @@ import DrawableMap from './components/drawableMap.tsx';
 import StandardButton from './components/toolButtons/standardButton.tsx';
 import { i18nData } from './data/i18n.ts';
 import { mapList } from './data/maplist.ts';
-import { canvasElement, mapTools } from './data/canvasConstants.ts';
+import { canvasLineElement, mapTools } from './utils/canvasConstants.ts';
+import ButtonNoPopover from './components/toolButtons/buttonNoPopover.tsx';
 
 const styles = {
   commonStyles: {
@@ -40,10 +41,10 @@ function App() {
   const [presentMap, setPresentMap] = useState("风曳镇");
   const [presentLanguage, setPresentLanguage] = useState(i18nData[0]);
 
-  const [canvasTool, setTool] = useState<mapTools>(mapTools.LINE);
+  const [canvasTool, setTool] = useState<mapTools>(mapTools.SELECT);
   const [penColor, setpenColor] = useState("red");
-  const [penWidth, setpenWidth] = useState(5);
-  const [canvasElements, setCanvasElements] = useState<canvasElement[]>([]);
+  const [penWidth, setpenWidth] = useState(2);
+  const [canvasElements, setCanvasElements] = useState<canvasLineElement[]>([]);
   const [mapPrepareMode, setMapPrepareMode] = useState(true);
   const [mapMarkNameMode, setMarkNameMode] = useState(true);
 
@@ -109,6 +110,10 @@ function App() {
       </Col>
     </Row>
   </div>;
+
+  function selectButtonClicked(): void {
+    setTool(mapTools.SELECT);
+  }
 
   function editButtonClicked(): void {
     setTool(mapTools.PEN);
@@ -329,8 +334,9 @@ function App() {
           </Collapse>
         </Sider>
         <Content style={{ height: "100%", lineHeight: '100px', width: '100%', margin: 'auto', display: 'flex', placeItems: 'center' }}>
-          <DrawableMap presentMapURL={mapPrepareMode ? presentMapURL.imgPrepareLink : presentMapURL.imgBlankLink} canvasTool={canvasTool} penColor={penColor} canvasElements={canvasElements} setCanvasElements={setCanvasElements} />
+          <DrawableMap presentMapURL={mapPrepareMode ? presentMapURL.imgPrepareLink : presentMapURL.imgBlankLink} canvasTool={canvasTool} penColor={penColor} canvasElements={canvasElements} setCanvasElements={setCanvasElements} penWidth={penWidth} />
           <div style={{ position: "relative", top: "-20px", right: "40px", width: "58px", height: "max" }}>
+            <ButtonNoPopover icon={IconMaximize} onClick={selectButtonClicked} isActiveTool={canvasTool === mapTools.SELECT} />
             <StandardButton icon={IconEdit} penWidth={penWidth} penColor={penColor} setpenWidth={setpenWidth} onClick={editButtonClicked} isActiveTool={canvasTool === mapTools.PEN} />
             <StandardButton icon={IconMinus} penWidth={penWidth} penColor={penColor} setpenWidth={setpenWidth} onClick={lineButtonClicked} isActiveTool={canvasTool === mapTools.LINE} />
             <Popover

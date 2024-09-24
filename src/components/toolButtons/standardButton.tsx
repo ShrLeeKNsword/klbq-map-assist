@@ -39,7 +39,7 @@ const activeCanvasToolButtonStyle = {
 
 const StandardButton: React.FC<StandardButtonProps> = (props) => {
 	const markPlate = <div className="grid grid-flex" style={{ width: "280px", height: "50px", display: "flex", justifyContent: "space-around" }}>
-		<Slider style={{ marginTop: "8px", marginLeft: "10px", width: "200px" }} min={1} max={20} defaultValue={props.penWidth} onChange={(value) => { props.setpenWidth(value as number) }}></Slider>
+		<Slider style={{ marginTop: "8px", marginLeft: "10px", width: "200px" }} min={1} max={5} defaultValue={props.penWidth} onChange={(value) => { props.setpenWidth(value as number) }}></Slider>
 		<div style={{ borderRadius: "100%", margin: "auto", width: props.penWidth, height: props.penWidth, display: 'flex', placeItems: 'center', placeContent: 'center', backgroundColor: props.penColor, overflow: "hidden" }}></div>
 	</div>;
 
@@ -48,7 +48,7 @@ const StandardButton: React.FC<StandardButtonProps> = (props) => {
 			content={markPlate}
 			position={"left"}
 		>
-			<div style={props.isActiveTool ? activeCanvasToolButtonStyle : canvasToolButtonStyle} >
+			<div style={props.isActiveTool ? activeCanvasToolButtonStyle : canvasToolButtonStyle} onClick={props.onClick}>
 				<props.icon size='extra-large' />
 			</div>
 		</Popover>
