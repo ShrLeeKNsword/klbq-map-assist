@@ -42,15 +42,17 @@ function App() {
   const [penColor, setpenColor] = useState("red");
   const [penWidth, setpenWidth] = useState(5);
   const [canvasElements, setCanvasElements] = useState<canvasElement[]>([]);
+  const [mapPrepareMode, setMapPrepareMode] = useState(true);
+  const [mapMarkNameMode, setMarkNameMode] = useState(true);
 
-  const [presentMapURL, setPresentMapURL] = useState("https://patchwiki.biligame.com/images/klbq/c/c2/5dzy2fxrj3ihqq2n9gfmpe2g91ofc0p.png");
+  const [presentMapURL, setPresentMapURL] = useState({ imgPrepareLink: mapList[0].imgPrepareLink, imgBlankLink: mapList[0].imgBlankLink });
   const [togglevisible, setToggleVisible] = useState(false);
 
   const changePresentmap = (value: string) => {
     setPresentMap(value);
     for (const mapinfo of mapList) {
       if (mapinfo.mapName === value) {
-        setPresentMapURL(mapinfo.imgLink);
+        setPresentMapURL({ imgPrepareLink: mapinfo.imgPrepareLink, imgBlankLink: mapinfo.imgBlankLink });
       }
     }
   }
@@ -117,7 +119,7 @@ function App() {
   return (
     <Layout className="components-layout-demo" style={{ height: 720, width: 1280, margin: "auto" }}>
       <Header style={styles.commonStyles}>
-        <Title heading={3} style={{ margin: '14px 0' }} >{presentLanguage.title} - {presentMap}</Title>
+        <Title heading={3} style={{ margin: '14px 0' }} >{presentLanguage.title} - {presentMap} {mapPrepareMode ? "[准备阶段]" : "[空白]"} {mapMarkNameMode ? "[点位标注]" : ""}</Title>
         <div style={{ position: "relative", left: "1100px", top: "-60px", height: "100%", width: "200px", display: "flex" }}>
           <div style={{ marginTop: "8px", marginRight: "12px" }}><IconLanguage size='extra-large' /></div>
           <Select defaultValue="简体中文" style={{ width: 120, marginTop: "18px" }} onChange={value => changePresentlanguage(value as string)}>
@@ -132,15 +134,40 @@ function App() {
           <Collapse accordion defaultActiveKey="1" className='no-scroll-bar' style={{ overflowY: "scroll", height: "600px" }}>
             <Collapse.Panel header={presentLanguage.sidebar.mapsetting} itemKey="1">
               <div>
-                <Select defaultValue="风曳镇" style={{ width: 120 }} onChange={value => changePresentmap(value as string)}>
-                  <Select.Option value="风曳镇">风曳镇</Select.Option>
-                  <Select.Option value="空间实验室">空间实验室</Select.Option>
-                  <Select.Option value="科斯迷特">科斯迷特</Select.Option>
-                  <Select.Option value="欧拉港口">欧拉港口</Select.Option>
-                  <Select.Option value="柯西街区">柯西街区</Select.Option>
-                  <Select.Option value="88区">88区</Select.Option>
-                  <Select.Option value="404基地">404基地</Select.Option>
-                </Select>
+                <Row gutter={[16, 8]} type="flex" align="middle">
+                  <Col span={9}>
+                    {presentLanguage.mapsetting.choosemap}
+                  </Col>
+                  <Col span={7}>
+                    <Select defaultValue="风曳镇" style={{ width: 120 }} onChange={value => changePresentmap(value as string)}>
+                      <Select.Option value="风曳镇">{presentLanguage.mapsetting.maps.风曳镇}</Select.Option>
+                      <Select.Option value="空间实验室">{presentLanguage.mapsetting.maps.空间实验室}</Select.Option>
+                      <Select.Option value="科斯迷特">{presentLanguage.mapsetting.maps.科斯迷特}</Select.Option>
+                      <Select.Option value="欧拉港口">{presentLanguage.mapsetting.maps.欧拉港口}</Select.Option>
+                      <Select.Option value="柯西街区">{presentLanguage.mapsetting.maps.柯西街区}</Select.Option>
+                      <Select.Option value="88区">{presentLanguage.mapsetting.maps['88区']}</Select.Option>
+                      <Select.Option value="404基地">{presentLanguage.mapsetting.maps['404基地']}</Select.Option>
+                    </Select>
+                  </Col>
+                  <Col span={9}>
+                    {presentLanguage.mapsetting.maptype}
+                  </Col>
+                  <Col span={7}>
+                    <Select defaultValue="准备阶段" style={{ width: 120 }} onChange={value => setMapPrepareMode(value as string === "准备阶段" ? true : false)}>
+                      <Select.Option value="准备阶段">{presentLanguage.mapsetting.maptypes.prepare}</Select.Option>
+                      <Select.Option value="空白">{presentLanguage.mapsetting.maptypes.blank}</Select.Option>
+                    </Select>
+                  </Col>
+                  <Col span={9}>
+                    {presentLanguage.mapsetting.spotmark}
+                  </Col>
+                  <Col span={7}>
+                    <Select defaultValue="启用" style={{ width: 120 }} onChange={value => setMarkNameMode(value as string === "启用" ? true : false)}>
+                      <Select.Option value="启用">{presentLanguage.mapsetting.spotmarks.enable}</Select.Option>
+                      <Select.Option value="禁用">{presentLanguage.mapsetting.spotmarks.disable}</Select.Option>
+                    </Select>
+                  </Col>
+                </Row>
               </div>
             </Collapse.Panel>
             <Collapse.Panel header={presentLanguage.sidebar.charactor} itemKey="2" >
@@ -193,7 +220,7 @@ function App() {
           </Collapse>
         </Sider>
         <Content style={{ height: "100%", lineHeight: '100px', width: '100%', margin: 'auto', display: 'flex', placeItems: 'center' }}>
-          <DrawableMap presentMapURL={presentMapURL} canvasTool={canvasTool} penColor={penColor} canvasElements={canvasElements} setCanvasElements={setCanvasElements} />
+          <DrawableMap presentMapURL={mapPrepareMode ? presentMapURL.imgPrepareLink : presentMapURL.imgBlankLink} canvasTool={canvasTool} penColor={penColor} canvasElements={canvasElements} setCanvasElements={setCanvasElements} />
           <div style={{ position: "relative", top: "-20px", right: "40px", width: "58px", height: "max" }}>
             <StandardButton icon={IconEdit} penWidth={penWidth} penColor={penColor} setpenWidth={setpenWidth} onClick={editButtonClicked} isActiveTool={canvasTool === mapTools.PEN} />
             <StandardButton icon={IconMinus} penWidth={penWidth} penColor={penColor} setpenWidth={setpenWidth} onClick={lineButtonClicked} isActiveTool={canvasTool === mapTools.LINE} />
