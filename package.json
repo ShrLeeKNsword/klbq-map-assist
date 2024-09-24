@@ -10,11 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@douyinfe/semi-icons": "^2.66.1",
     "@douyinfe/semi-ui": "^2.66.1",
+    "canvas": "^2.11.2",
     "react": "^18.3.1",
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "roughjs": "^4.6.6"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",

@@ -1,9 +1,30 @@
-import { useState } from 'react';
+import { MouseEventHandler, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { Layout, Collapse, Typography, Select, Tooltip, Popover, Col, Row, Popconfirm } from '@douyinfe/semi-ui';
 import { IconEdit, IconDelete, IconUndo } from '@douyinfe/semi-icons';
 import ColorBtn from './components/colorBtb.tsx';
 
 import './App.css';
+import { RoughCanvas } from 'roughjs/bin/canvas';
+import { RoughGenerator } from 'roughjs/bin/generator';
+import { Drawable } from 'roughjs/bin/core';
+
+let generator: RoughGenerator | undefined= undefined;
+
+function createElement(x1: number, y1: number, x2: number, y2: number, color: string) {
+  const roughElement = generator?.line(x1, y1, x2, y2, {stroke: color});
+  
+  return {
+    type: 'line',
+    x1,
+    y1,
+    x2,
+    y2,
+    color,
+    roughElement
+  };
+}
+
+interface canvasElement { type: string; x1: number; y1: number; x2: number; y2: number; color: string; roughElement: Drawable | undefined; }
 
 function App() {
   const { Header, Footer, Sider, Content } = Layout;
@@ -41,6 +62,8 @@ function App() {
     }
   ]
   const [togglevisible, setToggleVisible] = useState(false);
+  const [canvasElements, setCanvasElements] = useState<canvasElement[]>([]);
+  const [canvasMouseDown, setCanvasMouseDown] = useState(false);
 
   const changePresentmap = (value: any) => {
     setPresentMap(value);
@@ -49,6 +72,8 @@ function App() {
         setPresentMapURL(mapinfo.imgLink);
       }
     }
+
+    setCanvasElements([]);
   }
 
   const article = <div className="grid grid-flex">
@@ -106,10 +131,77 @@ function App() {
     marginTop: "35px",
   }
 
+  const canvasRef = useRef(null);
+  const containerRef = useRef(null);
+
+  useLayoutEffect(() => {
+    const container = containerRef.current as unknown as HTMLDivElement;
+    
+    const containerWidth = container.clientWidth;
+    const containerHeight = container.clientHeight;
+
+    const canvas = document.getElementById('canvas') as HTMLCanvasElement;
+
+    canvas.width = containerWidth;
+    canvas.height = containerHeight;
+    canvas.style.width = `${containerWidth}px`;
+    canvas.style.height = `${containerHeight}px`;
+
+    const ctx = canvas.getContext('2d');
+    ctx?.clearRect(0, 0, canvas.width, canvas.height);
+
+    const roughCanvas = new RoughCanvas(canvas);
+    generator = roughCanvas.generator;
+
+    canvasElements.forEach(element => {
+      if (element.roughElement) {
+        roughCanvas.draw(element.roughElement);
+      }
+    });
+  }, [canvasElements]);
+
+  const handleCanvasMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
+    setCanvasMouseDown(true);
+
+    const startPos = getMousePos(event);
+
+    const element = createElement(startPos.realX, startPos.realY, startPos.realX, startPos.realY, penColor);
+    setCanvasElements(lastState => [...lastState, element]);
+  };
+
+  const handleCanvasMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (!canvasMouseDown) return;
+
+    const {realX, realY} = getMousePos(event);
+    
+    const latestElement = canvasElements[canvasElements.length - 1];
+    const element = createElement(latestElement.x1, latestElement.y1, realX, realY, penColor);
+    
+    const updatedElements = [...canvasElements];
+    updatedElements[updatedElements.length - 1] = element;
+    setCanvasElements(updatedElements);
+  };
+
+  function getMousePos(event: React.MouseEvent) {
+    const {clientX, clientY} = event
+    const target = event.target as HTMLDivElement;
+    const {left, top} = target.getBoundingClientRect();
+
+    const realX = clientX - left;
+    const realY = clientY - top;
+
+    console.log(realX, realY);
+    return {realX, realY};
+  }
+
+  const handleCanvasMouseUp = (event: React.MouseEvent<HTMLDivElement>) => {
+    setCanvasMouseDown(false);
+  };
+
   return (
-    <Layout className="components-layout-demo" style={{ height: 720, width: 1280 }}>
+    <Layout className="components-layout-demo" >
       <Header style={commonStyle}>
-        <Title heading={3} style={{ margin: '14px 0' }} >卡拉彼丘地图助手 - {presentMap}</Title>
+        <Title heading={3} style={{ margin: '1rem 0' }} >卡拉彼丘地图助手 - {presentMap}</Title>
       </Header>
       <Layout>
         <Sider style={{ width: '180px', background: 'var(--semi-color-fill-2)' }}>
@@ -139,8 +231,12 @@ function App() {
           </Collapse>
         </Sider>
         <Content style={{ height: "100%", lineHeight: '100px', width: '100%', margin: 'auto', display: 'flex', placeItems: 'center' }}>
-          <img src={presentMapURL} style={{ height: "700px", marginLeft: "100px" }}></img>
-          <div style={{ position: "relative", top: "15%", right: "-200px", width: "58px", height: "max" }}>
+          {/* Map Canvas */}
+          <div ref={containerRef} style={{ position: 'relative', width: '70%', height: '70%', marginLeft: '4rem' }} onMouseDown={handleCanvasMouseDown} onMouseUp={handleCanvasMouseUp} onMouseMove={handleCanvasMouseMove}>
+            <img src={presentMapURL} style={{ height: "100%", width: "100%", objectFit: "contain"}} />
+            <canvas ref={canvasRef} id="canvas" style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%"}} />
+          </div>
+          <div style={{ position: "relative", right: "-4rem", width: "58px", height: "max" }}>
             <Tooltip content={'画笔'}><div style={canvasToolBtnStyle}><IconEdit size='extra-large' /></div></Tooltip>
             <Popover
               content={article}
