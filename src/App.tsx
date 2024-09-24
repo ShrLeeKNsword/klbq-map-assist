@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Layout, Collapse, Typography, Select, Tooltip, Popover, Col, Row, Popconfirm, Slider, ColorPicker } from '@douyinfe/semi-ui';
-import { IconEdit, IconDelete, IconUndo, IconLanguage } from '@douyinfe/semi-icons';
+import { IconEdit, IconDelete, IconUndo, IconLanguage, IconMinus, IconGithubLogo } from '@douyinfe/semi-icons';
 import ColorBtn from './components/colorBtb.tsx';
 import CharactorBtn from './components/charactorBtn.tsx';
 
@@ -57,6 +57,7 @@ function App() {
       },
       markbox: {
         mark: "画笔",
+        straightline: "直线",
         color: "颜色",
         undo: "撤销",
         clear: "清空",
@@ -166,7 +167,7 @@ function App() {
   </div>;
 
   const markPlate = <div className="grid grid-flex" style={{ width: "280px", height: "50px", display: "flex", justifyContent: "space-around" }}>
-    <Slider style={{ marginTop: "8px", marginLeft: "10px", width: "200px" }} min={1} max={20} defaultValue={5} onChange={(value: any) => { setpenWidth(value) }}></Slider>
+    <Slider style={{ marginTop: "8px", marginLeft: "10px", width: "200px" }} min={1} max={20} defaultValue={penWidth} onChange={(value: any) => { setpenWidth(value) }}></Slider>
     <div style={{ borderRadius: "100%", margin: "auto", width: penWidth, height: penWidth, display: 'flex', placeItems: 'center', placeContent: 'center', backgroundColor: penColor, overflow: "hidden" }}></div>
   </div>;
 
@@ -264,13 +265,14 @@ function App() {
         </Sider>
         <Content style={{ height: "100%", lineHeight: '100px', width: '100%', margin: 'auto', display: 'flex', placeItems: 'center' }}>
           <img src={presentMapURL} style={{ height: "700px", marginLeft: "100px" }}></img>
-          <div style={{ position: "relative", top: "-180px", right: "-150px", width: "58px", height: "max" }}>
+          <div style={{ position: "relative", top: "-120px", right: "-150px", width: "58px", height: "max" }}>
             <Popover
               content={markPlate}
               position={"left"}
             >
               <div style={canvasToolBtnStyle}><IconEdit size='extra-large' /></div>
             </Popover>
+            <Tooltip content={presentLanguage.markbox.straightline}><div style={canvasToolBtnStyle}><IconMinus size='extra-large' /></div></Tooltip>
             <Popover
               content={colorPlate}
               position={"left"}
@@ -292,7 +294,7 @@ function App() {
           </div>
         </Content>
       </Layout>
-      <Footer style={commonStyle}><div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="nofollow"><img decoding="async" loading="lazy" src="https://s2.loli.net/2024/09/16/TPdoKCrgVb4i37J.png" width="107" height="38" style={{ marginRight: "20px", marginTop: "12px" }} /></a><div style={{ marginBottom: "12px" }}>©番石榴网络科技工作室 2020-2024</div></div></Footer>
+      <Footer style={commonStyle}><div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="nofollow"><img decoding="async" loading="lazy" src="https://s2.loli.net/2024/09/16/TPdoKCrgVb4i37J.png" width="107" height="38" style={{ marginRight: "20px", marginTop: "12px" }} /></a><div style={{ marginBottom: "12px" }}>©番石榴网络科技工作室 & <IconGithubLogo style={{ margin: "6px" }} /><a href='https://github.com/ShrLeeKNsword/klbq-map-assist' target="_blank">Github Contributors</a> 2020-2024</div></div></Footer>
     </Layout >
   )
 }
