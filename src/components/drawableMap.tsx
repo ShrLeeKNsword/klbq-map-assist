@@ -53,6 +53,22 @@ function calculateWindow(container: HTMLDivElement, canvas: HTMLCanvasElement) {
 	canvas.style.height = `${containerHeight}px`;
 }
 
+/**
+ * Finds and returns the first canvas element that contains the specified position (x, y).
+ *
+ * @param x - The x-coordinate of the position to check.
+ * @param y - The y-coordinate of the position to check.
+ * @param elements - An array of canvas elements to search through.
+ * @returns The first canvas element that contains the specified position, or undefined if no such element is found.
+ */
+function getElementByPos(x: number, y: number, elements: canvasElement[]) {
+	return elements.find(element => {
+		if (element.x1 < x && x < element.x2 && element.y1 < y && y < element.y2) {
+			return element;
+		}
+	})
+}
+
 const DrawableMap: React.FC<DrawableMapProps> = (props) => {
 	const [canvasMouseDown, setCanvasMouseDown] = useState(false);
 
@@ -73,16 +89,16 @@ const DrawableMap: React.FC<DrawableMapProps> = (props) => {
 		switch (props.canvasTool) {
 			case mapTools.LINE:
 				container.style.cursor = "crosshair";
-				drawElement(props.canvasElements, roughCanvas);
 				break;
 			case mapTools.PEN:
 				container.style.cursor = "crosshair";
-				drawElement(props.canvasElements, roughCanvas);
 				break;
 			case mapTools.SELECT:
 				container.style.cursor = "default";
 				break;
 		}
+
+		drawElement(props.canvasElements, roughCanvas);
 	}, [props.canvasElements, props.canvasTool]);
 
 	const handleCanvasMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -90,15 +106,25 @@ const DrawableMap: React.FC<DrawableMapProps> = (props) => {
 
 		const startPos = getMousePos(event);
 
-		const element = createElement(
-			startPos.realX,
-			startPos.realY,
-			startPos.realX,
-			startPos.realY,
-			props.penWidth,
-			props.penColor
-		);
-		props.setCanvasElements((lastState) => [...lastState, element]);
+		switch (props.canvasTool) {
+			case mapTools.LINE:
+				props.setCanvasElements((lastState) => [...lastState, createElement(
+					startPos.realX,
+					startPos.realY,
+					startPos.realX,
+					startPos.realY,
+					props.penWidth,
+					props.penColor
+				)]);
+				break;
+			case mapTools.PEN:
+				props.setCanvasElements((lastState) => [...lastState]);
+				break;
+			case mapTools.SELECT:
+				// TODO: Selection Box
+				break;
+		}
+
 	};
 
 	const handleCanvasMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -118,7 +144,18 @@ const DrawableMap: React.FC<DrawableMapProps> = (props) => {
 
 		const updatedElements = [...props.canvasElements];
 		updatedElements[updatedElements.length - 1] = element;
-		props.setCanvasElements(updatedElements);
+
+		switch (props.canvasTool) {
+			case mapTools.LINE:
+				props.setCanvasElements(updatedElements);
+				break;
+			case mapTools.PEN:
+				props.setCanvasElements((lastState) => [...lastState, element]);
+				break;
+			case mapTools.SELECT:
+				props.setCanvasElements((lastState) => [...lastState]);
+				break;
+		}
 	};
 
 	function getMousePos(event: React.MouseEvent) {
@@ -129,7 +166,6 @@ const DrawableMap: React.FC<DrawableMapProps> = (props) => {
 		const realX = clientX - left;
 		const realY = clientY - top;
 
-		console.log(realX, realY);
 		return { realX, realY };
 	}
 
