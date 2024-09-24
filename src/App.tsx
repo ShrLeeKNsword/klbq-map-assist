@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { Layout, Collapse, Typography, Select, Tooltip, Popover, Col, Row, Popconfirm, Slider, ColorPicker } from '@douyinfe/semi-ui';
-import { IconEdit, IconDelete, IconUndo, IconLanguage } from '@douyinfe/semi-icons';
+import { IconEdit, IconDelete, IconUndo, IconLanguage, IconMinus, IconGithubLogo } from '@douyinfe/semi-icons';
 import ColorBtn from './components/colorBtb.tsx';
 import CharactorBtn from './components/charactorBtn.tsx';
 
 import './App.css';
+import DrawableMap, { canvasElement } from './components/drawableMap.tsx';
 
 function App() {
   const i18nData = [
@@ -57,6 +58,7 @@ function App() {
       },
       markbox: {
         mark: "画笔",
+        straightline: "直线",
         color: "颜色",
         undo: "撤销",
         clear: "清空",
@@ -104,8 +106,9 @@ function App() {
     }
   ]
   const [togglevisible, setToggleVisible] = useState(false);
+  const [canvasElements, setCanvasElements] = useState<canvasElement[]>([]);
 
-  const changePresentmap = (value: any) => {
+  const changePresentmap = (value: string) => {
     setPresentMap(value);
     for (const mapinfo of mapList) {
       if (mapinfo.mapName === value) {
@@ -114,7 +117,7 @@ function App() {
     }
   }
 
-  const changePresentlanguage = (value: any) => {
+  const changePresentlanguage = (value: string) => {
     for (const languageinfo of i18nData) {
       if (languageinfo.language === value) {
         setPresentLanguage(languageinfo);
@@ -158,7 +161,7 @@ function App() {
         <div className="col-content" onClick={() => { setpenColor("rgba(var(--semi-grey-8), 1)") }}><ColorBtn color="rgba(var(--semi-grey-8), 1)" /></div>
       </Col>
       <Col span={4}>
-        <ColorPicker alpha={true} onChange={(value: any) => { setpenColor(value.hex) }} usePopover={true}>
+        <ColorPicker alpha={true} onChange={(value) => { setpenColor(value.hex) }} usePopover={true}>
           <div className="col-content"><ColorBtn linercolor="70deg, red, blue" /></div>
         </ColorPicker>
       </Col>
@@ -166,7 +169,7 @@ function App() {
   </div>;
 
   const markPlate = <div className="grid grid-flex" style={{ width: "280px", height: "50px", display: "flex", justifyContent: "space-around" }}>
-    <Slider style={{ marginTop: "8px", marginLeft: "10px", width: "200px" }} min={1} max={20} defaultValue={5} onChange={(value: any) => { setpenWidth(value) }}></Slider>
+    <Slider style={{ marginTop: "8px", marginLeft: "10px", width: "200px" }} min={1} max={20} defaultValue={penWidth} onChange={(value) => { setpenWidth(value as number) }}></Slider>
     <div style={{ borderRadius: "100%", margin: "auto", width: penWidth, height: penWidth, display: 'flex', placeItems: 'center', placeContent: 'center', backgroundColor: penColor, overflow: "hidden" }}></div>
   </div>;
 
@@ -190,7 +193,7 @@ function App() {
         <Title heading={3} style={{ margin: '14px 0' }} >{presentLanguage.title} - {presentMap}</Title>
         <div style={{ position: "relative", left: "1100px", top: "-60px", height: "100%", width: "200px", display: "flex" }}>
           <div style={{ marginTop: "8px", marginRight: "12px" }}><IconLanguage size='extra-large' /></div>
-          <Select defaultValue="简体中文" style={{ width: 120, marginTop: "18px" }} onChange={changePresentlanguage}>
+          <Select defaultValue="简体中文" style={{ width: 120, marginTop: "18px" }} onChange={value => changePresentlanguage(value as string)}>
             <Select.Option value="简体中文">简体中文</Select.Option>
             <Select.Option disabled value="繁体中文">繁体中文</Select.Option>
             <Select.Option disabled value="日本語">日本語</Select.Option>
@@ -202,7 +205,7 @@ function App() {
           <Collapse accordion defaultActiveKey="1">
             <Collapse.Panel header={presentLanguage.sidebar.mapsetting} itemKey="1">
               <div>
-                <Select defaultValue="风曳镇" style={{ width: 120 }} onChange={changePresentmap}>
+                <Select defaultValue="风曳镇" style={{ width: 120 }} onChange={value => changePresentmap(value as string)}>
                   <Select.Option value="风曳镇">风曳镇</Select.Option>
                   <Select.Option value="空间实验室">空间实验室</Select.Option>
                   <Select.Option value="科斯迷特">科斯迷特</Select.Option>
@@ -263,14 +266,15 @@ function App() {
           </Collapse>
         </Sider>
         <Content style={{ height: "100%", lineHeight: '100px', width: '100%', margin: 'auto', display: 'flex', placeItems: 'center' }}>
-          <img src={presentMapURL} style={{ height: "700px", marginLeft: "100px" }}></img>
-          <div style={{ position: "relative", top: "-180px", right: "-150px", width: "58px", height: "max" }}>
+          <DrawableMap presentMapURL={presentMapURL} penColor={penColor} canvasElements={canvasElements} setCanvasElements={setCanvasElements} />
+          <div style={{ position: "relative", top: "-120px", right: "-150px", width: "58px", height: "max" }}>
             <Popover
               content={markPlate}
               position={"left"}
             >
               <div style={canvasToolBtnStyle}><IconEdit size='extra-large' /></div>
             </Popover>
+            <Tooltip content={presentLanguage.markbox.straightline}><div style={canvasToolBtnStyle}><IconMinus size='extra-large' /></div></Tooltip>
             <Popover
               content={colorPlate}
               position={"left"}
@@ -292,7 +296,7 @@ function App() {
           </div>
         </Content>
       </Layout>
-      <Footer style={commonStyle}><div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="nofollow"><img decoding="async" loading="lazy" src="https://s2.loli.net/2024/09/16/TPdoKCrgVb4i37J.png" width="107" height="38" style={{ marginRight: "20px", marginTop: "12px" }} /></a><div style={{ marginBottom: "12px" }}>©番石榴网络科技工作室 2020-2024</div></div></Footer>
+      <Footer style={commonStyle}><div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginLeft: "120px" }}><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="nofollow"><img decoding="async" loading="lazy" src="https://s2.loli.net/2024/09/16/TPdoKCrgVb4i37J.png" width="107" height="38" style={{ marginRight: "20px", marginTop: "12px" }} /></a><div style={{ marginBottom: "12px" }}>© 番石榴网络科技工作室 & <IconGithubLogo style={{ margin: "6px" }} /><a href='https://github.com/ShrLeeKNsword/klbq-map-assist' target="_blank">Github Contributors</a></div></div></Footer>
     </Layout >
   )
 }
