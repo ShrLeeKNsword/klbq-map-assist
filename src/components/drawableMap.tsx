@@ -133,8 +133,8 @@ const DrawableMap: React.FC<DrawableMapProps> = (props) => {
 			ref={containerRef}
 			style={{
 				position: "relative",
-				width: "70%",
-				height: "70%",
+				width: "95%",
+				height: "95%",
 				marginLeft: "4rem",
 			}}
 			onMouseDown={handleCanvasMouseDown}

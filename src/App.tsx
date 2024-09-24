@@ -117,7 +117,7 @@ function App() {
   }
 
   return (
-    <Layout className="components-layout-demo" style={{ height: 720, width: 1280 }}>
+    <Layout className="components-layout-demo" style={{ height: 700, width: 1280 }}>
       <Header style={styles.commonStyle}>
         <Title heading={3} style={{ margin: '14px 0' }} >{presentLanguage.title} - {currentMap}</Title>
         <div style={{ position: "relative", left: "1100px", top: "-60px", height: "100%", width: "200px", display: "flex" }}>
@@ -131,7 +131,7 @@ function App() {
       </Header>
       <Layout>
         <Sider style={{ width: '340px', background: 'var(--semi-color-fill-2)' }}>
-          <Collapse accordion defaultActiveKey="1">
+          <Collapse accordion defaultActiveKey="1" className='no-scroll-bar' style={{ overflowY: "scroll", height: "600px" }}>
             <Collapse.Panel header={presentLanguage.sidebar.mapsetting} itemKey="1">
               <div>
                 <Select defaultValue="风曳镇" style={{ width: 120 }} onChange={value => changePresentmap(value as string)}>
@@ -145,7 +145,7 @@ function App() {
                 </Select>
               </div>
             </Collapse.Panel>
-            <Collapse.Panel header={presentLanguage.sidebar.charactor} itemKey="2">
+            <Collapse.Panel header={presentLanguage.sidebar.charactor} itemKey="2" >
               <div style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-5px" }}>
                 <div><img src='https://patchwiki.biligame.com/images/klbq/thumb/6/69/8juww513o4hde7c901l5h8g371u81zx.png/300px-%E9%98%B5%E8%90%A5-%E6%AC%A7%E6%B3%8A.png' style={{ height: "40px" }}></img></div>
                 <Title heading={6}>欧泊 P.U.S.</Title>
@@ -194,13 +194,10 @@ function App() {
             </Collapse.Panel>
           </Collapse>
         </Sider>
-        <Content style={{ height: "100%", lineHeight: '100px', width: '100%', margin: 'auto', display: 'flex', placeItems: 'center' }}>
+        <Content style={{ height: "620px", lineHeight: '100px', width: '100%', margin: 'auto', display: 'flex', placeItems: 'center', overflow: "hidden" }}>
           <DrawableMap presentMapURL={presentMapURL} penColor={penColor} canvasElements={canvasElements} setCanvasElements={setCanvasElements} canvasTool={canvasTool} />
-          <div style={{ position: "relative", top: "-120px", right: "-150px", width: "58px", height: "max" }}>
-            <StandardButton icon={IconEdit} penWidth={penWidth} penColor={penColor} setpenWidth={setpenWidth} onClick={editButtonClicked} />
-            <StandardButton icon={IconMinus} penWidth={penWidth} penColor={penColor} setpenWidth={setpenWidth} onClick={lineButtonClicked} />
+          <div style={{ position: "relative", top: "-20px", right: "40px", width: "58px", height: "max" }}>
 
-            <div style={styles.canvasToolBtnStyle}><IconUndo size='extra-large' /></div>
             <Popover
               content={colorPlate}
               position={"left"}>
@@ -210,6 +207,8 @@ function App() {
                 </Tooltip>
               </div>
             </Popover>
+            <StandardButton icon={IconEdit} penWidth={penWidth} penColor={penColor} setpenWidth={setpenWidth} onClick={editButtonClicked} />
+            <StandardButton icon={IconMinus} penWidth={penWidth} penColor={penColor} setpenWidth={setpenWidth} onClick={lineButtonClicked} />
             <Tooltip content={presentLanguage.markbox.undo}><div style={styles.canvasToolBtnStyle}><IconUndo size='extra-large' /></div></Tooltip>
             <Popconfirm
               visible={togglevisible}
