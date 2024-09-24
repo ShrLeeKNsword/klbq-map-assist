@@ -1,7 +1,7 @@
 import React, { useLayoutEffect, useRef, useState } from "react";
 import { RoughCanvas } from "roughjs/bin/canvas";
 import { RoughGenerator } from "roughjs/bin/generator";
-import { canvasElement } from "../data/canvasConstants";
+import { canvasElement, mapTools } from "../data/canvasConstants";
 
 interface DrawableMapProps {
 	presentMapURL: string;
@@ -41,12 +41,6 @@ function calculateWindow(container: HTMLDivElement, canvas: HTMLCanvasElement) {
 	canvas.height = containerHeight;
 	canvas.style.width = `${containerWidth}px`;
 	canvas.style.height = `${containerHeight}px`;
-}
-
-export enum mapTools {
-	SELECT,
-	LINE,
-	PEN
 }
 
 const DrawableMap: React.FC<DrawableMapProps> = (props) => {
