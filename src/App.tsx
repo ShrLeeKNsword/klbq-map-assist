@@ -109,11 +109,11 @@ function App() {
   </div>;
 
   function editButtonClicked(): void {
-    throw new Error('Function not implemented.');
+    setTool(mapTools.PEN);
   }
 
   function lineButtonClicked(): void {
-    throw new Error('Function not implemented.');
+    setTool(mapTools.LINE);
   }
 
   return (
@@ -197,8 +197,8 @@ function App() {
         <Content style={{ height: "100%", lineHeight: '100px', width: '100%', margin: 'auto', display: 'flex', placeItems: 'center' }}>
           <DrawableMap presentMapURL={presentMapURL} penColor={penColor} canvasElements={canvasElements} setCanvasElements={setCanvasElements} canvasTool={canvasTool} />
           <div style={{ position: "relative", top: "-120px", right: "-150px", width: "58px", height: "max" }}>
-            <StandardButton icon={IconEdit} penWidth={penWidth} penColor={penColor} setpenWidth={setpenWidth} onClick={editButtonClicked} />
-            <StandardButton icon={IconMinus} penWidth={penWidth} penColor={penColor} setpenWidth={setpenWidth} onClick={lineButtonClicked} />
+            <StandardButton icon={IconEdit} penWidth={penWidth} penColor={penColor} setpenWidth={setpenWidth} onClick={editButtonClicked} isActiveTool={canvasTool === mapTools.PEN} />
+            <StandardButton icon={IconMinus} penWidth={penWidth} penColor={penColor} setpenWidth={setpenWidth} onClick={lineButtonClicked} isActiveTool={canvasTool === mapTools.LINE} />
 
             <div style={styles.canvasToolBtnStyle}><IconUndo size='extra-large' /></div>
             <Popover
