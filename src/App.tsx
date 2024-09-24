@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Layout, Collapse, Typography, Select, Tooltip, Popover, Col, Row, Popconfirm, Slider, ColorPicker } from '@douyinfe/semi-ui';
+import { Layout, Collapse, Typography, Select, Tooltip, Popover, Col, Row, Popconfirm, ColorPicker } from '@douyinfe/semi-ui';
 import { IconEdit, IconDelete, IconUndo, IconLanguage, IconMinus, IconGithubLogo } from '@douyinfe/semi-icons';
 import ColorBtn from './components/colorBtb.tsx';
 import CharactorBtn from './components/charactorBtn.tsx';
@@ -9,6 +9,7 @@ import DrawableMap from './components/drawableMap.tsx';
 import { i18nData } from './data/i18n.ts';
 import { mapList } from './data/maplist.ts';
 import { canvasElement, mapTools } from './data/canvasConstants.ts';
+import StandardButton from './components/toolButtons/standardButton.tsx';
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -107,10 +108,13 @@ function App() {
     </Row>
   </div>;
 
-  const markPlate = <div className="grid grid-flex" style={{ width: "280px", height: "50px", display: "flex", justifyContent: "space-around" }}>
-    <Slider style={{ marginTop: "8px", marginLeft: "10px", width: "200px" }} min={1} max={20} defaultValue={penWidth} onChange={(value) => { setpenWidth(value as number) }}></Slider>
-    <div style={{ borderRadius: "100%", margin: "auto", width: penWidth, height: penWidth, display: 'flex', placeItems: 'center', placeContent: 'center', backgroundColor: penColor, overflow: "hidden" }}></div>
-  </div>;
+  function editButtonClicked(): void {
+    throw new Error('Function not implemented.');
+  }
+
+  function lineButtonClicked(): void {
+    throw new Error('Function not implemented.');
+  }
 
   return (
     <Layout className="components-layout-demo" style={{ height: 720, width: 1280 }}>
@@ -193,18 +197,8 @@ function App() {
         <Content style={{ height: "100%", lineHeight: '100px', width: '100%', margin: 'auto', display: 'flex', placeItems: 'center' }}>
           <DrawableMap presentMapURL={presentMapURL} penColor={penColor} canvasElements={canvasElements} setCanvasElements={setCanvasElements} canvasTool={canvasTool} />
           <div style={{ position: "relative", top: "-120px", right: "-150px", width: "58px", height: "max" }}>
-            <Popover
-              content={markPlate}
-              position={"left"}
-            >
-              <div style={styles.canvasToolBtnStyle}><IconEdit size='extra-large' /></div>
-            </Popover>
-            <Popover
-              content={markPlate}
-              position={"left"}
-            >
-              <div style={styles.canvasToolBtnStyle}><IconMinus size='extra-large' /></div>
-            </Popover>
+            <StandardButton icon={IconEdit} penWidth={penWidth} penColor={penColor} setpenWidth={setpenWidth} onClick={editButtonClicked} />
+            <StandardButton icon={IconMinus} penWidth={penWidth} penColor={penColor} setpenWidth={setpenWidth} onClick={lineButtonClicked} />
 
             <div style={styles.canvasToolBtnStyle}><IconUndo size='extra-large' /></div>
             <Popover
