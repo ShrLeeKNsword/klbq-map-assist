@@ -48,7 +48,7 @@ const StandardButton: React.FC<StandardButtonProps> = (props) => {
 			content={markPlate}
 			position={"left"}
 		>
-			<div style={props.isActiveTool ? activeCanvasToolButtonStyle : canvasToolButtonStyle} >
+			<div style={props.isActiveTool ? activeCanvasToolButtonStyle : canvasToolButtonStyle} onClick={props.onClick}>
 				<props.icon size='extra-large' />
 			</div>
 		</Popover>

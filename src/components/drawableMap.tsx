@@ -35,6 +35,14 @@ function createElement(
 	};
 }
 
+function drawElement(canvasElements: canvasElement[], roughCanvas: RoughCanvas) {
+	canvasElements.forEach((element) => {
+		if (element.roughElement) {
+			roughCanvas.draw(element.roughElement);
+		}
+	});
+}
+
 function calculateWindow(container: HTMLDivElement, canvas: HTMLCanvasElement) {
 	const containerWidth = container.clientWidth;
 	const containerHeight = container.clientHeight;
@@ -65,12 +73,11 @@ const DrawableMap: React.FC<DrawableMapProps> = (props) => {
 		switch (props.canvasTool) {
 			case mapTools.LINE:
 				container.style.cursor = "crosshair";
-				props.canvasElements.forEach((element) => {
-					if (element.roughElement) {
-						roughCanvas.draw(element.roughElement);
-					}
-				});
-
+				drawElement(props.canvasElements, roughCanvas);
+				break;
+			case mapTools.PEN:
+				container.style.cursor = "crosshair";
+				drawElement(props.canvasElements, roughCanvas);
 				break;
 			case mapTools.SELECT:
 				container.style.cursor = "default";
@@ -137,7 +144,7 @@ const DrawableMap: React.FC<DrawableMapProps> = (props) => {
 				position: "relative",
 				width: "95%",
 				height: "95%",
-				maxHeight:"600px",
+				maxHeight: "600px",
 				marginLeft: "4rem",
 			}}
 			onMouseDown={handleCanvasMouseDown}
