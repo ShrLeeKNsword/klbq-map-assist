@@ -191,7 +191,7 @@ function App() {
         <Sider style={{ width: '180px', background: 'var(--semi-color-fill-2)' }}>
           <Collapse accordion defaultActiveKey="1">
             <Collapse.Panel header={presentLanguage.sidebar.mapsetting} itemKey="1">
-              <p>
+              <div>
                 <Select defaultValue="风曳镇" style={{ width: 120 }} onChange={changePresentmap}>
                   <Select.Option value="风曳镇">风曳镇</Select.Option>
                   <Select.Option value="空间实验室">空间实验室</Select.Option>
@@ -201,7 +201,7 @@ function App() {
                   <Select.Option value="88区">88区</Select.Option>
                   <Select.Option value="404基地">404基地</Select.Option>
                 </Select>
-              </p>
+              </div>
             </Collapse.Panel>
             <Collapse.Panel header={presentLanguage.sidebar.charactor} itemKey="2">
               <p>Hi, bytedance dance dance. This is the docsite of Semi UI. </p>
@@ -240,7 +240,7 @@ function App() {
           </div>
         </Content>
       </Layout>
-      <Footer style={commonStyle}>©番石榴网络科技工作室 2020-2024</Footer>
+      <Footer style={commonStyle}><div style={{display:"flex", justifyContent:"center", alignItems:"center"}}><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="nofollow"><img decoding="async" loading="lazy" src="https://s2.loli.net/2024/09/16/TPdoKCrgVb4i37J.png" width="107" height="38" style={{marginRight:"20px",marginTop:"12px"}} /></a><div style={{marginBottom:"12px"}}>©番石榴网络科技工作室 2020-2024</div></div></Footer>
     </Layout >
   )
 }
