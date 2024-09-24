@@ -178,10 +178,10 @@ const DrawableMap: React.FC<DrawableMapProps> = (props) => {
 			ref={containerRef}
 			style={{
 				position: "relative",
-				width: "95%",
-				height: "95%",
-				maxHeight: "600px",
+				width: "100%",
+				height: "600px",
 				marginLeft: "4rem",
+				overflow: "hidden",
 			}}
 			onMouseDown={handleCanvasMouseDown}
 			onMouseUp={handleCanvasMouseUp}

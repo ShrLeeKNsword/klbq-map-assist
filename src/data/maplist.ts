@@ -1,24 +1,31 @@
 export const mapList = [
-    {
-      mapName: "风曳镇",
-      imgLink: "https://patchwiki.biligame.com/images/klbq/c/c2/5dzy2fxrj3ihqq2n9gfmpe2g91ofc0p.png"
-    }, {
-      mapName: "空间实验室",
-      imgLink: "https://patchwiki.biligame.com/images/klbq/thumb/6/66/jth3bp2k8eopctdj42xo52fewsxci1s.png/800px-%E5%9C%B0%E5%9B%BE-%E7%A9%BA%E9%97%B4%E5%AE%9E%E9%AA%8C%E5%AE%A42.png"
-    }, {
-      mapName: "科斯迷特",
-      imgLink: "https://patchwiki.biligame.com/images/klbq/thumb/c/c4/6pqvpjg5zvg14xtsydzeb95ok2ysq17.png/600px-%E5%9C%B0%E5%9B%BE-%E7%A7%91%E6%96%AF%E8%BF%B7%E7%89%B92.png"
-    }, {
-      mapName: "欧拉港口",
-      imgLink: "https://patchwiki.biligame.com/images/klbq/thumb/2/29/cjlkwy6ikzo7pehy7xf7h5edfn8b5xt.png/600px-%E5%9C%B0%E5%9B%BE-oula-0.png"
-    }, {
-      mapName: "柯西街区",
-      imgLink: "https://patchwiki.biligame.com/images/klbq/f/f6/jxevkldn7u4bx678t7hwqdcvxw7ta9m.png"
-    }, {
-      mapName: "88区",
-      imgLink: "https://patchwiki.biligame.com/images/klbq/thumb/3/35/a1wr3rbkbabvf5ijojx4ow0nikeonhl.png/800px-%E5%9C%B0%E5%9B%BE-88area-0.png"
-    }, {
-      mapName: "404基地",
-      imgLink: "https://patchwiki.biligame.com/images/klbq/thumb/8/8e/p8mgyehvp4ah71xc5txnmhbuwgarxku.png/800px-%E5%9C%B0%E5%9B%BE-base404-0.png"
-    }
-  ];
+  {
+    mapName: "风曳镇",
+    imgPrepareLink: "https://s2.loli.net/2024/09/24/Shk6rXTwvAlDGMC.png",
+    imgBlankLink: "https://s2.loli.net/2024/09/24/85uxWct3DeRByTO.png"
+  }, {
+    mapName: "空间实验室",
+    imgPrepareLink: "https://s2.loli.net/2024/09/24/QI6hnMtsJpSCKgE.png",
+    imgBlankLink: "https://s2.loli.net/2024/09/24/KxUYEBqdlyZ92rC.png"
+  }, {
+    mapName: "科斯迷特",
+    imgPrepareLink: "https://s2.loli.net/2024/09/24/QnNZHhT4wDbFxIO.png",
+    imgBlankLink: "https://s2.loli.net/2024/09/24/jroCB9iqR1l5LDp.png"
+  }, {
+    mapName: "欧拉港口",
+    imgPrepareLink: "https://s2.loli.net/2024/09/24/Md2Pa1HKtJyk7oO.png",
+    imgBlankLink: "https://s2.loli.net/2024/09/24/NGWk2HXwSvmdgOY.png"
+  }, {
+    mapName: "柯西街区",
+    imgPrepareLink: "https://s2.loli.net/2024/09/24/Uw3ftVPQOLu5MCj.png",
+    imgBlankLink: "https://s2.loli.net/2024/09/24/cLDQtdwAJyr2k7T.png"
+  }, {
+    mapName: "88区",
+    imgPrepareLink: "https://s2.loli.net/2024/09/24/wouqxsUy1JaP8l6.png",
+    imgBlankLink: "https://s2.loli.net/2024/09/24/YBUsSC78oOrx16W.png"
+  }, {
+    mapName: "404基地",
+    imgPrepareLink: "https://s2.loli.net/2024/09/24/XfMi4qcV5zmTy78.png",
+    imgBlankLink: "https://s2.loli.net/2024/09/24/pjGMHJClRsXEoAf.png"
+  }
+];

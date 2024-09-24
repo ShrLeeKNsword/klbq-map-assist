@@ -1,4 +1,4 @@
-interface CharactorBtnPops {
+interface GrenadeBtnPops {
     imglink?: string;
 }
 
@@ -10,13 +10,13 @@ const draggableBtnStyle = {
     display: 'flex',
     placeItems: 'center',
     placeContent: 'center',
-    backgroundColor: "rgba(var(--semi-grey-2), 1)",
+    backgroundColor: "rgba(var(--semi-grey-6), 1)",
     boxShadow: "0 0 0 3px rgba(var(--semi-grey-1), 1)",
     overflow: "hidden",
   }
 
-const CharactorBtn = (props: CharactorBtnPops) => {
+const GrenadeBtn = (props: GrenadeBtnPops) => {
     return <div style={draggableBtnStyle}><img src={props.imglink} style={{ width: '100%', height: '100%' }} /></div>
 }
 
-export default CharactorBtn;
+export default GrenadeBtn;
