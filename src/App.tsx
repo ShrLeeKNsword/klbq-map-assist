@@ -5,9 +5,10 @@ import ColorBtn from './components/colorBtb.tsx';
 import CharactorBtn from './components/charactorBtn.tsx';
 
 import './App.css';
-import DrawableMap, { canvasElement } from './components/drawableMap.tsx';
+import DrawableMap from './components/drawableMap.tsx';
 import { i18nData } from './data/i18n.ts';
 import { mapList } from './data/maplist.ts';
+import { canvasElement, mapTools } from './data/canvasConstants.ts';
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -39,6 +40,7 @@ function App() {
 
   const [presentLanguage, setPresentLanguage] = useState(i18nData[0]);
 
+  const [canvasTool, setTool] = useState<mapTools>(mapTools.LINE);
   const [penColor, setpenColor] = useState("red");
   const [penWidth, setpenWidth] = useState(5);
 
@@ -189,7 +191,7 @@ function App() {
           </Collapse>
         </Sider>
         <Content style={{ height: "100%", lineHeight: '100px', width: '100%', margin: 'auto', display: 'flex', placeItems: 'center' }}>
-          <DrawableMap presentMapURL={presentMapURL} penColor={penColor} canvasElements={canvasElements} setCanvasElements={setCanvasElements} />
+          <DrawableMap presentMapURL={presentMapURL} penColor={penColor} canvasElements={canvasElements} setCanvasElements={setCanvasElements} canvasTool={canvasTool} />
           <div style={{ position: "relative", top: "-120px", right: "-150px", width: "58px", height: "max" }}>
             <Popover
               content={markPlate}
@@ -197,12 +199,22 @@ function App() {
             >
               <div style={styles.canvasToolBtnStyle}><IconEdit size='extra-large' /></div>
             </Popover>
-            <Tooltip content={presentLanguage.markbox.straightline}><div style={styles.canvasToolBtnStyle}><IconMinus size='extra-large' /></div></Tooltip>
             <Popover
-              content={colorPlate}
+              content={markPlate}
               position={"left"}
             >
-              <div style={styles.canvasToolBtnStyle}><ColorBtn color={penColor} /></div>
+              <div style={styles.canvasToolBtnStyle}><IconMinus size='extra-large' /></div>
+            </Popover>
+
+            <div style={styles.canvasToolBtnStyle}><IconUndo size='extra-large' /></div>
+            <Popover
+              content={colorPlate}
+              position={"left"}>
+              <div style={styles.canvasToolBtnStyle}>
+                <Tooltip content={presentLanguage.markbox.color}>
+                  <ColorBtn color={penColor} />
+                </Tooltip>
+              </div>
             </Popover>
             <Tooltip content={presentLanguage.markbox.undo}><div style={styles.canvasToolBtnStyle}><IconUndo size='extra-large' /></div></Tooltip>
             <Popconfirm
