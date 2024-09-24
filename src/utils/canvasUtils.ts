@@ -21,9 +21,9 @@ function getSvgPathFromStroke(stroke: number[][]) {
 	return d.join(' ')
 }
 
-export function createPathElement(x1: number, y1: number) {
+export function createPathElement(x1: number, y1: number, penWidth: number, color: string) {
 	return {
-		type: 'path', points: [{ x: x1, y: y1 }]
+		type: 'path', points: [{ x: x1, y: y1 }], penWidth, color
 	} as canvasElement;
 }
 
@@ -55,9 +55,10 @@ export function drawElements(canvasElements: canvasElement[], roughCanvas: Rough
 			case "path":
 				{
 					const pathData = getSvgPathFromStroke(getStroke(element.points, {
-						size: 10,
+						size: element.penWidth * 1.5,
 					}))
 					const myPath = new Path2D(pathData)
+					context.fillStyle = element.color
 					context.fill(myPath)
 				}
 		}

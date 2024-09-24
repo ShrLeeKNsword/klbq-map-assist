@@ -1,4 +1,4 @@
-import  { Drawable } from 'roughjs/bin/core';
+import { Drawable } from 'roughjs/bin/core';
 
 export type canvasElement = canvasLineElement | canvasPathElement;
 
@@ -15,6 +15,8 @@ interface canvasLineElement {
 interface canvasPathElement {
 	type: "path";
 	points: { x: number; y: number }[];
+	color: string;
+	penWidth: number;
 }
 
 export enum mapTools {

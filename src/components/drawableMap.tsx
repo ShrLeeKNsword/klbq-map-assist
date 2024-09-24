@@ -65,7 +65,7 @@ const DrawableMap: React.FC<DrawableMapProps> = (props) => {
 				)]);
 				break;
 			case mapTools.PEN:
-				props.setCanvasElements((lastState) => [...lastState, createPathElement(startPos.realX, startPos.realY)]);
+				props.setCanvasElements((lastState) => [...lastState, createPathElement(startPos.realX, startPos.realY, props.penWidth, props.penColor)]);
 				break;
 			case mapTools.SELECT:
 				// TODO: Selection Box
