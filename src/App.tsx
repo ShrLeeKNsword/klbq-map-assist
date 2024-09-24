@@ -264,7 +264,7 @@ function App() {
         </Sider>
         <Content style={{ height: "100%", lineHeight: '100px', width: '100%', margin: 'auto', display: 'flex', placeItems: 'center' }}>
           <img src={presentMapURL} style={{ height: "700px", marginLeft: "100px" }}></img>
-          <div style={{ position: "relative", top: "10px", right: "-120px", width: "58px", height: "max" }}>
+          <div style={{ position: "relative", top: "-180px", right: "-150px", width: "58px", height: "max" }}>
             <Popover
               content={markPlate}
               position={"left"}
