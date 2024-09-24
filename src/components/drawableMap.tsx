@@ -9,6 +9,7 @@ interface DrawableMapProps {
 	canvasElements: canvasElement[];
 	setCanvasElements: React.Dispatch<React.SetStateAction<canvasElement[]>>;
 	canvasTool: mapTools;
+	penWidth: number;
 }
 
 let generator: RoughGenerator | undefined = undefined;
@@ -18,9 +19,10 @@ function createElement(
 	y1: number,
 	x2: number,
 	y2: number,
+	strokeWidth: number,
 	color: string
 ) {
-	const roughElement = generator?.line(x1, y1, x2, y2, { stroke: color, roughness: 0 });
+	const roughElement = generator?.line(x1, y1, x2, y2, { stroke: color, roughness: 0, strokeWidth });
 
 	return {
 		type: "line",
@@ -86,6 +88,7 @@ const DrawableMap: React.FC<DrawableMapProps> = (props) => {
 			startPos.realY,
 			startPos.realX,
 			startPos.realY,
+			props.penWidth,
 			props.penColor
 		);
 		props.setCanvasElements((lastState) => [...lastState, element]);
@@ -102,6 +105,7 @@ const DrawableMap: React.FC<DrawableMapProps> = (props) => {
 			latestElement.y1,
 			realX,
 			realY,
+			props.penWidth,
 			props.penColor
 		);
 

@@ -193,7 +193,7 @@ function App() {
           </Collapse>
         </Sider>
         <Content style={{ height: "100%", lineHeight: '100px', width: '100%', margin: 'auto', display: 'flex', placeItems: 'center' }}>
-          <DrawableMap presentMapURL={presentMapURL} canvasTool={canvasTool} penColor={penColor} canvasElements={canvasElements} setCanvasElements={setCanvasElements} />
+          <DrawableMap presentMapURL={presentMapURL} canvasTool={canvasTool} penColor={penColor} canvasElements={canvasElements} penWidth={penWidth} setCanvasElements={setCanvasElements} />
           <div style={{ position: "relative", top: "-20px", right: "40px", width: "58px", height: "max" }}>
             <StandardButton icon={IconEdit} penWidth={penWidth} penColor={penColor} setpenWidth={setpenWidth} onClick={editButtonClicked} isActiveTool={canvasTool === mapTools.PEN} />
             <StandardButton icon={IconMinus} penWidth={penWidth} penColor={penColor} setpenWidth={setpenWidth} onClick={lineButtonClicked} isActiveTool={canvasTool === mapTools.LINE} />
