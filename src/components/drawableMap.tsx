@@ -3,6 +3,23 @@ import { RoughCanvas } from 'roughjs/bin/canvas';
 import { Drawable } from 'roughjs/bin/core';
 import { RoughGenerator } from 'roughjs/bin/generator';
 
+interface DrawableMapProps {
+  presentMapURL: string;
+  penColor: string;
+  canvasElements: canvasElement[];
+  setCanvasElements: React.Dispatch<React.SetStateAction<canvasElement[]>>;
+}
+
+export interface canvasElement {
+  type: string;
+  x1: number;
+  y1: number;
+  x2: number;
+  y2: number;
+  color: string;
+  roughElement: Drawable | undefined;
+}
+
 let generator: RoughGenerator | undefined = undefined;
 
 function createElement(
@@ -25,23 +42,7 @@ function createElement(
   };
 }
 
-interface DrawableMapProps {
-  presentMapURL: string;
-  penColor: string;
-}
-
-interface canvasElement {
-  type: string;
-  x1: number;
-  y1: number;
-  x2: number;
-  y2: number;
-  color: string;
-  roughElement: Drawable | undefined;
-}
-
 const DrawableMap: React.FC<DrawableMapProps> = (props) => {
-  const [canvasElements, setCanvasElements] = useState<canvasElement[]>([]);
   const [canvasMouseDown, setCanvasMouseDown] = useState(false);
 
   const containerRef = useRef(null);
@@ -65,12 +66,12 @@ const DrawableMap: React.FC<DrawableMapProps> = (props) => {
     const roughCanvas = new RoughCanvas(canvas);
     generator = roughCanvas.generator;
 
-    canvasElements.forEach((element) => {
+    props.canvasElements.forEach((element) => {
       if (element.roughElement) {
         roughCanvas.draw(element.roughElement);
       }
     });
-  }, [canvasElements]);
+  }, [props.canvasElements]);
 
   const handleCanvasMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
     setCanvasMouseDown(true);
@@ -84,7 +85,7 @@ const DrawableMap: React.FC<DrawableMapProps> = (props) => {
       startPos.realY,
       props.penColor,
     );
-    setCanvasElements((lastState) => [...lastState, element]);
+    props.setCanvasElements((lastState) => [...lastState, element]);
   };
 
   const handleCanvasMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -92,7 +93,7 @@ const DrawableMap: React.FC<DrawableMapProps> = (props) => {
 
     const { realX, realY } = getMousePos(event);
 
-    const latestElement = canvasElements[canvasElements.length - 1];
+    const latestElement = props.canvasElements[props.canvasElements.length - 1];
     const element = createElement(
       latestElement.x1,
       latestElement.y1,
@@ -101,9 +102,9 @@ const DrawableMap: React.FC<DrawableMapProps> = (props) => {
       props.penColor,
     );
 
-    const updatedElements = [...canvasElements];
+    const updatedElements = [...props.canvasElements];
     updatedElements[updatedElements.length - 1] = element;
-    setCanvasElements(updatedElements);
+    props.setCanvasElements(updatedElements);
   };
 
   function getMousePos(event: React.MouseEvent) {

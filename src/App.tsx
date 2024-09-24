@@ -14,7 +14,7 @@ import { IconEdit, IconDelete, IconUndo } from '@douyinfe/semi-icons';
 import ColorBtn from './components/colorBtb.tsx';
 
 import './App.css';
-import DrawableMap from './components/drawableMap.tsx';
+import DrawableMap, { canvasElement } from './components/drawableMap.tsx';
 
 function App() {
   const { Header, Footer, Sider, Content } = Layout;
@@ -67,6 +67,7 @@ function App() {
     },
   ];
   const [togglevisible, setToggleVisible] = useState(false);
+  const [canvasElements, setCanvasElements] = useState<canvasElement[]>([]);
 
   const changePresentmap = (value: string) => {
     setPresentMap(value);
@@ -75,6 +76,8 @@ function App() {
         setPresentMapURL(mapinfo.imgLink);
       }
     }
+
+    setCanvasElements([]);
   };
 
   const article = (
@@ -257,7 +260,12 @@ function App() {
             display: 'flex',
             placeItems: 'center',
           }}>
-          <DrawableMap presentMapURL={presentMapURL} penColor={penColor} />
+          <DrawableMap
+            presentMapURL={presentMapURL}
+            penColor={penColor}
+            canvasElements={canvasElements}
+            setCanvasElements={setCanvasElements}
+          />
           <div
             style={{
               position: 'relative',
