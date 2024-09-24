@@ -1,7 +1,9 @@
+/* eslint-disable no-case-declarations */
 import React, { useLayoutEffect, useRef, useState } from "react";
 import { RoughCanvas } from "roughjs/bin/canvas";
 import { RoughGenerator } from "roughjs/bin/generator";
-import { canvasElement, mapTools } from "../data/canvasConstants";
+import { canvasElement, mapTools } from "../utils/canvasConstants";
+import { calculateWindow, drawElement, createElement } from "../utils/canvasUtils";
 
 interface DrawableMapProps {
 	presentMapURL: string;
@@ -12,62 +14,7 @@ interface DrawableMapProps {
 	penWidth: number;
 }
 
-let generator: RoughGenerator | undefined = undefined;
-
-function createElement(
-	x1: number,
-	y1: number,
-	x2: number,
-	y2: number,
-	strokeWidth: number,
-	color: string
-) {
-	const roughElement = generator?.line(x1, y1, x2, y2, { stroke: color, roughness: 0, strokeWidth });
-
-	return {
-		type: "line",
-		x1,
-		y1,
-		x2,
-		y2,
-		color,
-		roughElement,
-	};
-}
-
-function drawElement(canvasElements: canvasElement[], roughCanvas: RoughCanvas) {
-	canvasElements.forEach((element) => {
-		if (element.roughElement) {
-			roughCanvas.draw(element.roughElement);
-		}
-	});
-}
-
-function calculateWindow(container: HTMLDivElement, canvas: HTMLCanvasElement) {
-	const containerWidth = container.clientWidth;
-	const containerHeight = container.clientHeight;
-
-	canvas.width = containerWidth;
-	canvas.height = containerHeight;
-	canvas.style.width = `${containerWidth}px`;
-	canvas.style.height = `${containerHeight}px`;
-}
-
-/**
- * Finds and returns the first canvas element that contains the specified position (x, y).
- *
- * @param x - The x-coordinate of the position to check.
- * @param y - The y-coordinate of the position to check.
- * @param elements - An array of canvas elements to search through.
- * @returns The first canvas element that contains the specified position, or undefined if no such element is found.
- */
-function getElementByPos(x: number, y: number, elements: canvasElement[]) {
-	return elements.find(element => {
-		if (element.x1 < x && x < element.x2 && element.y1 < y && y < element.y2) {
-			return element;
-		}
-	})
-}
+export let generator: RoughGenerator | undefined = undefined;
 
 const DrawableMap: React.FC<DrawableMapProps> = (props) => {
 	const [canvasMouseDown, setCanvasMouseDown] = useState(false);
@@ -103,7 +50,6 @@ const DrawableMap: React.FC<DrawableMapProps> = (props) => {
 
 	const handleCanvasMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
 		setCanvasMouseDown(true);
-
 		const startPos = getMousePos(event);
 
 		switch (props.canvasTool) {
@@ -129,7 +75,6 @@ const DrawableMap: React.FC<DrawableMapProps> = (props) => {
 
 	const handleCanvasMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
 		if (!canvasMouseDown) return;
-
 		const { realX, realY } = getMousePos(event);
 
 		const latestElement = props.canvasElements[props.canvasElements.length - 1];
@@ -142,11 +87,11 @@ const DrawableMap: React.FC<DrawableMapProps> = (props) => {
 			props.penColor
 		);
 
-		const updatedElements = [...props.canvasElements];
-		updatedElements[updatedElements.length - 1] = element;
-
 		switch (props.canvasTool) {
 			case mapTools.LINE:
+				const updatedElements = [...props.canvasElements];
+				updatedElements[updatedElements.length - 1] = element;
+
 				props.setCanvasElements(updatedElements);
 				break;
 			case mapTools.PEN:

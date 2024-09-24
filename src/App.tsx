@@ -11,7 +11,7 @@ import DrawableMap from './components/drawableMap.tsx';
 import StandardButton from './components/toolButtons/standardButton.tsx';
 import { i18nData } from './data/i18n.ts';
 import { mapList } from './data/maplist.ts';
-import { canvasElement, mapTools } from './data/canvasConstants.ts';
+import { canvasElement, mapTools } from './utils/canvasConstants.ts';
 import ButtonNoPopover from './components/toolButtons/buttonNoPopover.tsx';
 
 const styles = {
