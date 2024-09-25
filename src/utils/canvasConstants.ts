@@ -24,3 +24,17 @@ export enum mapTools {
 	LINE,
 	PEN
 }
+
+export const colorPalette = [
+	"red",
+	"orange",
+	"yellow",
+	"green",
+	"blue",
+	"purple",
+	"white",
+	"rgba(var(--semi-grey-2), 1)",
+	"rgba(var(--semi-grey-4), 1)",
+	"rgba(var(--semi-grey-6), 1)",
+	"rgba(var(--semi-grey-8), 1)",
+]

@@ -11,7 +11,7 @@ import DrawableMap from './components/drawableMap.tsx';
 import StandardButton from './components/toolButtons/standardButton.tsx';
 import { i18nData } from './data/i18n.tsx';
 import { mapList } from './data/maplist.ts';
-import { canvasElement, mapTools } from './utils/canvasConstants.ts';
+import { canvasElement, colorPalette, mapTools } from './utils/canvasConstants.ts';
 import ButtonNoPopover from './components/toolButtons/buttonNoPopover.tsx';
 
 const styles = {
@@ -68,41 +68,17 @@ function App() {
     }
   }
 
+  const languages = i18nData.map((language) => {
+    return <Select.Option key={language.language} value={language.language}>{language.language}</Select.Option>
+  });
+
   const colorPlate = <div className="grid grid-flex">
     <Row gutter={[16, 24]} type="flex" justify="space-around" align="middle" style={{ marginLeft: "25px" }}>
-      <Col span={4}>
-        <div className="col-content" onClick={() => { setpenColor("red") }}><ColorBtn color="red" /></div>
-      </Col>
-      <Col span={4}>
-        <div className="col-content" onClick={() => { setpenColor("orange") }}><ColorBtn color="orange" /></div>
-      </Col>
-      <Col span={4}>
-        <div className="col-content" onClick={() => { setpenColor("yellow") }}><ColorBtn color="yellow" /></div>
-      </Col>
-      <Col span={4}>
-        <div className="col-content" onClick={() => { setpenColor("green") }}><ColorBtn color="green" /></div>
-      </Col>
-      <Col span={4}>
-        <div className="col-content" onClick={() => { setpenColor("blue") }}><ColorBtn color="blue" /></div>
-      </Col>
-      <Col span={4}>
-        <div className="col-content" onClick={() => { setpenColor("purple") }}><ColorBtn color="purple" /></div>
-      </Col>
-      <Col span={4}>
-        <div className="col-content" onClick={() => { setpenColor("white") }}><ColorBtn color="white" /></div>
-      </Col>
-      <Col span={4}>
-        <div className="col-content" onClick={() => { setpenColor("rgba(var(--semi-grey-2), 1)") }}><ColorBtn color="rgba(var(--semi-grey-2), 1)" /></div>
-      </Col>
-      <Col span={4}>
-        <div className="col-content" onClick={() => { setpenColor("rgba(var(--semi-grey-4), 1)") }}><ColorBtn color="rgba(var(--semi-grey-4), 1)" /></div>
-      </Col>
-      <Col span={4}>
-        <div className="col-content" onClick={() => { setpenColor("rgba(var(--semi-grey-6), 1)") }}><ColorBtn color="rgba(var(--semi-grey-6), 1)" /></div>
-      </Col>
-      <Col span={4}>
-        <div className="col-content" onClick={() => { setpenColor("rgba(var(--semi-grey-8), 1)") }}><ColorBtn color="rgba(var(--semi-grey-8), 1)" /></div>
-      </Col>
+      {colorPalette.map((color) => {
+        return <Col span={4}>
+          <div className="col-content" onClick={() => { setpenColor(color) }}><ColorBtn color={color} /></div>
+        </Col>
+      })}
       <Col span={4}>
         <ColorPicker alpha={true} onChange={(value) => { setpenColor(value.hex) }} usePopover={true}>
           <div className="col-content"><ColorBtn linercolor="70deg, red, blue" /></div>
@@ -272,10 +248,7 @@ function App() {
         <div style={{ position: "relative", left: "1100px", top: "-60px", height: "100%", width: "200px", display: "flex" }}>
           <div style={{ marginTop: "8px", marginRight: "12px" }}><IconLanguage size='extra-large' /></div>
           <Select defaultValue="简体中文" style={{ width: 120, marginTop: "18px" }} onChange={value => changePresentlanguage(value as string)}>
-            <Select.Option value="简体中文">简体中文</Select.Option>
-            <Select.Option disabled value="繁体中文">繁体中文</Select.Option>
-            <Select.Option disabled value="日本語">日本語</Select.Option>
-            <Select.Option value="English">English</Select.Option>
+            {languages}
           </Select></div>
       </Header>
       <Layout>

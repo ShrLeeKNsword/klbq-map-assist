@@ -305,5 +305,7 @@ export const i18nData: I18nData[] = [
         content: "This action cannot be undone",
       },
     },
-  }
+  },
+  // TODO: 日本語 (JP)
+  // TODO: 繁体中文 (TW)
 ];
