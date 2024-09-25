@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Layout, Collapse, Typography, Select, Tooltip, Popover, Col, Row, Popconfirm, ColorPicker, Banner } from '@douyinfe/semi-ui';
+import { Layout, Collapse, Typography, Select, Tooltip, Popover, Col, Row, Popconfirm, ColorPicker, Banner, Toast } from '@douyinfe/semi-ui';
 import { IconEdit, IconDelete, IconUndo, IconLanguage, IconMinus, IconGithubLogo, IconMaximize } from '@douyinfe/semi-icons';
 import ColorBtn from './components/colorBtb.tsx';
 import CharactorBtn from './components/charactorBtn.tsx';
@@ -11,7 +11,7 @@ import DrawableMap from './components/drawableMap.tsx';
 import StandardButton from './components/toolButtons/standardButton.tsx';
 import { i18nData } from './data/i18n.tsx';
 import { mapList } from './data/maplist.ts';
-import { canvasLineElement, mapTools } from './utils/canvasConstants.ts';
+import { canvasElement, colorPalette, mapTools } from './utils/canvasConstants.ts';
 import ButtonNoPopover from './components/toolButtons/buttonNoPopover.tsx';
 
 const styles = {
@@ -43,8 +43,11 @@ function App() {
 
   const [canvasTool, setTool] = useState<mapTools>(mapTools.SELECT);
   const [penColor, setpenColor] = useState("red");
+
   const [penWidth, setpenWidth] = useState(2);
-  const [canvasElements, setCanvasElements] = useState<canvasLineElement[]>([]);
+  const [lineWidth, setLineWidth] = useState(2);
+
+  const [canvasElements, setCanvasElements] = useState<canvasElement[]>([]);
   const [mapPrepareMode, setMapPrepareMode] = useState(true);
   const [mapMarkNameMode, setMarkNameMode] = useState(true);
 
@@ -68,41 +71,14 @@ function App() {
     }
   }
 
+
   const colorPlate = <div className="grid grid-flex">
     <Row gutter={[16, 24]} type="flex" justify="space-around" align="middle" style={{ marginLeft: "25px" }}>
-      <Col span={4}>
-        <div className="col-content" onClick={() => { setpenColor("red") }}><ColorBtn color="red" /></div>
-      </Col>
-      <Col span={4}>
-        <div className="col-content" onClick={() => { setpenColor("orange") }}><ColorBtn color="orange" /></div>
-      </Col>
-      <Col span={4}>
-        <div className="col-content" onClick={() => { setpenColor("yellow") }}><ColorBtn color="yellow" /></div>
-      </Col>
-      <Col span={4}>
-        <div className="col-content" onClick={() => { setpenColor("green") }}><ColorBtn color="green" /></div>
-      </Col>
-      <Col span={4}>
-        <div className="col-content" onClick={() => { setpenColor("blue") }}><ColorBtn color="blue" /></div>
-      </Col>
-      <Col span={4}>
-        <div className="col-content" onClick={() => { setpenColor("purple") }}><ColorBtn color="purple" /></div>
-      </Col>
-      <Col span={4}>
-        <div className="col-content" onClick={() => { setpenColor("white") }}><ColorBtn color="white" /></div>
-      </Col>
-      <Col span={4}>
-        <div className="col-content" onClick={() => { setpenColor("rgba(var(--semi-grey-2), 1)") }}><ColorBtn color="rgba(var(--semi-grey-2), 1)" /></div>
-      </Col>
-      <Col span={4}>
-        <div className="col-content" onClick={() => { setpenColor("rgba(var(--semi-grey-4), 1)") }}><ColorBtn color="rgba(var(--semi-grey-4), 1)" /></div>
-      </Col>
-      <Col span={4}>
-        <div className="col-content" onClick={() => { setpenColor("rgba(var(--semi-grey-6), 1)") }}><ColorBtn color="rgba(var(--semi-grey-6), 1)" /></div>
-      </Col>
-      <Col span={4}>
-        <div className="col-content" onClick={() => { setpenColor("rgba(var(--semi-grey-8), 1)") }}><ColorBtn color="rgba(var(--semi-grey-8), 1)" /></div>
-      </Col>
+      {colorPalette.map((color) => {
+        return <Col span={4}>
+          <div className="col-content" onClick={() => { setpenColor(color) }}><ColorBtn color={color} /></div>
+        </Col>
+      })}
       <Col span={4}>
         <ColorPicker alpha={true} onChange={(value) => { setpenColor(value.hex) }} usePopover={true}>
           <div className="col-content"><ColorBtn linercolor="70deg, red, blue" /></div>
@@ -110,18 +86,6 @@ function App() {
       </Col>
     </Row>
   </div>;
-
-  function selectButtonClicked(): void {
-    setTool(mapTools.SELECT);
-  }
-
-  function editButtonClicked(): void {
-    setTool(mapTools.PEN);
-  }
-
-  function lineButtonClicked(): void {
-    setTool(mapTools.LINE);
-  }
 
   const CharactorModuel = <>
     <div style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-5px" }}>
@@ -272,10 +236,9 @@ function App() {
         <div style={{ position: "relative", left: "1100px", top: "-60px", height: "100%", width: "200px", display: "flex" }}>
           <div style={{ marginTop: "8px", marginRight: "12px" }}><IconLanguage size='extra-large' /></div>
           <Select defaultValue="简体中文" style={{ width: 120, marginTop: "18px" }} onChange={value => changePresentlanguage(value as string)}>
-            <Select.Option value="简体中文">简体中文</Select.Option>
-            <Select.Option disabled value="繁体中文">繁体中文</Select.Option>
-            <Select.Option disabled value="日本語">日本語</Select.Option>
-            <Select.Option disabled value="English">English</Select.Option>
+            {i18nData.map((language) => {
+              return <Select.Option key={language.language} value={language.language}>{language.language}</Select.Option>;
+            })}
           </Select></div>
       </Header>
       <Layout>
@@ -390,24 +353,29 @@ function App() {
           </Collapse>
         </Sider>
         <Content style={{ height: "100%", lineHeight: '100px', width: '100%', margin: 'auto', display: 'flex', placeItems: 'center' }}>
-          <DrawableMap presentMapURL={mapPrepareMode ? presentMapURL.imgPrepareLink : presentMapURL.imgBlankLink} canvasTool={canvasTool} penColor={penColor} canvasElements={canvasElements} setCanvasElements={setCanvasElements} penWidth={penWidth} />
+          <DrawableMap presentMapURL={mapPrepareMode ? presentMapURL.imgPrepareLink : presentMapURL.imgBlankLink} canvasTool={canvasTool} penColor={penColor} canvasElements={canvasElements} setCanvasElements={setCanvasElements} penWidth={penWidth} lineWidth={lineWidth} />
           <div style={{ position: "relative", top: "-20px", right: "40px", width: "58px", height: "max" }}>
-            <ButtonNoPopover icon={IconMaximize} onClick={selectButtonClicked} isActiveTool={canvasTool === mapTools.SELECT} />
+            <ButtonNoPopover icon={IconMaximize} onClick={() => setTool(mapTools.SELECT)} isActiveTool={canvasTool === mapTools.SELECT} />
             <Popover
               content={colorPlate}
               position={"left"}
             >
               <div style={styles.canvasToolButtonStyle}><ColorBtn color={penColor} /></div>
             </Popover>
-            <StandardButton icon={IconEdit} penWidth={penWidth * 2} penColor={penColor} setpenWidth={setpenWidth} onClick={editButtonClicked} isActiveTool={canvasTool === mapTools.PEN} />
-            <StandardButton icon={IconMinus} penWidth={penWidth * 2} penColor={penColor} setpenWidth={setpenWidth} onClick={lineButtonClicked} isActiveTool={canvasTool === mapTools.LINE} />
-            <Tooltip content={presentLanguage.markbox.undo}><div style={styles.canvasToolButtonStyle}><IconUndo size='extra-large' /></div></Tooltip>
+            <StandardButton icon={IconEdit} penWidth={penWidth} penColor={penColor} setpenWidth={setpenWidth} onClick={() => setTool(mapTools.PEN)} isActiveTool={canvasTool === mapTools.PEN} />
+            <StandardButton icon={IconMinus} penWidth={lineWidth} penColor={penColor} setpenWidth={setLineWidth} onClick={() => setTool(mapTools.LINE)} isActiveTool={canvasTool === mapTools.LINE} />
+            <Tooltip content={presentLanguage.markbox.undo}>
+              <ButtonNoPopover icon={IconUndo} onClick={() => setCanvasElements(canvasElements.slice(0, -1))} isActiveTool={false} />
+            </Tooltip>
             <Popconfirm
               visible={togglevisible}
               title={presentLanguage.markbox.clearwarning.title}
               content={presentLanguage.markbox.clearwarning.content}
-              onConfirm={() => { setToggleVisible(!togglevisible) }}
+              okText={presentLanguage.markbox.clearwarning.ok}
+              cancelText={presentLanguage.markbox.clearwarning.cancel}
+              onConfirm={() => { setCanvasElements([]); setToggleVisible(!togglevisible); Toast.success(presentLanguage.markbox.clearwarning.success) }}
               onCancel={() => { setToggleVisible(!togglevisible) }}
+              position='left'
             >
               <Tooltip content={presentLanguage.markbox.clear}>
                 <div onClick={() => setToggleVisible(!togglevisible)} style={styles.canvasToolButtonStyle}><IconDelete size='extra-large' /></div>
