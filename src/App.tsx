@@ -68,9 +68,6 @@ function App() {
     }
   }
 
-  const languages = i18nData.map((language) => {
-    return <Select.Option key={language.language} value={language.language}>{language.language}</Select.Option>
-  });
 
   const colorPlate = <div className="grid grid-flex">
     <Row gutter={[16, 24]} type="flex" justify="space-around" align="middle" style={{ marginLeft: "25px" }}>
@@ -236,7 +233,9 @@ function App() {
         <div style={{ position: "relative", left: "1100px", top: "-60px", height: "100%", width: "200px", display: "flex" }}>
           <div style={{ marginTop: "8px", marginRight: "12px" }}><IconLanguage size='extra-large' /></div>
           <Select defaultValue="简体中文" style={{ width: 120, marginTop: "18px" }} onChange={value => changePresentlanguage(value as string)}>
-            {languages}
+            {i18nData.map((language) => {
+              return <Select.Option key={language.language} value={language.language}>{language.language}</Select.Option>;
+            })}
           </Select></div>
       </Header>
       <Layout>
@@ -367,8 +366,9 @@ function App() {
               visible={togglevisible}
               title={presentLanguage.markbox.clearwarning.title}
               content={presentLanguage.markbox.clearwarning.content}
-              onConfirm={() => { setToggleVisible(!togglevisible) }}
+              onConfirm={() => { setCanvasElements([]); setToggleVisible(!togglevisible) }}
               onCancel={() => { setToggleVisible(!togglevisible) }}
+              position='left'
             >
               <Tooltip content={presentLanguage.markbox.clear}>
                 <div onClick={() => setToggleVisible(!togglevisible)} style={styles.canvasToolButtonStyle}><IconDelete size='extra-large' /></div>
