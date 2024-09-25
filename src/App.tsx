@@ -62,7 +62,7 @@ function App() {
   const changePresentmap = (value: string) => {
     setPresentMap(value);
     for (const mapinfo of mapList) {
-      if (mapinfo.CNsName === value || mapinfo.ENName === value || mapinfo.JPName === value || mapinfo.CNtName === value) {
+      if (mapinfo.map === value) {
         setPresentMapURL({ imgPrepareLink: mapinfo.imgPrepareLink, imgBlankLink: mapinfo.imgBlankLink });
       }
     }
@@ -263,9 +263,9 @@ function App() {
                     {presentLanguage.mapsetting.choosemap}
                   </Col>
                   <Col span={7}>
-                    <Select defaultValue="风曳镇" style={{ width: 120 }} onChange={value => changePresentmap(value as string)}>
+                    <Select defaultValue={presentLanguage.mapsetting.maps.Area88} style={{ width: 120 }} onChange={value => changePresentmap(value as string)}>
                       {Object.keys(presentLanguage.mapsetting.maps).map((key) => (
-                        <Select.Option key={key} value={key}>{presentLanguage.mapsetting.maps[key as keyof typeof presentLanguage.mapsetting.maps]}</Select.Option>
+                        <Select.Option value={key}>{presentLanguage.mapsetting.maps[key as keyof typeof presentLanguage.mapsetting.maps]}</Select.Option>
                       ))}
                     </Select>
                   </Col>

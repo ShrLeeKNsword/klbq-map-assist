@@ -1,3 +1,5 @@
+import { MapName } from "./maplist";
+
 interface Sidebar {
   mapsetting: string;
   charactor: string;
@@ -13,13 +15,7 @@ interface Sidebar {
 interface MapSetting {
   choosemap: string;
   maps: {
-    WindyTown: string,
-    SpaceLab: string,
-    Khesmet: string,
-    EulerPort: string,
-    CauchyDistrict: string,
-    Area88: string,
-    Base404: string,
+    [key in MapName]: string;
   };
   maptype: string;
   maptypes: {
