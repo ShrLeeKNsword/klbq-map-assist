@@ -31,12 +31,6 @@ enum Urbino {
 	Galatea = 'Galatea',
 }
 
-enum skillTypes {
-	Active = 'Active',
-	Passive = 'Passive',
-	Ultimate = 'Ultimate',
-}
-
 export type Characters = {
 	[P in factions]: {
 		[key in P extends factions.PUS ? PUS : P extends factions.TheScissors ? TheScissors : Urbino]: string;
@@ -44,7 +38,9 @@ export type Characters = {
 }
 
 type skillData = {
-	[key in skillTypes]: string
+	"Active": string;
+	"Passive": string;
+	"Ultimate": string;
 }
 
 interface CharacterData {
