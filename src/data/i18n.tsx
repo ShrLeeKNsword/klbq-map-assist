@@ -7,7 +7,9 @@ export const i18nData = [
       charactor: "超弦体",
       skill: "技能",
       grenade: "战术道具",
-      lineup: "lineup点位"
+      lineup: "lineup点位",
+      bugpoint:"Bug点位",
+      bugpointwarning:<div>这里列出的Bug点位仅用于警示作用，请勿在游戏中利于Bug！</div>
     },
     mapsetting: {
       choosemap: "选择地图",

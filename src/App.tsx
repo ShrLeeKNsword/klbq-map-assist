@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Layout, Collapse, Typography, Select, Tooltip, Popover, Col, Row, Popconfirm, ColorPicker } from '@douyinfe/semi-ui';
+import { Layout, Collapse, Typography, Select, Tooltip, Popover, Col, Row, Popconfirm, ColorPicker, Banner } from '@douyinfe/semi-ui';
 import { IconEdit, IconDelete, IconUndo, IconLanguage, IconMinus, IconGithubLogo, IconMaximize } from '@douyinfe/semi-icons';
 import ColorBtn from './components/colorBtb.tsx';
 import CharactorBtn from './components/charactorBtn.tsx';
@@ -9,7 +9,7 @@ import GrenadeBtn from './components/grenadeBtn.tsx';
 import './App.css';
 import DrawableMap from './components/drawableMap.tsx';
 import StandardButton from './components/toolButtons/standardButton.tsx';
-import { i18nData } from './data/i18n.ts';
+import { i18nData } from './data/i18n.tsx';
 import { mapList } from './data/maplist.ts';
 import { canvasLineElement, mapTools } from './utils/canvasConstants.ts';
 import ButtonNoPopover from './components/toolButtons/buttonNoPopover.tsx';
@@ -261,7 +261,7 @@ function App() {
       <Col span={6}><GrenadeBtn imglink='https://s2.loli.net/2024/09/24/rR5g1ukx7j6tPFK.png' /></Col>
       <Col span={6}><GrenadeBtn imglink='https://s2.loli.net/2024/09/24/MQYHj54khqVxetJ.png' /></Col>
       <Col span={6}><GrenadeBtn imglink='https://s2.loli.net/2024/09/24/nJzYDPiv8uWsdMx.png' /></Col>
-      <Col span={6}><GrenadeBtn imglink='https://s2.loli.net/2024/09/24/y6xfMWzvi5GrE8Z.png' /></Col>
+      <Col span={6}><GrenadeBtn imglink='https://s2.loli.net/2024/09/24/2UAiJIGMwRKauXt.png' /></Col>
     </Row>
   </>
 
@@ -331,20 +331,28 @@ function App() {
             <Collapse.Panel header={presentLanguage.sidebar.lineup} itemKey="5">
               <p>Hi, bytedance dance dance. This is the docsite of Semi UI. </p>
             </Collapse.Panel>
+            <Collapse.Panel header={presentLanguage.sidebar.bugpoint} itemKey="6">
+              <Banner
+                fullMode
+                closeIcon={null}
+                type="danger"
+                description={presentLanguage.sidebar.bugpointwarning}
+              />
+            </Collapse.Panel>
           </Collapse>
         </Sider>
         <Content style={{ height: "100%", lineHeight: '100px', width: '100%', margin: 'auto', display: 'flex', placeItems: 'center' }}>
           <DrawableMap presentMapURL={mapPrepareMode ? presentMapURL.imgPrepareLink : presentMapURL.imgBlankLink} canvasTool={canvasTool} penColor={penColor} canvasElements={canvasElements} setCanvasElements={setCanvasElements} penWidth={penWidth} />
           <div style={{ position: "relative", top: "-20px", right: "40px", width: "58px", height: "max" }}>
             <ButtonNoPopover icon={IconMaximize} onClick={selectButtonClicked} isActiveTool={canvasTool === mapTools.SELECT} />
-            <StandardButton icon={IconEdit} penWidth={penWidth} penColor={penColor} setpenWidth={setpenWidth} onClick={editButtonClicked} isActiveTool={canvasTool === mapTools.PEN} />
-            <StandardButton icon={IconMinus} penWidth={penWidth} penColor={penColor} setpenWidth={setpenWidth} onClick={lineButtonClicked} isActiveTool={canvasTool === mapTools.LINE} />
             <Popover
               content={colorPlate}
               position={"left"}
             >
               <div style={styles.canvasToolButtonStyle}><ColorBtn color={penColor} /></div>
             </Popover>
+            <StandardButton icon={IconEdit} penWidth={penWidth * 2} penColor={penColor} setpenWidth={setpenWidth} onClick={editButtonClicked} isActiveTool={canvasTool === mapTools.PEN} />
+            <StandardButton icon={IconMinus} penWidth={penWidth * 2} penColor={penColor} setpenWidth={setpenWidth} onClick={lineButtonClicked} isActiveTool={canvasTool === mapTools.LINE} />
             <Tooltip content={presentLanguage.markbox.undo}><div style={styles.canvasToolButtonStyle}><IconUndo size='extra-large' /></div></Tooltip>
             <Popconfirm
               visible={togglevisible}
