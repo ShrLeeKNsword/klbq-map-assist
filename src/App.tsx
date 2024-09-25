@@ -38,8 +38,9 @@ function App() {
   const { Header, Footer, Sider, Content } = Layout;
   const { Title } = Typography;
 
-  const [presentMap, setPresentMap] = useState("风曳镇");
   const [presentLanguage, setPresentLanguage] = useState(i18nData[0]);
+  const [closeallcollapse, setCloseAllCollapse] = useState(false);
+  const [presentMap, setPresentMap] = useState(presentLanguage.mapsetting.maps.FengYeTown);
 
   const [canvasTool, setTool] = useState<mapTools>(mapTools.SELECT);
   const [penColor, setpenColor] = useState("red");
@@ -54,6 +55,10 @@ function App() {
   const [presentMapURL, setPresentMapURL] = useState({ imgPrepareLink: mapList[0].imgPrepareLink, imgBlankLink: mapList[0].imgBlankLink });
   const [togglevisible, setToggleVisible] = useState(false);
 
+  const Sleep = (ms: any) => {
+    return new Promise(resolve => setTimeout(resolve, ms))
+  }
+
   const changePresentmap = (value: string) => {
     setPresentMap(value);
     for (const mapinfo of mapList) {
@@ -63,12 +68,19 @@ function App() {
     }
   }
 
-  const changePresentlanguage = (value: string) => {
+  const changePresentlanguage = async (value: string) => {
     for (const languageinfo of i18nData) {
       if (languageinfo.language === value) {
+        setPresentMap(languageinfo.mapsetting.maps.FengYeTown);
+        setPresentMapURL({ imgPrepareLink: mapList[0].imgPrepareLink, imgBlankLink: mapList[0].imgBlankLink });
+        setMapPrepareMode(true);
+        setMarkNameMode(true);
+        setCloseAllCollapse(true);
         setPresentLanguage(languageinfo);
       }
     }
+    await Sleep(100)
+    setCloseAllCollapse(false);
   }
 
 
@@ -90,7 +102,7 @@ function App() {
   const CharactorModuel = <>
     <div style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-5px" }}>
       <div><img src='https://patchwiki.biligame.com/images/klbq/thumb/6/69/8juww513o4hde7c901l5h8g371u81zx.png/300px-%E9%98%B5%E8%90%A5-%E6%AC%A7%E6%B3%8A.png' style={{ height: "40px" }}></img></div>
-      <Title heading={6}>欧泊 P.U.S.</Title>
+      <Title heading={6}>{presentLanguage.charactors.PUS.name}</Title>
     </div>
     <Row gutter={[24, 8]} type="flex" align="middle">
       <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/1/1b/tgwx7q9203dafj6rsypza3flbultqf7.png/120px-%E7%B1%B3%E9%9B%AA%E5%84%BF%C2%B7%E6%9D%8E%E5%A4%B4%E5%83%8F.png' /></Col>
@@ -101,7 +113,7 @@ function App() {
     </Row>
     <div style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-5px", marginTop: "5px" }}>
       <div><img src='https://patchwiki.biligame.com/images/klbq/thumb/0/0e/qsqrhhnvg55mdct76xxy3mz4c0bbmfn.png/300px-%E9%98%B5%E8%90%A5-%E5%89%AA%E5%88%80%E6%89%8B.png' style={{ height: "40px" }}></img></div>
-      <Title heading={6}>剪刀手 The Scissors</Title>
+      <Title heading={6}>{presentLanguage.charactors.TS.name}</Title>
     </div>
     <Row gutter={[24, 8]} type="flex" align="middle">
       <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/1/11/rpa27v1teqx37xf0oq21kqhv7t5oxri.png/120px-%E6%98%8E%E5%A4%B4%E5%83%8F.png' /></Col>
@@ -114,7 +126,7 @@ function App() {
     </Row>
     <div style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-5px", marginTop: "5px" }}>
       <div><img src='https://patchwiki.biligame.com/images/klbq/thumb/d/d2/tcn2nz93o2q9gffys6i3f81kkpso51m.png/300px-%E9%98%B5%E8%90%A5-%E4%B9%8C%E5%B0%94%E6%AF%94%E8%AF%BA.png' style={{ height: "40px" }}></img></div>
-      <Title heading={6}>乌尔比诺 Urbino</Title>
+      <Title heading={6}>{presentLanguage.charactors.Urbino.name}</Title>
     </div>
     <Row gutter={[24, 8]} type="flex" align="middle">
       <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/2/2d/hmkcsrcvp79ctofkwv92iint9iupvnk.png/80px-%E5%A5%A5%E9%BB%9B%E4%B8%BD%C2%B7%E6%A0%BC%E7%BD%97%E5%A4%AB%E5%A4%B4%E5%83%8F.png' /></Col>
@@ -232,7 +244,7 @@ function App() {
   return (
     <Layout className="components-layout-demo" style={{ height: 720, width: 1280, margin: "auto" }}>
       <Header style={styles.commonStyles}>
-        <Title heading={3} style={{ margin: '14px 0' }} >{presentLanguage.title} - {presentMap} {mapPrepareMode ? "[准备阶段]" : "[空白]"} {mapMarkNameMode ? "[点位标注]" : ""}</Title>
+        <Title heading={3} style={{ margin: '14px 0' }} >{presentLanguage.title} - {presentMap} {mapPrepareMode ? "[" + presentLanguage.mapsetting.maptypes.prepare + "]" : "[" + presentLanguage.mapsetting.maptypes.blank + "]"} {mapMarkNameMode ? "[" + presentLanguage.mapsetting.spotmark + "]" : ""}</Title>
         <div style={{ position: "relative", left: "1100px", top: "-60px", height: "100%", width: "200px", display: "flex" }}>
           <div style={{ marginTop: "8px", marginRight: "12px" }}><IconLanguage size='extra-large' /></div>
           <Select defaultValue="简体中文" style={{ width: 120, marginTop: "18px" }} onChange={value => changePresentlanguage(value as string)}>
@@ -243,7 +255,7 @@ function App() {
       </Header>
       <Layout>
         <Sider style={{ width: '340px', background: 'var(--semi-color-fill-2)' }}>
-          <Collapse accordion defaultActiveKey="1" className='no-scroll-bar' style={{ overflowY: "scroll", height: "600px" }}>
+          <Collapse accordion activeKey={closeallcollapse ? [] : undefined} className='no-scroll-bar' style={{ overflowY: "scroll", height: "600px" }} motion={!closeallcollapse}>
             <Collapse.Panel header={presentLanguage.sidebar.mapsetting} itemKey="1">
               <div>
                 <Row gutter={[16, 8]} type="flex" align="middle">
@@ -252,13 +264,13 @@ function App() {
                   </Col>
                   <Col span={7}>
                     <Select defaultValue="风曳镇" style={{ width: 120 }} onChange={value => changePresentmap(value as string)}>
-                      <Select.Option value="风曳镇">{presentLanguage.mapsetting.maps.风曳镇}</Select.Option>
-                      <Select.Option value="空间实验室">{presentLanguage.mapsetting.maps.空间实验室}</Select.Option>
-                      <Select.Option value="科斯迷特">{presentLanguage.mapsetting.maps.科斯迷特}</Select.Option>
-                      <Select.Option value="欧拉港口">{presentLanguage.mapsetting.maps.欧拉港口}</Select.Option>
-                      <Select.Option value="柯西街区">{presentLanguage.mapsetting.maps.柯西街区}</Select.Option>
-                      <Select.Option value="88区">{presentLanguage.mapsetting.maps['88区']}</Select.Option>
-                      <Select.Option value="404基地">{presentLanguage.mapsetting.maps['404基地']}</Select.Option>
+                      <Select.Option value="风曳镇">{presentLanguage.mapsetting.maps.FengYeTown}</Select.Option>
+                      <Select.Option value="空间实验室">{presentLanguage.mapsetting.maps.SpaceLab}</Select.Option>
+                      <Select.Option value="科斯迷特">{presentLanguage.mapsetting.maps.Cosmite}</Select.Option>
+                      <Select.Option value="欧拉港口">{presentLanguage.mapsetting.maps.EulerPort}</Select.Option>
+                      <Select.Option value="柯西街区">{presentLanguage.mapsetting.maps.CauchyDistrict}</Select.Option>
+                      <Select.Option value="88区">{presentLanguage.mapsetting.maps.Area88}</Select.Option>
+                      <Select.Option value="404基地">{presentLanguage.mapsetting.maps.Base404}</Select.Option>
                     </Select>
                   </Col>
                   <Col span={9}>

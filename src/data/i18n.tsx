@@ -104,13 +104,13 @@ export const i18nData: I18nData[] = [
     mapsetting: {
       choosemap: "选择地图",
       maps: {
-        风曳镇: "风曳镇",
-        空间实验室: "空间实验室",
-        科斯迷特: "科斯迷特",
-        欧拉港口: "欧拉港口",
-        柯西街区: "柯西街区",
-        "88区": "88区",
-        "404基地": "404基地",
+        FengYeTown: "风曳镇",
+        SpaceLab: "空间实验室",
+        Cosmite: "科斯迷特",
+        EulerPort: "欧拉港口",
+        CauchyDistrict: "柯西街区",
+        Area88: "88区",
+        Base404: "404基地",
       },
       maptype: "地图类型",
       maptypes: {
@@ -149,6 +149,7 @@ export const i18nData: I18nData[] = [
     },
     charactors: {
       PUS: {
+        name:"欧泊",
         Michele: "米雪儿·李",
         Nobunaga: "信",
         Kokona: "心夏",
@@ -156,6 +157,7 @@ export const i18nData: I18nData[] = [
         Flavia: "芙拉薇娅",
       },
       TS: {
+        name:"剪刀手",
         Ming: "明",
         Lawine: "拉薇",
         Meredith: "梅瑞狄斯",
@@ -165,6 +167,7 @@ export const i18nData: I18nData[] = [
         Fragrans: "珐格兰丝",
       },
       Urbino: {
+        name:"乌尔比诺",
         Celestia: "星绘",
         Audrey: "奥黛丽",
         Maddelena: "白墨",
@@ -267,6 +270,7 @@ export const i18nData: I18nData[] = [
     },
     charactors: {
       PUS: {
+        name:"P.U.S.",
         Michele: "Michele Li",
         Nobunaga: "Nobunaga",
         Kokona: "Kokona",
@@ -274,6 +278,7 @@ export const i18nData: I18nData[] = [
         Flavia: "Flavia",
       },
       TS: {
+        name:"The Scissors",
         Ming: "Ming",
         Lawine: "Lawine",
         Meredith: "Meredith",
@@ -283,6 +288,7 @@ export const i18nData: I18nData[] = [
         Fragrans: "Fragrans",
       },
       Urbino: {
+        name:"Urbino",
         Celestia: "Celestia",
         Audrey: "Audrey",
         Maddelena: "Maddelena",
