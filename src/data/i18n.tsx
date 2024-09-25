@@ -12,32 +12,79 @@ interface Sidebar {
 
 interface MapSetting {
   choosemap: string;
-  maps: Record<string, string>;
+  maps: {
+    风曳镇: string;
+    空间实验室: string;
+    科斯迷特: string;
+    欧拉港口: string;
+    柯西街区: string;
+    "88区": string;
+    "404基地": string;
+  };
   maptype: string;
-  maptypes: Record<string, string>;
+  maptypes: {
+    prepare: string;
+    blank: string;
+  };
   spotmark: string;
-  spotmarks: Record<string, string>;
+  spotmarks: {
+    enable: string;
+    disable: string;
+  };
 }
 
 interface LineupSetting {
   spotmark: string;
-  spotmarks: Record<string, string>;
+  spotmarks: {
+    disable: string;
+    available: string;
+    all: string;
+  };
 }
 
 interface MobaiSuperJumpSetting {
   spotmark: string;
-  spotmarks: Record<string, string>;
+  spotmarks: {
+    disable: string;
+    available: string;
+    all: string;
+  };
 }
 
 interface BugPointSetting {
   spotmark: string;
-  spotmarks: Record<string, string>;
+  spotmarks: {
+    disable: string;
+    available: string;
+    all: string;
+  };
 }
 
-interface Charactors {
-  PUS: Record<string, string>;
-  TS: Record<string, string>;
-  Urbino: Record<string, string>;
+interface Characters {
+  PUS: {
+    Michele: string;
+    Nobunaga: string;
+    Kokona: string;
+    Yvette: string;
+    Flavia: string;
+  };
+  TS: {
+    Ming: string;
+    Lawine: string;
+    Meredith: string;
+    Reiichi: string;
+    Kanami: string;
+    Eika: string;
+    Fragrans: string;
+  };
+  Urbino: {
+    Celestia: string;
+    Audrey: string;
+    Maddelena: string;
+    Fuchsia: string;
+    BaiMo: string;
+    Galatea: string;
+  };
 }
 
 interface Grenades {
@@ -47,7 +94,7 @@ interface Grenades {
   Interceptor: string;
   SlowGrenade: string;
   SmokeBomb: string;
-  Tattletale: string;
+  Alarm: string;
   WindstormGrenade: string;
   SnowBall: string;
 }
@@ -76,7 +123,7 @@ interface I18nData {
   lineupsetting: LineupSetting;
   mobaisuperjumpsetting: MobaiSuperJumpSetting;
   bugpointsetting: BugPointSetting;
-  characters: Charactors;
+  characters: Characters;
   grenades: Grenades;
   markbox: MarkBox;
 }
@@ -180,7 +227,7 @@ export const i18nData: I18nData[] = [
       Interceptor: "拦截者",
       SlowGrenade: "减速雷",
       SmokeBomb: "烟雾弹",
-      Tattletale: "警报器",
+      Alarm: "警报器",
       WindstormGrenade: "风场雷",
       SnowBall: "雪球",
     },
@@ -222,13 +269,13 @@ export const i18nData: I18nData[] = [
     mapsetting: {
       choosemap: "Choose Map",
       maps: {
-        FengYeTown: "Feng Ye Town",
-        SpaceLab: "Space Lab",
-        Cosmite: "Cosmite",
-        EulerPort: "Euler Port",
-        CauchyDistrict: "Cauchy District",
-        Area88: "Area 88",
-        Base404: "Base 404",
+        风曳镇: "Windy Town",
+        空间实验室: "Space Lab",
+        科斯迷特: "Cosmite",
+        欧拉港口: "Port Euler",
+        柯西街区: "Khesmet",
+        "88区": "Area 88",
+        "404基地": "Base 404",
       },
       maptype: "Map Type",
       maptypes: {
@@ -298,7 +345,7 @@ export const i18nData: I18nData[] = [
       Interceptor: "Interceptor",
       SlowGrenade: "Slow Grenade",
       SmokeBomb: "Smoke Bomb",
-      Tattletale: "Tattletale",
+      Alarm: "Alarm",
       WindstormGrenade: "Windstorm Grenade",
       SnowBall: "Snow Ball",
     },
