@@ -20,7 +20,7 @@ const draggableBtnStyle = {
 
 const SkillBtn = (props: SkillBtnPops) => {
     return <>
-        {props.badge != null ? <Badge count={props.badge} position='rightBottom' type={props.badge==='×'?'danger':'secondary'}><div style={draggableBtnStyle}><img src={props.imglink} style={{ width: '100%', height: '100%' }} /></div></Badge>:<div style={draggableBtnStyle}><img src={props.imglink} style={{ width: '100%', height: '100%' }} /></div>}
+        {props.badge != null ? <Badge count={props.badge} position='rightBottom' type={props.badge==='×'?'danger':'secondary'}><div style={draggableBtnStyle}><img src={props.imglink} style={{ width: '90%', height: '90%' }} /></div></Badge>:<div style={draggableBtnStyle}><img src={props.imglink} style={{ width: '90%', height: '90%' }} /></div>}
     </>
 }
 
