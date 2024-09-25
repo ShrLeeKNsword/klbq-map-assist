@@ -17,13 +17,13 @@ interface MapSetting {
   maps: {
     [key in MapName]: string;
   };
-  maptype: string;
-  maptypes: {
+  TeamHighlight: string;
+  TeamHighlightOptions: {
     prepare: string;
     blank: string;
   };
-  spotmark: string;
-  spotmarks: {
+  Landmarks: string;
+  LandmarkOptions: {
     enable: string;
     disable: string;
   };
@@ -163,13 +163,13 @@ export const i18nData: I18nData[] = [
         Area88: "88区",
         Base404: "404基地",
       },
-      maptype: "地图类型",
-      maptypes: {
+      TeamHighlight: "地图类型",
+      TeamHighlightOptions: {
         prepare: "准备阶段",
         blank: "空白",
       },
-      spotmark: "点位标记",
-      spotmarks: {
+      Landmarks: "点位标记",
+      LandmarkOptions: {
         enable: "启用",
         disable: "禁用",
       },
@@ -282,7 +282,7 @@ export const i18nData: I18nData[] = [
       ),
     },
     mapsetting: {
-      choosemap: "Choose Map",
+      choosemap: "Map",
       maps: {
         WindyTown: "Windy Town",
         SpaceLab: "Space Lab",
@@ -292,15 +292,15 @@ export const i18nData: I18nData[] = [
         Area88: "Area 88",
         Base404: "Base 404",
       },
-      maptype: "Map Type",
-      maptypes: {
-        prepare: "Preparation Stage",
-        blank: "Blank",
+      TeamHighlight: "Team Highlight",
+      TeamHighlightOptions: {
+        prepare: "Show",
+        blank: "Hide",
       },
-      spotmark: "Spot Mark",
-      spotmarks: {
-        enable: "Enable",
-        disable: "Disable",
+      Landmarks: "Landmarks",
+      LandmarkOptions: {
+        enable: "Show",
+        disable: "Hide",
       },
     },
     lineupsetting: {

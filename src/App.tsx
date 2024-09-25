@@ -83,7 +83,6 @@ function App() {
     setCloseAllCollapse(false);
   }
 
-
   const colorPlate = <div className="grid grid-flex">
     <Row gutter={[16, 24]} type="flex" justify="space-around" align="middle" style={{ marginLeft: "25px" }}>
       {colorPalette.map((color) => {
@@ -244,7 +243,7 @@ function App() {
   return (
     <Layout className="components-layout-demo" style={{ height: 720, width: 1280, margin: "auto" }}>
       <Header style={styles.commonStyles}>
-        <Title heading={3} style={{ margin: '14px 0' }} >{presentLanguage.title} - {presentMap} {mapPrepareMode ? "[" + presentLanguage.mapsetting.maptypes.prepare + "]" : "[" + presentLanguage.mapsetting.maptypes.blank + "]"} {mapMarkNameMode ? "[" + presentLanguage.mapsetting.spotmark + "]" : ""}</Title>
+        <Title heading={3} style={{ margin: '14px 0' }} >{presentLanguage.title} - {presentMap} {mapPrepareMode ? "[" + presentLanguage.mapsetting.TeamHighlightOptions.prepare + "]" : "[" + presentLanguage.mapsetting.TeamHighlightOptions.blank + "]"} {mapMarkNameMode ? "[" + presentLanguage.mapsetting.Landmarks + "]" : ""}</Title>
         <div style={{ position: "relative", left: "1100px", top: "-60px", height: "100%", width: "200px", display: "flex" }}>
           <div style={{ marginTop: "8px", marginRight: "12px" }}><IconLanguage size='extra-large' /></div>
           <Select defaultValue="简体中文" style={{ width: 120, marginTop: "18px" }} onChange={value => changePresentlanguage(value as string)}>
@@ -270,21 +269,21 @@ function App() {
                     </Select>
                   </Col>
                   <Col span={9}>
-                    {presentLanguage.mapsetting.maptype}
+                    {presentLanguage.mapsetting.TeamHighlight}
                   </Col>
                   <Col span={7}>
                     <Select defaultValue="准备阶段" style={{ width: 120 }} onChange={value => setMapPrepareMode(value as string === "准备阶段" ? true : false)}>
-                      <Select.Option value="准备阶段">{presentLanguage.mapsetting.maptypes.prepare}</Select.Option>
-                      <Select.Option value="空白">{presentLanguage.mapsetting.maptypes.blank}</Select.Option>
+                      <Select.Option value="准备阶段">{presentLanguage.mapsetting.TeamHighlightOptions.prepare}</Select.Option>
+                      <Select.Option value="空白">{presentLanguage.mapsetting.TeamHighlightOptions.blank}</Select.Option>
                     </Select>
                   </Col>
                   <Col span={9}>
-                    {presentLanguage.mapsetting.spotmark}
+                    {presentLanguage.mapsetting.Landmarks}
                   </Col>
                   <Col span={7}>
                     <Select defaultValue="启用" style={{ width: 120 }} onChange={value => setMarkNameMode(value as string === "启用" ? true : false)}>
-                      <Select.Option value="启用">{presentLanguage.mapsetting.spotmarks.enable}</Select.Option>
-                      <Select.Option value="禁用">{presentLanguage.mapsetting.spotmarks.disable}</Select.Option>
+                      <Select.Option value="启用">{presentLanguage.mapsetting.LandmarkOptions.enable}</Select.Option>
+                      <Select.Option value="禁用">{presentLanguage.mapsetting.LandmarkOptions.disable}</Select.Option>
                     </Select>
                   </Col>
                 </Row>
