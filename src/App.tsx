@@ -331,7 +331,10 @@ function App() {
             <Collapse.Panel header={presentLanguage.sidebar.lineup} itemKey="5">
               <p>Hi, bytedance dance dance. This is the docsite of Semi UI. </p>
             </Collapse.Panel>
-            <Collapse.Panel header={presentLanguage.sidebar.bugpoint} itemKey="6">
+            <Collapse.Panel header={presentLanguage.sidebar.mobaisuperjump} itemKey="6">
+              <p>Hi, bytedance dance dance. This is the docsite of Semi UI. </p>
+            </Collapse.Panel>
+            <Collapse.Panel header={presentLanguage.sidebar.bugpoint} itemKey="7">
               <Banner
                 fullMode
                 closeIcon={null}

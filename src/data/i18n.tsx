@@ -8,19 +8,23 @@ export const i18nData = [
       skill: "技能",
       grenade: "战术道具",
       lineup: "lineup点位",
-      bugpoint:"Bug点位",
-      bugpointwarning:<div>这里列出的Bug点位仅用于警示作用，请勿在游戏中利于Bug！</div>
+      mobaisuperjump: "白墨超级跳点位",
+      bugpoint: "Bug点位",
+      bugpointwarning: <div style={{ fontSize: "12px", textAlign: "left" }}>
+        <div>这里列出的Bug点位仅用于警示作用，请勿在游戏中利于Bug！</div>
+        <div>在游戏中利用Bug导致被封禁等不良后果本站概不负责！</div>
+      </div>
     },
     mapsetting: {
       choosemap: "选择地图",
-      maps:{
-        风曳镇:"风曳镇",
-        空间实验室:"空间实验室",
-        科斯迷特:"科斯迷特",
-        欧拉港口:"欧拉港口",
-        柯西街区:"柯西街区",
-        "88区":"88区",
-        "404基地":"404基地"
+      maps: {
+        风曳镇: "风曳镇",
+        空间实验室: "空间实验室",
+        科斯迷特: "科斯迷特",
+        欧拉港口: "欧拉港口",
+        柯西街区: "柯西街区",
+        "88区": "88区",
+        "404基地": "404基地"
       },
       maptype: "地图类型",
       maptypes: {
