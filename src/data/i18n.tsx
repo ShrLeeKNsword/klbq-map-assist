@@ -61,6 +61,10 @@ interface MarkBox {
   clearwarning: {
     title: string;
     content: string;
+    ok: string;
+    cancel: string;
+    success: string;
+    failure: string;
   };
 }
 
@@ -189,6 +193,10 @@ export const i18nData: I18nData[] = [
       clearwarning: {
         title: "确认清除所有笔迹？",
         content: "此操作不可撤销",
+        ok: "确认",
+        cancel: "取消",
+        success: "已清除所有笔迹",
+        failure: "清除笔迹失败",
       },
     },
   },
@@ -303,6 +311,10 @@ export const i18nData: I18nData[] = [
       clearwarning: {
         title: "Confirm to clear all marks?",
         content: "This action cannot be undone",
+        ok: "Confirm",
+        cancel: "Cancel",
+        success: "Cleared all markings",
+        failure: "Failed to clear markings",
       },
     },
   },

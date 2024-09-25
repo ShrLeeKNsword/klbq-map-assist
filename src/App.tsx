@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Layout, Collapse, Typography, Select, Tooltip, Popover, Col, Row, Popconfirm, ColorPicker, Banner } from '@douyinfe/semi-ui';
+import { Layout, Collapse, Typography, Select, Tooltip, Popover, Col, Row, Popconfirm, ColorPicker, Banner, Toast } from '@douyinfe/semi-ui';
 import { IconEdit, IconDelete, IconUndo, IconLanguage, IconMinus, IconGithubLogo, IconMaximize } from '@douyinfe/semi-icons';
 import ColorBtn from './components/colorBtb.tsx';
 import CharactorBtn from './components/charactorBtn.tsx';
@@ -366,7 +366,9 @@ function App() {
               visible={togglevisible}
               title={presentLanguage.markbox.clearwarning.title}
               content={presentLanguage.markbox.clearwarning.content}
-              onConfirm={() => { setCanvasElements([]); setToggleVisible(!togglevisible) }}
+              okText={presentLanguage.markbox.clearwarning.ok}
+              cancelText={presentLanguage.markbox.clearwarning.cancel}
+              onConfirm={() => { setCanvasElements([]); setToggleVisible(!togglevisible); Toast.success(presentLanguage.markbox.clearwarning.success) }}
               onCancel={() => { setToggleVisible(!togglevisible) }}
               position='left'
             >
