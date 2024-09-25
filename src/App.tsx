@@ -328,7 +328,7 @@ function App() {
                 <Col span={6}><GrenadeBtn badge="×" imglink='https://s2.loli.net/2024/09/24/2UAiJIGMwRKauXt.png' /></Col>
               </Row>
             </Collapse.Panel>
-            <Collapse.Panel header={presentLanguage.sidebar.mobaisuperjump} itemKey="6">
+            <Collapse.Panel header={presentLanguage.sidebar.skilllineup} itemKey="6">
               <Row gutter={[16, 8]} type="flex" align="middle">
                 <Col span={9}>
                   {presentLanguage.mobaisuperjumpsetting.spotmark}
@@ -342,7 +342,21 @@ function App() {
                 </Col>
               </Row>
             </Collapse.Panel>
-            <Collapse.Panel header={presentLanguage.sidebar.bugpoint} itemKey="7">
+            <Collapse.Panel header={presentLanguage.sidebar.mobaisuperjump} itemKey="7">
+              <Row gutter={[16, 8]} type="flex" align="middle">
+                <Col span={9}>
+                  {presentLanguage.mobaisuperjumpsetting.spotmark}
+                </Col>
+                <Col span={7}>
+                  <Select defaultValue="禁用" style={{ width: 120 }} onChange={() => { }}>
+                    <Select.Option value="禁用">{presentLanguage.mobaisuperjumpsetting.spotmarks.disable}</Select.Option>
+                    <Select.Option value="仅有效">{presentLanguage.mobaisuperjumpsetting.spotmarks.available}</Select.Option>
+                    <Select.Option value="全部">{presentLanguage.mobaisuperjumpsetting.spotmarks.all}</Select.Option>
+                  </Select>
+                </Col>
+              </Row>
+            </Collapse.Panel>
+            <Collapse.Panel header={presentLanguage.sidebar.bugpoint} itemKey="8">
               <Banner
                 fullMode
                 closeIcon={null}
