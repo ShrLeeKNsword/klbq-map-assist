@@ -4,6 +4,11 @@
   text-align: center;
 }
 
+img {
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;
