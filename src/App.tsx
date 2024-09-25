@@ -361,7 +361,9 @@ function App() {
             </Popover>
             <StandardButton icon={IconEdit} penWidth={penWidth * 2} penColor={penColor} setpenWidth={setpenWidth} onClick={() => setTool(mapTools.PEN)} isActiveTool={canvasTool === mapTools.PEN} />
             <StandardButton icon={IconMinus} penWidth={penWidth * 2} penColor={penColor} setpenWidth={setpenWidth} onClick={() => setTool(mapTools.LINE)} isActiveTool={canvasTool === mapTools.LINE} />
-            <Tooltip content={presentLanguage.markbox.undo}><div style={styles.canvasToolButtonStyle}><IconUndo size='extra-large' /></div></Tooltip>
+            <Tooltip content={presentLanguage.markbox.undo}>
+              <ButtonNoPopover icon={IconUndo} onClick={() => setCanvasElements(canvasElements.slice(0, -1))} isActiveTool={false} />
+            </Tooltip>
             <Popconfirm
               visible={togglevisible}
               title={presentLanguage.markbox.clearwarning.title}
