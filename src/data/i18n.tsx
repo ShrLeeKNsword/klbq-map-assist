@@ -1,8 +1,9 @@
+import { Characters, factions } from "./characters";
 import { MapName } from "./maplist";
 
 interface Sidebar {
   mapsetting: string;
-  charactor: string;
+  character: string;
   skill: string;
   grenade: string;
   lineup: string;
@@ -60,36 +61,6 @@ interface BugPointSetting {
   };
 }
 
-interface Characters {
-  PUS: {
-    name: string;
-    Michele: string;
-    Nobunaga: string;
-    Kokona: string;
-    Yvette: string;
-    Flavia: string;
-  };
-  TS: {
-    name: string;
-    Ming: string;
-    Lawine: string;
-    Meredith: string;
-    Reiichi: string;
-    Kanami: string;
-    Eika: string;
-    Fragrans: string;
-  };
-  Urbino: {
-    name: string;
-    Celestia: string;
-    Audrey: string;
-    Maddelena: string;
-    Fuchsia: string;
-    BaiMo: string;
-    Galatea: string;
-  };
-}
-
 interface Grenades {
   Flashbang: string;
   FragGrenade: string;
@@ -127,6 +98,9 @@ interface I18nData {
   skilllineupsetting: Skilllineupsetting;
   mobaisuperjumpsetting: MobaiSuperJumpSetting;
   bugpointsetting: BugPointSetting;
+  factions: {
+    [key in factions]: string;
+  };
   characters: Characters;
   grenades: Grenades;
   markbox: MarkBox;
@@ -138,7 +112,7 @@ export const i18nData: I18nData[] = [
     title: "卡拉彼丘地图助手",
     sidebar: {
       mapsetting: "地图设置",
-      charactor: "超弦体",
+      character: "超弦体",
       skill: "技能",
       grenade: "战术道具",
       lineup: "战术道具点位",
@@ -206,17 +180,20 @@ export const i18nData: I18nData[] = [
         all: "全部",
       },
     },
+    factions: {
+      PUS: "欧泊",
+      TheScissors: "剪刀手",
+      Urbino: "乌尔比诺",
+    },
     characters: {
       PUS: {
-        name: "欧泊",
         Michele: "米雪儿·李",
         Nobunaga: "信",
         Kokona: "心夏",
         Yvette: "伊薇特",
         Flavia: "芙拉薇娅",
       },
-      TS: {
-        name: "剪刀手",
+      TheScissors: {
         Ming: "明",
         Lawine: "拉薇",
         Meredith: "梅瑞狄斯",
@@ -226,7 +203,6 @@ export const i18nData: I18nData[] = [
         Fragrans: "珐格兰丝",
       },
       Urbino: {
-        name: "乌尔比诺",
         Celestia: "星绘",
         Audrey: "奥黛丽",
         Maddelena: "白墨",
@@ -267,7 +243,7 @@ export const i18nData: I18nData[] = [
     title: "Strinova Map Assistant",
     sidebar: {
       mapsetting: "Map Setting",
-      charactor: "Character",
+      character: "Character",
       skill: "Skills",
       grenade: "Grenades",
       lineup: "Grenade Lineups",
@@ -335,17 +311,20 @@ export const i18nData: I18nData[] = [
         all: "All",
       },
     },
+    factions: {
+      PUS: "PUS",
+      TheScissors: "The Scissors",
+      Urbino: "Urbino",
+    },
     characters: {
       PUS: {
-        name: "P.U.S.",
         Michele: "Michele Li",
         Nobunaga: "Nobunaga",
         Kokona: "Kokona",
         Yvette: "Yvette",
         Flavia: "Flavia",
       },
-      TS: {
-        name: "The Scissors",
+      TheScissors: {
         Ming: "Ming",
         Lawine: "Lawine",
         Meredith: "Meredith",
@@ -355,7 +334,6 @@ export const i18nData: I18nData[] = [
         Fragrans: "Fragrans",
       },
       Urbino: {
-        name: "Urbino",
         Celestia: "Celestia",
         Audrey: "Audrey",
         Maddelena: "Maddelena",
