@@ -1,18 +1,18 @@
 import { useState } from 'react';
 import { Layout, Collapse, Typography, Select, Tooltip, Popover, Col, Row, Popconfirm, ColorPicker, Banner, Toast } from '@douyinfe/semi-ui';
 import { IconEdit, IconDelete, IconUndo, IconLanguage, IconMinus, IconGithubLogo, IconMaximize } from '@douyinfe/semi-icons';
-import ColorBtn from './components/colorBtb.tsx';
-import CharactorBtn from './components/charactorBtn.tsx';
-import SkillBtn from './components/skillBtn.tsx';
-import GrenadeBtn from './components/grenadeBtn.tsx';
+import ColorBtn from './components/buttons/colorBtn.tsx';
+import CharactorBtn from './components/buttons/charactorBtn.tsx';
+import SkillBtn from './components/buttons/skillBtn.tsx';
+import GrenadeBtn from './components/buttons/grenadeBtn.tsx';
 
 import './App.css';
 import DrawableMap from './components/drawableMap.tsx';
-import StandardButton from './components/toolButtons/standardButton.tsx';
+import StandardButton from './components/buttons/standardButton.tsx';
 import { i18nData } from './data/i18n.tsx';
 import { mapList } from './data/maplist.ts';
 import { canvasElement, colorPalette, mapTools } from './utils/canvasConstants.ts';
-import ButtonNoPopover from './components/toolButtons/buttonNoPopover.tsx';
+import ButtonNoPopover from './components/buttons/buttonNoPopover.tsx';
 
 const styles = {
   commonStyles: {
