@@ -1,3 +1,5 @@
+import { MapName } from "./maplist";
+
 interface Sidebar {
   mapsetting: string;
   charactor: string;
@@ -12,16 +14,28 @@ interface Sidebar {
 
 interface MapSetting {
   choosemap: string;
-  maps: Record<string, string>;
-  maptype: string;
-  maptypes: Record<string, string>;
-  spotmark: string;
-  spotmarks: Record<string, string>;
+  maps: {
+    [key in MapName]: string;
+  };
+  TeamHighlight: string;
+  TeamHighlightOptions: {
+    prepare: string;
+    blank: string;
+  };
+  Landmarks: string;
+  LandmarkOptions: {
+    enable: string;
+    disable: string;
+  };
 }
 
 interface LineupSetting {
   spotmark: string;
-  spotmarks: Record<string, string>;
+  spotmarks: {
+    disable: string;
+    available: string;
+    all: string;
+  };
 }
 interface Skilllineupsetting {
   spotmark: string;
@@ -30,18 +44,50 @@ interface Skilllineupsetting {
 
 interface MobaiSuperJumpSetting {
   spotmark: string;
-  spotmarks: Record<string, string>;
+  spotmarks: {
+    disable: string;
+    available: string;
+    all: string;
+  };
 }
 
 interface BugPointSetting {
   spotmark: string;
-  spotmarks: Record<string, string>;
+  spotmarks: {
+    disable: string;
+    available: string;
+    all: string;
+  };
 }
 
-interface Charactors {
-  PUS: Record<string, string>;
-  TS: Record<string, string>;
-  Urbino: Record<string, string>;
+interface Characters {
+  PUS: {
+    name: string;
+    Michele: string;
+    Nobunaga: string;
+    Kokona: string;
+    Yvette: string;
+    Flavia: string;
+  };
+  TS: {
+    name: string;
+    Ming: string;
+    Lawine: string;
+    Meredith: string;
+    Reiichi: string;
+    Kanami: string;
+    Eika: string;
+    Fragrans: string;
+  };
+  Urbino: {
+    name: string;
+    Celestia: string;
+    Audrey: string;
+    Maddelena: string;
+    Fuchsia: string;
+    BaiMo: string;
+    Galatea: string;
+  };
 }
 
 interface Grenades {
@@ -51,7 +97,7 @@ interface Grenades {
   Interceptor: string;
   SlowGrenade: string;
   SmokeBomb: string;
-  Tattletale: string;
+  Alarm: string;
   WindstormGrenade: string;
   SnowBall: string;
 }
@@ -81,7 +127,7 @@ interface I18nData {
   skilllineupsetting: Skilllineupsetting;
   mobaisuperjumpsetting: MobaiSuperJumpSetting;
   bugpointsetting: BugPointSetting;
-  charactors: Charactors;
+  characters: Characters;
   grenades: Grenades;
   markbox: MarkBox;
 }
@@ -109,21 +155,21 @@ export const i18nData: I18nData[] = [
     mapsetting: {
       choosemap: "选择地图",
       maps: {
-        FengYeTown: "风曳镇",
+        WindyTown: "风曳镇",
         SpaceLab: "空间实验室",
-        Cosmite: "科斯迷特",
+        Khesmet: "科斯迷特",
         EulerPort: "欧拉港口",
         CauchyDistrict: "柯西街区",
         Area88: "88区",
         Base404: "404基地",
       },
-      maptype: "地图类型",
-      maptypes: {
+      TeamHighlight: "地图类型",
+      TeamHighlightOptions: {
         prepare: "准备阶段",
         blank: "空白",
       },
-      spotmark: "点位标记",
-      spotmarks: {
+      Landmarks: "点位标记",
+      LandmarkOptions: {
         enable: "启用",
         disable: "禁用",
       },
@@ -160,7 +206,7 @@ export const i18nData: I18nData[] = [
         all: "全部",
       },
     },
-    charactors: {
+    characters: {
       PUS: {
         name: "欧泊",
         Michele: "米雪儿·李",
@@ -196,7 +242,7 @@ export const i18nData: I18nData[] = [
       Interceptor: "拦截者",
       SlowGrenade: "减速雷",
       SmokeBomb: "烟雾弹",
-      Tattletale: "警报器",
+      Alarm: "警报器",
       WindstormGrenade: "风场雷",
       SnowBall: "雪球",
     },
@@ -222,39 +268,39 @@ export const i18nData: I18nData[] = [
     sidebar: {
       mapsetting: "Map Setting",
       charactor: "Character",
-      skill: "Skill",
-      grenade: "Grenade",
-      lineup: "Grenade Lineup",
-      skilllineup: "Skill Lineup",
-      mobaisuperjump: "Mobai Super Jump",
-      bugpoint: "Bug Point",
+      skill: "Skills",
+      grenade: "Grenades",
+      lineup: "Grenade Lineups",
+      skilllineup: "Skill Lineups",
+      mobaisuperjump: "Baimo Super Jumps",
+      bugpoint: "Bugs",
       bugpointwarning: (
         <div style={{ fontSize: "12px", textAlign: "left" }}>
-          <div>The bug points listed here are for warning purposes only. Do not exploit bugs in the game!</div>
-          <div>We are not responsible for any adverse consequences such as bans resulting from exploiting bugs in the game!</div>
+          <div>Bugs listed here are for your information only!</div>
+          <div>We are not responsible for any bans for abusing any of these bugs.</div>
         </div>
       ),
     },
     mapsetting: {
-      choosemap: "Choose Map",
+      choosemap: "Map",
       maps: {
-        FengYeTown: "Feng Ye Town",
+        WindyTown: "Windy Town",
         SpaceLab: "Space Lab",
-        Cosmite: "Cosmite",
-        EulerPort: "Euler Port",
+        Khesmet: "Khesmet",
         CauchyDistrict: "Cauchy District",
+        EulerPort: "Port Euler",
         Area88: "Area 88",
         Base404: "Base 404",
       },
-      maptype: "Map Type",
-      maptypes: {
-        prepare: "Preparation Stage",
-        blank: "Blank",
+      TeamHighlight: "Team Highlight",
+      TeamHighlightOptions: {
+        prepare: "Show",
+        blank: "Hide",
       },
-      spotmark: "Spot Mark",
-      spotmarks: {
-        enable: "Enable",
-        disable: "Disable",
+      Landmarks: "Landmarks",
+      LandmarkOptions: {
+        enable: "Show",
+        disable: "Hide",
       },
     },
     lineupsetting: {
@@ -289,7 +335,7 @@ export const i18nData: I18nData[] = [
         all: "All",
       },
     },
-    charactors: {
+    characters: {
       PUS: {
         name: "P.U.S.",
         Michele: "Michele Li",
@@ -325,7 +371,7 @@ export const i18nData: I18nData[] = [
       Interceptor: "Interceptor",
       SlowGrenade: "Slow Grenade",
       SmokeBomb: "Smoke Bomb",
-      Tattletale: "Tattletale",
+      Alarm: "Alarm",
       WindstormGrenade: "Windstorm Grenade",
       SnowBall: "Snow Ball",
     },
