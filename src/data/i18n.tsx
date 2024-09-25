@@ -7,7 +7,8 @@ export const i18nData = [
       charactor: "超弦体",
       skill: "技能",
       grenade: "战术道具",
-      lineup: "lineup点位",
+      lineup: "战术道具点位",
+      skilllineup: "技能点位",
       mobaisuperjump: "白墨超级跳点位",
       bugpoint: "Bug点位",
       bugpointwarning: <div style={{ fontSize: "12px", textAlign: "left" }}>
@@ -35,6 +36,30 @@ export const i18nData = [
       spotmarks: {
         enable: "启用",
         disable: "禁用"
+      }
+    },
+    lineupsetting: {
+      spotmark: "点位标记",
+      spotmarks: {
+        disable: "禁用",
+        available: "仅有效",
+        all: "全部"
+      }
+    },
+    mobaisuperjumpsetting: {
+      spotmark: "点位标记",
+      spotmarks: {
+        disable: "禁用",
+        available: "仅有效",
+        all: "全部"
+      }
+    },
+    bugpointsetting: {
+      spotmark: "点位标记",
+      spotmarks: {
+        disable: "禁用",
+        available: "仅有效",
+        all: "全部"
       }
     },
     charactors: {
