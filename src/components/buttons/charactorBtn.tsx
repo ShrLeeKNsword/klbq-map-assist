@@ -18,10 +18,10 @@ const draggableBtnStyle = {
     overflow: "hidden",
 }
 
-const CharactorBtn = (props: CharactorBtnPops) => {
+const CharacterBtn = (props: CharactorBtnPops) => {
     return <>
         {props.badge != null ? <Badge count={props.badge} position='rightBottom' type={props.badge === '×' ? 'danger' : 'secondary'}><div style={draggableBtnStyle}><img src={props.imglink} style={{ width: '100%', height: '100%' }} /></div></Badge> : <div style={draggableBtnStyle}><img src={props.imglink} style={{ width: '100%', height: '100%' }} /></div>}
     </>
 }
 
-export default CharactorBtn;
+export default CharacterBtn;
