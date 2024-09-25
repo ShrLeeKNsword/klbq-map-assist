@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Layout, Collapse, Typography, Select, Tooltip, Popover, Col, Row, Popconfirm, ColorPicker } from '@douyinfe/semi-ui';
+import { Layout, Collapse, Typography, Select, Tooltip, Popover, Col, Row, Popconfirm, ColorPicker, Banner } from '@douyinfe/semi-ui';
 import { IconEdit, IconDelete, IconUndo, IconLanguage, IconMinus, IconGithubLogo, IconMaximize } from '@douyinfe/semi-icons';
 import ColorBtn from './components/colorBtb.tsx';
 import CharactorBtn from './components/charactorBtn.tsx';
@@ -9,7 +9,7 @@ import GrenadeBtn from './components/grenadeBtn.tsx';
 import './App.css';
 import DrawableMap from './components/drawableMap.tsx';
 import StandardButton from './components/toolButtons/standardButton.tsx';
-import { i18nData } from './data/i18n.ts';
+import { i18nData } from './data/i18n.tsx';
 import { mapList } from './data/maplist.ts';
 import { canvasLineElement, mapTools } from './utils/canvasConstants.ts';
 import ButtonNoPopover from './components/toolButtons/buttonNoPopover.tsx';
@@ -261,7 +261,7 @@ function App() {
       <Col span={6}><GrenadeBtn imglink='https://s2.loli.net/2024/09/24/rR5g1ukx7j6tPFK.png' /></Col>
       <Col span={6}><GrenadeBtn imglink='https://s2.loli.net/2024/09/24/MQYHj54khqVxetJ.png' /></Col>
       <Col span={6}><GrenadeBtn imglink='https://s2.loli.net/2024/09/24/nJzYDPiv8uWsdMx.png' /></Col>
-      <Col span={6}><GrenadeBtn imglink='https://s2.loli.net/2024/09/24/y6xfMWzvi5GrE8Z.png' /></Col>
+      <Col span={6}><GrenadeBtn imglink='https://s2.loli.net/2024/09/24/2UAiJIGMwRKauXt.png' /></Col>
     </Row>
   </>
 
@@ -329,7 +329,63 @@ function App() {
               {GrenadeModuel}
             </Collapse.Panel>
             <Collapse.Panel header={presentLanguage.sidebar.lineup} itemKey="5">
-              <p>Hi, bytedance dance dance. This is the docsite of Semi UI. </p>
+              <Row gutter={[16, 8]} type="flex" align="middle">
+                <Col span={9}>
+                  {presentLanguage.lineupsetting.spotmark}
+                </Col>
+                <Col span={7}>
+                  <Select defaultValue="禁用" style={{ width: 120 }} onChange={() => { }}>
+                    <Select.Option value="禁用">{presentLanguage.lineupsetting.spotmarks.disable}</Select.Option>
+                    <Select.Option value="仅有效">{presentLanguage.lineupsetting.spotmarks.available}</Select.Option>
+                    <Select.Option value="全部">{presentLanguage.lineupsetting.spotmarks.all}</Select.Option>
+                  </Select>
+                </Col>
+              </Row>
+              <Row gutter={[24, 8]} type="flex" align="middle" style={{ marginTop: "5px" }}>
+                <Col span={6}><GrenadeBtn imglink='https://s2.loli.net/2024/09/24/y6xfMWzvi5GrE8Z.png' /></Col>
+                <Col span={6}><GrenadeBtn imglink='https://s2.loli.net/2024/09/24/siyl1V9OETwdntX.png' /></Col>
+                <Col span={6}><GrenadeBtn imglink='https://s2.loli.net/2024/09/24/z8DXpG7icOdRhkj.png' /></Col>
+                <Col span={6}><GrenadeBtn imglink='https://s2.loli.net/2024/09/24/M7NLCWwZaYU5lyb.png' /></Col>
+                <Col span={6}><GrenadeBtn imglink='https://s2.loli.net/2024/09/24/iZpv7XY5j1DJGAL.png' /></Col>
+                <Col span={6}><GrenadeBtn imglink='https://s2.loli.net/2024/09/24/rR5g1ukx7j6tPFK.png' /></Col>
+                <Col span={6}><GrenadeBtn imglink='https://s2.loli.net/2024/09/24/MQYHj54khqVxetJ.png' /></Col>
+                <Col span={6}><GrenadeBtn imglink='https://s2.loli.net/2024/09/24/nJzYDPiv8uWsdMx.png' /></Col>
+                <Col span={6}><GrenadeBtn imglink='https://s2.loli.net/2024/09/24/2UAiJIGMwRKauXt.png' /></Col>
+              </Row>
+            </Collapse.Panel>
+            <Collapse.Panel header={presentLanguage.sidebar.mobaisuperjump} itemKey="6">
+              <Row gutter={[16, 8]} type="flex" align="middle">
+                <Col span={9}>
+                  {presentLanguage.mobaisuperjumpsetting.spotmark}
+                </Col>
+                <Col span={7}>
+                  <Select defaultValue="禁用" style={{ width: 120 }} onChange={() => { }}>
+                    <Select.Option value="禁用">{presentLanguage.mobaisuperjumpsetting.spotmarks.disable}</Select.Option>
+                    <Select.Option value="仅有效">{presentLanguage.mobaisuperjumpsetting.spotmarks.available}</Select.Option>
+                    <Select.Option value="全部">{presentLanguage.mobaisuperjumpsetting.spotmarks.all}</Select.Option>
+                  </Select>
+                </Col>
+              </Row>
+            </Collapse.Panel>
+            <Collapse.Panel header={presentLanguage.sidebar.bugpoint} itemKey="7">
+              <Banner
+                fullMode
+                closeIcon={null}
+                type="danger"
+                description={presentLanguage.sidebar.bugpointwarning}
+              />
+              <Row gutter={[16, 8]} type="flex" align="middle" style={{ marginTop: "5px" }}>
+                <Col span={9}>
+                  {presentLanguage.bugpointsetting.spotmark}
+                </Col>
+                <Col span={7}>
+                  <Select defaultValue="禁用" style={{ width: 120 }} onChange={() => { }}>
+                    <Select.Option value="禁用">{presentLanguage.bugpointsetting.spotmarks.disable}</Select.Option>
+                    <Select.Option value="仅有效">{presentLanguage.bugpointsetting.spotmarks.available}</Select.Option>
+                    <Select.Option value="全部">{presentLanguage.bugpointsetting.spotmarks.all}</Select.Option>
+                  </Select>
+                </Col>
+              </Row>
             </Collapse.Panel>
           </Collapse>
         </Sider>
@@ -337,14 +393,14 @@ function App() {
           <DrawableMap presentMapURL={mapPrepareMode ? presentMapURL.imgPrepareLink : presentMapURL.imgBlankLink} canvasTool={canvasTool} penColor={penColor} canvasElements={canvasElements} setCanvasElements={setCanvasElements} penWidth={penWidth} />
           <div style={{ position: "relative", top: "-20px", right: "40px", width: "58px", height: "max" }}>
             <ButtonNoPopover icon={IconMaximize} onClick={selectButtonClicked} isActiveTool={canvasTool === mapTools.SELECT} />
-            <StandardButton icon={IconEdit} penWidth={penWidth} penColor={penColor} setpenWidth={setpenWidth} onClick={editButtonClicked} isActiveTool={canvasTool === mapTools.PEN} />
-            <StandardButton icon={IconMinus} penWidth={penWidth} penColor={penColor} setpenWidth={setpenWidth} onClick={lineButtonClicked} isActiveTool={canvasTool === mapTools.LINE} />
             <Popover
               content={colorPlate}
               position={"left"}
             >
               <div style={styles.canvasToolButtonStyle}><ColorBtn color={penColor} /></div>
             </Popover>
+            <StandardButton icon={IconEdit} penWidth={penWidth * 2} penColor={penColor} setpenWidth={setpenWidth} onClick={editButtonClicked} isActiveTool={canvasTool === mapTools.PEN} />
+            <StandardButton icon={IconMinus} penWidth={penWidth * 2} penColor={penColor} setpenWidth={setpenWidth} onClick={lineButtonClicked} isActiveTool={canvasTool === mapTools.LINE} />
             <Tooltip content={presentLanguage.markbox.undo}><div style={styles.canvasToolButtonStyle}><IconUndo size='extra-large' /></div></Tooltip>
             <Popconfirm
               visible={togglevisible}
