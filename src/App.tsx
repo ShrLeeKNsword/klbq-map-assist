@@ -342,15 +342,15 @@ function App() {
                 </Col>
               </Row>
               <Row gutter={[24, 8]} type="flex" align="middle" style={{ marginTop: "5px" }}>
-                <Col span={6}><GrenadeBtn imglink='https://s2.loli.net/2024/09/24/y6xfMWzvi5GrE8Z.png' /></Col>
-                <Col span={6}><GrenadeBtn imglink='https://s2.loli.net/2024/09/24/siyl1V9OETwdntX.png' /></Col>
-                <Col span={6}><GrenadeBtn imglink='https://s2.loli.net/2024/09/24/z8DXpG7icOdRhkj.png' /></Col>
-                <Col span={6}><GrenadeBtn imglink='https://s2.loli.net/2024/09/24/M7NLCWwZaYU5lyb.png' /></Col>
-                <Col span={6}><GrenadeBtn imglink='https://s2.loli.net/2024/09/24/iZpv7XY5j1DJGAL.png' /></Col>
-                <Col span={6}><GrenadeBtn imglink='https://s2.loli.net/2024/09/24/rR5g1ukx7j6tPFK.png' /></Col>
-                <Col span={6}><GrenadeBtn imglink='https://s2.loli.net/2024/09/24/MQYHj54khqVxetJ.png' /></Col>
-                <Col span={6}><GrenadeBtn imglink='https://s2.loli.net/2024/09/24/nJzYDPiv8uWsdMx.png' /></Col>
-                <Col span={6}><GrenadeBtn imglink='https://s2.loli.net/2024/09/24/2UAiJIGMwRKauXt.png' /></Col>
+                <Col span={6}><GrenadeBtn badge="×" imglink='https://s2.loli.net/2024/09/24/y6xfMWzvi5GrE8Z.png' /></Col>
+                <Col span={6}><GrenadeBtn badge="√" imglink='https://s2.loli.net/2024/09/24/siyl1V9OETwdntX.png' /></Col>
+                <Col span={6}><GrenadeBtn badge="×" imglink='https://s2.loli.net/2024/09/24/z8DXpG7icOdRhkj.png' /></Col>
+                <Col span={6}><GrenadeBtn badge="√" imglink='https://s2.loli.net/2024/09/24/M7NLCWwZaYU5lyb.png' /></Col>
+                <Col span={6}><GrenadeBtn badge="×" imglink='https://s2.loli.net/2024/09/24/iZpv7XY5j1DJGAL.png' /></Col>
+                <Col span={6}><GrenadeBtn badge="√" imglink='https://s2.loli.net/2024/09/24/rR5g1ukx7j6tPFK.png' /></Col>
+                <Col span={6}><GrenadeBtn badge="×" imglink='https://s2.loli.net/2024/09/24/MQYHj54khqVxetJ.png' /></Col>
+                <Col span={6}><GrenadeBtn badge="√" imglink='https://s2.loli.net/2024/09/24/nJzYDPiv8uWsdMx.png' /></Col>
+                <Col span={6}><GrenadeBtn badge="×" imglink='https://s2.loli.net/2024/09/24/2UAiJIGMwRKauXt.png' /></Col>
               </Row>
             </Collapse.Panel>
             <Collapse.Panel header={presentLanguage.sidebar.mobaisuperjump} itemKey="6">
