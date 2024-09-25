@@ -263,14 +263,14 @@ function App() {
                     {presentLanguage.mapsetting.choosemap}
                   </Col>
                   <Col span={7}>
-                    <Select defaultValue="风曳镇" style={{ width: 120 }} onChange={value => changePresentmap(value as string)}>
-                      <Select.Option value="风曳镇">{presentLanguage.mapsetting.maps.FengYeTown}</Select.Option>
-                      <Select.Option value="空间实验室">{presentLanguage.mapsetting.maps.SpaceLab}</Select.Option>
-                      <Select.Option value="科斯迷特">{presentLanguage.mapsetting.maps.Cosmite}</Select.Option>
-                      <Select.Option value="欧拉港口">{presentLanguage.mapsetting.maps.EulerPort}</Select.Option>
-                      <Select.Option value="柯西街区">{presentLanguage.mapsetting.maps.CauchyDistrict}</Select.Option>
-                      <Select.Option value="88区">{presentLanguage.mapsetting.maps.Area88}</Select.Option>
-                      <Select.Option value="404基地">{presentLanguage.mapsetting.maps.Base404}</Select.Option>
+                    <Select defaultValue={presentLanguage.mapsetting.maps.FengYeTown} style={{ width: 120 }} onChange={value => changePresentmap(value as string)}>
+                      <Select.Option value={presentLanguage.mapsetting.maps.FengYeTown}>{presentLanguage.mapsetting.maps.FengYeTown}</Select.Option>
+                      <Select.Option value={presentLanguage.mapsetting.maps.SpaceLab}>{presentLanguage.mapsetting.maps.SpaceLab}</Select.Option>
+                      <Select.Option value={presentLanguage.mapsetting.maps.Cosmite}>{presentLanguage.mapsetting.maps.Cosmite}</Select.Option>
+                      <Select.Option value={presentLanguage.mapsetting.maps.EulerPort}>{presentLanguage.mapsetting.maps.EulerPort}</Select.Option>
+                      <Select.Option value={presentLanguage.mapsetting.maps.CauchyDistrict}>{presentLanguage.mapsetting.maps.CauchyDistrict}</Select.Option>
+                      <Select.Option value={presentLanguage.mapsetting.maps.Area88}>{presentLanguage.mapsetting.maps.Area88}</Select.Option>
+                      <Select.Option value={presentLanguage.mapsetting.maps.Base404}>{presentLanguage.mapsetting.maps.Base404}</Select.Option>
                     </Select>
                   </Col>
                   <Col span={9}>
