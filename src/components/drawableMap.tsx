@@ -12,6 +12,7 @@ interface DrawableMapProps {
 	setCanvasElements: React.Dispatch<React.SetStateAction<canvasElement[]>>;
 	canvasTool: mapTools;
 	penWidth: number;
+	lineWidth: number;
 }
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -60,7 +61,7 @@ const DrawableMap: React.FC<DrawableMapProps> = (props) => {
 					startPos.realY,
 					startPos.realX,
 					startPos.realY,
-					props.penWidth,
+					props.lineWidth,
 					props.penColor
 				)]);
 				break;
@@ -84,7 +85,7 @@ const DrawableMap: React.FC<DrawableMapProps> = (props) => {
 			latestElement.y1,
 			realX,
 			realY,
-			props.penWidth,
+			props.lineWidth,
 			props.penColor
 		) : latestElement;
 

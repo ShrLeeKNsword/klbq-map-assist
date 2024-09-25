@@ -43,7 +43,10 @@ function App() {
 
   const [canvasTool, setTool] = useState<mapTools>(mapTools.SELECT);
   const [penColor, setpenColor] = useState("red");
+
   const [penWidth, setpenWidth] = useState(2);
+  const [lineWidth, setLineWidth] = useState(2);
+
   const [canvasElements, setCanvasElements] = useState<canvasElement[]>([]);
   const [mapPrepareMode, setMapPrepareMode] = useState(true);
   const [mapMarkNameMode, setMarkNameMode] = useState(true);
@@ -350,7 +353,7 @@ function App() {
           </Collapse>
         </Sider>
         <Content style={{ height: "100%", lineHeight: '100px', width: '100%', margin: 'auto', display: 'flex', placeItems: 'center' }}>
-          <DrawableMap presentMapURL={mapPrepareMode ? presentMapURL.imgPrepareLink : presentMapURL.imgBlankLink} canvasTool={canvasTool} penColor={penColor} canvasElements={canvasElements} setCanvasElements={setCanvasElements} penWidth={penWidth} />
+          <DrawableMap presentMapURL={mapPrepareMode ? presentMapURL.imgPrepareLink : presentMapURL.imgBlankLink} canvasTool={canvasTool} penColor={penColor} canvasElements={canvasElements} setCanvasElements={setCanvasElements} penWidth={penWidth} lineWidth={lineWidth} />
           <div style={{ position: "relative", top: "-20px", right: "40px", width: "58px", height: "max" }}>
             <ButtonNoPopover icon={IconMaximize} onClick={() => setTool(mapTools.SELECT)} isActiveTool={canvasTool === mapTools.SELECT} />
             <Popover
@@ -359,8 +362,8 @@ function App() {
             >
               <div style={styles.canvasToolButtonStyle}><ColorBtn color={penColor} /></div>
             </Popover>
-            <StandardButton icon={IconEdit} penWidth={penWidth * 2} penColor={penColor} setpenWidth={setpenWidth} onClick={() => setTool(mapTools.PEN)} isActiveTool={canvasTool === mapTools.PEN} />
-            <StandardButton icon={IconMinus} penWidth={penWidth * 2} penColor={penColor} setpenWidth={setpenWidth} onClick={() => setTool(mapTools.LINE)} isActiveTool={canvasTool === mapTools.LINE} />
+            <StandardButton icon={IconEdit} penWidth={penWidth} penColor={penColor} setpenWidth={setpenWidth} onClick={() => setTool(mapTools.PEN)} isActiveTool={canvasTool === mapTools.PEN} />
+            <StandardButton icon={IconMinus} penWidth={lineWidth} penColor={penColor} setpenWidth={setLineWidth} onClick={() => setTool(mapTools.LINE)} isActiveTool={canvasTool === mapTools.LINE} />
             <Tooltip content={presentLanguage.markbox.undo}>
               <ButtonNoPopover icon={IconUndo} onClick={() => setCanvasElements(canvasElements.slice(0, -1))} isActiveTool={false} />
             </Tooltip>
