@@ -252,13 +252,9 @@ function App() {
                   </Col>
                   <Col span={7}>
                     <Select defaultValue="风曳镇" style={{ width: 120 }} onChange={value => changePresentmap(value as string)}>
-                      <Select.Option value="风曳镇">{presentLanguage.mapsetting.maps.风曳镇}</Select.Option>
-                      <Select.Option value="空间实验室">{presentLanguage.mapsetting.maps.空间实验室}</Select.Option>
-                      <Select.Option value="科斯迷特">{presentLanguage.mapsetting.maps.科斯迷特}</Select.Option>
-                      <Select.Option value="欧拉港口">{presentLanguage.mapsetting.maps.欧拉港口}</Select.Option>
-                      <Select.Option value="柯西街区">{presentLanguage.mapsetting.maps.柯西街区}</Select.Option>
-                      <Select.Option value="88区">{presentLanguage.mapsetting.maps['88区']}</Select.Option>
-                      <Select.Option value="404基地">{presentLanguage.mapsetting.maps['404基地']}</Select.Option>
+                      {Object.keys(presentLanguage.mapsetting.maps).map((key) => (
+                        <Select.Option key={key} value={key}>{presentLanguage.mapsetting.maps[key as keyof typeof presentLanguage.mapsetting.maps]}</Select.Option>
+                      ))}
                     </Select>
                   </Col>
                   <Col span={9}>
