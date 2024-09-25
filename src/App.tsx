@@ -262,7 +262,7 @@ function App() {
                     {presentLanguage.mapsetting.choosemap}
                   </Col>
                   <Col span={7}>
-                    <Select defaultValue={presentLanguage.mapsetting.maps.Area88} style={{ width: 120 }} onChange={value => changePresentmap(value as string)}>
+                    <Select defaultValue={presentLanguage.mapsetting.maps.WindyTown} style={{ width: 120 }} onChange={value => changePresentmap(value as string)}>
                       {Object.keys(presentLanguage.mapsetting.maps).map((key) => (
                         <Select.Option value={key}>{presentLanguage.mapsetting.maps[key as keyof typeof presentLanguage.mapsetting.maps]}</Select.Option>
                       ))}
