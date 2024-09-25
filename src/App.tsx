@@ -159,33 +159,33 @@ function App() {
     </div>
     <Row gutter={[24, 8]} type="flex" align="middle">
       <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/1/11/rpa27v1teqx37xf0oq21kqhv7t5oxri.png/120px-%E6%98%8E%E5%A4%B4%E5%83%8F.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/7/7b/5q4787xhxlmxq1przsao38a6ghnu49r.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/6/6b/lp887cj1afvvma2tc7mwzi43amzp984.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/2/20/3g7omn3caazgqw3rbxn2m9fb5nld3bo.png' /></Col>
+      <Col span={6}><SkillBtn top="4px" imglink='https://patchwiki.biligame.com/images/klbq/7/7b/5q4787xhxlmxq1przsao38a6ghnu49r.png' /></Col>
+      <Col span={6}><SkillBtn top="4px" imglink='https://patchwiki.biligame.com/images/klbq/6/6b/lp887cj1afvvma2tc7mwzi43amzp984.png' /></Col>
+      <Col span={6}><SkillBtn top="1px" imglink='https://patchwiki.biligame.com/images/klbq/2/20/3g7omn3caazgqw3rbxn2m9fb5nld3bo.png' /></Col>
       <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/f/f3/1zor7pqxy3rn3uggyenorigvf37q4hr.png/120px-%E6%8B%89%E8%96%87%E5%A4%B4%E5%83%8F.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/5/55/te42c1gezaqfecyscg5or1j1dch2hem.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/f/f0/7wgl6xlxxx1zgys5vn51zd4k14swyes.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/5/5c/lozkmt4hu3zdng2yadp0chxrknokra8.png' /></Col>
+      <Col span={6}><SkillBtn top="4px" imglink='https://patchwiki.biligame.com/images/klbq/5/55/te42c1gezaqfecyscg5or1j1dch2hem.png' /></Col>
+      <Col span={6}><SkillBtn top="4px" imglink='https://patchwiki.biligame.com/images/klbq/f/f0/7wgl6xlxxx1zgys5vn51zd4k14swyes.png' /></Col>
+      <Col span={6}><SkillBtn top="4px" imglink='https://patchwiki.biligame.com/images/klbq/5/5c/lozkmt4hu3zdng2yadp0chxrknokra8.png' /></Col>
       <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/d/dd/20gac3391nb2prx6r69yrdkfatxapdu.png/120px-%E6%A2%85%E7%91%9E%E7%8B%84%E6%96%AF%E5%A4%B4%E5%83%8F.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/2/2d/j04665eo9dv2y59r6q4jof3zh9evaa5.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/e/ee/f21xu0t250jf8l8mblncb3ec12uqawh.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/8/87/l7m7m6j5yiqr46mlp4rcvosmjiviut7.png' /></Col>
+      <Col span={6}><SkillBtn top="-4px" imglink='https://patchwiki.biligame.com/images/klbq/2/2d/j04665eo9dv2y59r6q4jof3zh9evaa5.png' /></Col>
+      <Col span={6}><SkillBtn top="-4px" imglink='https://patchwiki.biligame.com/images/klbq/e/ee/f21xu0t250jf8l8mblncb3ec12uqawh.png' /></Col>
+      <Col span={6}><SkillBtn top="-4px" imglink='https://patchwiki.biligame.com/images/klbq/8/87/l7m7m6j5yiqr46mlp4rcvosmjiviut7.png' /></Col>
       <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/1/14/3ebagyf8bnsfhnvp5iuq8jlcv81q04g.png/120px-%E4%BB%A4%E5%A4%B4%E5%83%8F.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/d/d2/m0r6y8gpy5na2q0w3xwxigbbs8ua5n1.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/5/52/cmyricvldnbwn2x2jcgsang6xwd3f63.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/2/20/4x6qt39wgfwvxxpbyxqtv1d6kuwdkpi.png' /></Col>
+      <Col span={6}><SkillBtn top="2px" imglink='https://patchwiki.biligame.com/images/klbq/d/d2/m0r6y8gpy5na2q0w3xwxigbbs8ua5n1.png' /></Col>
+      <Col span={6}><SkillBtn top="3px" imglink='https://patchwiki.biligame.com/images/klbq/5/52/cmyricvldnbwn2x2jcgsang6xwd3f63.png' /></Col>
+      <Col span={6}><SkillBtn top="3px" imglink='https://patchwiki.biligame.com/images/klbq/2/20/4x6qt39wgfwvxxpbyxqtv1d6kuwdkpi.png' /></Col>
       <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/1/1d/ffln5mqrwtvr0dj0wq54guvs10jsfdo.png/120px-%E9%A6%99%E5%A5%88%E7%BE%8E%E5%A4%B4%E5%83%8F.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/5/55/b8gukdsv4zp92nz7i4e6bc8ws52vqf3.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/5/5d/iiw9rlqkmp4d4kqy3gro3gryajrj90p.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/b/bb/aqucc8zsob3plu38zj8r4b83k7kqmdq.png' /></Col>
+      <Col span={6}><SkillBtn top="3px" imglink='https://patchwiki.biligame.com/images/klbq/5/55/b8gukdsv4zp92nz7i4e6bc8ws52vqf3.png' /></Col>
+      <Col span={6}><SkillBtn top="3px" imglink='https://patchwiki.biligame.com/images/klbq/5/5d/iiw9rlqkmp4d4kqy3gro3gryajrj90p.png' /></Col>
+      <Col span={6}><SkillBtn top="3px" imglink='https://patchwiki.biligame.com/images/klbq/b/bb/aqucc8zsob3plu38zj8r4b83k7kqmdq.png' /></Col>
       <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/9/92/oai6e3g5fqekd9023ikl9kvdk0mguy6.png/120px-%E8%89%BE%E5%8D%A1%E5%A4%B4%E5%83%8F.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/b/ba/4m2kbng1kxcd5hb43fxaacvys67s3gs.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/e/eb/c2b0zij3ug3pbmv086b232z6fpgsyi1.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/b/b6/grztntlykjozc4mks6dfssqr9emee51.png' /></Col>
+      <Col span={6}><SkillBtn top="3px" imglink='https://patchwiki.biligame.com/images/klbq/b/ba/4m2kbng1kxcd5hb43fxaacvys67s3gs.png' /></Col>
+      <Col span={6}><SkillBtn top="3px" imglink='https://patchwiki.biligame.com/images/klbq/e/eb/c2b0zij3ug3pbmv086b232z6fpgsyi1.png' /></Col>
+      <Col span={6}><SkillBtn top="3px" imglink='https://patchwiki.biligame.com/images/klbq/b/b6/grztntlykjozc4mks6dfssqr9emee51.png' /></Col>
       <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/2/2a/2cau3x7z99x3butkxp7wu3w78zjk3go.png/120px-%E7%8F%90%E6%A0%BC%E5%85%B0%E4%B8%9D%E5%A4%B4%E5%83%8F.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/4/4e/4v8h7b0se99huedmxu2y3g8ap3nexc3.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/e/e6/a6cssmam5j244izx801vxvt60gqlqt9.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/c/c4/fuy77op8q725f0u3n11ykmnjnwgxjvs.png' /></Col>
+      <Col span={6}><SkillBtn top="-2px" imglink='https://patchwiki.biligame.com/images/klbq/4/4e/4v8h7b0se99huedmxu2y3g8ap3nexc3.png' /></Col>
+      <Col span={6}><SkillBtn top="-2px" imglink='https://patchwiki.biligame.com/images/klbq/e/e6/a6cssmam5j244izx801vxvt60gqlqt9.png' /></Col>
+      <Col span={6}><SkillBtn top="-2px" imglink='https://patchwiki.biligame.com/images/klbq/c/c4/fuy77op8q725f0u3n11ykmnjnwgxjvs.png' /></Col>
     </Row>
     <div style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-5px", marginTop: "5px" }}>
       <div><img src='https://patchwiki.biligame.com/images/klbq/thumb/d/d2/tcn2nz93o2q9gffys6i3f81kkpso51m.png/300px-%E9%98%B5%E8%90%A5-%E4%B9%8C%E5%B0%94%E6%AF%94%E8%AF%BA.png' style={{ height: "40px" }}></img></div>

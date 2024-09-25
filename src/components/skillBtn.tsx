@@ -3,6 +3,8 @@ import { Badge } from '@douyinfe/semi-ui';
 interface SkillBtnPops {
     imglink?: string;
     badge?: string | null;
+    top?: string;
+    left?: string;
 }
 
 const draggableBtnStyle = {
@@ -20,8 +22,8 @@ const draggableBtnStyle = {
 
 const SkillBtn = (props: SkillBtnPops) => {
     return <>
-        {props.badge != null ? <Badge count={props.badge} position='rightBottom' type={props.badge==='×'?'danger':'secondary'}><div style={draggableBtnStyle}><img src={props.imglink} style={{ width: '100%', height: '100%' }} /></div></Badge>:<div style={draggableBtnStyle}><img src={props.imglink} style={{ width: '100%', height: '100%' }} /></div>}
+        {props.badge != null ? <Badge count={props.badge} position='rightBottom' type={props.badge === '×' ? 'danger' : 'secondary'}><div style={draggableBtnStyle}><img src={props.imglink} style={{ width: '90%', height: '90%', marginTop: props.top, marginLeft: props.left }} /></div></Badge> : <div style={draggableBtnStyle}><img src={props.imglink} style={{ width: '90%', height: '90%', marginTop: props.top, marginLeft: props.left }} /></div>}
     </>
 }
 
-    export default SkillBtn;
+export default SkillBtn;

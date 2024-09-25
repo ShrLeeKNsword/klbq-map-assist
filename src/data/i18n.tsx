@@ -202,7 +202,7 @@ export const i18nData: I18nData[] = [
   },
   {
     language: "English",
-    title: "KLBQ Map Assistant",
+    title: "Strinova Map Assistant",
     sidebar: {
       mapsetting: "Map Setting",
       charactor: "Character",
