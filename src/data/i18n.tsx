@@ -76,7 +76,7 @@ interface I18nData {
   lineupsetting: LineupSetting;
   mobaisuperjumpsetting: MobaiSuperJumpSetting;
   bugpointsetting: BugPointSetting;
-  charactors: Charactors;
+  characters: Charactors;
   grenades: Grenades;
   markbox: MarkBox;
 }
@@ -147,7 +147,7 @@ export const i18nData: I18nData[] = [
         all: "全部",
       },
     },
-    charactors: {
+    characters: {
       PUS: {
         Michele: "米雪儿·李",
         Nobunaga: "信",
@@ -206,16 +206,16 @@ export const i18nData: I18nData[] = [
     sidebar: {
       mapsetting: "Map Setting",
       charactor: "Character",
-      skill: "Skill",
-      grenade: "Grenade",
-      lineup: "Grenade Lineup",
-      skilllineup: "Skill Lineup",
-      mobaisuperjump: "Mobai Super Jump",
-      bugpoint: "Bug Point",
+      skill: "Skills",
+      grenade: "Grenades",
+      lineup: "Grenade Lineups",
+      skilllineup: "Skill Lineups",
+      mobaisuperjump: "Baimo Super Jumps",
+      bugpoint: "Bugs",
       bugpointwarning: (
         <div style={{ fontSize: "12px", textAlign: "left" }}>
-          <div>The bug points listed here are for warning purposes only. Do not exploit bugs in the game!</div>
-          <div>We are not responsible for any adverse consequences such as bans resulting from exploiting bugs in the game!</div>
+          <div>Bugs listed here are for your information only!</div>
+          <div>We are not responsible for any bans for abusing any of these bugs.</div>
         </div>
       ),
     },
@@ -265,7 +265,7 @@ export const i18nData: I18nData[] = [
         all: "All",
       },
     },
-    charactors: {
+    characters: {
       PUS: {
         Michele: "Michele Li",
         Nobunaga: "Nobunaga",
