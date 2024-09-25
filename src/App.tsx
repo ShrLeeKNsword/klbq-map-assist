@@ -11,7 +11,7 @@ import DrawableMap from './components/drawableMap.tsx';
 import StandardButton from './components/toolButtons/standardButton.tsx';
 import { i18nData } from './data/i18n.tsx';
 import { mapList } from './data/maplist.ts';
-import { canvasLineElement, mapTools } from './utils/canvasConstants.ts';
+import { canvasElement, mapTools } from './utils/canvasConstants.ts';
 import ButtonNoPopover from './components/toolButtons/buttonNoPopover.tsx';
 
 const styles = {
@@ -44,7 +44,7 @@ function App() {
   const [canvasTool, setTool] = useState<mapTools>(mapTools.SELECT);
   const [penColor, setpenColor] = useState("red");
   const [penWidth, setpenWidth] = useState(2);
-  const [canvasElements, setCanvasElements] = useState<canvasLineElement[]>([]);
+  const [canvasElements, setCanvasElements] = useState<canvasElement[]>([]);
   const [mapPrepareMode, setMapPrepareMode] = useState(true);
   const [mapMarkNameMode, setMarkNameMode] = useState(true);
 
