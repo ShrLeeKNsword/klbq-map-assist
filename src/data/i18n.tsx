@@ -13,13 +13,13 @@ interface Sidebar {
 interface MapSetting {
   choosemap: string;
   maps: {
-    风曳镇: string;
-    空间实验室: string;
-    科斯迷特: string;
-    欧拉港口: string;
-    柯西街区: string;
-    "88区": string;
-    "404基地": string;
+    WindyTown: string,
+    SpaceLab: string,
+    Khesmet: string,
+    EulerPort: string,
+    CauchyDistrict: string,
+    Area88: string,
+    Base404: string,
   };
   maptype: string;
   maptypes: {
@@ -66,6 +66,7 @@ interface BugPointSetting {
 
 interface Characters {
   PUS: {
+    name: string;
     Michele: string;
     Nobunaga: string;
     Kokona: string;
@@ -73,6 +74,7 @@ interface Characters {
     Flavia: string;
   };
   TS: {
+    name: string;
     Ming: string;
     Lawine: string;
     Meredith: string;
@@ -82,6 +84,7 @@ interface Characters {
     Fragrans: string;
   };
   Urbino: {
+    name: string;
     Celestia: string;
     Audrey: string;
     Maddelena: string;
@@ -156,9 +159,9 @@ export const i18nData: I18nData[] = [
     mapsetting: {
       choosemap: "选择地图",
       maps: {
-        FengYeTown: "风曳镇",
+        WindyTown: "风曳镇",
         SpaceLab: "空间实验室",
-        Cosmite: "科斯迷特",
+        Khesmet: "科斯迷特",
         EulerPort: "欧拉港口",
         CauchyDistrict: "柯西街区",
         Area88: "88区",
@@ -285,13 +288,13 @@ export const i18nData: I18nData[] = [
     mapsetting: {
       choosemap: "Choose Map",
       maps: {
-        风曳镇: "Windy Town",
-        空间实验室: "Space Lab",
-        科斯迷特: "Cosmite",
-        欧拉港口: "Port Euler",
-        柯西街区: "Khesmet",
-        "88区": "Area 88",
-        "404基地": "Base 404",
+        WindyTown: "Windy Town",
+        SpaceLab: "Space Lab",
+        Khesmet: "Khesmet",
+        CauchyDistrict: "Cauchy District",
+        EulerPort: "Port Euler",
+        Area88: "Area 88",
+        Base404: "Base 404",
       },
       maptype: "Map Type",
       maptypes: {
