@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Layout, Collapse, Typography, Select, Tooltip, Popover, Col, Row, Popconfirm, ColorPicker, Banner } from '@douyinfe/semi-ui';
+import { Layout, Collapse, Typography, Select, Tooltip, Popover, Col, Row, Popconfirm, ColorPicker, Banner, Toast } from '@douyinfe/semi-ui';
 import { IconEdit, IconDelete, IconUndo, IconLanguage, IconMinus, IconGithubLogo, IconMaximize } from '@douyinfe/semi-icons';
 import ColorBtn from './components/colorBtb.tsx';
 import CharactorBtn from './components/charactorBtn.tsx';
@@ -11,7 +11,7 @@ import DrawableMap from './components/drawableMap.tsx';
 import StandardButton from './components/toolButtons/standardButton.tsx';
 import { i18nData } from './data/i18n.tsx';
 import { mapList } from './data/maplist.ts';
-import { canvasLineElement, mapTools } from './utils/canvasConstants.ts';
+import { canvasElement, colorPalette, mapTools } from './utils/canvasConstants.ts';
 import ButtonNoPopover from './components/toolButtons/buttonNoPopover.tsx';
 
 const styles = {
@@ -38,71 +38,59 @@ function App() {
   const { Header, Footer, Sider, Content } = Layout;
   const { Title } = Typography;
 
-  const [presentMap, setPresentMap] = useState("风曳镇");
   const [presentLanguage, setPresentLanguage] = useState(i18nData[0]);
+  const [closeallcollapse, setCloseAllCollapse] = useState(false);
+  const [presentMap, setPresentMap] = useState(presentLanguage.mapsetting.maps.FengYeTown);
 
   const [canvasTool, setTool] = useState<mapTools>(mapTools.SELECT);
   const [penColor, setpenColor] = useState("red");
+
   const [penWidth, setpenWidth] = useState(2);
-  const [canvasElements, setCanvasElements] = useState<canvasLineElement[]>([]);
+  const [lineWidth, setLineWidth] = useState(2);
+
+  const [canvasElements, setCanvasElements] = useState<canvasElement[]>([]);
   const [mapPrepareMode, setMapPrepareMode] = useState(true);
   const [mapMarkNameMode, setMarkNameMode] = useState(true);
 
   const [presentMapURL, setPresentMapURL] = useState({ imgPrepareLink: mapList[0].imgPrepareLink, imgBlankLink: mapList[0].imgBlankLink });
   const [togglevisible, setToggleVisible] = useState(false);
 
+  const Sleep = (ms: any) => {
+    return new Promise(resolve => setTimeout(resolve, ms))
+  }
+
   const changePresentmap = (value: string) => {
     setPresentMap(value);
     for (const mapinfo of mapList) {
-      if (mapinfo.mapName === value) {
+      if (mapinfo.CNsName === value || mapinfo.ENName === value || mapinfo.JPName === value || mapinfo.CNtName === value) {
         setPresentMapURL({ imgPrepareLink: mapinfo.imgPrepareLink, imgBlankLink: mapinfo.imgBlankLink });
       }
     }
   }
 
-  const changePresentlanguage = (value: string) => {
+  const changePresentlanguage = async (value: string) => {
     for (const languageinfo of i18nData) {
       if (languageinfo.language === value) {
+        setPresentMap(languageinfo.mapsetting.maps.FengYeTown);
+        setPresentMapURL({ imgPrepareLink: mapList[0].imgPrepareLink, imgBlankLink: mapList[0].imgBlankLink });
+        setMapPrepareMode(true);
+        setMarkNameMode(true);
+        setCloseAllCollapse(true);
         setPresentLanguage(languageinfo);
       }
     }
+    await Sleep(100)
+    setCloseAllCollapse(false);
   }
+
 
   const colorPlate = <div className="grid grid-flex">
     <Row gutter={[16, 24]} type="flex" justify="space-around" align="middle" style={{ marginLeft: "25px" }}>
-      <Col span={4}>
-        <div className="col-content" onClick={() => { setpenColor("red") }}><ColorBtn color="red" /></div>
-      </Col>
-      <Col span={4}>
-        <div className="col-content" onClick={() => { setpenColor("orange") }}><ColorBtn color="orange" /></div>
-      </Col>
-      <Col span={4}>
-        <div className="col-content" onClick={() => { setpenColor("yellow") }}><ColorBtn color="yellow" /></div>
-      </Col>
-      <Col span={4}>
-        <div className="col-content" onClick={() => { setpenColor("green") }}><ColorBtn color="green" /></div>
-      </Col>
-      <Col span={4}>
-        <div className="col-content" onClick={() => { setpenColor("blue") }}><ColorBtn color="blue" /></div>
-      </Col>
-      <Col span={4}>
-        <div className="col-content" onClick={() => { setpenColor("purple") }}><ColorBtn color="purple" /></div>
-      </Col>
-      <Col span={4}>
-        <div className="col-content" onClick={() => { setpenColor("white") }}><ColorBtn color="white" /></div>
-      </Col>
-      <Col span={4}>
-        <div className="col-content" onClick={() => { setpenColor("rgba(var(--semi-grey-2), 1)") }}><ColorBtn color="rgba(var(--semi-grey-2), 1)" /></div>
-      </Col>
-      <Col span={4}>
-        <div className="col-content" onClick={() => { setpenColor("rgba(var(--semi-grey-4), 1)") }}><ColorBtn color="rgba(var(--semi-grey-4), 1)" /></div>
-      </Col>
-      <Col span={4}>
-        <div className="col-content" onClick={() => { setpenColor("rgba(var(--semi-grey-6), 1)") }}><ColorBtn color="rgba(var(--semi-grey-6), 1)" /></div>
-      </Col>
-      <Col span={4}>
-        <div className="col-content" onClick={() => { setpenColor("rgba(var(--semi-grey-8), 1)") }}><ColorBtn color="rgba(var(--semi-grey-8), 1)" /></div>
-      </Col>
+      {colorPalette.map((color) => {
+        return <Col span={4}>
+          <div className="col-content" onClick={() => { setpenColor(color) }}><ColorBtn color={color} /></div>
+        </Col>
+      })}
       <Col span={4}>
         <ColorPicker alpha={true} onChange={(value) => { setpenColor(value.hex) }} usePopover={true}>
           <div className="col-content"><ColorBtn linercolor="70deg, red, blue" /></div>
@@ -111,22 +99,10 @@ function App() {
     </Row>
   </div>;
 
-  function selectButtonClicked(): void {
-    setTool(mapTools.SELECT);
-  }
-
-  function editButtonClicked(): void {
-    setTool(mapTools.PEN);
-  }
-
-  function lineButtonClicked(): void {
-    setTool(mapTools.LINE);
-  }
-
   const CharactorModuel = <>
     <div style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-5px" }}>
       <div><img src='https://patchwiki.biligame.com/images/klbq/thumb/6/69/8juww513o4hde7c901l5h8g371u81zx.png/300px-%E9%98%B5%E8%90%A5-%E6%AC%A7%E6%B3%8A.png' style={{ height: "40px" }}></img></div>
-      <Title heading={6}>欧泊 P.U.S.</Title>
+      <Title heading={6}>{presentLanguage.charactors.PUS.name}</Title>
     </div>
     <Row gutter={[24, 8]} type="flex" align="middle">
       <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/1/1b/tgwx7q9203dafj6rsypza3flbultqf7.png/120px-%E7%B1%B3%E9%9B%AA%E5%84%BF%C2%B7%E6%9D%8E%E5%A4%B4%E5%83%8F.png' /></Col>
@@ -137,7 +113,7 @@ function App() {
     </Row>
     <div style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-5px", marginTop: "5px" }}>
       <div><img src='https://patchwiki.biligame.com/images/klbq/thumb/0/0e/qsqrhhnvg55mdct76xxy3mz4c0bbmfn.png/300px-%E9%98%B5%E8%90%A5-%E5%89%AA%E5%88%80%E6%89%8B.png' style={{ height: "40px" }}></img></div>
-      <Title heading={6}>剪刀手 The Scissors</Title>
+      <Title heading={6}>{presentLanguage.charactors.TS.name}</Title>
     </div>
     <Row gutter={[24, 8]} type="flex" align="middle">
       <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/1/11/rpa27v1teqx37xf0oq21kqhv7t5oxri.png/120px-%E6%98%8E%E5%A4%B4%E5%83%8F.png' /></Col>
@@ -150,7 +126,7 @@ function App() {
     </Row>
     <div style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-5px", marginTop: "5px" }}>
       <div><img src='https://patchwiki.biligame.com/images/klbq/thumb/d/d2/tcn2nz93o2q9gffys6i3f81kkpso51m.png/300px-%E9%98%B5%E8%90%A5-%E4%B9%8C%E5%B0%94%E6%AF%94%E8%AF%BA.png' style={{ height: "40px" }}></img></div>
-      <Title heading={6}>乌尔比诺 Urbino</Title>
+      <Title heading={6}>{presentLanguage.charactors.Urbino.name}</Title>
     </div>
     <Row gutter={[24, 8]} type="flex" align="middle">
       <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/2/2d/hmkcsrcvp79ctofkwv92iint9iupvnk.png/80px-%E5%A5%A5%E9%BB%9B%E4%B8%BD%C2%B7%E6%A0%BC%E7%BD%97%E5%A4%AB%E5%A4%B4%E5%83%8F.png' /></Col>
@@ -165,7 +141,7 @@ function App() {
   const SkillModuel = <>
     <div style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-5px" }}>
       <div><img src='https://patchwiki.biligame.com/images/klbq/thumb/6/69/8juww513o4hde7c901l5h8g371u81zx.png/300px-%E9%98%B5%E8%90%A5-%E6%AC%A7%E6%B3%8A.png' style={{ height: "40px" }}></img></div>
-      <Title heading={6}>欧泊 P.U.S.</Title>
+      <Title heading={6}>{presentLanguage.charactors.PUS.name}</Title>
     </div>
     <Row gutter={[24, 8]} type="flex" align="middle">
       <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/1/1b/tgwx7q9203dafj6rsypza3flbultqf7.png/120px-%E7%B1%B3%E9%9B%AA%E5%84%BF%C2%B7%E6%9D%8E%E5%A4%B4%E5%83%8F.png' /></Col>
@@ -191,41 +167,41 @@ function App() {
     </Row>
     <div style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-5px", marginTop: "5px" }}>
       <div><img src='https://patchwiki.biligame.com/images/klbq/thumb/0/0e/qsqrhhnvg55mdct76xxy3mz4c0bbmfn.png/300px-%E9%98%B5%E8%90%A5-%E5%89%AA%E5%88%80%E6%89%8B.png' style={{ height: "40px" }}></img></div>
-      <Title heading={6}>剪刀手 The Scissors</Title>
+      <Title heading={6}>{presentLanguage.charactors.TS.name}</Title>
     </div>
     <Row gutter={[24, 8]} type="flex" align="middle">
       <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/1/11/rpa27v1teqx37xf0oq21kqhv7t5oxri.png/120px-%E6%98%8E%E5%A4%B4%E5%83%8F.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/7/7b/5q4787xhxlmxq1przsao38a6ghnu49r.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/6/6b/lp887cj1afvvma2tc7mwzi43amzp984.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/2/20/3g7omn3caazgqw3rbxn2m9fb5nld3bo.png' /></Col>
+      <Col span={6}><SkillBtn top="4px" imglink='https://patchwiki.biligame.com/images/klbq/7/7b/5q4787xhxlmxq1przsao38a6ghnu49r.png' /></Col>
+      <Col span={6}><SkillBtn top="4px" imglink='https://patchwiki.biligame.com/images/klbq/6/6b/lp887cj1afvvma2tc7mwzi43amzp984.png' /></Col>
+      <Col span={6}><SkillBtn top="1px" imglink='https://patchwiki.biligame.com/images/klbq/2/20/3g7omn3caazgqw3rbxn2m9fb5nld3bo.png' /></Col>
       <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/f/f3/1zor7pqxy3rn3uggyenorigvf37q4hr.png/120px-%E6%8B%89%E8%96%87%E5%A4%B4%E5%83%8F.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/5/55/te42c1gezaqfecyscg5or1j1dch2hem.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/f/f0/7wgl6xlxxx1zgys5vn51zd4k14swyes.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/5/5c/lozkmt4hu3zdng2yadp0chxrknokra8.png' /></Col>
+      <Col span={6}><SkillBtn top="4px" imglink='https://patchwiki.biligame.com/images/klbq/5/55/te42c1gezaqfecyscg5or1j1dch2hem.png' /></Col>
+      <Col span={6}><SkillBtn top="4px" imglink='https://patchwiki.biligame.com/images/klbq/f/f0/7wgl6xlxxx1zgys5vn51zd4k14swyes.png' /></Col>
+      <Col span={6}><SkillBtn top="4px" imglink='https://patchwiki.biligame.com/images/klbq/5/5c/lozkmt4hu3zdng2yadp0chxrknokra8.png' /></Col>
       <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/d/dd/20gac3391nb2prx6r69yrdkfatxapdu.png/120px-%E6%A2%85%E7%91%9E%E7%8B%84%E6%96%AF%E5%A4%B4%E5%83%8F.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/2/2d/j04665eo9dv2y59r6q4jof3zh9evaa5.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/e/ee/f21xu0t250jf8l8mblncb3ec12uqawh.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/8/87/l7m7m6j5yiqr46mlp4rcvosmjiviut7.png' /></Col>
+      <Col span={6}><SkillBtn top="-4px" imglink='https://patchwiki.biligame.com/images/klbq/2/2d/j04665eo9dv2y59r6q4jof3zh9evaa5.png' /></Col>
+      <Col span={6}><SkillBtn top="-4px" imglink='https://patchwiki.biligame.com/images/klbq/e/ee/f21xu0t250jf8l8mblncb3ec12uqawh.png' /></Col>
+      <Col span={6}><SkillBtn top="-4px" imglink='https://patchwiki.biligame.com/images/klbq/8/87/l7m7m6j5yiqr46mlp4rcvosmjiviut7.png' /></Col>
       <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/1/14/3ebagyf8bnsfhnvp5iuq8jlcv81q04g.png/120px-%E4%BB%A4%E5%A4%B4%E5%83%8F.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/d/d2/m0r6y8gpy5na2q0w3xwxigbbs8ua5n1.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/5/52/cmyricvldnbwn2x2jcgsang6xwd3f63.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/2/20/4x6qt39wgfwvxxpbyxqtv1d6kuwdkpi.png' /></Col>
+      <Col span={6}><SkillBtn top="2px" imglink='https://patchwiki.biligame.com/images/klbq/d/d2/m0r6y8gpy5na2q0w3xwxigbbs8ua5n1.png' /></Col>
+      <Col span={6}><SkillBtn top="3px" imglink='https://patchwiki.biligame.com/images/klbq/5/52/cmyricvldnbwn2x2jcgsang6xwd3f63.png' /></Col>
+      <Col span={6}><SkillBtn top="3px" imglink='https://patchwiki.biligame.com/images/klbq/2/20/4x6qt39wgfwvxxpbyxqtv1d6kuwdkpi.png' /></Col>
       <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/1/1d/ffln5mqrwtvr0dj0wq54guvs10jsfdo.png/120px-%E9%A6%99%E5%A5%88%E7%BE%8E%E5%A4%B4%E5%83%8F.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/5/55/b8gukdsv4zp92nz7i4e6bc8ws52vqf3.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/5/5d/iiw9rlqkmp4d4kqy3gro3gryajrj90p.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/b/bb/aqucc8zsob3plu38zj8r4b83k7kqmdq.png' /></Col>
+      <Col span={6}><SkillBtn top="3px" imglink='https://patchwiki.biligame.com/images/klbq/5/55/b8gukdsv4zp92nz7i4e6bc8ws52vqf3.png' /></Col>
+      <Col span={6}><SkillBtn top="3px" imglink='https://patchwiki.biligame.com/images/klbq/5/5d/iiw9rlqkmp4d4kqy3gro3gryajrj90p.png' /></Col>
+      <Col span={6}><SkillBtn top="3px" imglink='https://patchwiki.biligame.com/images/klbq/b/bb/aqucc8zsob3plu38zj8r4b83k7kqmdq.png' /></Col>
       <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/9/92/oai6e3g5fqekd9023ikl9kvdk0mguy6.png/120px-%E8%89%BE%E5%8D%A1%E5%A4%B4%E5%83%8F.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/b/ba/4m2kbng1kxcd5hb43fxaacvys67s3gs.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/e/eb/c2b0zij3ug3pbmv086b232z6fpgsyi1.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/b/b6/grztntlykjozc4mks6dfssqr9emee51.png' /></Col>
+      <Col span={6}><SkillBtn top="3px" imglink='https://patchwiki.biligame.com/images/klbq/b/ba/4m2kbng1kxcd5hb43fxaacvys67s3gs.png' /></Col>
+      <Col span={6}><SkillBtn top="3px" imglink='https://patchwiki.biligame.com/images/klbq/e/eb/c2b0zij3ug3pbmv086b232z6fpgsyi1.png' /></Col>
+      <Col span={6}><SkillBtn top="3px" imglink='https://patchwiki.biligame.com/images/klbq/b/b6/grztntlykjozc4mks6dfssqr9emee51.png' /></Col>
       <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/2/2a/2cau3x7z99x3butkxp7wu3w78zjk3go.png/120px-%E7%8F%90%E6%A0%BC%E5%85%B0%E4%B8%9D%E5%A4%B4%E5%83%8F.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/4/4e/4v8h7b0se99huedmxu2y3g8ap3nexc3.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/e/e6/a6cssmam5j244izx801vxvt60gqlqt9.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/c/c4/fuy77op8q725f0u3n11ykmnjnwgxjvs.png' /></Col>
+      <Col span={6}><SkillBtn top="-2px" imglink='https://patchwiki.biligame.com/images/klbq/4/4e/4v8h7b0se99huedmxu2y3g8ap3nexc3.png' /></Col>
+      <Col span={6}><SkillBtn top="-2px" imglink='https://patchwiki.biligame.com/images/klbq/e/e6/a6cssmam5j244izx801vxvt60gqlqt9.png' /></Col>
+      <Col span={6}><SkillBtn top="-2px" imglink='https://patchwiki.biligame.com/images/klbq/c/c4/fuy77op8q725f0u3n11ykmnjnwgxjvs.png' /></Col>
     </Row>
     <div style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-5px", marginTop: "5px" }}>
       <div><img src='https://patchwiki.biligame.com/images/klbq/thumb/d/d2/tcn2nz93o2q9gffys6i3f81kkpso51m.png/300px-%E9%98%B5%E8%90%A5-%E4%B9%8C%E5%B0%94%E6%AF%94%E8%AF%BA.png' style={{ height: "40px" }}></img></div>
-      <Title heading={6}>乌尔比诺 Urbino</Title>
+      <Title heading={6}>{presentLanguage.charactors.Urbino.name}</Title>
     </div>
     <Row gutter={[24, 8]} type="flex" align="middle">
       <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/d/d6/tlbgspg4i0qevvf5vor83rxikrq4xy5.png/80px-%E7%8E%9B%E5%BE%B7%E8%95%BE%E5%A8%9C%C2%B7%E5%88%A9%E9%87%8C%E5%A4%B4%E5%83%8F.png' /></Col>
@@ -268,19 +244,18 @@ function App() {
   return (
     <Layout className="components-layout-demo" style={{ height: 720, width: 1280, margin: "auto" }}>
       <Header style={styles.commonStyles}>
-        <Title heading={3} style={{ margin: '14px 0' }} >{presentLanguage.title} - {presentMap} {mapPrepareMode ? "[准备阶段]" : "[空白]"} {mapMarkNameMode ? "[点位标注]" : ""}</Title>
+        <Title heading={3} style={{ margin: '14px 0' }} >{presentLanguage.title} - {presentMap} {mapPrepareMode ? "[" + presentLanguage.mapsetting.maptypes.prepare + "]" : "[" + presentLanguage.mapsetting.maptypes.blank + "]"} {mapMarkNameMode ? "[" + presentLanguage.mapsetting.spotmark + "]" : ""}</Title>
         <div style={{ position: "relative", left: "1100px", top: "-60px", height: "100%", width: "200px", display: "flex" }}>
           <div style={{ marginTop: "8px", marginRight: "12px" }}><IconLanguage size='extra-large' /></div>
           <Select defaultValue="简体中文" style={{ width: 120, marginTop: "18px" }} onChange={value => changePresentlanguage(value as string)}>
-            <Select.Option value="简体中文">简体中文</Select.Option>
-            <Select.Option disabled value="繁体中文">繁体中文</Select.Option>
-            <Select.Option disabled value="日本語">日本語</Select.Option>
-            <Select.Option disabled value="English">English</Select.Option>
+            {i18nData.map((language) => {
+              return <Select.Option key={language.language} value={language.language}>{language.language}</Select.Option>;
+            })}
           </Select></div>
       </Header>
       <Layout>
         <Sider style={{ width: '340px', background: 'var(--semi-color-fill-2)' }}>
-          <Collapse accordion defaultActiveKey="1" className='no-scroll-bar' style={{ overflowY: "scroll", height: "600px" }}>
+          <Collapse accordion activeKey={closeallcollapse ? [] : undefined} className='no-scroll-bar' style={{ overflowY: "scroll", height: "600px" }} motion={!closeallcollapse}>
             <Collapse.Panel header={presentLanguage.sidebar.mapsetting} itemKey="1">
               <div>
                 <Row gutter={[16, 8]} type="flex" align="middle">
@@ -288,14 +263,14 @@ function App() {
                     {presentLanguage.mapsetting.choosemap}
                   </Col>
                   <Col span={7}>
-                    <Select defaultValue="风曳镇" style={{ width: 120 }} onChange={value => changePresentmap(value as string)}>
-                      <Select.Option value="风曳镇">{presentLanguage.mapsetting.maps.风曳镇}</Select.Option>
-                      <Select.Option value="空间实验室">{presentLanguage.mapsetting.maps.空间实验室}</Select.Option>
-                      <Select.Option value="科斯迷特">{presentLanguage.mapsetting.maps.科斯迷特}</Select.Option>
-                      <Select.Option value="欧拉港口">{presentLanguage.mapsetting.maps.欧拉港口}</Select.Option>
-                      <Select.Option value="柯西街区">{presentLanguage.mapsetting.maps.柯西街区}</Select.Option>
-                      <Select.Option value="88区">{presentLanguage.mapsetting.maps['88区']}</Select.Option>
-                      <Select.Option value="404基地">{presentLanguage.mapsetting.maps['404基地']}</Select.Option>
+                    <Select defaultValue={presentLanguage.mapsetting.maps.FengYeTown} style={{ width: 120 }} onChange={value => changePresentmap(value as string)}>
+                      <Select.Option value={presentLanguage.mapsetting.maps.FengYeTown}>{presentLanguage.mapsetting.maps.FengYeTown}</Select.Option>
+                      <Select.Option value={presentLanguage.mapsetting.maps.SpaceLab}>{presentLanguage.mapsetting.maps.SpaceLab}</Select.Option>
+                      <Select.Option value={presentLanguage.mapsetting.maps.Cosmite}>{presentLanguage.mapsetting.maps.Cosmite}</Select.Option>
+                      <Select.Option value={presentLanguage.mapsetting.maps.EulerPort}>{presentLanguage.mapsetting.maps.EulerPort}</Select.Option>
+                      <Select.Option value={presentLanguage.mapsetting.maps.CauchyDistrict}>{presentLanguage.mapsetting.maps.CauchyDistrict}</Select.Option>
+                      <Select.Option value={presentLanguage.mapsetting.maps.Area88}>{presentLanguage.mapsetting.maps.Area88}</Select.Option>
+                      <Select.Option value={presentLanguage.mapsetting.maps.Base404}>{presentLanguage.mapsetting.maps.Base404}</Select.Option>
                     </Select>
                   </Col>
                   <Col span={9}>
@@ -329,40 +304,104 @@ function App() {
               {GrenadeModuel}
             </Collapse.Panel>
             <Collapse.Panel header={presentLanguage.sidebar.lineup} itemKey="5">
-              <p>Hi, bytedance dance dance. This is the docsite of Semi UI. </p>
+              <Row gutter={[16, 8]} type="flex" align="middle">
+                <Col span={9}>
+                  {presentLanguage.lineupsetting.spotmark}
+                </Col>
+                <Col span={7}>
+                  <Select defaultValue="禁用" style={{ width: 120 }} onChange={() => { }}>
+                    <Select.Option value="禁用">{presentLanguage.lineupsetting.spotmarks.disable}</Select.Option>
+                    <Select.Option value="仅有效">{presentLanguage.lineupsetting.spotmarks.available}</Select.Option>
+                    <Select.Option value="全部">{presentLanguage.lineupsetting.spotmarks.all}</Select.Option>
+                  </Select>
+                </Col>
+              </Row>
+              <Row gutter={[24, 8]} type="flex" align="middle" style={{ marginTop: "5px" }}>
+                <Col span={6}><GrenadeBtn badge="×" imglink='https://s2.loli.net/2024/09/24/y6xfMWzvi5GrE8Z.png' /></Col>
+                <Col span={6}><GrenadeBtn badge="√" imglink='https://s2.loli.net/2024/09/24/siyl1V9OETwdntX.png' /></Col>
+                <Col span={6}><GrenadeBtn badge="×" imglink='https://s2.loli.net/2024/09/24/z8DXpG7icOdRhkj.png' /></Col>
+                <Col span={6}><GrenadeBtn badge="√" imglink='https://s2.loli.net/2024/09/24/M7NLCWwZaYU5lyb.png' /></Col>
+                <Col span={6}><GrenadeBtn badge="×" imglink='https://s2.loli.net/2024/09/24/iZpv7XY5j1DJGAL.png' /></Col>
+                <Col span={6}><GrenadeBtn badge="√" imglink='https://s2.loli.net/2024/09/24/rR5g1ukx7j6tPFK.png' /></Col>
+                <Col span={6}><GrenadeBtn badge="×" imglink='https://s2.loli.net/2024/09/24/MQYHj54khqVxetJ.png' /></Col>
+                <Col span={6}><GrenadeBtn badge="√" imglink='https://s2.loli.net/2024/09/24/nJzYDPiv8uWsdMx.png' /></Col>
+                <Col span={6}><GrenadeBtn badge="×" imglink='https://s2.loli.net/2024/09/24/2UAiJIGMwRKauXt.png' /></Col>
+              </Row>
             </Collapse.Panel>
-            <Collapse.Panel header={presentLanguage.sidebar.mobaisuperjump} itemKey="6">
-              <p>Hi, bytedance dance dance. This is the docsite of Semi UI. </p>
+            <Collapse.Panel header={presentLanguage.sidebar.skilllineup} itemKey="6">
+              <Row gutter={[16, 8]} type="flex" align="middle">
+                <Col span={9}>
+                  {presentLanguage.mobaisuperjumpsetting.spotmark}
+                </Col>
+                <Col span={7}>
+                  <Select defaultValue="禁用" style={{ width: 120 }} onChange={() => { }}>
+                    <Select.Option value="禁用">{presentLanguage.mobaisuperjumpsetting.spotmarks.disable}</Select.Option>
+                    <Select.Option value="仅有效">{presentLanguage.mobaisuperjumpsetting.spotmarks.available}</Select.Option>
+                    <Select.Option value="全部">{presentLanguage.mobaisuperjumpsetting.spotmarks.all}</Select.Option>
+                  </Select>
+                </Col>
+              </Row>
             </Collapse.Panel>
-            <Collapse.Panel header={presentLanguage.sidebar.bugpoint} itemKey="7">
+            <Collapse.Panel header={presentLanguage.sidebar.mobaisuperjump} itemKey="7">
+              <Row gutter={[16, 8]} type="flex" align="middle">
+                <Col span={9}>
+                  {presentLanguage.mobaisuperjumpsetting.spotmark}
+                </Col>
+                <Col span={7}>
+                  <Select defaultValue="禁用" style={{ width: 120 }} onChange={() => { }}>
+                    <Select.Option value="禁用">{presentLanguage.mobaisuperjumpsetting.spotmarks.disable}</Select.Option>
+                    <Select.Option value="仅有效">{presentLanguage.mobaisuperjumpsetting.spotmarks.available}</Select.Option>
+                    <Select.Option value="全部">{presentLanguage.mobaisuperjumpsetting.spotmarks.all}</Select.Option>
+                  </Select>
+                </Col>
+              </Row>
+            </Collapse.Panel>
+            <Collapse.Panel header={presentLanguage.sidebar.bugpoint} itemKey="8">
               <Banner
                 fullMode
                 closeIcon={null}
                 type="danger"
                 description={presentLanguage.sidebar.bugpointwarning}
               />
+              <Row gutter={[16, 8]} type="flex" align="middle" style={{ marginTop: "5px" }}>
+                <Col span={9}>
+                  {presentLanguage.bugpointsetting.spotmark}
+                </Col>
+                <Col span={7}>
+                  <Select defaultValue="禁用" style={{ width: 120 }} onChange={() => { }}>
+                    <Select.Option value="禁用">{presentLanguage.bugpointsetting.spotmarks.disable}</Select.Option>
+                    <Select.Option value="仅有效">{presentLanguage.bugpointsetting.spotmarks.available}</Select.Option>
+                    <Select.Option value="全部">{presentLanguage.bugpointsetting.spotmarks.all}</Select.Option>
+                  </Select>
+                </Col>
+              </Row>
             </Collapse.Panel>
           </Collapse>
         </Sider>
         <Content style={{ height: "100%", lineHeight: '100px', width: '100%', margin: 'auto', display: 'flex', placeItems: 'center' }}>
-          <DrawableMap presentMapURL={mapPrepareMode ? presentMapURL.imgPrepareLink : presentMapURL.imgBlankLink} canvasTool={canvasTool} penColor={penColor} canvasElements={canvasElements} setCanvasElements={setCanvasElements} penWidth={penWidth} />
+          <DrawableMap presentMapURL={mapPrepareMode ? presentMapURL.imgPrepareLink : presentMapURL.imgBlankLink} canvasTool={canvasTool} penColor={penColor} canvasElements={canvasElements} setCanvasElements={setCanvasElements} penWidth={penWidth} lineWidth={lineWidth} />
           <div style={{ position: "relative", top: "-20px", right: "40px", width: "58px", height: "max" }}>
-            <ButtonNoPopover icon={IconMaximize} onClick={selectButtonClicked} isActiveTool={canvasTool === mapTools.SELECT} />
+            <ButtonNoPopover icon={IconMaximize} onClick={() => setTool(mapTools.SELECT)} isActiveTool={canvasTool === mapTools.SELECT} />
             <Popover
               content={colorPlate}
               position={"left"}
             >
               <div style={styles.canvasToolButtonStyle}><ColorBtn color={penColor} /></div>
             </Popover>
-            <StandardButton icon={IconEdit} penWidth={penWidth * 2} penColor={penColor} setpenWidth={setpenWidth} onClick={editButtonClicked} isActiveTool={canvasTool === mapTools.PEN} />
-            <StandardButton icon={IconMinus} penWidth={penWidth * 2} penColor={penColor} setpenWidth={setpenWidth} onClick={lineButtonClicked} isActiveTool={canvasTool === mapTools.LINE} />
-            <Tooltip content={presentLanguage.markbox.undo}><div style={styles.canvasToolButtonStyle}><IconUndo size='extra-large' /></div></Tooltip>
+            <StandardButton icon={IconEdit} penWidth={penWidth} penColor={penColor} setpenWidth={setpenWidth} onClick={() => setTool(mapTools.PEN)} isActiveTool={canvasTool === mapTools.PEN} />
+            <StandardButton icon={IconMinus} penWidth={lineWidth} penColor={penColor} setpenWidth={setLineWidth} onClick={() => setTool(mapTools.LINE)} isActiveTool={canvasTool === mapTools.LINE} />
+            <Tooltip content={presentLanguage.markbox.undo}>
+              <ButtonNoPopover icon={IconUndo} onClick={() => setCanvasElements(canvasElements.slice(0, -1))} isActiveTool={false} />
+            </Tooltip>
             <Popconfirm
               visible={togglevisible}
               title={presentLanguage.markbox.clearwarning.title}
               content={presentLanguage.markbox.clearwarning.content}
-              onConfirm={() => { setToggleVisible(!togglevisible) }}
+              okText={presentLanguage.markbox.clearwarning.ok}
+              cancelText={presentLanguage.markbox.clearwarning.cancel}
+              onConfirm={() => { setCanvasElements([]); setToggleVisible(!togglevisible); Toast.success(presentLanguage.markbox.clearwarning.success) }}
               onCancel={() => { setToggleVisible(!togglevisible) }}
+              position='left'
             >
               <Tooltip content={presentLanguage.markbox.clear}>
                 <div onClick={() => setToggleVisible(!togglevisible)} style={styles.canvasToolButtonStyle}><IconDelete size='extra-large' /></div>
