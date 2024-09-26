@@ -39,7 +39,7 @@ function App() {
   const { Header, Footer, Sider, Content } = Layout;
   const { Title } = Typography;
 
-  const [presentLanguage, setPresentLanguage] = useState<I18nData>(i18nData[0]);
+  const [presentLanguage, setPresentLanguage] = useState<I18nData>(i18nData[1]);
   const [closeallcollapse, setCloseAllCollapse] = useState(false);
   const [presentMap, setPresentMap] = useState(presentLanguage.mapsetting.maps.WindyTown);
 
@@ -227,7 +227,7 @@ function App() {
         <Title heading={3} style={{ margin: '14px 0' }} >{presentLanguage.title} - {presentMap} {mapPrepareMode ? "[" + presentLanguage.mapsetting.TeamHighlightOptions.prepare + "]" : "[" + presentLanguage.mapsetting.TeamHighlightOptions.blank + "]"} {mapMarkNameMode ? "[" + presentLanguage.mapsetting.Landmarks + "]" : ""}</Title>
         <div style={{ position: "relative", left: "1100px", top: "-60px", height: "100%", width: "200px", display: "flex" }}>
           <div style={{ marginTop: "8px", marginRight: "12px" }}><IconLanguage size='extra-large' /></div>
-          <Select defaultValue="简体中文" style={{ width: 120, marginTop: "18px" }} onChange={value => changePresentlanguage(value as string)}>
+          <Select defaultValue={presentLanguage.language} style={{ width: 120, marginTop: "18px" }} onChange={value => changePresentlanguage(value as string)}>
             {i18nData.map((language) => {
               return <Select.Option key={language.language} value={language.language}>{language.language}</Select.Option>;
             })}
@@ -386,7 +386,7 @@ function App() {
           </div>
         </Content>
       </Layout>
-      <Footer style={styles.commonStyles}><div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginLeft: "120px" }}><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="nofollow"><img decoding="async" loading="lazy" src="https://s2.loli.net/2024/09/16/TPdoKCrgVb4i37J.png" width="107" height="38" style={{ marginRight: "20px", marginTop: "12px" }} /></a><div style={{ marginBottom: "12px" }}>© 番石榴网络科技工作室 & <IconGithubLogo style={{ margin: "6px" }} /><a href='https://github.com/ShrLeeKNsword/klbq-map-assist' target="_blank">Github Contributors</a> & <a href='https://wiki.biligame.com/klbq/%E9%A6%96%E9%A1%B5' target='_blank'>卡拉彼丘Wiki</a></div></div></Footer>
+      <Footer style={styles.commonStyles}><div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginLeft: "120px" }}><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="nofollow"><img decoding="async" loading="lazy" src="https://s2.loli.net/2024/09/16/TPdoKCrgVb4i37J.png" width="107" height="38" style={{ marginRight: "20px", marginTop: "12px" }} /></a><div style={{ marginBottom: "12px" }}>© 番石榴网络科技工作室 &<IconGithubLogo style={{ margin: "6px" }} /><a href='https://github.com/ShrLeeKNsword/klbq-map-assist' target="_blank"></a>Github Contributors & <a href='https://wiki.biligame.com/klbq/%E9%A6%96%E9%A1%B5' target='_blank'>卡拉彼丘Wiki</a></div></div></Footer>
     </Layout >
   )
 }
