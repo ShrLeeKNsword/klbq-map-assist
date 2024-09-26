@@ -39,7 +39,7 @@ function App() {
   const { Header, Footer, Sider, Content } = Layout;
   const { Title } = Typography;
 
-  const [presentLanguage, setPresentLanguage] = useState(i18nData[0]);
+  const [presentLanguage, setPresentLanguage] = useState(i18nData[1]);
   const [closeallcollapse, setCloseAllCollapse] = useState(false);
   const [presentMap, setPresentMap] = useState(presentLanguage.mapsetting.maps.WindyTown);
 
@@ -251,7 +251,7 @@ function App() {
         <Title heading={3} style={{ margin: '14px 0' }} >{presentLanguage.title} - {presentMap} {mapPrepareMode ? "[" + presentLanguage.mapsetting.TeamHighlightOptions.prepare + "]" : "[" + presentLanguage.mapsetting.TeamHighlightOptions.blank + "]"} {mapMarkNameMode ? "[" + presentLanguage.mapsetting.Landmarks + "]" : ""}</Title>
         <div style={{ position: "relative", left: "1100px", top: "-60px", height: "100%", width: "200px", display: "flex" }}>
           <div style={{ marginTop: "8px", marginRight: "12px" }}><IconLanguage size='extra-large' /></div>
-          <Select defaultValue="简体中文" style={{ width: 120, marginTop: "18px" }} onChange={value => changePresentlanguage(value as string)}>
+          <Select defaultValue={presentLanguage.language} style={{ width: 120, marginTop: "18px" }} onChange={value => changePresentlanguage(value as string)}>
             {i18nData.map((language) => {
               return <Select.Option key={language.language} value={language.language}>{language.language}</Select.Option>;
             })}

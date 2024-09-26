@@ -369,6 +369,136 @@ export const i18nData: I18nData[] = [
       },
     },
   },
-  // TODO: 日本語 (JP)
+  {
+    language: "日本語",
+    title: "Strinova 地図アシスタント",
+    sidebar: {
+      mapsetting: "地図の設定",
+      character: "キャラクター（超弦体）",
+      skill: "スキル",
+      grenade: "投擲物",
+      lineup: "投擲物のポイント",
+      skilllineup: "スキルポイント",
+      mobaisuperjump: "白墨スーパージャンプ",
+      bugpoint: "プログラムエラー",
+      bugpointwarning: (
+        <div style={{ fontSize: "12px", textAlign: "left" }}>
+          <div>ここにリストされているエラーは参照用です！</div>
+          <div>私たちはこれらの脆弱性を悪用する禁止令には責任を負いません。</div>
+        </div>
+      ),
+    },
+    mapsetting: {
+      choosemap: "地図",
+      maps: {
+        WindyTown: "Windy Town",
+        SpaceLab: "Space Lab",
+        Khesmet: "Khesmet",
+        CauchyDistrict: "Cauchy District",
+        EulerPort: "Port Euler",
+        Area88: "Area 88",
+        Base404: "Base 404",
+      },
+      TeamHighlight: "Team Highlight",
+      TeamHighlightOptions: {
+        prepare: "Show",
+        blank: "Hide",
+      },
+      Landmarks: "Landmarks",
+      LandmarkOptions: {
+        enable: "Show",
+        disable: "Hide",
+      },
+    },
+    lineupsetting: {
+      spotmark: "Spot Mark",
+      spotmarks: {
+        disable: "Disable",
+        available: "Available Only",
+        all: "All",
+      },
+    },
+    skilllineupsetting: {
+      spotmark: "Spot Mark",
+      spotmarks: {
+        disable: "Disable",
+        available: "Available Only",
+        all: "All",
+      },
+    },
+    mobaisuperjumpsetting: {
+      spotmark: "Spot Mark",
+      spotmarks: {
+        disable: "Disable",
+        available: "Available Only",
+        all: "All",
+      },
+    },
+    bugpointsetting: {
+      spotmark: "Spot Mark",
+      spotmarks: {
+        disable: "Disable",
+        available: "Available Only",
+        all: "All",
+      },
+    },
+    factions: {
+      PUS: "欧泊(オパール)",
+      TheScissors: "剪刀手（シザーズ）",
+      Urbino: "乌尔比诺（ウルビノ）",
+    },
+    characters: {
+      PUS: {
+        Michele: "ミシェル",
+        Nobunaga: "信",
+        Kokona: "シキココナ",
+        Yvette: "イベット",
+        Flavia: "フラビア",
+      },
+      TheScissors: {
+        Ming: "ミン",
+        Lawine: "ラヴィーネ",
+        Meredith: "メレディス",
+        Reiichi: "レイイチ",
+        Kanami: "カナミ",
+        Eika: "アイカ",
+        Fragrans: "Fragrans",
+      },
+      Urbino: {
+        Celestia: "シンフイ",
+        Audrey: "オードリー",
+        Maddelena: "マドレーヌ",
+        Fuchsia: "フェイシャ",
+        BaiMo: "Bai Mo",
+        Galatea: "Galatea",
+      },
+    },
+    grenades: {
+      Flashbang: "Flashbang",
+      FragGrenade: "Frag Grenade",
+      HealingGrenade: "Healing Grenade",
+      Interceptor: "Interceptor",
+      SlowGrenade: "Slow Grenade",
+      SmokeBomb: "Smoke Bomb",
+      Alarm: "Alarm",
+      WindstormGrenade: "Windstorm Grenade",
+      SnowBall: "Snow Ball",
+    },
+    markbox: {
+      mark: "Mark",
+      straightline: "Straight Line",
+      color: "Color",
+      undo: "Undo",
+      clear: "Clear",
+      clearwarning: {
+        title: "Confirm to clear all marks?",
+        content: "This action cannot be undone",
+        ok: "Confirm",
+        cancel: "Cancel",
+        success: "Cleared all markings",
+        failure: "Failed to clear markings",
+      },
+    },
+  },
   // TODO: 繁体中文 (TW)
 ];
