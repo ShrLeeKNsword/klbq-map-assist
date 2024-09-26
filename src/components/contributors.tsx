@@ -29,7 +29,8 @@ const ContributeBox = (props: ContributeBoxPops) => {
             {contributeList.map((child) => {
                 return <div style={{ height: "60px", width: "100%", display: "flex", alignItems: "center", justifyContent: "center", margin: "5px" }}>
                     <Row style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", textAlign: "center" }}>
-                        <Col span={6}><img src={child.icon} style={{ height: "50px", borderRadius: "50%", marginRight: "10px" }}></img></Col>
+                        <Col span={1}></Col>
+                        <Col span={5}><img src={child.icon} style={{ height: "50px", borderRadius: "50%", marginRight: "10px" }}></img></Col>
                         <Col span={12} style={{ textAlign: "left", fontSize: "15px", fontWeight: "bold" }}>
                             <div style={{ width: "100%" }}>{child.name}</div>
                             {child.job.map((childchild) => {
