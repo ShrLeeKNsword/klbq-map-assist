@@ -12,6 +12,7 @@ interface Sidebar {
   mobaisuperjump: string;
   bugpoint: string;
   bugpointwarning: JSX.Element;
+  learnmore: string;
 }
 
 interface MapSetting {
@@ -116,6 +117,7 @@ export const i18nData: I18nData[] = [
           <div>在游戏中利用Bug导致被封禁等不良后果本站概不负责！</div>
         </div>
       ),
+      learnmore:"了解更多"
     },
     mapsetting: {
       choosemap: "选择地图",
@@ -247,6 +249,7 @@ export const i18nData: I18nData[] = [
           <div>We are not responsible for any bans for abusing any of these bugs.</div>
         </div>
       ),
+      learnmore:"Learn More"
     },
     mapsetting: {
       choosemap: "Map",
@@ -378,6 +381,7 @@ export const i18nData: I18nData[] = [
           <div>私たちはこれらの脆弱性を悪用する禁止令には責任を負いません。</div>
         </div>
       ),
+      learnmore: "詳細",
     },
     mapsetting: {
       choosemap: "地図",

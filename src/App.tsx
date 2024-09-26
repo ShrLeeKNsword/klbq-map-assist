@@ -18,7 +18,7 @@ import { grenadeData } from './data/grenades.ts';
 
 import { MdCreate, MdDelete, MdOutlineTranslate, MdUndo } from 'react-icons/md';
 import { GiArrowCursor } from 'react-icons/gi';
-import { FaGithub } from 'react-icons/fa';
+import { FaGithub, FaDiscord } from 'react-icons/fa';
 import { PiLineSegmentFill } from 'react-icons/pi';
 
 const styles = {
@@ -312,7 +312,7 @@ function App() {
           </div>
         </Content>
       </Layout>
-      <Footer style={styles.commonStyles}>
+      <Footer className='undragable' style={styles.commonStyles}>
         <div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginLeft: "120px" }}>
           <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="nofollow">
             <img decoding="async" loading="lazy" src="https://s2.loli.net/2024/09/16/TPdoKCrgVb4i37J.png" width="107" height="38" style={{ marginRight: "20px", marginTop: "12px" }} />
@@ -320,16 +320,21 @@ function App() {
           <div style={{ marginBottom: "12px" }}>
             {"© 番石榴网络科技工作室 & "}
             <Popover
-              content={<ContributeBox />}
+              content={<ContributeBox learnmore={presentLanguage.sidebar.learnmore} />}
               position={"top"}
             >
               <a>Contributors</a>
             </Popover>
             {" & "}<a href='https://wiki.biligame.com/klbq/%E9%A6%96%E9%A1%B5' target='_blank'>卡拉彼丘Wiki</a>{" | "}
           </div>
-          <div style={{ height: "max", display: "flex", alignItems: "center", marginLeft: "10px", marginTop: "-7px" }}><a href='https://github.com/ShrLeeKNsword/klbq-map-assist' target="_blank" style={{}}>
-            <FaGithub />
-          </a></div>
+          <div style={{ height: "max", display: "flex", alignItems: "center", marginLeft: "10px", marginTop: "-7px" }}>
+            <a href='https://github.com/ShrLeeKNsword/klbq-map-assist' target="_blank" style={{}}>
+              <FaGithub />
+            </a>
+            <a href='https://discord.com/invite/C6AYFvgR' target="_blank" style={{marginLeft:"5px"}}>
+              <FaDiscord />
+            </a>
+          </div>
         </div>
       </Footer>
     </Layout >
