@@ -243,7 +243,7 @@ function App() {
                     {presentLanguage.mapsetting.choosemap}
                   </Col>
                   <Col span={7}>
-                    <Select defaultValue={presentLanguage.mapsetting.maps.WindyTown} style={{ width: 120 }} onChange={value => changePresentmap(value as string)}>
+                    <Select defaultValue={presentLanguage.mapsetting.maps.WindyTown} style={{ width: 140 }} onChange={value => changePresentmap(value as string)}>
                       {Object.keys(presentLanguage.mapsetting.maps).map((key) => (
                         <Select.Option value={key}>{presentLanguage.mapsetting.maps[key as keyof typeof presentLanguage.mapsetting.maps]}</Select.Option>
                       ))}
@@ -386,7 +386,18 @@ function App() {
           </div>
         </Content>
       </Layout>
-      <Footer style={styles.commonStyles}><div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginLeft: "120px" }}><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="nofollow"><img decoding="async" loading="lazy" src="https://s2.loli.net/2024/09/16/TPdoKCrgVb4i37J.png" width="107" height="38" style={{ marginRight: "20px", marginTop: "12px" }} /></a><div style={{ marginBottom: "12px" }}>© 番石榴网络科技工作室 &<IconGithubLogo style={{ margin: "6px" }} /><a href='https://github.com/ShrLeeKNsword/klbq-map-assist' target="_blank"></a>Github Contributors & <a href='https://wiki.biligame.com/klbq/%E9%A6%96%E9%A1%B5' target='_blank'>卡拉彼丘Wiki</a></div></div></Footer>
+      <Footer style={styles.commonStyles}>
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginLeft: "120px" }}>
+          <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="nofollow">
+            <img decoding="async" loading="lazy" src="https://s2.loli.net/2024/09/16/TPdoKCrgVb4i37J.png" width="107" height="38" style={{ marginRight: "20px", marginTop: "12px" }} />
+          </a>
+          <div style={{ marginBottom: "12px" }}>© 番石榴网络科技工作室 & Contributors & <a href='https://wiki.biligame.com/klbq/%E9%A6%96%E9%A1%B5' target='_blank'>卡拉彼丘Wiki</a>{" | "}
+          </div>
+          <div style={{ height: "max", display: "flex", alignItems: "center", marginLeft: "10px" ,marginTop:"-7px" }}><a href='https://github.com/ShrLeeKNsword/klbq-map-assist' target="_blank" style={{}}>
+            <IconGithubLogo />
+          </a></div>
+        </div>
+      </Footer>
     </Layout >
   )
 }
