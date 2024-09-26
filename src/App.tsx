@@ -99,7 +99,7 @@ function App() {
     </Row>
   </div>;
 
-  const CharactorModuel = Object.keys(factions).map((faction) => {
+  const CharacterModule = Object.keys(factions).map((faction) => {
     return <><div style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-8px" }}>
       <div><img src={factionData[faction as factions]} style={{ height: "40px" }}></img></div>
       <Title heading={6}>{presentLanguage.factions[faction as factions]}</Title>
@@ -114,98 +114,26 @@ function App() {
     </>
   })
 
-  const SkillModuel = <>
-    <div style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-8px" }}>
-      <div><img src='https://s2.loli.net/2024/09/25/1El6anYx4qhPbo2.png' style={{ height: "40px" }}></img></div>
-      <Title heading={6}>{presentLanguage.factions.PUS}</Title>
+  const SkillModuel = Object.keys(factions).map((faction) => {
+    return <><div style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-8px", marginTop: "5px" }}>
+      <div>
+        <img src={factionData[faction as factions]} style={{ height: "40px" }} />
+      </div>
+      <Title heading={6}>{presentLanguage.factions[faction as factions]}</Title>
     </div>
-    <Row gutter={[24, 8]} type="flex" align="middle">
-      <Col span={6}><CharacterBtn imglink={characterData.Michele.imageLink} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Michele.skills.Active} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Michele.skills.Passive} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Michele.skills.Ultimate} /></Col>
-      <Col span={6}><CharacterBtn imglink={characterData.Nobunaga.imageLink} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Nobunaga.skills.Active} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Nobunaga.skills.Passive} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Nobunaga.skills.Ultimate} /></Col>
-      <Col span={6}><CharacterBtn imglink={characterData.Kokona.imageLink} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Kokona.skills.Active} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Kokona.skills.Passive} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Kokona.skills.Ultimate} /></Col>
-      <Col span={6}><CharacterBtn imglink={characterData.Yvette.imageLink} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Yvette.skills.Active} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Yvette.skills.Passive} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Yvette.skills.Ultimate} /></Col>
-      <Col span={6}><CharacterBtn imglink={characterData.Flavia.imageLink} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Flavia.skills.Active} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Flavia.skills.Passive} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Flavia.skills.Ultimate} /></Col>
-    </Row>
-    <div style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-8px", marginTop: "5px" }}>
-      <div><img src='https://s2.loli.net/2024/09/25/PY4HMU7fbQ32Dr1.png' style={{ height: "40px" }}></img></div>
-      <Title heading={6}>{presentLanguage.factions.TheScissors}</Title>
-    </div>
-    <Row gutter={[24, 8]} type="flex" align="middle">
-      <Col span={6}><CharacterBtn imglink={characterData.Ming.imageLink} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Ming.skills.Active} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Ming.skills.Passive} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Ming.skills.Ultimate} /></Col>
-      <Col span={6}><CharacterBtn imglink={characterData.Lawine.imageLink} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Lawine.skills.Active} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Lawine.skills.Passive} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Lawine.skills.Ultimate} /></Col>
-      <Col span={6}><CharacterBtn imglink={characterData.Meredith.imageLink} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Meredith.skills.Active} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Meredith.skills.Passive} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Meredith.skills.Ultimate} /></Col>
-      <Col span={6}><CharacterBtn imglink={characterData.Reiichi.imageLink} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Reiichi.skills.Active} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Reiichi.skills.Passive} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Reiichi.skills.Ultimate} /></Col>
-      <Col span={6}><CharacterBtn imglink={characterData.Kanami.imageLink} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Kanami.skills.Active} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Kanami.skills.Passive} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Kanami.skills.Ultimate} /></Col>
-      <Col span={6}><CharacterBtn imglink={characterData.Eika.imageLink} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Eika.skills.Active} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Eika.skills.Passive} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Eika.skills.Ultimate} /></Col>
-      <Col span={6}><CharacterBtn imglink={characterData.Fragrans.imageLink} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Fragrans.skills.Active} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Fragrans.skills.Passive} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Fragrans.skills.Ultimate} /></Col>
-    </Row>
-    <div style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-8px", marginTop: "5px" }}>
-      <div><img src='https://s2.loli.net/2024/09/25/hyPUcLZdMNaeOjI.png' style={{ height: "40px" }}></img></div>
-      <Title heading={6}>{presentLanguage.factions.Urbino}</Title>
-    </div>
-    <Row gutter={[24, 8]} type="flex" align="middle">
-      <Col span={6}><CharacterBtn imglink={characterData.Audrey.imageLink} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Audrey.skills.Active} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Audrey.skills.Passive} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Audrey.skills.Ultimate} /></Col>
-      <Col span={6}><CharacterBtn imglink={characterData.Maddelena.imageLink} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Maddelena.skills.Active} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Maddelena.skills.Passive} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Maddelena.skills.Ultimate} /></Col>
-      <Col span={6}><CharacterBtn imglink={characterData.Fuchsia.imageLink} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Fuchsia.skills.Active} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Fuchsia.skills.Passive} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Fuchsia.skills.Ultimate} /></Col>
-      <Col span={6}><CharacterBtn imglink={characterData.Celestia.imageLink} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Celestia.skills.Active} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Celestia.skills.Passive} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Celestia.skills.Ultimate} /></Col>
-      <Col span={6}><CharacterBtn imglink={characterData.BaiMo.imageLink} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.BaiMo.skills.Active} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.BaiMo.skills.Passive} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.BaiMo.skills.Ultimate} /></Col>
-      <Col span={6}><CharacterBtn imglink={characterData.Galatea.imageLink} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Galatea.skills.Active} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Galatea.skills.Passive} /></Col>
-      <Col span={6}><SkillBtn imglink={characterData.Galatea.skills.Ultimate} /></Col>
-    </Row>
-  </>
+      <Row gutter={[24, 8]} type="flex" align="middle">
+        {Object.keys(characterData).map((character) => {
+          const char = characterData[character as keyof typeof characterData];
+          if (char.faction === faction) {
+            return <><Col span={6}><CharacterBtn imglink={char.imageLink} /></Col>
+              <Col span={6}><SkillBtn imglink={char.skills.Active} /></Col>
+              <Col span={6}><SkillBtn imglink={char.skills.Passive} /></Col>
+              <Col span={6}><SkillBtn imglink={char.skills.Ultimate} /></Col></>
+          }
+        })}
+      </Row>
+    </>
+  })
 
   const GrenadeModuel = <>
     <Row gutter={[24, 8]} type="flex" align="middle">
@@ -271,7 +199,7 @@ function App() {
               </div>
             </Collapse.Panel>
             <Collapse.Panel header={presentLanguage.sidebar.character} itemKey="2" >
-              {CharactorModuel}
+              {CharacterModule}
             </Collapse.Panel>
             <Collapse.Panel header={presentLanguage.sidebar.skill} itemKey="3">
               {SkillModuel}
