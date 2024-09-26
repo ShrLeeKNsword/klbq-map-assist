@@ -1,9 +1,9 @@
-import { IconEdit } from '@douyinfe/semi-icons';
 import { Popover, Slider } from '@douyinfe/semi-ui';
 import React from 'react';
+import { MdCreate } from 'react-icons/md';
 
 interface StandardButtonProps {
-	icon: typeof IconEdit;
+	icon: typeof MdCreate;
 	penWidth: number;
 	setpenWidth: React.Dispatch<React.SetStateAction<number>>;
 	penColor: string;
@@ -49,7 +49,7 @@ const StandardButton: React.FC<StandardButtonProps> = (props) => {
 			position={"left"}
 		>
 			<div style={props.isActiveTool ? activeCanvasToolButtonStyle : canvasToolButtonStyle} onClick={props.onClick}>
-				<props.icon size='extra-large' />
+				<props.icon size="2rem" />
 			</div>
 		</Popover>
 	);

@@ -1,8 +1,8 @@
-import { IconEdit } from '@douyinfe/semi-icons';
 import React from 'react';
+import { GiArrowCursor } from 'react-icons/gi';
 
 interface StandardButtonProps {
-	icon: typeof IconEdit;
+	icon: typeof GiArrowCursor;
 	isActiveTool: boolean;
 	onClick: () => void;
 }
@@ -36,7 +36,7 @@ const activeCanvasToolButtonStyle = {
 const StandardButton: React.FC<StandardButtonProps> = (props) => {
 	return (
 		<div style={props.isActiveTool ? activeCanvasToolButtonStyle : canvasToolButtonStyle} onClick={props.onClick}>
-			<props.icon size='extra-large' />
+			<props.icon size='2rem' />
 		</div>
 	);
 };
