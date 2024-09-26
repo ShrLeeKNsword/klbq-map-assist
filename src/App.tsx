@@ -15,9 +15,10 @@ import { canvasElement, colorPalette, mapTools } from './utils/canvasConstants.t
 import ButtonNoPopover from './components/buttons/buttonNoPopover.tsx';
 import { grenadeData } from './data/grenades.ts';
 
-import { MdCreate, MdDelete, MdOutlineHeight, MdOutlineTranslate, MdUndo } from 'react-icons/md';
+import { MdCreate, MdDelete, MdOutlineTranslate, MdUndo } from 'react-icons/md';
 import { GiArrowCursor } from 'react-icons/gi';
 import { FaGithub } from 'react-icons/fa';
+import { PiLineSegmentFill } from 'react-icons/pi';
 
 const styles = {
   commonStyles: {
@@ -289,7 +290,7 @@ function App() {
               <div style={styles.canvasToolButtonStyle}><ColorBtn color={penColor} /></div>
             </Popover>
             <StandardButton icon={MdCreate} penWidth={penWidth} penColor={penColor} setpenWidth={setpenWidth} onClick={() => setTool(mapTools.PEN)} isActiveTool={canvasTool === mapTools.PEN} />
-            <StandardButton icon={MdOutlineHeight} penWidth={lineWidth} penColor={penColor} setpenWidth={setLineWidth} onClick={() => setTool(mapTools.LINE)} isActiveTool={canvasTool === mapTools.LINE} />
+            <StandardButton icon={PiLineSegmentFill} penWidth={lineWidth} penColor={penColor} setpenWidth={setLineWidth} onClick={() => setTool(mapTools.LINE)} isActiveTool={canvasTool === mapTools.LINE} />
             <Tooltip content={presentLanguage.markbox.undo}>
               <ButtonNoPopover icon={MdUndo} onClick={() => setCanvasElements(canvasElements.slice(0, -1))} isActiveTool={false} />
             </Tooltip>
