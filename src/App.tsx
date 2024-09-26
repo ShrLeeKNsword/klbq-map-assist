@@ -148,7 +148,7 @@ function App() {
   return (
     <Layout className="components-layout-demo" style={{ height: 720, width: 1280, margin: "auto" }}>
       <Header style={styles.commonStyles}>
-        <Title heading={3} style={{ margin: '14px 0' }} >{presentLanguage.title} - {presentMap} {mapPrepareMode ? "[" + presentLanguage.mapsetting.TeamHighlightOptions.prepare + "]" : "[" + presentLanguage.mapsetting.TeamHighlightOptions.blank + "]"} {mapMarkNameMode ? "[" + presentLanguage.mapsetting.Landmarks + "]" : ""}</Title>
+        <Title heading={3} style={{ margin: '14px 0' }} >{presentLanguage.title} - {presentMap}</Title>
         <div style={{ position: "relative", left: "1100px", top: "-60px", height: "100%", width: "200px", display: "flex" }}>
           <div style={{ marginTop: "8px", marginRight: "12px" }}><MdOutlineTranslate size='1.5rem' /></div>
           <Select defaultValue={presentLanguage.language} style={{ width: 120, marginTop: "18px" }} onChange={value => changePresentlanguage(value as string)}>

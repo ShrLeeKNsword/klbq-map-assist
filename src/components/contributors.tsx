@@ -1,5 +1,5 @@
 import { Col, Row, Tag } from '@douyinfe/semi-ui';
-import { FaGithub } from 'react-icons/fa';
+import { FaGithub,FaDiscord } from 'react-icons/fa';
 import { FaBilibili } from "react-icons/fa6";
 
 interface ContributeBoxPops {
@@ -13,6 +13,7 @@ const contributeList = [
         icon: "https://avatars.githubusercontent.com/u/83012768?v=4",
         github: "https://github.com/ShrLeeKNsword/",
         bili: "https://space.bilibili.com/403314450",
+        discord:"",
     },
     {
         job: ["code", "translation"],
@@ -20,6 +21,7 @@ const contributeList = [
         icon: "https://avatars.githubusercontent.com/u/77004524?v=4",
         github: "https://github.com/MiekoHikari/",
         bili: "",
+        discord:"",
     },
 ]
 
@@ -30,7 +32,7 @@ const ContributeBox = (props: ContributeBoxPops) => {
                 return <div style={{ height: "60px", width: "100%", display: "flex", alignItems: "center", justifyContent: "center", margin: "5px" }}>
                     <Row style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", textAlign: "center" }}>
                         <Col span={1}></Col>
-                        <Col span={5}><img src={child.icon} style={{ height: "50px", borderRadius: "50%", marginRight: "10px" }}></img></Col>
+                        <Col span={4}><img src={child.icon} style={{ height: "50px", borderRadius: "50%", marginRight: "10px" }}></img></Col>
                         <Col span={12} style={{ textAlign: "left", fontSize: "15px", fontWeight: "bold" }}>
                             <div style={{ width: "100%" }}>{child.name}</div>
                             {child.job.map((childchild) => {
@@ -39,10 +41,12 @@ const ContributeBox = (props: ContributeBoxPops) => {
                             )
                             }
                         </Col>
-                        <Col span={6} style={{ textAlign: "left" }}>
-                            {child.github != "" ? <a href={child.github} target='_blank' style={{ margin: "5px" }}><FaGithub /></a> : <></>}
-                            {child.bili != "" ? <a href={child.bili} target='_blank' style={{ margin: "5px" }}><FaBilibili /></a> : <></>}
+                        <Col span={6} style={{ textAlign: "left" ,display: "flex", alignItems: "left", justifyContent: "center"}}>
+                            {child.github != "" ? <a href={child.github} target='_blank' style={{ margin: "5px" }}><FaGithub /></a> : <div style={{ width: "25px", height: "100%" }}></div>}
+                            {child.bili != "" ? <a href={child.bili} target='_blank' style={{ margin: "5px" }}><FaBilibili /></a> : <div style={{ width: "25px", height: "100%" }}></div>}
+                            {child.discord != "" ? <a href={child.github} target='_blank' style={{ margin: "5px" }}><FaDiscord /></a> : <div style={{ width: "25px", height: "100%" }}></div>}
                         </Col>
+                        <Col span={1} style={{}}></Col>
                     </Row>
                 </div>
             })}

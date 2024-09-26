@@ -117,7 +117,7 @@ export const i18nData: I18nData[] = [
           <div>在游戏中利用Bug导致被封禁等不良后果本站概不负责！</div>
         </div>
       ),
-      learnmore:"了解更多"
+      learnmore: "了解更多"
     },
     mapsetting: {
       choosemap: "选择地图",
@@ -249,7 +249,7 @@ export const i18nData: I18nData[] = [
           <div>We are not responsible for any bans for abusing any of these bugs.</div>
         </div>
       ),
-      learnmore:"Learn More"
+      learnmore: "Learn More"
     },
     mapsetting: {
       choosemap: "Map",
@@ -365,13 +365,13 @@ export const i18nData: I18nData[] = [
   },
   {
     language: "日本語",
-    title: "Strinova 地図アシスタント",
+    title: "Strinova マップアシスタント",
     sidebar: {
-      mapsetting: "地図の設定",
+      mapsetting: "マップの設定",
       character: "キャラクター（超弦体）",
       skill: "スキル",
-      grenade: "投擲物",
-      lineup: "投擲物のポイント",
+      grenade: "戦術アイテム",
+      lineup: "戦術アイテムのポイント",
       skilllineup: "スキルポイント",
       mobaisuperjump: "白墨スーパージャンプ",
       bugpoint: "プログラムエラー",
@@ -384,15 +384,15 @@ export const i18nData: I18nData[] = [
       learnmore: "詳細",
     },
     mapsetting: {
-      choosemap: "地図",
+      choosemap: "マップ",
       maps: {
-        WindyTown: "Windy Town",
-        SpaceLab: "Space Lab",
-        Khesmet: "Khesmet",
-        CauchyDistrict: "Cauchy District",
-        EulerPort: "Port Euler",
-        Area88: "Area 88",
-        Base404: "Base 404",
+        WindyTown: "ウィンディタウン",
+        SpaceLab: "スペースラボ",
+        Khesmet: "科斯迷特",
+        CauchyDistrict: "柯西街区",
+        EulerPort: "オイラー港",
+        Area88: "88街区",
+        Base404: "ベース404",
       },
       TeamHighlight: "Team Highlight",
       TeamHighlightOptions: {
@@ -438,17 +438,17 @@ export const i18nData: I18nData[] = [
       },
     },
     factions: {
-      PUS: "欧泊(オパール)",
-      TheScissors: "剪刀手（シザーズ）",
-      Urbino: "乌尔比诺（ウルビノ）",
+      PUS: "P.U.S",
+      TheScissors: "シザーズ",
+      Urbino: "ウルビノ",
     },
     characters: {
       PUS: {
         Michele: "ミシェル",
-        Nobunaga: "信",
-        Kokona: "シキココナ",
-        Yvette: "イベット",
-        Flavia: "フラビア",
+        Nobunaga: "ノブナガ",
+        Kokona: "ココナ",
+        Yvette: "イヴェット",
+        Flavia: "フラヴィア",
       },
       TheScissors: {
         Ming: "ミン",
@@ -457,27 +457,27 @@ export const i18nData: I18nData[] = [
         Reiichi: "レイイチ",
         Kanami: "カナミ",
         Eika: "アイカ",
-        Fragrans: "Fragrans",
+        Fragrans: "フラグランス",
       },
       Urbino: {
-        Celestia: "シンフイ",
+        Celestia: "ホシリエ",
         Audrey: "オードリー",
-        Maddelena: "マドレーヌ",
+        Maddelena: "マダレーナ",
         Fuchsia: "フェイシャ",
-        BaiMo: "Bai Mo",
-        Galatea: "Galatea",
+        BaiMo: "ハクボク",
+        Galatea: "ガラテア",
       },
     },
     grenades: {
-      Flashbang: "Flashbang",
-      FragGrenade: "Frag Grenade",
-      HealingGrenade: "Healing Grenade",
-      Interceptor: "Interceptor",
-      SlowGrenade: "Slow Grenade",
-      SmokeBomb: "Smoke Bomb",
-      Alarm: "Alarm",
-      WindstormGrenade: "Windstorm Grenade",
-      SnowBall: "Snow Ball",
+      Flashbang: "閃光弹",
+      FragGrenade: "フラググレネード",
+      HealingGrenade: "回復グレネード",
+      Interceptor: "インターセプター",
+      SlowGrenade: "减速ボム",
+      SmokeBomb: "煙幕弾",
+      Alarm: "警報器",
+      WindstormGrenade: "風雷ボム",
+      SnowBall: "雪玉",
     },
     markbox: {
       mark: "Mark",
