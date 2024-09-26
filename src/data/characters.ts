@@ -50,6 +50,14 @@ interface CharacterData {
 	skills: skillData;
 }
 
+export const factionData: {
+	[key in factions]: string;
+} = {
+	PUS: 'https://s2.loli.net/2024/09/25/1El6anYx4qhPbo2.png',
+	TheScissors: 'https://s2.loli.net/2024/09/25/PY4HMU7fbQ32Dr1.png',
+	Urbino: 'https://s2.loli.net/2024/09/25/hyPUcLZdMNaeOjI.png',
+}
+
 export const characterData: {
 	[key in PUS | TheScissors | Urbino]: CharacterData;
 } = {

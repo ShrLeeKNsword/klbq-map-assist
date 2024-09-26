@@ -89,7 +89,7 @@ interface MarkBox {
   };
 }
 
-interface I18nData {
+export interface I18nData {
   language: string;
   title: string;
   sidebar: Sidebar;

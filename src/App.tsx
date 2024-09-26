@@ -9,9 +9,9 @@ import GrenadeBtn from './components/buttons/grenadeBtn.tsx';
 import './App.css';
 import DrawableMap from './components/drawableMap.tsx';
 import StandardButton from './components/buttons/standardButton.tsx';
-import { i18nData } from './data/i18n.tsx';
+import { I18nData, i18nData } from './data/i18n.tsx';
 import { mapList } from './data/maplist.ts';
-import { characterData } from './data/characters.ts';
+import { characterData, factionData, factions } from './data/characters.ts';
 import { canvasElement, colorPalette, mapTools } from './utils/canvasConstants.ts';
 import ButtonNoPopover from './components/buttons/buttonNoPopover.tsx';
 
@@ -39,7 +39,7 @@ function App() {
   const { Header, Footer, Sider, Content } = Layout;
   const { Title } = Typography;
 
-  const [presentLanguage, setPresentLanguage] = useState(i18nData[0]);
+  const [presentLanguage, setPresentLanguage] = useState<I18nData>(i18nData[0]);
   const [closeallcollapse, setCloseAllCollapse] = useState(false);
   const [presentMap, setPresentMap] = useState(presentLanguage.mapsetting.maps.WindyTown);
 
@@ -99,44 +99,20 @@ function App() {
     </Row>
   </div>;
 
-  const CharactorModuel = <>
-    <div style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-8px" }}>
-      <div><img src='https://s2.loli.net/2024/09/25/1El6anYx4qhPbo2.png' style={{ height: "40px" }}></img></div>
-      <Title heading={6}>{presentLanguage.factions.PUS}</Title>
-    </div>
-    <Row gutter={[24, 8]} type="flex" align="middle">
-      <Col span={6}><CharacterBtn imglink={characterData.Michele.imageLink} /></Col>
-      <Col span={6}><CharacterBtn imglink={characterData.Nobunaga.imageLink} /></Col>
-      <Col span={6}><CharacterBtn imglink={characterData.Kokona.imageLink} /></Col>
-      <Col span={6}><CharacterBtn imglink={characterData.Yvette.imageLink} /></Col>
-      <Col span={6}><CharacterBtn imglink={characterData.Flavia.imageLink} /></Col>
-    </Row>
-    <div style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-8px", marginTop: "5px" }}>
-      <div><img src='https://s2.loli.net/2024/09/25/PY4HMU7fbQ32Dr1.png' style={{ height: "40px" }}></img></div>
-      <Title heading={6}>{presentLanguage.factions.TheScissors}</Title>
-    </div>
-    <Row gutter={[24, 8]} type="flex" align="middle">
-      <Col span={6}><CharacterBtn imglink={characterData.Ming.imageLink} /></Col>
-      <Col span={6}><CharacterBtn imglink={characterData.Lawine.imageLink} /></Col>
-      <Col span={6}><CharacterBtn imglink={characterData.Meredith.imageLink} /></Col>
-      <Col span={6}><CharacterBtn imglink={characterData.Reiichi.imageLink} /></Col>
-      <Col span={6}><CharacterBtn imglink={characterData.Kanami.imageLink} /></Col>
-      <Col span={6}><CharacterBtn imglink={characterData.Eika.imageLink} /></Col>
-      <Col span={6}><CharacterBtn imglink={characterData.Fragrans.imageLink} /></Col>
-    </Row>
-    <div style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-8px", marginTop: "5px" }}>
-      <div><img src='https://s2.loli.net/2024/09/25/hyPUcLZdMNaeOjI.png' style={{ height: "40px" }}></img></div>
-      <Title heading={6}>{presentLanguage.factions.Urbino}</Title>
-    </div>
-    <Row gutter={[24, 8]} type="flex" align="middle">
-      <Col span={6}><CharacterBtn imglink={characterData.Audrey.imageLink} /></Col>
-      <Col span={6}><CharacterBtn imglink={characterData.Maddelena.imageLink} /></Col>
-      <Col span={6}><CharacterBtn imglink={characterData.Fuchsia.imageLink} /></Col>
-      <Col span={6}><CharacterBtn imglink={characterData.Celestia.imageLink} /></Col>
-      <Col span={6}><CharacterBtn imglink={characterData.BaiMo.imageLink} /></Col>
-      <Col span={6}><CharacterBtn imglink={characterData.Galatea.imageLink} /></Col>
-    </Row>
-  </>
+  const CharactorModuel = Object.keys(factions).map((faction) => {
+    return <><div style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-8px" }}>
+      <div><img src={factionData[faction as factions]} style={{ height: "40px" }}></img></div>
+      <Title heading={6}>{presentLanguage.factions[faction as factions]}</Title>
+    </div><Row gutter={[24, 8]} type='flex' align='middle'>
+        {Object.keys(characterData).map((character) => {
+          const char = characterData[character as keyof typeof characterData];
+          if (char.faction === faction) {
+            return <Col span={6}><CharacterBtn imglink={char.imageLink} /></Col>
+          }
+        })}
+      </Row>
+    </>
+  })
 
   const SkillModuel = <>
     <div style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-8px" }}>
