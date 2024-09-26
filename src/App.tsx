@@ -11,6 +11,7 @@ import DrawableMap from './components/drawableMap.tsx';
 import StandardButton from './components/buttons/standardButton.tsx';
 import { i18nData } from './data/i18n.tsx';
 import { mapList } from './data/maplist.ts';
+import { characterData } from './data/characters.ts';
 import { canvasElement, colorPalette, mapTools } from './utils/canvasConstants.ts';
 import ButtonNoPopover from './components/buttons/buttonNoPopover.tsx';
 
@@ -99,130 +100,134 @@ function App() {
   </div>;
 
   const CharactorModuel = <>
-    <div style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-5px" }}>
+    <div style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-8px" }}>
       <div><img src='https://s2.loli.net/2024/09/25/1El6anYx4qhPbo2.png' style={{ height: "40px" }}></img></div>
       <Title heading={6}>{presentLanguage.factions.PUS}</Title>
     </div>
     <Row gutter={[24, 8]} type="flex" align="middle">
-      <Col span={6}><CharacterBtn imglink='https://s2.loli.net/2024/09/25/6Of7oigcQ5weJHh.png' /></Col>
-      <Col span={6}><CharacterBtn imglink='https://s2.loli.net/2024/09/25/dx6MZJgzUf3Xlay.png' /></Col>
-      <Col span={6}><CharacterBtn imglink='https://s2.loli.net/2024/09/25/Kl9MLgtJFqYDkN2.png' /></Col>
-      <Col span={6}><CharacterBtn imglink='https://s2.loli.net/2024/09/25/N5VL236lvYXQ4O1.png' /></Col>
-      <Col span={6}><CharacterBtn imglink='https://s2.loli.net/2024/09/25/I9fm7ZsCRw5tuzV.png' /></Col>
+      <Col span={6}><CharacterBtn imglink={characterData.Michele.imageLink} /></Col>
+      <Col span={6}><CharacterBtn imglink={characterData.Nobunaga.imageLink} /></Col>
+      <Col span={6}><CharacterBtn imglink={characterData.Kokona.imageLink} /></Col>
+      <Col span={6}><CharacterBtn imglink={characterData.Yvette.imageLink} /></Col>
+      <Col span={6}><CharacterBtn imglink={characterData.Flavia.imageLink} /></Col>
     </Row>
-    <div style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-5px", marginTop: "5px" }}>
+    <div style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-8px", marginTop: "5px" }}>
       <div><img src='https://s2.loli.net/2024/09/25/PY4HMU7fbQ32Dr1.png' style={{ height: "40px" }}></img></div>
       <Title heading={6}>{presentLanguage.factions.TheScissors}</Title>
     </div>
     <Row gutter={[24, 8]} type="flex" align="middle">
-      <Col span={6}><CharacterBtn imglink='https://s2.loli.net/2024/09/25/qhENkLvnlWdIQox.png' /></Col>
-      <Col span={6}><CharacterBtn imglink='https://s2.loli.net/2024/09/25/mo6Yds1UQn9eXhu.png' /></Col>
-      <Col span={6}><CharacterBtn imglink='https://s2.loli.net/2024/09/25/awVpAXErSo4Cs9K.png' /></Col>
-      <Col span={6}><CharacterBtn imglink='https://s2.loli.net/2024/09/25/CNGfkr2sHT86PLb.png' /></Col>
-      <Col span={6}><CharacterBtn imglink='https://s2.loli.net/2024/09/25/ynbCQZvjfaSTqDA.png' /></Col>
-      <Col span={6}><CharacterBtn imglink='https://s2.loli.net/2024/09/25/LsfhU12uXvDtm7S.png' /></Col>
-      <Col span={6}><CharacterBtn imglink='https://s2.loli.net/2024/09/25/tfKwYLHmIxeUg1u.png' /></Col>
+      <Col span={6}><CharacterBtn imglink={characterData.Ming.imageLink} /></Col>
+      <Col span={6}><CharacterBtn imglink={characterData.Lawine.imageLink} /></Col>
+      <Col span={6}><CharacterBtn imglink={characterData.Meredith.imageLink} /></Col>
+      <Col span={6}><CharacterBtn imglink={characterData.Reiichi.imageLink} /></Col>
+      <Col span={6}><CharacterBtn imglink={characterData.Kanami.imageLink} /></Col>
+      <Col span={6}><CharacterBtn imglink={characterData.Eika.imageLink} /></Col>
+      <Col span={6}><CharacterBtn imglink={characterData.Fragrans.imageLink} /></Col>
     </Row>
-    <div style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-5px", marginTop: "5px" }}>
+    <div style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-8px", marginTop: "5px" }}>
       <div><img src='https://s2.loli.net/2024/09/25/hyPUcLZdMNaeOjI.png' style={{ height: "40px" }}></img></div>
       <Title heading={6}>{presentLanguage.factions.Urbino}</Title>
     </div>
     <Row gutter={[24, 8]} type="flex" align="middle">
-      <Col span={6}><CharacterBtn imglink='https://s2.loli.net/2024/09/25/sZU6SJ3Vn4dfkap.png' /></Col>
-      <Col span={6}><CharacterBtn imglink='https://s2.loli.net/2024/09/25/o6DfG7n9KCtzvbE.png' /></Col>
-      <Col span={6}><CharacterBtn imglink='https://s2.loli.net/2024/09/25/IS4QHlqreY97OCE.png' /></Col>
-      <Col span={6}><CharacterBtn imglink='https://s2.loli.net/2024/09/25/VJUBm193pTqjxwb.png' /></Col>
-      <Col span={6}><CharacterBtn imglink='https://s2.loli.net/2024/09/25/bLOreh5Bxf6lEjT.png' /></Col>
-      <Col span={6}><CharacterBtn imglink='https://s2.loli.net/2024/09/25/GJOlL4BZKjzSmMx.png' /></Col>
+      <Col span={6}><CharacterBtn imglink={characterData.Audrey.imageLink} /></Col>
+      <Col span={6}><CharacterBtn imglink={characterData.Maddelena.imageLink} /></Col>
+      <Col span={6}><CharacterBtn imglink={characterData.Fuchsia.imageLink} /></Col>
+      <Col span={6}><CharacterBtn imglink={characterData.Celestia.imageLink} /></Col>
+      <Col span={6}><CharacterBtn imglink={characterData.BaiMo.imageLink} /></Col>
+      <Col span={6}><CharacterBtn imglink={characterData.Galatea.imageLink} /></Col>
     </Row>
   </>
 
   const SkillModuel = <>
-    <div style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-5px" }}>
+    <div style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-8px" }}>
       <div><img src='https://s2.loli.net/2024/09/25/1El6anYx4qhPbo2.png' style={{ height: "40px" }}></img></div>
       <Title heading={6}>{presentLanguage.factions.PUS}</Title>
     </div>
     <Row gutter={[24, 8]} type="flex" align="middle">
-      <Col span={6}><CharacterBtn imglink='https://s2.loli.net/2024/09/25/6Of7oigcQ5weJHh.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://s2.loli.net/2024/09/25/8iCzWDaNQPSxqvw.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://s2.loli.net/2024/09/25/ANhKZ6GDzOIjPtf.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://s2.loli.net/2024/09/25/UGeEvYfXiSgD4zr.png' /></Col>
-      <Col span={6}><CharacterBtn imglink='https://s2.loli.net/2024/09/25/dx6MZJgzUf3Xlay.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://s2.loli.net/2024/09/25/VJFzGhSyXmsiHpO.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://s2.loli.net/2024/09/25/AHsc9o8W25UlpNa.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://s2.loli.net/2024/09/25/Vr78sb9T32ADMuy.png' /></Col>
-      <Col span={6}><CharacterBtn imglink='https://s2.loli.net/2024/09/25/Kl9MLgtJFqYDkN2.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://s2.loli.net/2024/09/25/9zFsMYumpwJZrTg.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://s2.loli.net/2024/09/25/V8NijM5onGulX9m.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://s2.loli.net/2024/09/25/tilQp18zRheBMaJ.png' /></Col>
-      <Col span={6}><CharacterBtn imglink='https://s2.loli.net/2024/09/25/N5VL236lvYXQ4O1.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://s2.loli.net/2024/09/25/ESH6FNKQjbafMZn.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://s2.loli.net/2024/09/25/2hqoyUWsnbA83BP.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://s2.loli.net/2024/09/25/32VnSv59tPwTIhl.png' /></Col>
-      <Col span={6}><CharacterBtn imglink='https://s2.loli.net/2024/09/25/I9fm7ZsCRw5tuzV.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://s2.loli.net/2024/09/25/58dg6OpPntlviqW.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://s2.loli.net/2024/09/25/u5tV9xaNyjUL6EM.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://s2.loli.net/2024/09/25/ezsVQS62bY5iBcG.png' /></Col>
+      <Col span={6}><CharacterBtn imglink={characterData.Michele.imageLink} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Michele.skills.Active} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Michele.skills.Passive} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Michele.skills.Ultimate} /></Col>
+      <Col span={6}><CharacterBtn imglink={characterData.Nobunaga.imageLink} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Nobunaga.skills.Active} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Nobunaga.skills.Passive} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Nobunaga.skills.Ultimate} /></Col>
+      <Col span={6}><CharacterBtn imglink={characterData.Kokona.imageLink} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Kokona.skills.Active} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Kokona.skills.Passive} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Kokona.skills.Ultimate} /></Col>
+      <Col span={6}><CharacterBtn imglink={characterData.Yvette.imageLink} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Yvette.skills.Active} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Yvette.skills.Passive} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Yvette.skills.Ultimate} /></Col>
+      <Col span={6}><CharacterBtn imglink={characterData.Flavia.imageLink} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Flavia.skills.Active} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Flavia.skills.Passive} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Flavia.skills.Ultimate} /></Col>
     </Row>
-    <div style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-5px", marginTop: "5px" }}>
+    <div style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-8px", marginTop: "5px" }}>
       <div><img src='https://s2.loli.net/2024/09/25/PY4HMU7fbQ32Dr1.png' style={{ height: "40px" }}></img></div>
       <Title heading={6}>{presentLanguage.factions.TheScissors}</Title>
     </div>
     <Row gutter={[24, 8]} type="flex" align="middle">
-      <Col span={6}><CharacterBtn imglink='https://s2.loli.net/2024/09/25/qhENkLvnlWdIQox.png' /></Col>
-      <Col span={6}><SkillBtn top="4px" imglink='https://s2.loli.net/2024/09/25/NQ2TdSqhseRZY7b.png' /></Col>
-      <Col span={6}><SkillBtn top="4px" imglink='https://s2.loli.net/2024/09/25/bsAzZemy4uEcaHt.png' /></Col>
-      <Col span={6}><SkillBtn top="1px" imglink='https://s2.loli.net/2024/09/25/B6KC72wphAdt4Ri.png' /></Col>
-      <Col span={6}><CharacterBtn imglink='https://s2.loli.net/2024/09/25/mo6Yds1UQn9eXhu.png' /></Col>
-      <Col span={6}><SkillBtn top="4px" imglink='https://s2.loli.net/2024/09/25/gOFlGIzPjxbpYKw.png' /></Col>
-      <Col span={6}><SkillBtn top="4px" imglink='https://s2.loli.net/2024/09/25/8AxLszwVIg17WGq.png' /></Col>
-      <Col span={6}><SkillBtn top="4px" imglink='https://s2.loli.net/2024/09/25/HuEnVYb8Mr5e24I.png' /></Col>
-      <Col span={6}><CharacterBtn imglink='https://s2.loli.net/2024/09/25/awVpAXErSo4Cs9K.png' /></Col>
-      <Col span={6}><SkillBtn top="-4px" imglink='https://s2.loli.net/2024/09/25/KWYZTSQmjOHJ2RX.png' /></Col>
-      <Col span={6}><SkillBtn top="-4px" imglink='https://s2.loli.net/2024/09/25/O8kRqCVEDoK6T3p.png' /></Col>
-      <Col span={6}><SkillBtn top="-4px" imglink='https://s2.loli.net/2024/09/25/V8KZrx9sY7QBlaP.png' /></Col>
-      <Col span={6}><CharacterBtn imglink='https://s2.loli.net/2024/09/25/CNGfkr2sHT86PLb.png' /></Col>
-      <Col span={6}><SkillBtn top="2px" imglink='https://s2.loli.net/2024/09/25/C6qts5xeVpS1N4E.png' /></Col>
-      <Col span={6}><SkillBtn top="3px" imglink='https://s2.loli.net/2024/09/25/iuSvZDYnFTzmBrl.png' /></Col>
-      <Col span={6}><SkillBtn top="3px" imglink='https://s2.loli.net/2024/09/25/bESOlDh9oURvFC3.png' /></Col>
-      <Col span={6}><CharacterBtn imglink='https://s2.loli.net/2024/09/25/ynbCQZvjfaSTqDA.png' /></Col>
-      <Col span={6}><SkillBtn top="3px" imglink='https://s2.loli.net/2024/09/25/UBJqoYz835GvVxy.png' /></Col>
-      <Col span={6}><SkillBtn top="3px" imglink='https://s2.loli.net/2024/09/25/OHbINYGSQhFazcd.png' /></Col>
-      <Col span={6}><SkillBtn top="3px" imglink='https://s2.loli.net/2024/09/25/YH3Phg5XQumsbCM.png' /></Col>
-      <Col span={6}><CharacterBtn imglink='https://s2.loli.net/2024/09/25/LsfhU12uXvDtm7S.png' /></Col>
-      <Col span={6}><SkillBtn top="3px" imglink='https://s2.loli.net/2024/09/25/SPYXJZwHGObnrmV.png' /></Col>
-      <Col span={6}><SkillBtn top="3px" imglink='https://s2.loli.net/2024/09/25/JYfa5PdE6r4Kcio.png' /></Col>
-      <Col span={6}><SkillBtn top="3px" imglink='https://s2.loli.net/2024/09/25/sFgyUNK7iWtcvfp.png' /></Col>
-      <Col span={6}><CharacterBtn imglink='https://s2.loli.net/2024/09/25/tfKwYLHmIxeUg1u.png' /></Col>
-      <Col span={6}><SkillBtn top="-4px" imglink='https://s2.loli.net/2024/09/25/L9j3uWBrl5hNyzx.png' /></Col>
-      <Col span={6}><SkillBtn top="-4px" imglink='https://s2.loli.net/2024/09/25/B3HDdTpLjAyYQ74.png' /></Col>
-      <Col span={6}><SkillBtn top="-4px" imglink='https://s2.loli.net/2024/09/25/5Xk9PUOlwFsgE6B.png' /></Col>
+      <Col span={6}><CharacterBtn imglink={characterData.Ming.imageLink} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Ming.skills.Active} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Ming.skills.Passive} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Ming.skills.Ultimate} /></Col>
+      <Col span={6}><CharacterBtn imglink={characterData.Lawine.imageLink} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Lawine.skills.Active} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Lawine.skills.Passive} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Lawine.skills.Ultimate} /></Col>
+      <Col span={6}><CharacterBtn imglink={characterData.Meredith.imageLink} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Meredith.skills.Active} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Meredith.skills.Passive} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Meredith.skills.Ultimate} /></Col>
+      <Col span={6}><CharacterBtn imglink={characterData.Reiichi.imageLink} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Reiichi.skills.Active} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Reiichi.skills.Passive} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Reiichi.skills.Ultimate} /></Col>
+      <Col span={6}><CharacterBtn imglink={characterData.Kanami.imageLink} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Kanami.skills.Active} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Kanami.skills.Passive} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Kanami.skills.Ultimate} /></Col>
+      <Col span={6}><CharacterBtn imglink={characterData.Eika.imageLink} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Eika.skills.Active} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Eika.skills.Passive} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Eika.skills.Ultimate} /></Col>
+      <Col span={6}><CharacterBtn imglink={characterData.Fragrans.imageLink} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Fragrans.skills.Active} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Fragrans.skills.Passive} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Fragrans.skills.Ultimate} /></Col>
     </Row>
-    <div style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-5px", marginTop: "5px" }}>
+    <div style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-8px", marginTop: "5px" }}>
       <div><img src='https://s2.loli.net/2024/09/25/hyPUcLZdMNaeOjI.png' style={{ height: "40px" }}></img></div>
       <Title heading={6}>{presentLanguage.factions.Urbino}</Title>
     </div>
     <Row gutter={[24, 8]} type="flex" align="middle">
-      <Col span={6}><CharacterBtn imglink='https://s2.loli.net/2024/09/25/o6DfG7n9KCtzvbE.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://s2.loli.net/2024/09/25/2r7wkizoLbpqMOZ.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://s2.loli.net/2024/09/25/tazvXEJNs5HuyeD.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://s2.loli.net/2024/09/25/tazvXEJNs5HuyeD.png' /></Col>
-      <Col span={6}><CharacterBtn imglink='https://s2.loli.net/2024/09/25/IS4QHlqreY97OCE.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://s2.loli.net/2024/09/25/tkQ3jlHGeRTDPyn.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://s2.loli.net/2024/09/25/5ZCmFuQhoP3zYnV.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://s2.loli.net/2024/09/25/rOxFKuLX7e5QWhw.png' /></Col>
-      <Col span={6}><CharacterBtn imglink='https://s2.loli.net/2024/09/25/VJUBm193pTqjxwb.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://s2.loli.net/2024/09/25/WmtSU2hFLBPaf85.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://s2.loli.net/2024/09/25/O5dXCxh3R1wVINQ.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://s2.loli.net/2024/09/25/bJalMyBfZ7iXVtx.png' /></Col>
-      <Col span={6}><CharacterBtn imglink='https://s2.loli.net/2024/09/25/bLOreh5Bxf6lEjT.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://s2.loli.net/2024/09/25/eUzu75aSXVw2kQF.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://s2.loli.net/2024/09/25/xvVheX57uGJMI2k.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://s2.loli.net/2024/09/25/VkyGJKzHYr4pnlm.png' /></Col>
-      <Col span={6}><CharacterBtn imglink='https://s2.loli.net/2024/09/25/GJOlL4BZKjzSmMx.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://s2.loli.net/2024/09/25/UQVBxmGPD9q1tsr.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://s2.loli.net/2024/09/25/VmDbBPl9ezv5ZgU.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://s2.loli.net/2024/09/25/xGpjiLgcUtTJbno.png' /></Col>
+      <Col span={6}><CharacterBtn imglink={characterData.Audrey.imageLink} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Audrey.skills.Active} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Audrey.skills.Passive} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Audrey.skills.Ultimate} /></Col>
+      <Col span={6}><CharacterBtn imglink={characterData.Maddelena.imageLink} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Maddelena.skills.Active} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Maddelena.skills.Passive} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Maddelena.skills.Ultimate} /></Col>
+      <Col span={6}><CharacterBtn imglink={characterData.Fuchsia.imageLink} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Fuchsia.skills.Active} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Fuchsia.skills.Passive} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Fuchsia.skills.Ultimate} /></Col>
+      <Col span={6}><CharacterBtn imglink={characterData.Celestia.imageLink} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Celestia.skills.Active} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Celestia.skills.Passive} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Celestia.skills.Ultimate} /></Col>
+      <Col span={6}><CharacterBtn imglink={characterData.BaiMo.imageLink} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.BaiMo.skills.Active} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.BaiMo.skills.Passive} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.BaiMo.skills.Ultimate} /></Col>
+      <Col span={6}><CharacterBtn imglink={characterData.Galatea.imageLink} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Galatea.skills.Active} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Galatea.skills.Passive} /></Col>
+      <Col span={6}><SkillBtn imglink={characterData.Galatea.skills.Ultimate} /></Col>
     </Row>
   </>
 
