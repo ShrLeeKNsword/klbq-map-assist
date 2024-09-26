@@ -14,6 +14,7 @@ import { mapList } from './data/maplist.ts';
 import { characterData, factionData, factions } from './data/characters.ts';
 import { canvasElement, colorPalette, mapTools } from './utils/canvasConstants.ts';
 import ButtonNoPopover from './components/buttons/buttonNoPopover.tsx';
+import { grenadeData } from './data/grenades.ts';
 
 const styles = {
   commonStyles: {
@@ -114,7 +115,7 @@ function App() {
     </>
   })
 
-  const SkillModuel = Object.keys(factions).map((faction) => {
+  const SkillModule = Object.keys(factions).map((faction) => {
     return <><div style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-8px", marginTop: "5px" }}>
       <div>
         <img src={factionData[faction as factions]} style={{ height: "40px" }} />
@@ -135,19 +136,9 @@ function App() {
     </>
   })
 
-  const GrenadeModuel = <>
-    <Row gutter={[24, 8]} type="flex" align="middle">
-      <Col span={6}><GrenadeBtn imglink='https://s2.loli.net/2024/09/24/y6xfMWzvi5GrE8Z.png' /></Col>
-      <Col span={6}><GrenadeBtn imglink='https://s2.loli.net/2024/09/24/siyl1V9OETwdntX.png' /></Col>
-      <Col span={6}><GrenadeBtn imglink='https://s2.loli.net/2024/09/24/z8DXpG7icOdRhkj.png' /></Col>
-      <Col span={6}><GrenadeBtn imglink='https://s2.loli.net/2024/09/24/M7NLCWwZaYU5lyb.png' /></Col>
-      <Col span={6}><GrenadeBtn imglink='https://s2.loli.net/2024/09/24/iZpv7XY5j1DJGAL.png' /></Col>
-      <Col span={6}><GrenadeBtn imglink='https://s2.loli.net/2024/09/24/rR5g1ukx7j6tPFK.png' /></Col>
-      <Col span={6}><GrenadeBtn imglink='https://s2.loli.net/2024/09/24/MQYHj54khqVxetJ.png' /></Col>
-      <Col span={6}><GrenadeBtn imglink='https://s2.loli.net/2024/09/24/nJzYDPiv8uWsdMx.png' /></Col>
-      <Col span={6}><GrenadeBtn imglink='https://s2.loli.net/2024/09/24/2UAiJIGMwRKauXt.png' /></Col>
-    </Row>
-  </>
+  const GrenadeButtons = grenadeData.map(grenade => {
+    return <Col span={6}><GrenadeBtn imglink={grenade.imageLink} /></Col>
+  });
 
   return (
     <Layout className="components-layout-demo" style={{ height: 720, width: 1280, margin: "auto" }}>
@@ -202,10 +193,12 @@ function App() {
               {CharacterModule}
             </Collapse.Panel>
             <Collapse.Panel header={presentLanguage.sidebar.skill} itemKey="3">
-              {SkillModuel}
+              {SkillModule}
             </Collapse.Panel>
             <Collapse.Panel header={presentLanguage.sidebar.grenade} itemKey="4">
-              {GrenadeModuel}
+              <Row gutter={[24, 8]} type="flex" align="middle">
+                {GrenadeButtons}
+              </Row>
             </Collapse.Panel>
             <Collapse.Panel header={presentLanguage.sidebar.lineup} itemKey="5">
               <Row gutter={[16, 8]} type="flex" align="middle">
@@ -321,7 +314,7 @@ function App() {
           </a>
           <div style={{ marginBottom: "12px" }}>© 番石榴网络科技工作室 & Contributors & <a href='https://wiki.biligame.com/klbq/%E9%A6%96%E9%A1%B5' target='_blank'>卡拉彼丘Wiki</a>{" | "}
           </div>
-          <div style={{ height: "max", display: "flex", alignItems: "center", marginLeft: "10px" ,marginTop:"-7px" }}><a href='https://github.com/ShrLeeKNsword/klbq-map-assist' target="_blank" style={{}}>
+          <div style={{ height: "max", display: "flex", alignItems: "center", marginLeft: "10px", marginTop: "-7px" }}><a href='https://github.com/ShrLeeKNsword/klbq-map-assist' target="_blank" style={{}}>
             <IconGithubLogo />
           </a></div>
         </div>

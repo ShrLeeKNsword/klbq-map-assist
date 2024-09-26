@@ -1,4 +1,5 @@
 import { Characters, factions } from "./characters";
+import { grenades as grenades } from "./grenades";
 import { MapName } from "./maplist";
 
 interface Sidebar {
@@ -61,18 +62,6 @@ interface BugPointSetting {
   };
 }
 
-interface Grenades {
-  Flashbang: string;
-  FragGrenade: string;
-  HealingGrenade: string;
-  Interceptor: string;
-  SlowGrenade: string;
-  SmokeBomb: string;
-  Alarm: string;
-  WindstormGrenade: string;
-  SnowBall: string;
-}
-
 interface MarkBox {
   mark: string;
   straightline: string;
@@ -102,7 +91,9 @@ export interface I18nData {
     [key in factions]: string;
   };
   characters: Characters;
-  grenades: Grenades;
+  grenades: {
+    [key in grenades]: string;
+  }
   markbox: MarkBox;
 }
 
