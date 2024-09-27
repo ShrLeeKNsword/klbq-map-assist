@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Layout, Collapse, Typography, Select, Tooltip, Popover, Col, Row, Popconfirm, ColorPicker, Banner, Toast } from '@douyinfe/semi-ui';
+import { Layout, Collapse, Typography, Select, Tooltip, Popover, Col, Row, Popconfirm, ColorPicker, Banner, Toast, Tag } from '@douyinfe/semi-ui';
 import ColorBtn from './components/buttons/colorBtn.tsx';
 import CharacterBtn from './components/buttons/characterBtn.tsx';
 import SkillBtn from './components/buttons/skillBtn.tsx';
@@ -148,7 +148,7 @@ function App() {
   return (
     <Layout className="components-layout-demo" style={{ height: 720, width: 1280, margin: "auto" }}>
       <Header style={styles.commonStyles}>
-        <Title heading={3} style={{ margin: '14px 0' }} >{presentLanguage.title} - {presentMap}</Title>
+        <Title heading={3} style={{ margin: '14px 0' }} >{presentLanguage.title}  <span>{mapMarkNameMode ? <Tag color='light-blue' style={{ margin: "5px" }}><MdCreate size='1rem' /></Tag> : <></>}</span></Title>
         <div style={{ position: "relative", left: "1100px", top: "-60px", height: "100%", width: "200px", display: "flex" }}>
           <div style={{ marginTop: "8px", marginRight: "12px" }}><MdOutlineTranslate size='1.5rem' /></div>
           <Select defaultValue={presentLanguage.language} style={{ width: 120, marginTop: "18px" }} onChange={value => changePresentlanguage(value as string)}>
@@ -328,12 +328,18 @@ function App() {
             {" & "}<a href='https://wiki.biligame.com/klbq/%E9%A6%96%E9%A1%B5' target='_blank'>卡拉彼丘Wiki</a>{" | "}
           </div>
           <div style={{ height: "max", display: "flex", alignItems: "center", marginLeft: "10px", marginTop: "-7px" }}>
-            <a href='https://github.com/ShrLeeKNsword/klbq-map-assist' target="_blank" style={{}}>
+            <Tooltip content="Github repository"><a href='https://github.com/ShrLeeKNsword/klbq-map-assist' target="_blank" style={{}}>
               <FaGithub />
-            </a>
-            <a href='https://discord.com/invite/C6AYFvgR' target="_blank" style={{marginLeft:"5px"}}>
+            </a></Tooltip>
+            <Tooltip content="Discord channel"><a href='https://discord.com/invite/C6AYFvgR' target="_blank" style={{ marginLeft: "5px" }}>
               <FaDiscord />
-            </a>
+            </a></Tooltip>
+          </div>
+          <div style={{ marginBottom: "12px", marginLeft: "10px", marginRight: "10px" }}>
+            {" | "}
+          </div>
+          <div style={{ marginBottom: "12px" }}>
+            国内站点
           </div>
         </div>
       </Footer>
