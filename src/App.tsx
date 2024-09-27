@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Layout, Collapse, Typography, Select, Tooltip, Popover, Col, Row, Popconfirm, ColorPicker, Banner, Toast, Tag } from '@douyinfe/semi-ui';
+import { Layout, Collapse, Typography, Select, Tooltip, Popover, Col, Row, Popconfirm, ColorPicker, Banner, Toast, Tag, Button } from '@douyinfe/semi-ui';
 import ColorBtn from './components/buttons/colorBtn.tsx';
 import CharacterBtn from './components/buttons/characterBtn.tsx';
 import SkillBtn from './components/buttons/skillBtn.tsx';
@@ -47,7 +47,7 @@ function App() {
 
   const [presentLanguage, setPresentLanguage] = useState<I18nData>(i18nData[1]);
   const [closeallcollapse, setCloseAllCollapse] = useState(false);
-  const [presentMap, setPresentMap] = useState(presentLanguage.mapsetting.maps.WindyTown);
+  const [presentMap, setPresentMap] = useState(i18nData[1].mapsetting.maps.WindyTown);
 
   const [canvasTool, setTool] = useState<mapTools>(mapTools.SELECT);
   const [penColor, setpenColor] = useState("red");
@@ -78,7 +78,7 @@ function App() {
   const changePresentlanguage = async (value: string) => {
     for (const languageinfo of i18nData) {
       if (languageinfo.language === value) {
-        setPresentMap(languageinfo.mapsetting.maps.WindyTown);
+        setPresentMap(i18nData[1].mapsetting.maps.WindyTown);
         setPresentMapURL({ imgPrepareLink: mapList[0].imgPrepareLink, imgBlankLink: mapList[0].imgBlankLink });
         setMapPrepareMode(true);
         setMarkNameMode(true);
@@ -121,12 +121,13 @@ function App() {
   })
 
   const SkillModule = Object.keys(factions).map((faction) => {
-    return <><div style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-8px", marginTop: "5px" }}>
-      <div>
-        <img src={factionData[faction as factions]} style={{ height: "40px" }} />
+    return <>
+      <div style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-8px", marginTop: "5px" }}>
+        <div>
+          <img src={factionData[faction as factions]} style={{ height: "40px" }} />
+        </div>
+        <Title heading={6}>{presentLanguage.factions[faction as factions]}</Title>
       </div>
-      <Title heading={6}>{presentLanguage.factions[faction as factions]}</Title>
-    </div>
       <Row gutter={[24, 8]} type="flex" align="middle">
         {Object.keys(characterData).map((character) => {
           const char = characterData[character as keyof typeof characterData];
@@ -146,9 +147,9 @@ function App() {
   });
 
   return (
-    <Layout className="components-layout-demo" style={{ height: 720, width: 1280, margin: "auto" }}>
+    <Layout className="components-layout-demo semi-always-light" style={{ height: 720, width: 1280, margin: "auto" }}>
       <Header style={styles.commonStyles}>
-        <Title heading={3} style={{ margin: '14px 0' }} >{presentLanguage.title}  <span>{mapMarkNameMode ? <Tag color='light-blue' style={{ margin: "5px" }}><MdCreate size='1rem' /></Tag> : <></>}</span></Title>
+        <Title heading={3} style={{ margin: '14px 0' }} >{presentLanguage.title}  <span><Tag color='light-blue' style={{ margin: "3px" }}>{presentMap}</Tag>{mapMarkNameMode ? <Tag color='light-blue' style={{ margin: "3px" }}><MdCreate size='1rem' /></Tag> : <></>}</span></Title>
         <div style={{ position: "relative", left: "1100px", top: "-60px", height: "100%", width: "200px", display: "flex" }}>
           <div style={{ marginTop: "8px", marginRight: "12px" }}><MdOutlineTranslate size='1.5rem' /></div>
           <Select defaultValue={presentLanguage.language} style={{ width: 120, marginTop: "18px" }} onChange={value => changePresentlanguage(value as string)}>
@@ -313,7 +314,7 @@ function App() {
         </Content>
       </Layout>
       <Footer className='undragable' style={styles.commonStyles}>
-        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginLeft: "120px" }}>
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginLeft: "80px" }}>
           <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="nofollow">
             <img decoding="async" loading="lazy" src="https://s2.loli.net/2024/09/16/TPdoKCrgVb4i37J.png" width="107" height="38" style={{ marginRight: "20px", marginTop: "12px" }} />
           </a>
@@ -338,8 +339,9 @@ function App() {
           <div style={{ marginBottom: "12px", marginLeft: "10px", marginRight: "10px" }}>
             {" | "}
           </div>
-          <div style={{ marginBottom: "12px" }}>
-            国内站点
+          <div style={{ marginBottom: "16px" }}>
+            <Button type="tertiary" onClick={() => open("https://klbq.fsltech.cn/mapassist.html", "_blank")}>中国境内站点</Button>
+            {/*<Button type="tertiary" onClick={() => open("https://strinova.fsltech.cn/", "_blank")}>International Site</Button>*/}
           </div>
         </div>
       </Footer>
