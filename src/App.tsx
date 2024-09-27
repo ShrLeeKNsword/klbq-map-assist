@@ -1,25 +1,27 @@
 import { useState } from 'react';
-import { Layout, Collapse, Typography, Select, Tooltip, Popover, Col, Row, Popconfirm, ColorPicker, Banner, Toast, Tag } from '@douyinfe/semi-ui';
-import ColorBtn from './components/buttons/colorBtn.tsx';
+import { Layout, Collapse, Typography, Select, Tooltip, Popover, Col, Row, Banner, Tag, Popconfirm, Toast, ColorPicker } from '@douyinfe/semi-ui';
 import CharacterBtn from './components/buttons/characterBtn.tsx';
 import SkillBtn from './components/buttons/skillBtn.tsx';
 import GrenadeBtn from './components/buttons/grenadeBtn.tsx';
 
 import './App.css';
-import DrawableMap from './components/drawableMap.tsx';
-import StandardButton from './components/buttons/standardButton.tsx';
 import ContributeBox from './components/contributors.tsx';
 import { I18nData, i18nData } from './data/i18n.tsx';
 import { mapList } from './data/maplist.ts';
 import { characterData, factionData, factions } from './data/characters.ts';
-import { canvasElement, colorPalette, mapTools } from './utils/canvasConstants.ts';
-import ButtonNoPopover from './components/buttons/buttonNoPopover.tsx';
 import { grenadeData } from './data/grenades.ts';
 
 import { MdCreate, MdDelete, MdOutlineTranslate, MdUndo } from 'react-icons/md';
-import { GiArrowCursor } from 'react-icons/gi';
 import { FaGithub, FaDiscord } from 'react-icons/fa';
+import usePikaso from 'pikaso-react-hook';
+import PikasoMap from './components/pikasoMap.tsx';
+import ButtonNoPopover from './components/buttons/buttonNoPopover.tsx';
+import { GiArrowCursor } from 'react-icons/gi';
 import { PiLineSegmentFill } from 'react-icons/pi';
+import ColorBtn from './components/buttons/colorBtn.tsx';
+import DrawableMap from './components/drawableMap.tsx';
+import { canvasElement, colorPalette, mapTools } from './utils/canvasConstants.ts';
+import StandardButton from './components/buttons/standardButton.tsx';
 
 const styles = {
   commonStyles: {
@@ -45,10 +47,6 @@ function App() {
   const { Header, Footer, Sider, Content } = Layout;
   const { Title } = Typography;
 
-  const [presentLanguage, setPresentLanguage] = useState<I18nData>(i18nData[1]);
-  const [closeallcollapse, setCloseAllCollapse] = useState(false);
-  const [presentMap, setPresentMap] = useState(presentLanguage.mapsetting.maps.WindyTown);
-
   const [canvasTool, setTool] = useState<mapTools>(mapTools.SELECT);
   const [penColor, setpenColor] = useState("red");
 
@@ -56,16 +54,22 @@ function App() {
   const [lineWidth, setLineWidth] = useState(2);
 
   const [canvasElements, setCanvasElements] = useState<canvasElement[]>([]);
+
+  const [presentLanguage, setPresentLanguage] = useState<I18nData>(i18nData[1]);
+  const [closeallcollapse, setCloseAllCollapse] = useState(false);
+  
+  const [ref, editor] = usePikaso();
   const [mapPrepareMode, setMapPrepareMode] = useState(true);
   const [mapMarkNameMode, setMarkNameMode] = useState(true);
-
-  const [presentMapURL, setPresentMapURL] = useState({ imgPrepareLink: mapList[0].imgPrepareLink, imgBlankLink: mapList[0].imgBlankLink });
+  
   const [togglevisible, setToggleVisible] = useState(false);
-
+  
   const Sleep = (ms: number) => {
     return new Promise(resolve => setTimeout(resolve, ms))
   }
-
+  
+  const [presentMap, setPresentMap] = useState(presentLanguage.mapsetting.maps.WindyTown);
+  const [presentMapURL, setPresentMapURL] = useState({ imgPrepareLink: mapList[0].imgPrepareLink, imgBlankLink: mapList[0].imgBlankLink });
   const changePresentmap = (value: string) => {
     setPresentMap(value);
     for (const mapinfo of mapList) {
@@ -281,7 +285,7 @@ function App() {
           </Collapse>
         </Sider>
         <Content style={{ height: "100%", lineHeight: '100px', width: '100%', margin: 'auto', display: 'flex', placeItems: 'center' }}>
-          <DrawableMap presentMapURL={mapPrepareMode ? presentMapURL.imgPrepareLink : presentMapURL.imgBlankLink} canvasTool={canvasTool} penColor={penColor} canvasElements={canvasElements} setCanvasElements={setCanvasElements} penWidth={penWidth} lineWidth={lineWidth} />
+          <PikasoMap pikasoRef={ref} pikasoEditor={editor} currentMap={mapPrepareMode ? presentMapURL.imgPrepareLink : presentMapURL.imgBlankLink} />
           <div style={{ position: "relative", top: "-20px", right: "40px", width: "58px", height: "max" }}>
             <ButtonNoPopover icon={GiArrowCursor} onClick={() => setTool(mapTools.SELECT)} isActiveTool={canvasTool === mapTools.SELECT} />
             <Popover
