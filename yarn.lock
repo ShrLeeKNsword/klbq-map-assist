@@ -996,6 +996,11 @@ deep-is@^0.1.3:
   resolved "https://registry.yarnpkg.com/deep-is/-/deep-is-0.1.4.tgz#a6f2dce612fadd2ef1f519b73551f17e85199831"
   integrity sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==
 
+deepmerge@^4.3.1:
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/deepmerge/-/deepmerge-4.3.1.tgz#44b5f2147cd3b00d4b56137685966f26fd25dd4a"
+  integrity sha512-3sUqbMEc77XqpdNO7FRyRog+eW3ph+GYCbj+rK+uYyRMuwsVy0rMiVtPn+QJlKFvWP/1PYpapqYn0Me2knFn+A==
+
 delegates@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/delegates/-/delegates-1.0.0.tgz#84c6e159b81904fdca59a0ef44cd870d31250f9a"
@@ -1608,6 +1613,11 @@ keyv@^4.5.4:
   integrity sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==
   dependencies:
     json-buffer "3.0.1"
+
+konva@^9.3.6:
+  version "9.3.15"
+  resolved "https://registry.yarnpkg.com/konva/-/konva-9.3.15.tgz#0ffc10944784cfe8a4c7d02dc6072c87d9b17854"
+  integrity sha512-6jceV1u75a41Fwky7HIg7Xr092sn9g+emE/F4KrkNey9j5IwM/No91z4g13P9kbh0NePzC20YvfyGVS5EzliUA==
 
 levn@^0.4.1:
   version "0.4.1"
@@ -2436,6 +2446,22 @@ picomatch@^2.3.1:
   resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-2.3.1.tgz#3ba3833733646d9d3e4995946c1365a67fb07a42"
   integrity sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==
 
+pikaso-react-hook@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/pikaso-react-hook/-/pikaso-react-hook-2.1.1.tgz#2584fa762dfd8438cdd4c7dc8a437cfd1ef8b732"
+  integrity sha512-43Ahp2c/fdYGmOm5fPGz5XdtVYpQ68TtPor9klqXDdX0alPAvKWVA28mPjAtXkIbg3WHBlMd9PpgNQbJxldzTA==
+  dependencies:
+    pikaso "^2.7.3"
+
+pikaso@^2.7.3:
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/pikaso/-/pikaso-2.8.3.tgz#ef9a8cb0262bd0aa4620ff2d8621f71c1969cf2b"
+  integrity sha512-Nt3zyNdoHFo54FYUnZ6EwhpP9QqetH05lzniO0U0vSoNX8SdD3+2WHff1Prkiu2vHhWxw6qlDIqfBmqcjB6chQ==
+  dependencies:
+    deepmerge "^4.3.1"
+    konva "^9.3.6"
+    typescript "^5.4.5"
+
 points-on-curve@0.2.0, points-on-curve@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/points-on-curve/-/points-on-curve-0.2.0.tgz#7dbb98c43791859434284761330fa893cb81b4d1"
@@ -2911,7 +2937,7 @@ typescript-eslint@^8.0.1:
     "@typescript-eslint/parser" "8.6.0"
     "@typescript-eslint/utils" "8.6.0"
 
-typescript@^5.5.3:
+typescript@^5.4.5, typescript@^5.5.3:
   version "5.6.2"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.6.2.tgz#d1de67b6bef77c41823f822df8f0b3bcff60a5a0"
   integrity sha512-NW8ByodCSNCwZeghjN3o+JX5OFH0Ojg6sadjEKY4huZ52TqbJTJnDo5+Tw98lSy63NZvi4n+ez5m2u5d4PkZyw==
