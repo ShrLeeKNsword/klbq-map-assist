@@ -1,18 +1,27 @@
 import { useState } from 'react';
-import { Layout, Collapse, Typography, Select, Tooltip, Popover, Col, Row, Popconfirm, ColorPicker, Banner, Toast } from '@douyinfe/semi-ui';
-import { IconEdit, IconDelete, IconUndo, IconLanguage, IconMinus, IconGithubLogo, IconMaximize } from '@douyinfe/semi-icons';
-import ColorBtn from './components/colorBtb.tsx';
-import CharactorBtn from './components/charactorBtn.tsx';
-import SkillBtn from './components/skillBtn.tsx';
-import GrenadeBtn from './components/grenadeBtn.tsx';
+import { Layout, Collapse, Typography, Select, Tooltip, Popover, Col, Row, Banner, Tag, Popconfirm, Toast, ColorPicker, Button } from '@douyinfe/semi-ui';
+import CharacterBtn from './components/buttons/characterBtn.tsx';
+import SkillBtn from './components/buttons/skillBtn.tsx';
+import GrenadeBtn from './components/buttons/grenadeBtn.tsx';
 
 import './App.css';
-import DrawableMap from './components/drawableMap.tsx';
-import StandardButton from './components/toolButtons/standardButton.tsx';
-import { i18nData } from './data/i18n.tsx';
+import ContributeBox from './components/contributors.tsx';
+import { I18nData, i18nData } from './data/i18n.tsx';
 import { mapList } from './data/maplist.ts';
-import { canvasElement, colorPalette, mapTools } from './utils/canvasConstants.ts';
-import ButtonNoPopover from './components/toolButtons/buttonNoPopover.tsx';
+import { characterData, factionData, factions } from './data/characters.ts';
+import { grenadeData } from './data/grenades.ts';
+
+import { MdCreate, MdDelete, MdOutlineTranslate, MdUndo } from 'react-icons/md';
+import { FaGithub, FaDiscord } from 'react-icons/fa';
+import usePikaso from 'pikaso-react-hook';
+import PikasoMap from './components/pikasoMap.tsx';
+import ButtonNoPopover from './components/buttons/buttonNoPopover.tsx';
+import { GiArrowCursor } from 'react-icons/gi';
+import { PiLineSegmentFill } from 'react-icons/pi';
+import ColorBtn from './components/buttons/colorBtn.tsx';
+import { colorPalette, mapTools } from './utils/canvasConstants.ts';
+import StandardButton from './components/buttons/standardButton.tsx';
+import { DrawType } from 'pikaso';
 
 const styles = {
   commonStyles: {
@@ -38,31 +47,31 @@ function App() {
   const { Header, Footer, Sider, Content } = Layout;
   const { Title } = Typography;
 
-  const [presentLanguage, setPresentLanguage] = useState(i18nData[0]);
+  const [presentLanguage, setPresentLanguage] = useState<I18nData>(i18nData[1]);
   const [closeallcollapse, setCloseAllCollapse] = useState(false);
-  const [presentMap, setPresentMap] = useState(presentLanguage.mapsetting.maps.FengYeTown);
+  const [presentMap, setPresentMap] = useState("WindyTown");
 
-  const [canvasTool, setTool] = useState<mapTools>(mapTools.SELECT);
+  const [canvasTool, setTool] = useState<mapTools>("SELECT");
   const [penColor, setpenColor] = useState("red");
 
   const [penWidth, setpenWidth] = useState(2);
   const [lineWidth, setLineWidth] = useState(2);
 
-  const [canvasElements, setCanvasElements] = useState<canvasElement[]>([]);
+  const [ref, editor] = usePikaso();
   const [mapPrepareMode, setMapPrepareMode] = useState(true);
   const [mapMarkNameMode, setMarkNameMode] = useState(true);
 
-  const [presentMapURL, setPresentMapURL] = useState({ imgPrepareLink: mapList[0].imgPrepareLink, imgBlankLink: mapList[0].imgBlankLink });
   const [togglevisible, setToggleVisible] = useState(false);
 
-  const Sleep = (ms: any) => {
+  const Sleep = (ms: number) => {
     return new Promise(resolve => setTimeout(resolve, ms))
   }
 
+  const [presentMapURL, setPresentMapURL] = useState({ imgPrepareLink: mapList[0].imgPrepareLink, imgBlankLink: mapList[0].imgBlankLink });
   const changePresentmap = (value: string) => {
     setPresentMap(value);
     for (const mapinfo of mapList) {
-      if (mapinfo.CNsName === value || mapinfo.ENName === value || mapinfo.JPName === value || mapinfo.CNtName === value) {
+      if (mapinfo.map === value) {
         setPresentMapURL({ imgPrepareLink: mapinfo.imgPrepareLink, imgBlankLink: mapinfo.imgBlankLink });
       }
     }
@@ -71,23 +80,22 @@ function App() {
   const changePresentlanguage = async (value: string) => {
     for (const languageinfo of i18nData) {
       if (languageinfo.language === value) {
-        setPresentMap(languageinfo.mapsetting.maps.FengYeTown);
+        setPresentLanguage(languageinfo);
+        setPresentMap("WindyTown");
         setPresentMapURL({ imgPrepareLink: mapList[0].imgPrepareLink, imgBlankLink: mapList[0].imgBlankLink });
         setMapPrepareMode(true);
         setMarkNameMode(true);
         setCloseAllCollapse(true);
-        setPresentLanguage(languageinfo);
       }
     }
     await Sleep(100)
     setCloseAllCollapse(false);
   }
 
-
   const colorPlate = <div className="grid grid-flex">
     <Row gutter={[16, 24]} type="flex" justify="space-around" align="middle" style={{ marginLeft: "25px" }}>
       {colorPalette.map((color) => {
-        return <Col span={4}>
+        return <Col key={"plate_"+color} span={4}>
           <div className="col-content" onClick={() => { setpenColor(color) }}><ColorBtn color={color} /></div>
         </Col>
       })}
@@ -99,155 +107,54 @@ function App() {
     </Row>
   </div>;
 
-  const CharactorModuel = <>
-    <div style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-5px" }}>
-      <div><img src='https://patchwiki.biligame.com/images/klbq/thumb/6/69/8juww513o4hde7c901l5h8g371u81zx.png/300px-%E9%98%B5%E8%90%A5-%E6%AC%A7%E6%B3%8A.png' style={{ height: "40px" }}></img></div>
-      <Title heading={6}>{presentLanguage.charactors.PUS.name}</Title>
-    </div>
-    <Row gutter={[24, 8]} type="flex" align="middle">
-      <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/1/1b/tgwx7q9203dafj6rsypza3flbultqf7.png/120px-%E7%B1%B3%E9%9B%AA%E5%84%BF%C2%B7%E6%9D%8E%E5%A4%B4%E5%83%8F.png' /></Col>
-      <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/e/e6/s4r4y425r5vn5fbq0sw4i1d7l8d6ft4.png/120px-%E4%BF%A1%E5%A4%B4%E5%83%8F.png' /></Col>
-      <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/4/44/jvg14awbm8ip4fmf4nlkdr7f9nd88xs.png/120px-%E5%BF%83%E5%A4%8F%E5%A4%B4%E5%83%8F.png' /></Col>
-      <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/4/42/j71nx9i25shxr65jnoxxh24x4y0t0b5.png/120px-%E4%BC%8A%E8%96%87%E7%89%B9%E5%A4%B4%E5%83%8F.png' /></Col>
-      <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/c/c5/8bp7psa0s66d19ceyczzv78b26ydaqp.png/120px-%E8%8A%99%E6%8B%89%E8%96%87%E5%A8%85%E5%A4%B4%E5%83%8F.png' /></Col>
-    </Row>
-    <div style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-5px", marginTop: "5px" }}>
-      <div><img src='https://patchwiki.biligame.com/images/klbq/thumb/0/0e/qsqrhhnvg55mdct76xxy3mz4c0bbmfn.png/300px-%E9%98%B5%E8%90%A5-%E5%89%AA%E5%88%80%E6%89%8B.png' style={{ height: "40px" }}></img></div>
-      <Title heading={6}>{presentLanguage.charactors.TS.name}</Title>
-    </div>
-    <Row gutter={[24, 8]} type="flex" align="middle">
-      <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/1/11/rpa27v1teqx37xf0oq21kqhv7t5oxri.png/120px-%E6%98%8E%E5%A4%B4%E5%83%8F.png' /></Col>
-      <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/f/f3/1zor7pqxy3rn3uggyenorigvf37q4hr.png/120px-%E6%8B%89%E8%96%87%E5%A4%B4%E5%83%8F.png' /></Col>
-      <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/d/dd/20gac3391nb2prx6r69yrdkfatxapdu.png/120px-%E6%A2%85%E7%91%9E%E7%8B%84%E6%96%AF%E5%A4%B4%E5%83%8F.png' /></Col>
-      <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/1/14/3ebagyf8bnsfhnvp5iuq8jlcv81q04g.png/120px-%E4%BB%A4%E5%A4%B4%E5%83%8F.png' /></Col>
-      <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/1/1d/ffln5mqrwtvr0dj0wq54guvs10jsfdo.png/120px-%E9%A6%99%E5%A5%88%E7%BE%8E%E5%A4%B4%E5%83%8F.png' /></Col>
-      <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/9/92/oai6e3g5fqekd9023ikl9kvdk0mguy6.png/120px-%E8%89%BE%E5%8D%A1%E5%A4%B4%E5%83%8F.png' /></Col>
-      <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/2/2a/2cau3x7z99x3butkxp7wu3w78zjk3go.png/120px-%E7%8F%90%E6%A0%BC%E5%85%B0%E4%B8%9D%E5%A4%B4%E5%83%8F.png' /></Col>
-    </Row>
-    <div style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-5px", marginTop: "5px" }}>
-      <div><img src='https://patchwiki.biligame.com/images/klbq/thumb/d/d2/tcn2nz93o2q9gffys6i3f81kkpso51m.png/300px-%E9%98%B5%E8%90%A5-%E4%B9%8C%E5%B0%94%E6%AF%94%E8%AF%BA.png' style={{ height: "40px" }}></img></div>
-      <Title heading={6}>{presentLanguage.charactors.Urbino.name}</Title>
-    </div>
-    <Row gutter={[24, 8]} type="flex" align="middle">
-      <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/2/2d/hmkcsrcvp79ctofkwv92iint9iupvnk.png/80px-%E5%A5%A5%E9%BB%9B%E4%B8%BD%C2%B7%E6%A0%BC%E7%BD%97%E5%A4%AB%E5%A4%B4%E5%83%8F.png' /></Col>
-      <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/d/d6/tlbgspg4i0qevvf5vor83rxikrq4xy5.png/80px-%E7%8E%9B%E5%BE%B7%E8%95%BE%E5%A8%9C%C2%B7%E5%88%A9%E9%87%8C%E5%A4%B4%E5%83%8F.png' /></Col>
-      <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/f/f4/rtraite3bno62mzfatae961ke36hc5b.png/80px-%E7%BB%AF%E8%8E%8E%E5%A4%B4%E5%83%8F.png' /></Col>
-      <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/f/f2/9rwg399wannhzh80knjj5tmwffnjg0m.png/80px-%E6%98%9F%E7%BB%98%E5%A4%B4%E5%83%8F.png' /></Col>
-      <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/d/d1/ipi8c39m3lzutqylw7fi7fgjyzp5d1b.png/80px-%E7%99%BD%E5%A2%A8%E5%A4%B4%E5%83%8F.png' /></Col>
-      <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/8/8f/79h9y6t4xnboft6wx3bf08tlfacph7v.png/80px-%E5%8A%A0%E6%8B%89%E8%92%82%E4%BA%9A%C2%B7%E5%88%A9%E9%87%8C%E5%A4%B4%E5%83%8F.png' /></Col>
-    </Row>
-  </>
+  const CharacterModule = Object.keys(factions).map((faction) => {
+    return <><div style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-8px" }}>
+      <div><img src={factionData[faction as factions]} style={{ height: "40px" }}></img></div>
+      <Title heading={6}>{presentLanguage.factions[faction as factions]}</Title>
+    </div><Row gutter={[24, 8]} type='flex' align='middle'>
+        {Object.keys(characterData).map((character) => {
+          const char = characterData[character as keyof typeof characterData];
+          if (char.faction === faction) {
+            return <Col span={6} key={char.character}><CharacterBtn imglink={char.imageLink} /></Col>
+          }
+        })}
+      </Row>
+    </>
+  })
 
-  const SkillModuel = <>
-    <div style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-5px" }}>
-      <div><img src='https://patchwiki.biligame.com/images/klbq/thumb/6/69/8juww513o4hde7c901l5h8g371u81zx.png/300px-%E9%98%B5%E8%90%A5-%E6%AC%A7%E6%B3%8A.png' style={{ height: "40px" }}></img></div>
-      <Title heading={6}>{presentLanguage.charactors.PUS.name}</Title>
-    </div>
-    <Row gutter={[24, 8]} type="flex" align="middle">
-      <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/1/1b/tgwx7q9203dafj6rsypza3flbultqf7.png/120px-%E7%B1%B3%E9%9B%AA%E5%84%BF%C2%B7%E6%9D%8E%E5%A4%B4%E5%83%8F.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/2/21/h6zjxv864fzqsajudhqghj7xm2kh9p7.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/b/b4/syv94txki3utxcisi7slafk1wo7dzpj.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/a/a7/sm1z2dxmpoac2b2cu084qenogijwqgk.png' /></Col>
-      <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/e/e6/s4r4y425r5vn5fbq0sw4i1d7l8d6ft4.png/120px-%E4%BF%A1%E5%A4%B4%E5%83%8F.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/0/08/69v9z3z6za54w4nngig4knvsa0sqdr7.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/d/d3/rr23s1oo8kzvs1vsmekkfezv7c5uwcc.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/f/f2/lxokffbo0us5p28ezgoeebvhvdcfvrz.png' /></Col>
-      <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/4/44/jvg14awbm8ip4fmf4nlkdr7f9nd88xs.png/120px-%E5%BF%83%E5%A4%8F%E5%A4%B4%E5%83%8F.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/1/13/0yh81k46dkda72fb0ppe8gqipqercbj.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/8/87/t1r9hfz66uq9tdkrw71f6194p3r8e8x.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/7/76/goio95r9jjh0hjzbaze9x461719hjlo.png' /></Col>
-      <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/4/42/j71nx9i25shxr65jnoxxh24x4y0t0b5.png/120px-%E4%BC%8A%E8%96%87%E7%89%B9%E5%A4%B4%E5%83%8F.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/9/9a/196s3zjjlaa5sathrf6emjrl4zce7u9.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/4/4e/fcwitibsl4n1ilarnot6qye372j2hog.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/b/b1/jzrs0txs2vaojzfahxtpxb3b921lc0q.png' /></Col>
-      <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/c/c5/8bp7psa0s66d19ceyczzv78b26ydaqp.png/120px-%E8%8A%99%E6%8B%89%E8%96%87%E5%A8%85%E5%A4%B4%E5%83%8F.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/d/d7/fmpl8sibzprofday7ecrdu5546mr84f.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/0/0d/p7wv52md5c0mysj2fn3j31xnp5devop.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/7/79/eafqqzvgxt1xbvn3evttpx25rm2dx5v.png' /></Col>
-    </Row>
-    <div style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-5px", marginTop: "5px" }}>
-      <div><img src='https://patchwiki.biligame.com/images/klbq/thumb/0/0e/qsqrhhnvg55mdct76xxy3mz4c0bbmfn.png/300px-%E9%98%B5%E8%90%A5-%E5%89%AA%E5%88%80%E6%89%8B.png' style={{ height: "40px" }}></img></div>
-      <Title heading={6}>{presentLanguage.charactors.TS.name}</Title>
-    </div>
-    <Row gutter={[24, 8]} type="flex" align="middle">
-      <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/1/11/rpa27v1teqx37xf0oq21kqhv7t5oxri.png/120px-%E6%98%8E%E5%A4%B4%E5%83%8F.png' /></Col>
-      <Col span={6}><SkillBtn top="4px" imglink='https://patchwiki.biligame.com/images/klbq/7/7b/5q4787xhxlmxq1przsao38a6ghnu49r.png' /></Col>
-      <Col span={6}><SkillBtn top="4px" imglink='https://patchwiki.biligame.com/images/klbq/6/6b/lp887cj1afvvma2tc7mwzi43amzp984.png' /></Col>
-      <Col span={6}><SkillBtn top="1px" imglink='https://patchwiki.biligame.com/images/klbq/2/20/3g7omn3caazgqw3rbxn2m9fb5nld3bo.png' /></Col>
-      <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/f/f3/1zor7pqxy3rn3uggyenorigvf37q4hr.png/120px-%E6%8B%89%E8%96%87%E5%A4%B4%E5%83%8F.png' /></Col>
-      <Col span={6}><SkillBtn top="4px" imglink='https://patchwiki.biligame.com/images/klbq/5/55/te42c1gezaqfecyscg5or1j1dch2hem.png' /></Col>
-      <Col span={6}><SkillBtn top="4px" imglink='https://patchwiki.biligame.com/images/klbq/f/f0/7wgl6xlxxx1zgys5vn51zd4k14swyes.png' /></Col>
-      <Col span={6}><SkillBtn top="4px" imglink='https://patchwiki.biligame.com/images/klbq/5/5c/lozkmt4hu3zdng2yadp0chxrknokra8.png' /></Col>
-      <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/d/dd/20gac3391nb2prx6r69yrdkfatxapdu.png/120px-%E6%A2%85%E7%91%9E%E7%8B%84%E6%96%AF%E5%A4%B4%E5%83%8F.png' /></Col>
-      <Col span={6}><SkillBtn top="-4px" imglink='https://patchwiki.biligame.com/images/klbq/2/2d/j04665eo9dv2y59r6q4jof3zh9evaa5.png' /></Col>
-      <Col span={6}><SkillBtn top="-4px" imglink='https://patchwiki.biligame.com/images/klbq/e/ee/f21xu0t250jf8l8mblncb3ec12uqawh.png' /></Col>
-      <Col span={6}><SkillBtn top="-4px" imglink='https://patchwiki.biligame.com/images/klbq/8/87/l7m7m6j5yiqr46mlp4rcvosmjiviut7.png' /></Col>
-      <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/1/14/3ebagyf8bnsfhnvp5iuq8jlcv81q04g.png/120px-%E4%BB%A4%E5%A4%B4%E5%83%8F.png' /></Col>
-      <Col span={6}><SkillBtn top="2px" imglink='https://patchwiki.biligame.com/images/klbq/d/d2/m0r6y8gpy5na2q0w3xwxigbbs8ua5n1.png' /></Col>
-      <Col span={6}><SkillBtn top="3px" imglink='https://patchwiki.biligame.com/images/klbq/5/52/cmyricvldnbwn2x2jcgsang6xwd3f63.png' /></Col>
-      <Col span={6}><SkillBtn top="3px" imglink='https://patchwiki.biligame.com/images/klbq/2/20/4x6qt39wgfwvxxpbyxqtv1d6kuwdkpi.png' /></Col>
-      <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/1/1d/ffln5mqrwtvr0dj0wq54guvs10jsfdo.png/120px-%E9%A6%99%E5%A5%88%E7%BE%8E%E5%A4%B4%E5%83%8F.png' /></Col>
-      <Col span={6}><SkillBtn top="3px" imglink='https://patchwiki.biligame.com/images/klbq/5/55/b8gukdsv4zp92nz7i4e6bc8ws52vqf3.png' /></Col>
-      <Col span={6}><SkillBtn top="3px" imglink='https://patchwiki.biligame.com/images/klbq/5/5d/iiw9rlqkmp4d4kqy3gro3gryajrj90p.png' /></Col>
-      <Col span={6}><SkillBtn top="3px" imglink='https://patchwiki.biligame.com/images/klbq/b/bb/aqucc8zsob3plu38zj8r4b83k7kqmdq.png' /></Col>
-      <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/9/92/oai6e3g5fqekd9023ikl9kvdk0mguy6.png/120px-%E8%89%BE%E5%8D%A1%E5%A4%B4%E5%83%8F.png' /></Col>
-      <Col span={6}><SkillBtn top="3px" imglink='https://patchwiki.biligame.com/images/klbq/b/ba/4m2kbng1kxcd5hb43fxaacvys67s3gs.png' /></Col>
-      <Col span={6}><SkillBtn top="3px" imglink='https://patchwiki.biligame.com/images/klbq/e/eb/c2b0zij3ug3pbmv086b232z6fpgsyi1.png' /></Col>
-      <Col span={6}><SkillBtn top="3px" imglink='https://patchwiki.biligame.com/images/klbq/b/b6/grztntlykjozc4mks6dfssqr9emee51.png' /></Col>
-      <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/2/2a/2cau3x7z99x3butkxp7wu3w78zjk3go.png/120px-%E7%8F%90%E6%A0%BC%E5%85%B0%E4%B8%9D%E5%A4%B4%E5%83%8F.png' /></Col>
-      <Col span={6}><SkillBtn top="-2px" imglink='https://patchwiki.biligame.com/images/klbq/4/4e/4v8h7b0se99huedmxu2y3g8ap3nexc3.png' /></Col>
-      <Col span={6}><SkillBtn top="-2px" imglink='https://patchwiki.biligame.com/images/klbq/e/e6/a6cssmam5j244izx801vxvt60gqlqt9.png' /></Col>
-      <Col span={6}><SkillBtn top="-2px" imglink='https://patchwiki.biligame.com/images/klbq/c/c4/fuy77op8q725f0u3n11ykmnjnwgxjvs.png' /></Col>
-    </Row>
-    <div style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-5px", marginTop: "5px" }}>
-      <div><img src='https://patchwiki.biligame.com/images/klbq/thumb/d/d2/tcn2nz93o2q9gffys6i3f81kkpso51m.png/300px-%E9%98%B5%E8%90%A5-%E4%B9%8C%E5%B0%94%E6%AF%94%E8%AF%BA.png' style={{ height: "40px" }}></img></div>
-      <Title heading={6}>{presentLanguage.charactors.Urbino.name}</Title>
-    </div>
-    <Row gutter={[24, 8]} type="flex" align="middle">
-      <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/d/d6/tlbgspg4i0qevvf5vor83rxikrq4xy5.png/80px-%E7%8E%9B%E5%BE%B7%E8%95%BE%E5%A8%9C%C2%B7%E5%88%A9%E9%87%8C%E5%A4%B4%E5%83%8F.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/a/a8/g9426n2qj4jrjt8il2irw1x529nupuy.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/f/f2/q2782fg2ggtc2jczhoznm3g6lar8gd1.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/1/1b/deofr9plye7q3xaryttmuf5svrq21ix.png' /></Col>
-      <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/f/f4/rtraite3bno62mzfatae961ke36hc5b.png/80px-%E7%BB%AF%E8%8E%8E%E5%A4%B4%E5%83%8F.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/c/c4/60e8n6rdjuuh90v9sjzfrnhky52l5mv.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/b/bb/8hnd8kzco5la96rbi22tu8n4z175oe3.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/b/bc/mkw4n4b9giymp2glsu6ln699epp55ov.png' /></Col>
-      <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/f/f2/9rwg399wannhzh80knjj5tmwffnjg0m.png/80px-%E6%98%9F%E7%BB%98%E5%A4%B4%E5%83%8F.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/e/e9/gse1gendxxjp89p2of69t7sfote9gec.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/6/62/f3l2kdlfs4k0agqvd54xyh4mtfee0l1.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/0/05/7hsvqks0fen88umc9qil7krfzaumdll.png' /></Col>
-      <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/d/d1/ipi8c39m3lzutqylw7fi7fgjyzp5d1b.png/80px-%E7%99%BD%E5%A2%A8%E5%A4%B4%E5%83%8F.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/c/c7/hwxi8k6qd7zlhn1jn2n54z8tf5pyliw.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/7/78/trkbrg8fydkw5s7lpwtqobrrynektpr.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/c/c8/t77eqoqldkys6w7n23kcsuq1su7qi3w.png' /></Col>
-      <Col span={6}><CharactorBtn imglink='https://patchwiki.biligame.com/images/klbq/thumb/8/8f/79h9y6t4xnboft6wx3bf08tlfacph7v.png/80px-%E5%8A%A0%E6%8B%89%E8%92%82%E4%BA%9A%C2%B7%E5%88%A9%E9%87%8C%E5%A4%B4%E5%83%8F.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/0/08/t803rd16l0c33l02pj1js9lmxtfl1hq.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/7/76/0xnly1gdr8qr432xxxsd9q792ak1rkf.png' /></Col>
-      <Col span={6}><SkillBtn imglink='https://patchwiki.biligame.com/images/klbq/d/d1/g3s9cxnj82ayakng4nzatvmdixtj6f3.png' /></Col>
-    </Row>
-  </>
+  const SkillModule = Object.keys(factions).map((faction) => {
+    return <>
+      <div key={"skill_"+faction} style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-8px", marginTop: "5px" }}>
+        <div>
+          <img src={factionData[faction as factions]} style={{ height: "40px" }} />
+        </div>
+        <Title heading={6}>{presentLanguage.factions[faction as factions]}</Title>
+      </div>
+      <Row gutter={[24, 8]} type="flex" align="middle">
+        {Object.keys(characterData).map((character) => {
+          const char = characterData[character as keyof typeof characterData];
+          if (char.faction === faction) {
+            return <><Col key={"skill_"+char.character} span={6}><CharacterBtn imglink={char.imageLink} /></Col>
+              <Col key={"skill_"+char.skills.Active} span={6}><SkillBtn imglink={char.skills.Active} /></Col>
+              <Col key={"skill_"+char.skills.Passive} span={6}><SkillBtn imglink={char.skills.Passive} /></Col>
+              <Col key={"skill_"+char.skills.Ultimate} span={6}><SkillBtn imglink={char.skills.Ultimate} /></Col></>
+          }
+        })}
+      </Row>
+    </>
+  })
 
-  const GrenadeModuel = <>
-    <Row gutter={[24, 8]} type="flex" align="middle">
-      <Col span={6}><GrenadeBtn imglink='https://s2.loli.net/2024/09/24/y6xfMWzvi5GrE8Z.png' /></Col>
-      <Col span={6}><GrenadeBtn imglink='https://s2.loli.net/2024/09/24/siyl1V9OETwdntX.png' /></Col>
-      <Col span={6}><GrenadeBtn imglink='https://s2.loli.net/2024/09/24/z8DXpG7icOdRhkj.png' /></Col>
-      <Col span={6}><GrenadeBtn imglink='https://s2.loli.net/2024/09/24/M7NLCWwZaYU5lyb.png' /></Col>
-      <Col span={6}><GrenadeBtn imglink='https://s2.loli.net/2024/09/24/iZpv7XY5j1DJGAL.png' /></Col>
-      <Col span={6}><GrenadeBtn imglink='https://s2.loli.net/2024/09/24/rR5g1ukx7j6tPFK.png' /></Col>
-      <Col span={6}><GrenadeBtn imglink='https://s2.loli.net/2024/09/24/MQYHj54khqVxetJ.png' /></Col>
-      <Col span={6}><GrenadeBtn imglink='https://s2.loli.net/2024/09/24/nJzYDPiv8uWsdMx.png' /></Col>
-      <Col span={6}><GrenadeBtn imglink='https://s2.loli.net/2024/09/24/2UAiJIGMwRKauXt.png' /></Col>
-    </Row>
-  </>
+  const GrenadeButtons = grenadeData.map(grenade => {
+    return <Col key={"grenade_"+grenade.grenade} span={6}><GrenadeBtn imglink={grenade.imageLink} /></Col>
+  });
 
   return (
-    <Layout className="components-layout-demo" style={{ height: 720, width: 1280, margin: "auto" }}>
+    <Layout className="components-layout-demo semi-always-light" style={{ height: 720, width: 1280, margin: "auto" }}>
       <Header style={styles.commonStyles}>
-        <Title heading={3} style={{ margin: '14px 0' }} >{presentLanguage.title} - {presentMap} {mapPrepareMode ? "[" + presentLanguage.mapsetting.maptypes.prepare + "]" : "[" + presentLanguage.mapsetting.maptypes.blank + "]"} {mapMarkNameMode ? "[" + presentLanguage.mapsetting.spotmark + "]" : ""}</Title>
+        <Title heading={3} style={{ margin: '14px 0' }} >{presentLanguage.title}  <span><Tag color='light-blue' style={{ margin: "3px" }}>{presentLanguage.mapsetting.maps[presentMap as keyof typeof presentLanguage.mapsetting.maps]}</Tag>{mapMarkNameMode ? <Tag color='light-blue' style={{ margin: "3px" }}><MdCreate size='1rem' /></Tag> : <></>}</span></Title>
         <div style={{ position: "relative", left: "1100px", top: "-60px", height: "100%", width: "200px", display: "flex" }}>
-          <div style={{ marginTop: "8px", marginRight: "12px" }}><IconLanguage size='extra-large' /></div>
-          <Select defaultValue="简体中文" style={{ width: 120, marginTop: "18px" }} onChange={value => changePresentlanguage(value as string)}>
+          <div style={{ marginTop: "8px", marginRight: "12px" }}><MdOutlineTranslate size='1.5rem' /></div>
+          <Select defaultValue={presentLanguage.language} style={{ width: 120, marginTop: "18px" }} onChange={value => changePresentlanguage(value as string)}>
             {i18nData.map((language) => {
               return <Select.Option key={language.language} value={language.language}>{language.language}</Select.Option>;
             })}
@@ -263,45 +170,43 @@ function App() {
                     {presentLanguage.mapsetting.choosemap}
                   </Col>
                   <Col span={7}>
-                    <Select defaultValue={presentLanguage.mapsetting.maps.FengYeTown} style={{ width: 120 }} onChange={value => changePresentmap(value as string)}>
-                      <Select.Option value={presentLanguage.mapsetting.maps.FengYeTown}>{presentLanguage.mapsetting.maps.FengYeTown}</Select.Option>
-                      <Select.Option value={presentLanguage.mapsetting.maps.SpaceLab}>{presentLanguage.mapsetting.maps.SpaceLab}</Select.Option>
-                      <Select.Option value={presentLanguage.mapsetting.maps.Cosmite}>{presentLanguage.mapsetting.maps.Cosmite}</Select.Option>
-                      <Select.Option value={presentLanguage.mapsetting.maps.EulerPort}>{presentLanguage.mapsetting.maps.EulerPort}</Select.Option>
-                      <Select.Option value={presentLanguage.mapsetting.maps.CauchyDistrict}>{presentLanguage.mapsetting.maps.CauchyDistrict}</Select.Option>
-                      <Select.Option value={presentLanguage.mapsetting.maps.Area88}>{presentLanguage.mapsetting.maps.Area88}</Select.Option>
-                      <Select.Option value={presentLanguage.mapsetting.maps.Base404}>{presentLanguage.mapsetting.maps.Base404}</Select.Option>
+                    <Select defaultValue={presentLanguage.mapsetting.maps.WindyTown} style={{ width: 140 }} onChange={value => changePresentmap(value as string)}>
+                      {Object.keys(presentLanguage.mapsetting.maps).map((key) => (
+                        <Select.Option value={key}>{presentLanguage.mapsetting.maps[key as keyof typeof presentLanguage.mapsetting.maps]}</Select.Option>
+                      ))}
                     </Select>
                   </Col>
                   <Col span={9}>
-                    {presentLanguage.mapsetting.maptype}
+                    {presentLanguage.mapsetting.TeamHighlight}
                   </Col>
                   <Col span={7}>
                     <Select defaultValue="准备阶段" style={{ width: 120 }} onChange={value => setMapPrepareMode(value as string === "准备阶段" ? true : false)}>
-                      <Select.Option value="准备阶段">{presentLanguage.mapsetting.maptypes.prepare}</Select.Option>
-                      <Select.Option value="空白">{presentLanguage.mapsetting.maptypes.blank}</Select.Option>
+                      <Select.Option value="准备阶段">{presentLanguage.mapsetting.TeamHighlightOptions.prepare}</Select.Option>
+                      <Select.Option value="空白">{presentLanguage.mapsetting.TeamHighlightOptions.blank}</Select.Option>
                     </Select>
                   </Col>
                   <Col span={9}>
-                    {presentLanguage.mapsetting.spotmark}
+                    {presentLanguage.mapsetting.Landmarks}
                   </Col>
                   <Col span={7}>
                     <Select defaultValue="启用" style={{ width: 120 }} onChange={value => setMarkNameMode(value as string === "启用" ? true : false)}>
-                      <Select.Option value="启用">{presentLanguage.mapsetting.spotmarks.enable}</Select.Option>
-                      <Select.Option value="禁用">{presentLanguage.mapsetting.spotmarks.disable}</Select.Option>
+                      <Select.Option value="启用">{presentLanguage.mapsetting.LandmarkOptions.enable}</Select.Option>
+                      <Select.Option value="禁用">{presentLanguage.mapsetting.LandmarkOptions.disable}</Select.Option>
                     </Select>
                   </Col>
                 </Row>
               </div>
             </Collapse.Panel>
-            <Collapse.Panel header={presentLanguage.sidebar.charactor} itemKey="2" >
-              {CharactorModuel}
+            <Collapse.Panel header={presentLanguage.sidebar.character} itemKey="2" >
+              {CharacterModule}
             </Collapse.Panel>
             <Collapse.Panel header={presentLanguage.sidebar.skill} itemKey="3">
-              {SkillModuel}
+              {SkillModule}
             </Collapse.Panel>
             <Collapse.Panel header={presentLanguage.sidebar.grenade} itemKey="4">
-              {GrenadeModuel}
+              <Row gutter={[24, 8]} type="flex" align="middle">
+                {GrenadeButtons}
+              </Row>
             </Collapse.Panel>
             <Collapse.Panel header={presentLanguage.sidebar.lineup} itemKey="5">
               <Row gutter={[16, 8]} type="flex" align="middle">
@@ -379,19 +284,19 @@ function App() {
           </Collapse>
         </Sider>
         <Content style={{ height: "100%", lineHeight: '100px', width: '100%', margin: 'auto', display: 'flex', placeItems: 'center' }}>
-          <DrawableMap presentMapURL={mapPrepareMode ? presentMapURL.imgPrepareLink : presentMapURL.imgBlankLink} canvasTool={canvasTool} penColor={penColor} canvasElements={canvasElements} setCanvasElements={setCanvasElements} penWidth={penWidth} lineWidth={lineWidth} />
+          <PikasoMap pikasoRef={ref} pikasoEditor={editor} currentMap={mapPrepareMode ? presentMapURL.imgPrepareLink : presentMapURL.imgBlankLink} canvasTool={canvasTool} lineWidth={lineWidth} penColor={penColor} penWidth={penWidth} />
           <div style={{ position: "relative", top: "-20px", right: "40px", width: "58px", height: "max" }}>
-            <ButtonNoPopover icon={IconMaximize} onClick={() => setTool(mapTools.SELECT)} isActiveTool={canvasTool === mapTools.SELECT} />
+            <ButtonNoPopover icon={GiArrowCursor} onClick={() => setTool("SELECT")} isActiveTool={canvasTool === "SELECT"} />
             <Popover
               content={colorPlate}
               position={"left"}
             >
               <div style={styles.canvasToolButtonStyle}><ColorBtn color={penColor} /></div>
             </Popover>
-            <StandardButton icon={IconEdit} penWidth={penWidth} penColor={penColor} setpenWidth={setpenWidth} onClick={() => setTool(mapTools.PEN)} isActiveTool={canvasTool === mapTools.PEN} />
-            <StandardButton icon={IconMinus} penWidth={lineWidth} penColor={penColor} setpenWidth={setLineWidth} onClick={() => setTool(mapTools.LINE)} isActiveTool={canvasTool === mapTools.LINE} />
+            <StandardButton icon={MdCreate} penWidth={penWidth} penColor={penColor} setpenWidth={setpenWidth} onClick={() => setTool(DrawType.Pencil)} isActiveTool={canvasTool === DrawType.Pencil} />
+            <StandardButton icon={PiLineSegmentFill} penWidth={lineWidth} penColor={penColor} setpenWidth={setLineWidth} onClick={() => setTool(DrawType.Line)} isActiveTool={canvasTool === DrawType.Line} />
             <Tooltip content={presentLanguage.markbox.undo}>
-              <ButtonNoPopover icon={IconUndo} onClick={() => setCanvasElements(canvasElements.slice(0, -1))} isActiveTool={false} />
+              <ButtonNoPopover icon={MdUndo} onClick={() => editor?.undo()} isActiveTool={false} />
             </Tooltip>
             <Popconfirm
               visible={togglevisible}
@@ -399,18 +304,49 @@ function App() {
               content={presentLanguage.markbox.clearwarning.content}
               okText={presentLanguage.markbox.clearwarning.ok}
               cancelText={presentLanguage.markbox.clearwarning.cancel}
-              onConfirm={() => { setCanvasElements([]); setToggleVisible(!togglevisible); Toast.success(presentLanguage.markbox.clearwarning.success) }}
+              onConfirm={() => { editor?.reset(); setToggleVisible(!togglevisible); Toast.success(presentLanguage.markbox.clearwarning.success) }}
               onCancel={() => { setToggleVisible(!togglevisible) }}
               position='left'
             >
               <Tooltip content={presentLanguage.markbox.clear}>
-                <div onClick={() => setToggleVisible(!togglevisible)} style={styles.canvasToolButtonStyle}><IconDelete size='extra-large' /></div>
+                <div onClick={() => setToggleVisible(!togglevisible)} style={styles.canvasToolButtonStyle}><MdDelete size='2rem' /></div>
               </Tooltip>
             </Popconfirm>
           </div>
         </Content>
       </Layout>
-      <Footer style={styles.commonStyles}><div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginLeft: "120px" }}><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="nofollow"><img decoding="async" loading="lazy" src="https://s2.loli.net/2024/09/16/TPdoKCrgVb4i37J.png" width="107" height="38" style={{ marginRight: "20px", marginTop: "12px" }} /></a><div style={{ marginBottom: "12px" }}>© 番石榴网络科技工作室 & <IconGithubLogo style={{ margin: "6px" }} /><a href='https://github.com/ShrLeeKNsword/klbq-map-assist' target="_blank">Github Contributors</a> & <a href='https://wiki.biligame.com/klbq/%E9%A6%96%E9%A1%B5' target='_blank'>卡拉彼丘Wiki</a></div></div></Footer>
+      <Footer className='undragable' style={styles.commonStyles}>
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginLeft: "80px" }}>
+          <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="nofollow">
+            <img decoding="async" loading="lazy" src="https://s2.loli.net/2024/09/16/TPdoKCrgVb4i37J.png" width="107" height="38" style={{ marginRight: "20px", marginTop: "12px" }} />
+          </a>
+          <div style={{ marginBottom: "12px" }}>
+            {"© 番石榴网络科技工作室 & "}
+            <Popover
+              content={<ContributeBox learnmore={presentLanguage.sidebar.learnmore} />}
+              position={"top"}
+            >
+              <a>Contributors</a>
+            </Popover>
+            {" & "}<a href='https://wiki.biligame.com/klbq/%E9%A6%96%E9%A1%B5' target='_blank'>卡拉彼丘Wiki</a>{" | "}
+          </div>
+          <div style={{ height: "max", display: "flex", alignItems: "center", marginLeft: "10px", marginTop: "-7px" }}>
+            <Tooltip content="Github repository"><a href='https://github.com/ShrLeeKNsword/klbq-map-assist' target="_blank" style={{}}>
+              <FaGithub />
+            </a></Tooltip>
+            <Tooltip content="Discord channel"><a href='https://discord.com/invite/C6AYFvgR' target="_blank" style={{ marginLeft: "5px" }}>
+              <FaDiscord />
+            </a></Tooltip>
+          </div>
+          <div style={{ marginBottom: "12px", marginLeft: "10px", marginRight: "10px" }}>
+            {" | "}
+          </div>
+          <div style={{ marginBottom: "16px" }}>
+            <Button type="tertiary" onClick={() => open("https://klbq.fsltech.cn/mapassist.html", "_blank")}>中国境内站点</Button>
+            {/*<Button type="tertiary" onClick={() => open("https://strinova.fsltech.cn/", "_blank")}>International Site</Button>*/}
+          </div>
+        </div>
+      </Footer>
     </Layout >
   )
 }

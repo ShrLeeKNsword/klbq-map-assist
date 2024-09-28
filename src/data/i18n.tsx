@@ -1,6 +1,10 @@
+import { Characters, factions } from "./characters";
+import { grenades as grenades } from "./grenades";
+import { MapName } from "./maplist";
+
 interface Sidebar {
   mapsetting: string;
-  charactor: string;
+  character: string;
   skill: string;
   grenade: string;
   lineup: string;
@@ -8,20 +12,33 @@ interface Sidebar {
   mobaisuperjump: string;
   bugpoint: string;
   bugpointwarning: JSX.Element;
+  learnmore: string;
 }
 
 interface MapSetting {
   choosemap: string;
-  maps: Record<string, string>;
-  maptype: string;
-  maptypes: Record<string, string>;
-  spotmark: string;
-  spotmarks: Record<string, string>;
+  maps: {
+    [key in MapName]: string;
+  };
+  TeamHighlight: string;
+  TeamHighlightOptions: {
+    prepare: string;
+    blank: string;
+  };
+  Landmarks: string;
+  LandmarkOptions: {
+    enable: string;
+    disable: string;
+  };
 }
 
 interface LineupSetting {
   spotmark: string;
-  spotmarks: Record<string, string>;
+  spotmarks: {
+    disable: string;
+    available: string;
+    all: string;
+  };
 }
 interface Skilllineupsetting {
   spotmark: string;
@@ -30,30 +47,20 @@ interface Skilllineupsetting {
 
 interface MobaiSuperJumpSetting {
   spotmark: string;
-  spotmarks: Record<string, string>;
+  spotmarks: {
+    disable: string;
+    available: string;
+    all: string;
+  };
 }
 
 interface BugPointSetting {
   spotmark: string;
-  spotmarks: Record<string, string>;
-}
-
-interface Charactors {
-  PUS: Record<string, string>;
-  TS: Record<string, string>;
-  Urbino: Record<string, string>;
-}
-
-interface Grenades {
-  Flashbang: string;
-  FragGrenade: string;
-  HealingGrenade: string;
-  Interceptor: string;
-  SlowGrenade: string;
-  SmokeBomb: string;
-  Tattletale: string;
-  WindstormGrenade: string;
-  SnowBall: string;
+  spotmarks: {
+    disable: string;
+    available: string;
+    all: string;
+  };
 }
 
 interface MarkBox {
@@ -72,7 +79,7 @@ interface MarkBox {
   };
 }
 
-interface I18nData {
+export interface I18nData {
   language: string;
   title: string;
   sidebar: Sidebar;
@@ -81,8 +88,13 @@ interface I18nData {
   skilllineupsetting: Skilllineupsetting;
   mobaisuperjumpsetting: MobaiSuperJumpSetting;
   bugpointsetting: BugPointSetting;
-  charactors: Charactors;
-  grenades: Grenades;
+  factions: {
+    [key in factions]: string;
+  };
+  characters: Characters;
+  grenades: {
+    [key in grenades]: string;
+  }
   markbox: MarkBox;
 }
 
@@ -92,7 +104,7 @@ export const i18nData: I18nData[] = [
     title: "卡拉彼丘地图助手",
     sidebar: {
       mapsetting: "地图设置",
-      charactor: "超弦体",
+      character: "超弦体",
       skill: "技能",
       grenade: "战术道具",
       lineup: "战术道具点位",
@@ -105,25 +117,26 @@ export const i18nData: I18nData[] = [
           <div>在游戏中利用Bug导致被封禁等不良后果本站概不负责！</div>
         </div>
       ),
+      learnmore: "了解更多"
     },
     mapsetting: {
       choosemap: "选择地图",
       maps: {
-        FengYeTown: "风曳镇",
+        WindyTown: "风曳镇",
         SpaceLab: "空间实验室",
-        Cosmite: "科斯迷特",
+        Khesmet: "科斯迷特",
         EulerPort: "欧拉港口",
         CauchyDistrict: "柯西街区",
         Area88: "88区",
         Base404: "404基地",
       },
-      maptype: "地图类型",
-      maptypes: {
+      TeamHighlight: "地图类型",
+      TeamHighlightOptions: {
         prepare: "准备阶段",
         blank: "空白",
       },
-      spotmark: "点位标记",
-      spotmarks: {
+      Landmarks: "点位标记",
+      LandmarkOptions: {
         enable: "启用",
         disable: "禁用",
       },
@@ -160,17 +173,20 @@ export const i18nData: I18nData[] = [
         all: "全部",
       },
     },
-    charactors: {
+    factions: {
+      PUS: "欧泊",
+      TheScissors: "剪刀手",
+      Urbino: "乌尔比诺",
+    },
+    characters: {
       PUS: {
-        name: "欧泊",
         Michele: "米雪儿·李",
         Nobunaga: "信",
         Kokona: "心夏",
         Yvette: "伊薇特",
         Flavia: "芙拉薇娅",
       },
-      TS: {
-        name: "剪刀手",
+      TheScissors: {
         Ming: "明",
         Lawine: "拉薇",
         Meredith: "梅瑞狄斯",
@@ -180,7 +196,6 @@ export const i18nData: I18nData[] = [
         Fragrans: "珐格兰丝",
       },
       Urbino: {
-        name: "乌尔比诺",
         Celestia: "星绘",
         Audrey: "奥黛丽",
         Maddelena: "白墨",
@@ -196,7 +211,7 @@ export const i18nData: I18nData[] = [
       Interceptor: "拦截者",
       SlowGrenade: "减速雷",
       SmokeBomb: "烟雾弹",
-      Tattletale: "警报器",
+      Alarm: "警报器",
       WindstormGrenade: "风场雷",
       SnowBall: "雪球",
     },
@@ -221,40 +236,41 @@ export const i18nData: I18nData[] = [
     title: "Strinova Map Assistant",
     sidebar: {
       mapsetting: "Map Setting",
-      charactor: "Character",
-      skill: "Skill",
-      grenade: "Grenade",
-      lineup: "Grenade Lineup",
-      skilllineup: "Skill Lineup",
-      mobaisuperjump: "Mobai Super Jump",
-      bugpoint: "Bug Point",
+      character: "Character",
+      skill: "Skills",
+      grenade: "Grenades",
+      lineup: "Grenade Lineups",
+      skilllineup: "Skill Lineups",
+      mobaisuperjump: "Baimo Super Jumps",
+      bugpoint: "Bugs",
       bugpointwarning: (
         <div style={{ fontSize: "12px", textAlign: "left" }}>
-          <div>The bug points listed here are for warning purposes only. Do not exploit bugs in the game!</div>
-          <div>We are not responsible for any adverse consequences such as bans resulting from exploiting bugs in the game!</div>
+          <div>Bugs listed here are for your information only!</div>
+          <div>We are not responsible for any bans for abusing any of these bugs.</div>
         </div>
       ),
+      learnmore: "Learn More"
     },
     mapsetting: {
-      choosemap: "Choose Map",
+      choosemap: "Map",
       maps: {
-        FengYeTown: "Feng Ye Town",
+        WindyTown: "Windy Town",
         SpaceLab: "Space Lab",
-        Cosmite: "Cosmite",
-        EulerPort: "Euler Port",
+        Khesmet: "Khesmet",
         CauchyDistrict: "Cauchy District",
+        EulerPort: "Port Euler",
         Area88: "Area 88",
         Base404: "Base 404",
       },
-      maptype: "Map Type",
-      maptypes: {
-        prepare: "Preparation Stage",
-        blank: "Blank",
+      TeamHighlight: "Team Highlight",
+      TeamHighlightOptions: {
+        prepare: "Show",
+        blank: "Hide",
       },
-      spotmark: "Spot Mark",
-      spotmarks: {
-        enable: "Enable",
-        disable: "Disable",
+      Landmarks: "Landmarks",
+      LandmarkOptions: {
+        enable: "Show",
+        disable: "Hide",
       },
     },
     lineupsetting: {
@@ -289,17 +305,20 @@ export const i18nData: I18nData[] = [
         all: "All",
       },
     },
-    charactors: {
+    factions: {
+      PUS: "PUS",
+      TheScissors: "The Scissors",
+      Urbino: "Urbino",
+    },
+    characters: {
       PUS: {
-        name: "P.U.S.",
         Michele: "Michele Li",
         Nobunaga: "Nobunaga",
         Kokona: "Kokona",
         Yvette: "Yvette",
         Flavia: "Flavia",
       },
-      TS: {
-        name: "The Scissors",
+      TheScissors: {
         Ming: "Ming",
         Lawine: "Lawine",
         Meredith: "Meredith",
@@ -309,7 +328,6 @@ export const i18nData: I18nData[] = [
         Fragrans: "Fragrans",
       },
       Urbino: {
-        name: "Urbino",
         Celestia: "Celestia",
         Audrey: "Audrey",
         Maddelena: "Maddelena",
@@ -325,7 +343,7 @@ export const i18nData: I18nData[] = [
       Interceptor: "Interceptor",
       SlowGrenade: "Slow Grenade",
       SmokeBomb: "Smoke Bomb",
-      Tattletale: "Tattletale",
+      Alarm: "Alarm",
       WindstormGrenade: "Windstorm Grenade",
       SnowBall: "Snow Ball",
     },
@@ -345,6 +363,137 @@ export const i18nData: I18nData[] = [
       },
     },
   },
-  // TODO: 日本語 (JP)
+  {
+    language: "日本語",
+    title: "Strinova マップアシスタント",
+    sidebar: {
+      mapsetting: "マップの設定",
+      character: "キャラクター（超弦体）",
+      skill: "スキル",
+      grenade: "戦術アイテム",
+      lineup: "戦術アイテムのポイント",
+      skilllineup: "スキルポイント",
+      mobaisuperjump: "白墨スーパージャンプ",
+      bugpoint: "プログラムエラー",
+      bugpointwarning: (
+        <div style={{ fontSize: "12px", textAlign: "left" }}>
+          <div>ここにリストされているエラーは参照用です！</div>
+          <div>私たちはこれらの脆弱性を悪用する禁止令には責任を負いません。</div>
+        </div>
+      ),
+      learnmore: "詳細",
+    },
+    mapsetting: {
+      choosemap: "マップ",
+      maps: {
+        WindyTown: "ウィンディタウン",
+        SpaceLab: "スペースラボ",
+        Khesmet: "科斯迷特",
+        CauchyDistrict: "柯西街区",
+        EulerPort: "オイラー港",
+        Area88: "88街区",
+        Base404: "ベース404",
+      },
+      TeamHighlight: "チームハイライト",
+      TeamHighlightOptions: {
+        prepare: "表示",
+        blank: "非表示",
+      },
+      Landmarks: "ランドマーク",
+      LandmarkOptions: {
+        enable: "表示",
+        disable: "非表示",
+      },
+    },
+    lineupsetting: {
+      spotmark: "スポットマーク",
+      spotmarks: {
+        disable: "無効",
+        available: "可能なものだけ",
+        all: "全て",
+      },
+    },
+    skilllineupsetting: {
+      spotmark: "スポットマーク",
+      spotmarks: {
+        disable: "無効",
+        available: "可能なものだけ",
+        all: "全て",
+      },
+    },
+    mobaisuperjumpsetting: {
+      spotmark: "スポットマーク",
+      spotmarks: {
+        disable: "無効",
+        available: "可能なものだけ",
+        all: "全て",
+      },
+    },
+    bugpointsetting: {
+      spotmark: "スポットマーク",
+      spotmarks: {
+        disable: "無効",
+        available: "可能なものだけ",
+        all: "全て",
+      },
+    },
+    factions: {
+      PUS: "PUS",
+      TheScissors: "シザーズ",
+      Urbino: "ウルビノ",
+    },
+    characters: {
+      PUS: {
+        Michele: "ミシェル",
+        Nobunaga: "ノブナガ",
+        Kokona: "ココナ",
+        Yvette: "イヴェット",
+        Flavia: "フラヴィア",
+      },
+      TheScissors: {
+        Ming: "ミン",
+        Lawine: "ラヴィーネ",
+        Meredith: "メレディス",
+        Reiichi: "レイイチ",
+        Kanami: "カナミ",
+        Eika: "アイカ",
+        Fragrans: "フラグランス",
+      },
+      Urbino: {
+        Celestia: "ホシリエ",
+        Audrey: "オードリー",
+        Maddelena: "マダレーナ",
+        Fuchsia: "フェイシャ",
+        BaiMo: "ハクボク",
+        Galatea: "ガラテア",
+      },
+    },
+    grenades: {
+      Flashbang: "閃光弹",
+      FragGrenade: "フラググレネード",
+      HealingGrenade: "回復グレネード",
+      Interceptor: "インターセプター",
+      SlowGrenade: "减速ボム",
+      SmokeBomb: "煙幕弾",
+      Alarm: "警報器",
+      WindstormGrenade: "風雷ボム",
+      SnowBall: "雪玉",
+    },
+    markbox: {
+      mark: "マーク",
+      straightline: "直線",
+      color: "カラー",
+      undo: "戻す",
+      clear: "消去",
+      clearwarning: {
+        title: "全てのマークを消去しますか?",
+        content: "この操作は元に戻せません",
+        ok: "確認",
+        cancel: "キャンセル",
+        success: "全てのマークを消去しました",
+        failure: "マークの削除に失敗しました",
+      },
+    },
+  },
   // TODO: 繁体中文 (TW)
 ];

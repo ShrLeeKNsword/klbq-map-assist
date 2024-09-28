@@ -1,8 +1,17 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
+}
+
+img {
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.undragable {
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 .logo {
@@ -41,7 +50,7 @@
   color: #888;
 }
 
-.no-scroll-bar{
+.no-scroll-bar {
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE 10+ */
 }

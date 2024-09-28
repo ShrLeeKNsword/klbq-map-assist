@@ -13,10 +13,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-img {
-  user-select: none;
-  -webkit-user-drag: none;
-}
+
 
 a {
   font-weight: 500;
