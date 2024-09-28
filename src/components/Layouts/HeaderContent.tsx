@@ -1,10 +1,11 @@
 import React from 'react'
 import { i18nData, Languages } from '../../data/i18n'
-import { Button, Nav, Select, Tag } from '@douyinfe/semi-ui'
+import { Button, Nav, Select } from '@douyinfe/semi-ui'
 import Title from '@douyinfe/semi-ui/lib/es/typography/title'
 import { MapName } from '../../data/maplist'
 import { MdOutlineTranslate } from 'react-icons/md'
 import { CgDarkMode } from 'react-icons/cg'
+import { FaMap } from 'react-icons/fa'
 
 // Extend the Window interface to include setMode
 declare global {
@@ -41,10 +42,10 @@ const HeaderContent: React.FC<HeaderContentProps> = ({ changeLanguage, currentLa
         <Nav.Header>
           <Title>{currentLanguage.title}</Title>
         </Nav.Header>
-        <Nav.Item>
-          <Tag size='large' shape='circle' type='solid' color='red'>
+        <Nav.Item style={{ flexDirection: 'column', justifyContent: 'center' }}>
+          <Button icon={<FaMap />} theme='light'>
             {currentLanguage.mapsetting.maps[currentMap]}
-          </Tag>
+          </Button>
         </Nav.Item>
         <Nav.Footer>
           <Button
