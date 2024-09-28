@@ -2453,7 +2453,7 @@ pikaso-react-hook@^2.1.1:
   dependencies:
     pikaso "^2.7.3"
 
-pikaso@^2.7.3:
+pikaso@^2.7.3, pikaso@^2.8.3:
   version "2.8.3"
   resolved "https://registry.yarnpkg.com/pikaso/-/pikaso-2.8.3.tgz#ef9a8cb0262bd0aa4620ff2d8621f71c1969cf2b"
   integrity sha512-Nt3zyNdoHFo54FYUnZ6EwhpP9QqetH05lzniO0U0vSoNX8SdD3+2WHff1Prkiu2vHhWxw6qlDIqfBmqcjB6chQ==

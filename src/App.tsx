@@ -21,6 +21,7 @@ import { PiLineSegmentFill } from 'react-icons/pi';
 import ColorBtn from './components/buttons/colorBtn.tsx';
 import { canvasElement, colorPalette, mapTools } from './utils/canvasConstants.ts';
 import StandardButton from './components/buttons/standardButton.tsx';
+import { DrawType } from 'pikaso';
 
 const styles = {
   commonStyles: {
@@ -46,7 +47,7 @@ function App() {
   const { Header, Footer, Sider, Content } = Layout;
   const { Title } = Typography;
 
-  const [canvasTool, setTool] = useState<mapTools>(mapTools.SELECT);
+  const [canvasTool, setTool] = useState<mapTools>('SELECT');
   const [penColor, setpenColor] = useState("red");
 
   const [penWidth, setpenWidth] = useState(2);
@@ -77,6 +78,10 @@ function App() {
       }
     }
   }
+
+  editor?.on('*', (data) => {
+    console.log(data);
+  })
 
   const changePresentlanguage = async (value: string) => {
     for (const languageinfo of i18nData) {
@@ -285,9 +290,9 @@ function App() {
           </Collapse>
         </Sider>
         <Content style={{ height: "100%", lineHeight: '100px', width: '100%', margin: 'auto', display: 'flex', placeItems: 'center' }}>
-          <PikasoMap pikasoRef={ref} pikasoEditor={editor} currentMap={mapPrepareMode ? presentMapURL.imgPrepareLink : presentMapURL.imgBlankLink} />
+          <PikasoMap pikasoRef={ref} pikasoEditor={editor} currentMap={mapPrepareMode ? presentMapURL.imgPrepareLink : presentMapURL.imgBlankLink} canvasTool={canvasTool} lineWidth={lineWidth} penColor={penColor} penWidth={penWidth} />
           <div style={{ position: "relative", top: "-20px", right: "40px", width: "58px", height: "max" }}>
-            <ButtonNoPopover icon={GiArrowCursor} onClick={() => setTool(mapTools.SELECT)} isActiveTool={canvasTool === mapTools.SELECT} />
+            <ButtonNoPopover icon={GiArrowCursor} onClick={() => setTool("SELECT")} isActiveTool={canvasTool === "SELECT"} />
             <Popover
               content={colorPlate}
               position={"left"}
@@ -295,7 +300,7 @@ function App() {
               <div style={styles.canvasToolButtonStyle}><ColorBtn color={penColor} /></div>
             </Popover>
             <StandardButton icon={MdCreate} penWidth={penWidth} penColor={penColor} setpenWidth={setpenWidth} onClick={() => setTool(mapTools.PEN)} isActiveTool={canvasTool === mapTools.PEN} />
-            <StandardButton icon={PiLineSegmentFill} penWidth={lineWidth} penColor={penColor} setpenWidth={setLineWidth} onClick={() => setTool(mapTools.LINE)} isActiveTool={canvasTool === mapTools.LINE} />
+            <StandardButton icon={PiLineSegmentFill} penWidth={lineWidth} penColor={penColor} setpenWidth={setLineWidth} onClick={() => setTool(DrawType.Line)} isActiveTool={canvasTool === DrawType.Line} />
             <Tooltip content={presentLanguage.markbox.undo}>
               <ButtonNoPopover icon={MdUndo} onClick={() => setCanvasElements(canvasElements.slice(0, -1))} isActiveTool={false} />
             </Tooltip>
