@@ -121,21 +121,6 @@ function App() {
     </Row>
   </div>;
 
-  const CharacterModule = Object.keys(factions).map((faction) => {
-    return <><div style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-8px" }}>
-      <div><img src={factionData[faction as factions]} style={{ height: "40px" }}></img></div>
-      <Title heading={6}>{presentLanguage.factions[faction as factions]}</Title>
-    </div><Row gutter={[24, 8]} type='flex' align='middle'>
-        {Object.keys(characterData).map((character) => {
-          const char = characterData[character as keyof typeof characterData];
-          if (char.faction === faction) {
-            return <Col span={6} key={char.character}><CharacterBtn imglink={char.imageLink} /></Col>
-          }
-        })}
-      </Row>
-    </>
-  })
-
   const SkillModule = Object.keys(factions).map((faction) => {
     return <>
       <div key={"skill_" + faction} style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-8px", marginTop: "5px" }}>
@@ -148,7 +133,7 @@ function App() {
         {Object.keys(characterData).map((character) => {
           const char = characterData[character as keyof typeof characterData];
           if (char.faction === faction) {
-            return <><Col key={"skill_" + char.character} span={6}><CharacterBtn imglink={char.imageLink} /></Col>
+            return <><Col key={"skill_" + char.character} span={6}><CharacterBtn imglink={char.imageLink} pikasoEditor={editor} /></Col>
               <Col key={"skill_" + char.skills.Active} span={6}><SkillBtn imglink={char.skills.Active} /></Col>
               <Col key={"skill_" + char.skills.Passive} span={6}><SkillBtn imglink={char.skills.Passive} /></Col>
               <Col key={"skill_" + char.skills.Ultimate} span={6}><SkillBtn imglink={char.skills.Ultimate} /></Col></>
@@ -229,18 +214,15 @@ function App() {
                 </Row>
               </div>
             </Collapse.Panel>
-            <Collapse.Panel header={presentLanguage.sidebar.character} itemKey="2" >
-              {CharacterModule}
-            </Collapse.Panel>
-            <Collapse.Panel header={presentLanguage.sidebar.skill} itemKey="3">
+            <Collapse.Panel header={presentLanguage.sidebar.character} itemKey="2">
               {SkillModule}
             </Collapse.Panel>
-            <Collapse.Panel header={presentLanguage.sidebar.grenade} itemKey="4">
+            <Collapse.Panel header={presentLanguage.sidebar.grenade} itemKey="3">
               <Row gutter={[24, 8]} type="flex" align="middle">
                 {GrenadeButtons}
               </Row>
             </Collapse.Panel>
-            <Collapse.Panel header={presentLanguage.sidebar.lineup} itemKey="5">
+            <Collapse.Panel header={presentLanguage.sidebar.lineup} itemKey="4">
               <Row gutter={[16, 8]} type="flex" align="middle">
                 <Col span={9}>
                   {presentLanguage.lineupsetting.spotmark}
