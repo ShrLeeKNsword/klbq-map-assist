@@ -40,7 +40,7 @@ const ContributeBox = (props: ContributeBoxPops) => {
     return <div style={{ maxHeight: "800px", width: "400px", paddingTop: "5px", paddingBottom: "5px" }}>
         <div style={{ height: "100%", width: "100%", overflowY: "scroll" }}>
             {contributeList.map((child) => {
-                return <div style={{ height: "60px", width: "100%", display: "flex", alignItems: "center", justifyContent: "center", margin: "5px" }}>
+                return <div key={child.name} style={{ height: "60px", width: "100%", display: "flex", alignItems: "center", justifyContent: "center", margin: "5px" }}>
                     <Row style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", textAlign: "center" }}>
                         <Col span={1.5}></Col>
                         <Col span={4}><img src={child.icon} style={{ height: "50px", borderRadius: "50%", marginRight: "10px" }}></img></Col>
