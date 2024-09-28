@@ -95,7 +95,7 @@ function App() {
   const colorPlate = <div className="grid grid-flex">
     <Row gutter={[16, 24]} type="flex" justify="space-around" align="middle" style={{ marginLeft: "25px" }}>
       {colorPalette.map((color) => {
-        return <Col span={4}>
+        return <Col key={"plate_"+color} span={4}>
           <div className="col-content" onClick={() => { setpenColor(color) }}><ColorBtn color={color} /></div>
         </Col>
       })}
@@ -115,7 +115,7 @@ function App() {
         {Object.keys(characterData).map((character) => {
           const char = characterData[character as keyof typeof characterData];
           if (char.faction === faction) {
-            return <Col span={6}><CharacterBtn imglink={char.imageLink} /></Col>
+            return <Col span={6} key={char.character}><CharacterBtn imglink={char.imageLink} /></Col>
           }
         })}
       </Row>
@@ -124,7 +124,7 @@ function App() {
 
   const SkillModule = Object.keys(factions).map((faction) => {
     return <>
-      <div style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-8px", marginTop: "5px" }}>
+      <div key={"skill_"+faction} style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-8px", marginTop: "5px" }}>
         <div>
           <img src={factionData[faction as factions]} style={{ height: "40px" }} />
         </div>
@@ -134,10 +134,10 @@ function App() {
         {Object.keys(characterData).map((character) => {
           const char = characterData[character as keyof typeof characterData];
           if (char.faction === faction) {
-            return <><Col span={6}><CharacterBtn imglink={char.imageLink} /></Col>
-              <Col span={6}><SkillBtn imglink={char.skills.Active} /></Col>
-              <Col span={6}><SkillBtn imglink={char.skills.Passive} /></Col>
-              <Col span={6}><SkillBtn imglink={char.skills.Ultimate} /></Col></>
+            return <><Col key={"skill_"+char.character} span={6}><CharacterBtn imglink={char.imageLink} /></Col>
+              <Col key={"skill_"+char.skills.Active} span={6}><SkillBtn imglink={char.skills.Active} /></Col>
+              <Col key={"skill_"+char.skills.Passive} span={6}><SkillBtn imglink={char.skills.Passive} /></Col>
+              <Col key={"skill_"+char.skills.Ultimate} span={6}><SkillBtn imglink={char.skills.Ultimate} /></Col></>
           }
         })}
       </Row>
@@ -145,7 +145,7 @@ function App() {
   })
 
   const GrenadeButtons = grenadeData.map(grenade => {
-    return <Col span={6}><GrenadeBtn imglink={grenade.imageLink} /></Col>
+    return <Col key={"grenade_"+grenade.grenade} span={6}><GrenadeBtn imglink={grenade.imageLink} /></Col>
   });
 
   return (
