@@ -302,7 +302,7 @@ function App() {
             <StandardButton icon={MdCreate} penWidth={penWidth} penColor={penColor} setpenWidth={setpenWidth} onClick={() => setTool(DrawType.Pencil)} isActiveTool={canvasTool === DrawType.Pencil} />
             <StandardButton icon={PiLineSegmentFill} penWidth={lineWidth} penColor={penColor} setpenWidth={setLineWidth} onClick={() => setTool(DrawType.Line)} isActiveTool={canvasTool === DrawType.Line} />
             <Tooltip content={presentLanguage.markbox.undo}>
-              <ButtonNoPopover icon={MdUndo} onClick={() => setCanvasElements(canvasElements.slice(0, -1))} isActiveTool={false} />
+              <ButtonNoPopover icon={MdUndo} onClick={() => editor?.undo()} isActiveTool={false} />
             </Tooltip>
             <Popconfirm
               visible={togglevisible}
@@ -310,7 +310,7 @@ function App() {
               content={presentLanguage.markbox.clearwarning.content}
               okText={presentLanguage.markbox.clearwarning.ok}
               cancelText={presentLanguage.markbox.clearwarning.cancel}
-              onConfirm={() => { setCanvasElements([]); setToggleVisible(!togglevisible); Toast.success(presentLanguage.markbox.clearwarning.success) }}
+              onConfirm={() => { editor?.reset(); setToggleVisible(!togglevisible); Toast.success(presentLanguage.markbox.clearwarning.success) }}
               onCancel={() => { setToggleVisible(!togglevisible) }}
               position='left'
             >
