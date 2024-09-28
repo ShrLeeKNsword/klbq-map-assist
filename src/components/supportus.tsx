@@ -26,7 +26,7 @@ const SupportUs = (props: SupportUsPops) => {
 
     return (
         <>
-            <Button onClick={showDialog} style={{ marginLeft: "5px" }}><CiHeart style={{ color: "red", fontSize: "20px", marginRight: "5px" }} />{props.name}</Button>
+            <Button onClick={showDialog} style={{ marginLeft: "10px" }}><CiHeart style={{ color: "red", fontSize: "20px", marginRight: "5px" }} />{props.name}</Button>
             <Modal
                 title={props.name}
                 visible={visible}
