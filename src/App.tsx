@@ -40,6 +40,18 @@ const styles = {
     backgroundColor: "rgba(var(--semi-grey-0), 1)",
     boxShadow: "0 0 0 3px rgba(var(--semi-grey-1), 1)",
     marginTop: "35px",
+  },
+  clearButtonIndicator: {
+    borderRadius: "100%",
+    margin: "5px",
+    width: "50px",
+    height: "50px",
+    display: 'flex',
+    placeItems: 'center',
+    placeContent: 'center',
+    backgroundColor: "rgba(var(--semi-indigo-7), 1)",
+    boxShadow: "0 0 0 3px rgba(var(--semi-indigo-7), 1), 1)",
+    marginTop: "35px",
   }
 }
 
@@ -62,6 +74,8 @@ function App() {
   const [mapMarkNameMode, setMarkNameMode] = useState(true);
 
   const [togglevisible, setToggleVisible] = useState(false);
+
+  const [isShapeSelected, setIsShapeSelected] = useState(false);
 
   const Sleep = (ms: number) => {
     return new Promise(resolve => setTimeout(resolve, ms))
@@ -147,6 +161,24 @@ function App() {
   const GrenadeButtons = grenadeData.map(grenade => {
     return <Col span={6}><GrenadeBtn imglink={grenade.imageLink} /></Col>
   });
+
+  editor?.on('selection:change', (selection) => {
+    if (selection.shapes!.length > 0) {
+      setIsShapeSelected(true);
+    } else {
+      setIsShapeSelected(false);
+    }
+  })
+
+  const clearCheck = () => {
+    if (editor) {
+      if (editor.selection.list.length > 0) {
+        return editor?.selection.delete();
+      }
+    }
+
+    return setToggleVisible(!togglevisible);
+  }
 
   return (
     <Layout className="components-layout-demo semi-always-light" style={{ height: 720, width: 1280, margin: "auto" }}>
@@ -309,7 +341,7 @@ function App() {
               position='left'
             >
               <Tooltip content={presentLanguage.markbox.clear}>
-                <div onClick={() => setToggleVisible(!togglevisible)} style={styles.canvasToolButtonStyle}><MdDelete size='2rem' /></div>
+                <div onClick={() => clearCheck()} style={isShapeSelected ? styles.clearButtonIndicator : styles.canvasToolButtonStyle}><MdDelete color={isShapeSelected ? 'rgba(var(--semi-grey-0), 1)' : 'rgba(var(--semi-grey-9), 1)'} size='2rem' /></div>
               </Tooltip>
             </Popconfirm>
           </div>
@@ -352,3 +384,4 @@ function App() {
 }
 
 export default App
+
