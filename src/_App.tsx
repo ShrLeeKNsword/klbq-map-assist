@@ -228,7 +228,7 @@ function App() {
   }
 
   return (
-    <Layout className='components-layout-demo semi-always-light' style={{ height: 720, width: 1280, margin: 'auto' }}>
+    <Layout className='components-layout-demo semi-always-light' style={{ height: "100%", minHeight: 720, width: 1280, margin: 'auto' }}>
       <Header style={styles.commonStyles}>
         <Title heading={3} style={{ margin: '14px 0' }}>
           {presentLanguage.title}{' '}
@@ -334,7 +334,7 @@ function App() {
               <Row gutter={[16, 8]} type='flex' align='middle'>
                 <Col span={9}>{presentLanguage.lineupsetting.spotmark}</Col>
                 <Col span={7}>
-                  <Select defaultValue='禁用' style={{ width: 120 }} onChange={() => {}}>
+                  <Select defaultValue='禁用' style={{ width: 120 }} onChange={() => { }}>
                     <Select.Option value='禁用'>{presentLanguage.lineupsetting.spotmarks.disable}</Select.Option>
                     <Select.Option value='仅有效'>{presentLanguage.lineupsetting.spotmarks.available}</Select.Option>
                     <Select.Option value='全部'>{presentLanguage.lineupsetting.spotmarks.all}</Select.Option>
@@ -375,7 +375,7 @@ function App() {
               <Row gutter={[16, 8]} type='flex' align='middle'>
                 <Col span={9}>{presentLanguage.mobaisuperjumpsetting.spotmark}</Col>
                 <Col span={7}>
-                  <Select defaultValue='禁用' style={{ width: 120 }} onChange={() => {}}>
+                  <Select defaultValue='禁用' style={{ width: 120 }} onChange={() => { }}>
                     <Select.Option value='禁用'>
                       {presentLanguage.mobaisuperjumpsetting.spotmarks.disable}
                     </Select.Option>
@@ -391,7 +391,7 @@ function App() {
               <Row gutter={[16, 8]} type='flex' align='middle'>
                 <Col span={9}>{presentLanguage.mobaisuperjumpsetting.spotmark}</Col>
                 <Col span={7}>
-                  <Select defaultValue='禁用' style={{ width: 120 }} onChange={() => {}}>
+                  <Select defaultValue='禁用' style={{ width: 120 }} onChange={() => { }}>
                     <Select.Option value='禁用'>
                       {presentLanguage.mobaisuperjumpsetting.spotmarks.disable}
                     </Select.Option>
@@ -408,7 +408,7 @@ function App() {
               <Row gutter={[16, 8]} type='flex' align='middle' style={{ marginTop: '5px' }}>
                 <Col span={9}>{presentLanguage.bugpointsetting.spotmark}</Col>
                 <Col span={7}>
-                  <Select defaultValue='禁用' style={{ width: 120 }} onChange={() => {}}>
+                  <Select defaultValue='禁用' style={{ width: 120 }} onChange={() => { }}>
                     <Select.Option value='禁用'>{presentLanguage.bugpointsetting.spotmarks.disable}</Select.Option>
                     <Select.Option value='仅有效'>{presentLanguage.bugpointsetting.spotmarks.available}</Select.Option>
                     <Select.Option value='全部'>{presentLanguage.bugpointsetting.spotmarks.all}</Select.Option>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Layout } from '@douyinfe/semi-ui'
 import './index.css'
+import './App.css'
 import HeaderContent from './components/Layouts/HeaderContent'
 import { i18nData, Languages } from './data/i18n'
 import { mapList, MapName } from './data/maplist'
@@ -40,7 +41,7 @@ const App: React.FC = () => {
   const currentLanguage = i18nData[presentLanguage]
 
   return (
-    <Layout style={{ border: '1px solid var(--semi-color-border)', height: '100%', width: '100%' }}>
+    <Layout style={{ border: '1px solid var(--semi-color-border)', height: '100%', width: '100%', minHeight: "720px", minWidth: "1280px" }}>
       <Header style={{ backgroundColor: 'var(--semi-color-bg-1)' }}>
         {/* This takes language mode because of the language switcher */}
         <HeaderContent
