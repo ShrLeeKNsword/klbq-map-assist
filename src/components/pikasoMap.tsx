@@ -25,8 +25,15 @@ const PikasoMap: React.FC<PikasoMapProps> = ({ pikasoRef, pikasoEditor, currentM
 			case DrawType.Line:
 				pikasoEditor?.shapes.line.draw({
 					stroke: penColor,
-					strokeWidth: 5,
+					strokeWidth: lineWidth,
 				})
+				break;
+			case DrawType.Pencil:
+				pikasoEditor?.shapes.pencil.draw({
+					stroke: penColor,
+					strokeWidth: penWidth,
+				})
+				break;
 		}
 	})
 
@@ -37,6 +44,13 @@ const PikasoMap: React.FC<PikasoMapProps> = ({ pikasoRef, pikasoEditor, currentM
 				pikasoEditor?.shapes.line.draw({
 					stroke: penColor,
 					strokeWidth: 5,
+				});
+				break;
+			case DrawType.Pencil:
+				pikasoEditor?.shapes.pencil.stopDrawing();
+				pikasoEditor?.shapes.pencil.draw({
+					stroke: penColor,
+					strokeWidth: penWidth,
 				});
 		}
 	}

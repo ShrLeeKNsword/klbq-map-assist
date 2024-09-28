@@ -59,9 +59,6 @@ function App() {
 
   const [canvasElements, setCanvasElements] = useState<canvasElement[]>([]);
 
-  const [presentLanguage, setPresentLanguage] = useState<I18nData>(i18nData[1]);
-  const [closeallcollapse, setCloseAllCollapse] = useState(false);
-
   const [ref, editor] = usePikaso();
   const [mapPrepareMode, setMapPrepareMode] = useState(true);
   const [mapMarkNameMode, setMarkNameMode] = useState(true);
@@ -72,7 +69,6 @@ function App() {
     return new Promise(resolve => setTimeout(resolve, ms))
   }
 
-  const [presentMap, setPresentMap] = useState(presentLanguage.mapsetting.maps.WindyTown);
   const [presentMapURL, setPresentMapURL] = useState({ imgPrepareLink: mapList[0].imgPrepareLink, imgBlankLink: mapList[0].imgBlankLink });
   const changePresentmap = (value: string) => {
     setPresentMap(value);
@@ -303,7 +299,7 @@ function App() {
             >
               <div style={styles.canvasToolButtonStyle}><ColorBtn color={penColor} /></div>
             </Popover>
-            <StandardButton icon={MdCreate} penWidth={penWidth} penColor={penColor} setpenWidth={setpenWidth} onClick={() => setTool(mapTools.PEN)} isActiveTool={canvasTool === mapTools.PEN} />
+            <StandardButton icon={MdCreate} penWidth={penWidth} penColor={penColor} setpenWidth={setpenWidth} onClick={() => setTool(DrawType.Pencil)} isActiveTool={canvasTool === DrawType.Pencil} />
             <StandardButton icon={PiLineSegmentFill} penWidth={lineWidth} penColor={penColor} setpenWidth={setLineWidth} onClick={() => setTool(DrawType.Line)} isActiveTool={canvasTool === DrawType.Line} />
             <Tooltip content={presentLanguage.markbox.undo}>
               <ButtonNoPopover icon={MdUndo} onClick={() => setCanvasElements(canvasElements.slice(0, -1))} isActiveTool={false} />
