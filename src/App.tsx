@@ -40,6 +40,18 @@ const styles = {
     backgroundColor: "rgba(var(--semi-grey-0), 1)",
     boxShadow: "0 0 0 3px rgba(var(--semi-grey-1), 1)",
     marginTop: "35px",
+  },
+  clearButtonIndicator: {
+    borderRadius: "100%",
+    margin: "5px",
+    width: "50px",
+    height: "50px",
+    display: 'flex',
+    placeItems: 'center',
+    placeContent: 'center',
+    backgroundColor: "rgba(var(--semi-indigo-7), 1)",
+    boxShadow: "0 0 0 3px rgba(var(--semi-indigo-7), 1), 1)",
+    marginTop: "35px",
   }
 }
 
@@ -62,6 +74,8 @@ function App() {
   const [mapMarkNameMode, setMarkNameMode] = useState(true);
 
   const [togglevisible, setToggleVisible] = useState(false);
+
+  const [isShapeSelected, setIsShapeSelected] = useState(false);
 
   const Sleep = (ms: number) => {
     return new Promise(resolve => setTimeout(resolve, ms))
@@ -95,7 +109,7 @@ function App() {
   const colorPlate = <div className="grid grid-flex">
     <Row gutter={[16, 24]} type="flex" justify="space-around" align="middle" style={{ marginLeft: "25px" }}>
       {colorPalette.map((color) => {
-        return <Col key={"plate_"+color} span={4}>
+        return <Col key={"plate_" + color} span={4}>
           <div className="col-content" onClick={() => { setpenColor(color) }}><ColorBtn color={color} /></div>
         </Col>
       })}
@@ -124,7 +138,7 @@ function App() {
 
   const SkillModule = Object.keys(factions).map((faction) => {
     return <>
-      <div key={"skill_"+faction} style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-8px", marginTop: "5px" }}>
+      <div key={"skill_" + faction} style={{ display: 'flex', placeItems: 'center', width: "100%", position: "relative", left: "-8px", marginTop: "5px" }}>
         <div>
           <img src={factionData[faction as factions]} style={{ height: "40px" }} />
         </div>
@@ -134,10 +148,10 @@ function App() {
         {Object.keys(characterData).map((character) => {
           const char = characterData[character as keyof typeof characterData];
           if (char.faction === faction) {
-            return <><Col key={"skill_"+char.character} span={6}><CharacterBtn imglink={char.imageLink} /></Col>
-              <Col key={"skill_"+char.skills.Active} span={6}><SkillBtn imglink={char.skills.Active} /></Col>
-              <Col key={"skill_"+char.skills.Passive} span={6}><SkillBtn imglink={char.skills.Passive} /></Col>
-              <Col key={"skill_"+char.skills.Ultimate} span={6}><SkillBtn imglink={char.skills.Ultimate} /></Col></>
+            return <><Col key={"skill_" + char.character} span={6}><CharacterBtn imglink={char.imageLink} /></Col>
+              <Col key={"skill_" + char.skills.Active} span={6}><SkillBtn imglink={char.skills.Active} /></Col>
+              <Col key={"skill_" + char.skills.Passive} span={6}><SkillBtn imglink={char.skills.Passive} /></Col>
+              <Col key={"skill_" + char.skills.Ultimate} span={6}><SkillBtn imglink={char.skills.Ultimate} /></Col></>
           }
         })}
       </Row>
@@ -145,8 +159,26 @@ function App() {
   })
 
   const GrenadeButtons = grenadeData.map(grenade => {
-    return <Col key={"grenade_"+grenade.grenade} span={6}><GrenadeBtn imglink={grenade.imageLink} /></Col>
+    return <Col key={"grenade_" + grenade.grenade} span={6}><GrenadeBtn imglink={grenade.imageLink} /></Col>
   });
+
+  editor?.on('selection:change', (selection) => {
+    if (selection.shapes!.length > 0) {
+      setIsShapeSelected(true);
+    } else {
+      setIsShapeSelected(false);
+    }
+  })
+
+  const clearCheck = () => {
+    if (editor) {
+      if (editor.selection.list.length > 0) {
+        return editor?.selection.delete();
+      }
+    }
+
+    return setToggleVisible(!togglevisible);
+  }
 
   return (
     <Layout className="components-layout-demo semi-always-light" style={{ height: 720, width: 1280, margin: "auto" }}>
@@ -296,7 +328,7 @@ function App() {
             <StandardButton icon={MdCreate} penWidth={penWidth} penColor={penColor} setpenWidth={setpenWidth} onClick={() => setTool(DrawType.Pencil)} isActiveTool={canvasTool === DrawType.Pencil} />
             <StandardButton icon={PiLineSegmentFill} penWidth={lineWidth} penColor={penColor} setpenWidth={setLineWidth} onClick={() => setTool(DrawType.Line)} isActiveTool={canvasTool === DrawType.Line} />
             <Tooltip content={presentLanguage.markbox.undo}>
-              <ButtonNoPopover icon={MdUndo} onClick={() => editor?.undo()} isActiveTool={false} />
+              <ButtonNoPopover icon={MdUndo} onClick={() => editor?.history.getStep() === 1 ? null : editor?.undo()} isActiveTool={false} />
             </Tooltip>
             <Popconfirm
               visible={togglevisible}
@@ -309,7 +341,7 @@ function App() {
               position='left'
             >
               <Tooltip content={presentLanguage.markbox.clear}>
-                <div onClick={() => setToggleVisible(!togglevisible)} style={styles.canvasToolButtonStyle}><MdDelete size='2rem' /></div>
+                <div onClick={() => clearCheck()} style={isShapeSelected ? styles.clearButtonIndicator : styles.canvasToolButtonStyle}><MdDelete color={isShapeSelected ? 'rgba(var(--semi-grey-0), 1)' : 'rgba(var(--semi-grey-9), 1)'} size='2rem' /></div>
               </Tooltip>
             </Popconfirm>
           </div>
@@ -352,3 +384,4 @@ function App() {
 }
 
 export default App
+
