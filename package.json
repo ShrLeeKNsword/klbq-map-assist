@@ -13,14 +13,13 @@
   },
   "dependencies": {
     "@douyinfe/semi-ui": "^2.66.1",
-    "canvas": "^2.11.2",
-    "perfect-freehand": "^1.2.2",
+    "pikaso": "^2.8.3",
+    "pikaso-react-hook": "^2.1.1",
     "react": "^18.3.1",
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "^18.3.1",
-    "react-icons": "^5.3.0",
-    "roughjs": "^4.6.6"
+    "react-icons": "^5.3.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",

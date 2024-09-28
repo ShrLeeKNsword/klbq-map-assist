@@ -1,25 +1,27 @@
 import { useState } from 'react';
-import { Layout, Collapse, Typography, Select, Tooltip, Popover, Col, Row, Popconfirm, ColorPicker, Banner, Toast, Tag, Button } from '@douyinfe/semi-ui';
-import ColorBtn from './components/buttons/colorBtn.tsx';
+import { Layout, Collapse, Typography, Select, Tooltip, Popover, Col, Row, Banner, Tag, Popconfirm, Toast, ColorPicker, Button } from '@douyinfe/semi-ui';
 import CharacterBtn from './components/buttons/characterBtn.tsx';
 import SkillBtn from './components/buttons/skillBtn.tsx';
 import GrenadeBtn from './components/buttons/grenadeBtn.tsx';
 
 import './App.css';
-import DrawableMap from './components/drawableMap.tsx';
-import StandardButton from './components/buttons/standardButton.tsx';
 import ContributeBox from './components/contributors.tsx';
 import { I18nData, i18nData } from './data/i18n.tsx';
 import { mapList } from './data/maplist.ts';
 import { characterData, factionData, factions } from './data/characters.ts';
-import { canvasElement, colorPalette, mapTools } from './utils/canvasConstants.ts';
-import ButtonNoPopover from './components/buttons/buttonNoPopover.tsx';
 import { grenadeData } from './data/grenades.ts';
 
 import { MdCreate, MdDelete, MdOutlineTranslate, MdUndo } from 'react-icons/md';
-import { GiArrowCursor } from 'react-icons/gi';
 import { FaGithub, FaDiscord } from 'react-icons/fa';
+import usePikaso from 'pikaso-react-hook';
+import PikasoMap from './components/pikasoMap.tsx';
+import ButtonNoPopover from './components/buttons/buttonNoPopover.tsx';
+import { GiArrowCursor } from 'react-icons/gi';
 import { PiLineSegmentFill } from 'react-icons/pi';
+import ColorBtn from './components/buttons/colorBtn.tsx';
+import { colorPalette, mapTools } from './utils/canvasConstants.ts';
+import StandardButton from './components/buttons/standardButton.tsx';
+import { DrawType } from 'pikaso';
 
 const styles = {
   commonStyles: {
@@ -49,23 +51,23 @@ function App() {
   const [closeallcollapse, setCloseAllCollapse] = useState(false);
   const [presentMap, setPresentMap] = useState("WindyTown");
 
-  const [canvasTool, setTool] = useState<mapTools>(mapTools.SELECT);
+  const [canvasTool, setTool] = useState<mapTools>("SELECT");
   const [penColor, setpenColor] = useState("red");
 
   const [penWidth, setpenWidth] = useState(2);
   const [lineWidth, setLineWidth] = useState(2);
 
-  const [canvasElements, setCanvasElements] = useState<canvasElement[]>([]);
+  const [ref, editor] = usePikaso();
   const [mapPrepareMode, setMapPrepareMode] = useState(true);
   const [mapMarkNameMode, setMarkNameMode] = useState(true);
 
-  const [presentMapURL, setPresentMapURL] = useState({ imgPrepareLink: mapList[0].imgPrepareLink, imgBlankLink: mapList[0].imgBlankLink });
   const [togglevisible, setToggleVisible] = useState(false);
 
   const Sleep = (ms: number) => {
     return new Promise(resolve => setTimeout(resolve, ms))
   }
 
+  const [presentMapURL, setPresentMapURL] = useState({ imgPrepareLink: mapList[0].imgPrepareLink, imgBlankLink: mapList[0].imgBlankLink });
   const changePresentmap = (value: string) => {
     setPresentMap(value);
     for (const mapinfo of mapList) {
@@ -282,19 +284,19 @@ function App() {
           </Collapse>
         </Sider>
         <Content style={{ height: "100%", lineHeight: '100px', width: '100%', margin: 'auto', display: 'flex', placeItems: 'center' }}>
-          <DrawableMap presentMapURL={mapPrepareMode ? presentMapURL.imgPrepareLink : presentMapURL.imgBlankLink} canvasTool={canvasTool} penColor={penColor} canvasElements={canvasElements} setCanvasElements={setCanvasElements} penWidth={penWidth} lineWidth={lineWidth} />
+          <PikasoMap pikasoRef={ref} pikasoEditor={editor} currentMap={mapPrepareMode ? presentMapURL.imgPrepareLink : presentMapURL.imgBlankLink} canvasTool={canvasTool} lineWidth={lineWidth} penColor={penColor} penWidth={penWidth} />
           <div style={{ position: "relative", top: "-20px", right: "40px", width: "58px", height: "max" }}>
-            <ButtonNoPopover icon={GiArrowCursor} onClick={() => setTool(mapTools.SELECT)} isActiveTool={canvasTool === mapTools.SELECT} />
+            <ButtonNoPopover icon={GiArrowCursor} onClick={() => setTool("SELECT")} isActiveTool={canvasTool === "SELECT"} />
             <Popover
               content={colorPlate}
               position={"left"}
             >
               <div style={styles.canvasToolButtonStyle}><ColorBtn color={penColor} /></div>
             </Popover>
-            <StandardButton icon={MdCreate} penWidth={penWidth} penColor={penColor} setpenWidth={setpenWidth} onClick={() => setTool(mapTools.PEN)} isActiveTool={canvasTool === mapTools.PEN} />
-            <StandardButton icon={PiLineSegmentFill} penWidth={lineWidth} penColor={penColor} setpenWidth={setLineWidth} onClick={() => setTool(mapTools.LINE)} isActiveTool={canvasTool === mapTools.LINE} />
+            <StandardButton icon={MdCreate} penWidth={penWidth} penColor={penColor} setpenWidth={setpenWidth} onClick={() => setTool(DrawType.Pencil)} isActiveTool={canvasTool === DrawType.Pencil} />
+            <StandardButton icon={PiLineSegmentFill} penWidth={lineWidth} penColor={penColor} setpenWidth={setLineWidth} onClick={() => setTool(DrawType.Line)} isActiveTool={canvasTool === DrawType.Line} />
             <Tooltip content={presentLanguage.markbox.undo}>
-              <ButtonNoPopover icon={MdUndo} onClick={() => setCanvasElements(canvasElements.slice(0, -1))} isActiveTool={false} />
+              <ButtonNoPopover icon={MdUndo} onClick={() => editor?.undo()} isActiveTool={false} />
             </Tooltip>
             <Popconfirm
               visible={togglevisible}
@@ -302,7 +304,7 @@ function App() {
               content={presentLanguage.markbox.clearwarning.content}
               okText={presentLanguage.markbox.clearwarning.ok}
               cancelText={presentLanguage.markbox.clearwarning.cancel}
-              onConfirm={() => { setCanvasElements([]); setToggleVisible(!togglevisible); Toast.success(presentLanguage.markbox.clearwarning.success) }}
+              onConfirm={() => { editor?.reset(); setToggleVisible(!togglevisible); Toast.success(presentLanguage.markbox.clearwarning.success) }}
               onCancel={() => { setToggleVisible(!togglevisible) }}
               position='left'
             >

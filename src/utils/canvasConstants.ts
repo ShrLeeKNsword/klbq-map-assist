@@ -1,29 +1,6 @@
-import { Drawable } from 'roughjs/bin/core';
+import { DrawType } from 'pikaso';
 
-export type canvasElement = canvasLineElement | canvasPathElement;
-
-interface canvasLineElement {
-	type: "line";
-	x1: number;
-	y1: number;
-	x2: number;
-	y2: number;
-	color: string;
-	roughElement: Drawable | undefined;
-}
-
-interface canvasPathElement {
-	type: "path";
-	points: { x: number; y: number }[];
-	color: string;
-	penWidth: number;
-}
-
-export enum mapTools {
-	SELECT,
-	LINE,
-	PEN
-}
+export type mapTools = DrawType | "SELECT";
 
 export const colorPalette = [
 	"#FF0000", // red
