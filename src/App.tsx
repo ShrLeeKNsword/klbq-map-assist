@@ -19,7 +19,7 @@ import ButtonNoPopover from './components/buttons/buttonNoPopover.tsx';
 import { GiArrowCursor } from 'react-icons/gi';
 import { PiLineSegmentFill } from 'react-icons/pi';
 import ColorBtn from './components/buttons/colorBtn.tsx';
-import { canvasElement, colorPalette, mapTools } from './utils/canvasConstants.ts';
+import { colorPalette, mapTools } from './utils/canvasConstants.ts';
 import StandardButton from './components/buttons/standardButton.tsx';
 import { DrawType } from 'pikaso';
 
@@ -57,8 +57,6 @@ function App() {
   const [penWidth, setpenWidth] = useState(2);
   const [lineWidth, setLineWidth] = useState(2);
 
-  const [canvasElements, setCanvasElements] = useState<canvasElement[]>([]);
-
   const [ref, editor] = usePikaso();
   const [mapPrepareMode, setMapPrepareMode] = useState(true);
   const [mapMarkNameMode, setMarkNameMode] = useState(true);
@@ -78,10 +76,6 @@ function App() {
       }
     }
   }
-
-  editor?.on('*', (data) => {
-    console.log(data);
-  })
 
   const changePresentlanguage = async (value: string) => {
     for (const languageinfo of i18nData) {
