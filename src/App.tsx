@@ -10,6 +10,7 @@ import PikasoMap from './components/pikasoMap'
 import usePikaso from 'pikaso-react-hook'
 import FooterContent from './components/Layouts/FooterContent'
 import { mapTools } from './utils/canvasConstants'
+import SiderTools from './components/Layouts/SiderTools'
 
 const App: React.FC = () => {
   const [presentLanguage, setPresentLanguage] = useState<Languages>(Languages.English)
@@ -68,7 +69,9 @@ const App: React.FC = () => {
             penWidth={penWidth}
           />
         </Content>
-        <Sider style={{ backgroundColor: 'var(--semi-color-bg-1)', width: '4rem' }}></Sider>
+        <Sider style={{ backgroundColor: 'var(--semi-color-bg-1)', width: '4rem' }}>
+          <SiderTools canvasTool={canvasTool} setTool={setTool} />
+        </Sider>
       </Layout>
       <Footer style={{ backgroundColor: 'var(--semi-color-bg-1)' }}>
         <FooterContent currentLanguage={currentLanguage} />
