@@ -9,6 +9,8 @@ import SiderContent from './components/Layouts/SiderContent'
 import PikasoMap from './components/pikasoMap'
 import usePikaso from 'pikaso-react-hook'
 import FooterContent from './components/Layouts/FooterContent'
+import { mapTools } from './utils/canvasConstants'
+import SiderTools from './components/Layouts/SiderTools'
 
 const App: React.FC = () => {
   const [presentLanguage, setPresentLanguage] = useState<Languages>(Languages.English)
@@ -28,26 +30,28 @@ const App: React.FC = () => {
     imgBlankLink: mapList[0].imgBlankLink
   })
 
-  const changePresentmap = (value: string) => {
-    setPresentMap(MapName[value as keyof typeof MapName])
-    for (const mapinfo of mapList) {
-      if (mapinfo.map === value) {
-        setPresentMapURL({ imgPrepareLink: mapinfo.imgPrepareLink, imgBlankLink: mapinfo.imgBlankLink })
-      }
-    }
-  }
-
   const { Header, Footer, Sider, Content } = Layout
   const currentLanguage = i18nData[presentLanguage]
 
   return (
-    <Layout style={{ border: '1px solid var(--semi-color-border)', height: '100%', width: '100%', minHeight: "720px", minWidth: "1280px" }}>
+    <Layout
+      style={{
+        border: '1px solid var(--semi-color-border)',
+        height: '100%',
+        width: '100%',
+        minHeight: '720px',
+        minWidth: '1280px'
+      }}>
       <Header style={{ backgroundColor: 'var(--semi-color-bg-1)' }}>
         {/* This takes language mode because of the language switcher */}
         <HeaderContent
           currentLanguageMode={presentLanguage}
           currentMap={presentMap}
           changeLanguage={setPresentLanguage}
+          setPresentMap={setPresentMap}
+          setPresentMapURL={setPresentMapURL}
+          mapPrepareMode={mapPrepareMode}
+          setMapPrepareMode={setMapPrepareMode}
         />
       </Header>
       <Layout>
@@ -65,7 +69,9 @@ const App: React.FC = () => {
             penWidth={penWidth}
           />
         </Content>
-        <Sider style={{ backgroundColor: 'var(--semi-color-bg-1)', width: '4rem' }}></Sider>
+        <Sider style={{ backgroundColor: 'var(--semi-color-bg-1)', width: '4rem' }}>
+          <SiderTools canvasTool={canvasTool} setTool={setTool} />
+        </Sider>
       </Layout>
       <Footer style={{ backgroundColor: 'var(--semi-color-bg-1)' }}>
         <FooterContent currentLanguage={currentLanguage} />

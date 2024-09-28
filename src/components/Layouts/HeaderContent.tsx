@@ -1,26 +1,32 @@
 import React from 'react'
 import { i18nData, Languages } from '../../data/i18n'
-import { Button, Nav, Select, Tag } from '@douyinfe/semi-ui'
+import { Button, Nav, Select } from '@douyinfe/semi-ui'
 import Title from '@douyinfe/semi-ui/lib/es/typography/title'
 import { MapName } from '../../data/maplist'
 import { MdOutlineTranslate } from 'react-icons/md'
-import { CgDarkMode } from 'react-icons/cg'
+import ChangeMapButton from '../buttons/changeMapButton'
+import ChangeHighlightButton from '../buttons/changeHighlightButton'
+import { FaBrush } from 'react-icons/fa'
 
-// Extend the Window interface to include setMode
-declare global {
-  interface Window {
-    setMode: (mode: string) => void
-  }
-}
-
-// props
 interface HeaderContentProps {
   currentLanguageMode: Languages
   changeLanguage: React.Dispatch<React.SetStateAction<Languages>>
   currentMap: MapName
+  mapPrepareMode: boolean
+  setPresentMap: React.Dispatch<React.SetStateAction<MapName>>
+  setPresentMapURL: React.Dispatch<React.SetStateAction<{ imgPrepareLink: string; imgBlankLink: string }>>
+  setMapPrepareMode: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const HeaderContent: React.FC<HeaderContentProps> = ({ changeLanguage, currentLanguageMode, currentMap }) => {
+const HeaderContent: React.FC<HeaderContentProps> = ({
+  changeLanguage,
+  currentLanguageMode,
+  currentMap,
+  mapPrepareMode,
+  setPresentMap,
+  setPresentMapURL,
+  setMapPrepareMode
+}) => {
   const currentLanguage = i18nData[currentLanguageMode]
 
   console.log(i18nData[currentLanguageMode])
@@ -28,10 +34,8 @@ const HeaderContent: React.FC<HeaderContentProps> = ({ changeLanguage, currentLa
   const themeMode = () => {
     if (document.body.hasAttribute('theme-mode')) {
       document.body.removeAttribute('theme-mode')
-      window.setMode('light')
     } else {
       document.body.setAttribute('theme-mode', 'dark')
-      window.setMode('dark')
     }
   }
 
@@ -41,14 +45,20 @@ const HeaderContent: React.FC<HeaderContentProps> = ({ changeLanguage, currentLa
         <Nav.Header>
           <Title>{currentLanguage.title}</Title>
         </Nav.Header>
-        <Nav.Item>
-          <Tag size='large' shape='circle' type='solid' color='red'>
-            {currentLanguage.mapsetting.maps[currentMap]}
-          </Tag>
+        <Nav.Item style={{ flexDirection: 'column', justifyContent: 'center' }}>
+          <ChangeMapButton
+            currentLanguage={currentLanguage}
+            currentMap={currentMap}
+            setPresentMap={setPresentMap}
+            setPresentMapURL={setPresentMapURL}
+          />
+        </Nav.Item>
+        <Nav.Item style={{ flexDirection: 'column', justifyContent: 'center' }}>
+          <ChangeHighlightButton mapPrepareMode={mapPrepareMode} setMapPrepareMode={setMapPrepareMode} />
         </Nav.Item>
         <Nav.Footer>
           <Button
-            icon={<CgDarkMode size='1.5rem' style={{ padding: '0 1rem' }} color='rgba(var(--semi-grey-9), 1)' />}
+            icon={<FaBrush size='1rem' style={{ padding: '0 1rem' }} color='rgba(var(--semi-grey-9), 1)' />}
             onClick={themeMode}
           />
           <MdOutlineTranslate size='1.5rem' style={{ padding: '0 1rem' }} color='rgba(var(--semi-grey-9), 1)' />
