@@ -47,7 +47,11 @@ function App() {
   const { Header, Footer, Sider, Content } = Layout;
   const { Title } = Typography;
 
-  const [canvasTool, setTool] = useState<mapTools>('SELECT');
+  const [presentLanguage, setPresentLanguage] = useState<I18nData>(i18nData[1]);
+  const [closeallcollapse, setCloseAllCollapse] = useState(false);
+  const [presentMap, setPresentMap] = useState("WindyTown");
+
+  const [canvasTool, setTool] = useState<mapTools>("SELECT");
   const [penColor, setpenColor] = useState("red");
 
   const [penWidth, setpenWidth] = useState(2);
@@ -86,12 +90,12 @@ function App() {
   const changePresentlanguage = async (value: string) => {
     for (const languageinfo of i18nData) {
       if (languageinfo.language === value) {
-        setPresentMap(i18nData[1].mapsetting.maps.WindyTown);
+        setPresentLanguage(languageinfo);
+        setPresentMap("WindyTown");
         setPresentMapURL({ imgPrepareLink: mapList[0].imgPrepareLink, imgBlankLink: mapList[0].imgBlankLink });
         setMapPrepareMode(true);
         setMarkNameMode(true);
         setCloseAllCollapse(true);
-        setPresentLanguage(languageinfo);
       }
     }
     await Sleep(100)
@@ -157,7 +161,7 @@ function App() {
   return (
     <Layout className="components-layout-demo semi-always-light" style={{ height: 720, width: 1280, margin: "auto" }}>
       <Header style={styles.commonStyles}>
-        <Title heading={3} style={{ margin: '14px 0' }} >{presentLanguage.title}  <span><Tag color='light-blue' style={{ margin: "3px" }}>{presentMap}</Tag>{mapMarkNameMode ? <Tag color='light-blue' style={{ margin: "3px" }}><MdCreate size='1rem' /></Tag> : <></>}</span></Title>
+        <Title heading={3} style={{ margin: '14px 0' }} >{presentLanguage.title}  <span><Tag color='light-blue' style={{ margin: "3px" }}>{presentLanguage.mapsetting.maps[presentMap as keyof typeof presentLanguage.mapsetting.maps]}</Tag>{mapMarkNameMode ? <Tag color='light-blue' style={{ margin: "3px" }}><MdCreate size='1rem' /></Tag> : <></>}</span></Title>
         <div style={{ position: "relative", left: "1100px", top: "-60px", height: "100%", width: "200px", display: "flex" }}>
           <div style={{ marginTop: "8px", marginRight: "12px" }}><MdOutlineTranslate size='1.5rem' /></div>
           <Select defaultValue={presentLanguage.language} style={{ width: 120, marginTop: "18px" }} onChange={value => changePresentlanguage(value as string)}>
