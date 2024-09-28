@@ -13,6 +13,8 @@ interface Sidebar {
   bugpoint: string;
   bugpointwarning: JSX.Element;
   learnmore: string;
+  supportus: string;
+  supportusContent: JSX.Element;
 }
 
 interface MapSetting {
@@ -117,7 +119,9 @@ export const i18nData: I18nData[] = [
           <div>在游戏中利用Bug导致被封禁等不良后果本站概不负责！</div>
         </div>
       ),
-      learnmore: "了解更多"
+      learnmore: "了解更多",
+      supportus: "支持我们",
+      supportusContent: <></>,
     },
     mapsetting: {
       choosemap: "选择地图",
@@ -249,7 +253,9 @@ export const i18nData: I18nData[] = [
           <div>We are not responsible for any bans for abusing any of these bugs.</div>
         </div>
       ),
-      learnmore: "Learn More"
+      learnmore: "Learn More",
+      supportus: "SUPPORT US",
+      supportusContent: <></>,
     },
     mapsetting: {
       choosemap: "Map",
@@ -382,6 +388,8 @@ export const i18nData: I18nData[] = [
         </div>
       ),
       learnmore: "詳細",
+      supportus: "SUPPORT US",
+      supportusContent: <></>,
     },
     mapsetting: {
       choosemap: "マップ",

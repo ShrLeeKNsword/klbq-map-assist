@@ -22,6 +22,7 @@ import ColorBtn from './components/buttons/colorBtn.tsx';
 import { colorPalette, mapTools } from './utils/canvasConstants.ts';
 import StandardButton from './components/buttons/standardButton.tsx';
 import { DrawType } from 'pikaso';
+import SupportUs from './components/supportus.tsx';
 
 const styles = {
   commonStyles: {
@@ -330,7 +331,7 @@ function App() {
         </Content>
       </Layout>
       <Footer className='undragable' style={styles.commonStyles}>
-        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginLeft: "80px" }}>
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginLeft: "0px" }}>
           <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="nofollow">
             <img decoding="async" loading="lazy" src="https://s2.loli.net/2024/09/16/TPdoKCrgVb4i37J.png" width="107" height="38" style={{ marginRight: "20px", marginTop: "12px" }} />
           </a>
@@ -356,8 +357,9 @@ function App() {
             {" | "}
           </div>
           <div style={{ marginBottom: "16px" }}>
-            <Button type="tertiary" onClick={() => open("https://klbq.fsltech.cn/mapassist.html", "_blank")}>中国境内站点</Button>
-            {/*<Button type="tertiary" onClick={() => open("https://strinova.fsltech.cn/", "_blank")}>International Site</Button>*/}
+            {true ? <Button type="tertiary" onClick={() => open("https://klbq.fsltech.cn/mapassist.html", "_blank")}>中国境内站点</Button> :
+              <Button type="tertiary" onClick={() => open("https://strinova.fsltech.cn/", "_blank")}>International Site</Button>}
+            <SupportUs name={presentLanguage.sidebar.supportus} />
           </div>
         </div>
       </Footer>
