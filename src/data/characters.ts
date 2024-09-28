@@ -114,7 +114,7 @@ export const characterData: {
 	Ming: {
 		character: TheScissors.Ming,
 		faction: factions.TheScissors,
-		imageLink: 'https://s2.loli.net/2024/09/25/qhENkLvnlWdIQox.png',
+		imageLink: 'https://s2.loli.net/2024/09/28/IRCcOSZTwXQKEkb.png',
 		skills: {
 			Active: 'https://s2.loli.net/2024/09/25/NQ2TdSqhseRZY7b.png',
 			Passive: 'https://s2.loli.net/2024/09/25/bsAzZemy4uEcaHt.png',
@@ -144,7 +144,7 @@ export const characterData: {
 	Reiichi: {
 		character: TheScissors.Reiichi,
 		faction: factions.TheScissors,
-		imageLink: 'https://s2.loli.net/2024/09/25/CNGfkr2sHT86PLb.png',
+		imageLink: 'https://s2.loli.net/2024/09/28/Y4iGH3AZtbagjXv.png',
 		skills: {
 			Active: 'https://s2.loli.net/2024/09/25/C6qts5xeVpS1N4E.png',
 			Passive: 'https://s2.loli.net/2024/09/25/iuSvZDYnFTzmBrl.png',
@@ -224,7 +224,7 @@ export const characterData: {
 	BaiMo: {
 		character: Urbino.BaiMo,
 		faction: factions.Urbino,
-		imageLink: 'https://s2.loli.net/2024/09/25/bLOreh5Bxf6lEjT.png',
+		imageLink: 'https://s2.loli.net/2024/09/28/zfkl1pKGisPyhxA.png',
 		skills: {
 			Active: 'https://s2.loli.net/2024/09/25/eUzu75aSXVw2kQF.png',
 			Passive: 'https://s2.loli.net/2024/09/25/xvVheX57uGJMI2k.png',
