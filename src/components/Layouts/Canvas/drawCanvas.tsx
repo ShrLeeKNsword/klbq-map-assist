@@ -23,6 +23,12 @@ const DrawMap: React.FC<PikasoMapProps> = ({
 }) => {
   useLayoutEffect(() => {
     switch (canvasTool) {
+      case DrawType.Arrow:
+        pikasoEditor?.shapes.arrow.draw({
+          stroke: penColor,
+          strokeWidth: lineWidth
+        })
+        break
       case DrawType.Line:
         pikasoEditor?.shapes.line.draw({
           stroke: penColor,
@@ -49,7 +55,8 @@ const DrawMap: React.FC<PikasoMapProps> = ({
     pikasoEditor?.board.background,
     pikasoEditor?.board.stage,
     pikasoEditor?.shapes.line,
-    pikasoEditor?.shapes.pencil
+    pikasoEditor?.shapes.pencil,
+    pikasoEditor?.shapes.arrow
   ])
 
   const handleCanvasMouseDown = () => {
@@ -57,6 +64,13 @@ const DrawMap: React.FC<PikasoMapProps> = ({
       case DrawType.Line:
         pikasoEditor?.shapes.line.stopDrawing()
         pikasoEditor?.shapes.line.draw({
+          stroke: penColor,
+          strokeWidth: lineWidth
+        })
+        break
+      case DrawType.Arrow:
+        pikasoEditor?.shapes.arrow.stopDrawing()
+        pikasoEditor?.shapes.arrow.draw({
           stroke: penColor,
           strokeWidth: lineWidth
         })

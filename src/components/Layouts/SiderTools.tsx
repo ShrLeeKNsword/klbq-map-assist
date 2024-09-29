@@ -6,7 +6,7 @@ import ToolPopoverButton from './Buttons/tool-popover-button'
 import ColorPopover from './Popovers/ColorPopover'
 import { FaMousePointer } from 'react-icons/fa'
 import ToolNormalButton from './Buttons/tool-normal-button'
-import { PiLineSegmentFill } from 'react-icons/pi'
+import { PiArrowRightFill, PiLineSegmentFill } from 'react-icons/pi'
 import ToolColorButton from './Buttons/tool-color-button'
 import { Popconfirm, Toast } from '@douyinfe/semi-ui'
 import { I18nData } from '../../data/i18n'
@@ -66,6 +66,14 @@ const SiderTools: React.FC<SiderToolsProps> = ({
         icon={PiLineSegmentFill}
         isActiveTool={canvasTool === DrawType.Line}
         onClick={() => setTool(DrawType.Line)}
+        penWidth={lineWidth}
+        setpenWidth={setLineWidth}
+        penColor={penColor}
+      />
+      <ToolPopoverButton
+        icon={PiArrowRightFill}
+        isActiveTool={canvasTool === DrawType.Arrow}
+        onClick={() => setTool(DrawType.Arrow)}
         penWidth={lineWidth}
         setpenWidth={setLineWidth}
         penColor={penColor}
