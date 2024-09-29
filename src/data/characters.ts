@@ -76,7 +76,7 @@ export const characterData: {
 	Michele: {
 		character: PUS.Michele,
 		faction: factions.PUS,
-		imageLink: 'https://s2.loli.net/2024/09/25/6Of7oigcQ5weJHh.png',
+		imageLink: 'https://s2.loli.net/2024/09/29/29JH5SlaTdCwgFR.png',
 		skills: {
 			Active: 'https://s2.loli.net/2024/09/25/8iCzWDaNQPSxqvw.png',
 			Passive: 'https://s2.loli.net/2024/09/25/ANhKZ6GDzOIjPtf.png',
@@ -86,7 +86,7 @@ export const characterData: {
 	Nobunaga: {
 		character: PUS.Nobunaga,
 		faction: factions.PUS,
-		imageLink: 'https://s2.loli.net/2024/09/25/dx6MZJgzUf3Xlay.png',
+		imageLink: 'https://s2.loli.net/2024/09/29/7UuX5VTR8AYWD2o.png',
 		skills: {
 			Active: 'https://s2.loli.net/2024/09/25/VJFzGhSyXmsiHpO.png',
 			Passive: 'https://s2.loli.net/2024/09/25/AHsc9o8W25UlpNa.png',
@@ -96,7 +96,7 @@ export const characterData: {
 	Kokona: {
 		character: PUS.Kokona,
 		faction: factions.PUS,
-		imageLink: 'https://s2.loli.net/2024/09/25/Kl9MLgtJFqYDkN2.png',
+		imageLink: 'https://s2.loli.net/2024/09/29/jtlryiY8WHIGAMq.png',
 		skills: {
 			Active: 'https://s2.loli.net/2024/09/25/9zFsMYumpwJZrTg.png',
 			Passive: 'https://s2.loli.net/2024/09/25/V8NijM5onGulX9m.png',
@@ -106,7 +106,7 @@ export const characterData: {
 	Yvette: {
 		character: PUS.Yvette,
 		faction: factions.PUS,
-		imageLink: 'https://s2.loli.net/2024/09/25/N5VL236lvYXQ4O1.png',
+		imageLink: 'https://s2.loli.net/2024/09/29/eIVFmswk3tUlOcR.png',
 		skills: {
 			Active: 'https://s2.loli.net/2024/09/25/ESH6FNKQjbafMZn.png',
 			Passive: 'https://s2.loli.net/2024/09/25/2hqoyUWsnbA83BP.png',
@@ -116,7 +116,7 @@ export const characterData: {
 	Flavia: {
 		character: PUS.Flavia,
 		faction: factions.PUS,
-		imageLink: 'https://s2.loli.net/2024/09/25/I9fm7ZsCRw5tuzV.png',
+		imageLink: 'https://s2.loli.net/2024/09/29/jC98Rq3NhrUXYWK.png',
 		skills: {
 			Active: 'https://s2.loli.net/2024/09/25/58dg6OpPntlviqW.png',
 			Passive: 'https://s2.loli.net/2024/09/25/u5tV9xaNyjUL6EM.png',
@@ -126,7 +126,7 @@ export const characterData: {
 	Ming: {
 		character: TheScissors.Ming,
 		faction: factions.TheScissors,
-		imageLink: 'https://s2.loli.net/2024/09/28/IRCcOSZTwXQKEkb.png',
+		imageLink: 'https://s2.loli.net/2024/09/29/nuhFZjpVGgJSEyc.png',
 		skills: {
 			Active: 'https://s2.loli.net/2024/09/25/NQ2TdSqhseRZY7b.png',
 			Passive: 'https://s2.loli.net/2024/09/25/bsAzZemy4uEcaHt.png',
@@ -136,7 +136,7 @@ export const characterData: {
 	Lawine: {
 		character: TheScissors.Lawine,
 		faction: factions.TheScissors,
-		imageLink: 'https://s2.loli.net/2024/09/25/mo6Yds1UQn9eXhu.png',
+		imageLink: 'https://s2.loli.net/2024/09/29/DeK5afJoAhpyNcM.png',
 		skills: {
 			Active: 'https://s2.loli.net/2024/09/25/gOFlGIzPjxbpYKw.png',
 			Passive: 'https://s2.loli.net/2024/09/25/8AxLszwVIg17WGq.png',
@@ -146,7 +146,7 @@ export const characterData: {
 	Meredith: {
 		character: TheScissors.Meredith,
 		faction: factions.TheScissors,
-		imageLink: 'https://s2.loli.net/2024/09/25/awVpAXErSo4Cs9K.png',
+		imageLink: 'https://s2.loli.net/2024/09/29/C4QmVOhp1rB9Gd6.png',
 		skills: {
 			Active: 'https://s2.loli.net/2024/09/25/KWYZTSQmjOHJ2RX.png',
 			Passive: 'https://s2.loli.net/2024/09/25/O8kRqCVEDoK6T3p.png',
@@ -156,7 +156,7 @@ export const characterData: {
 	Reiichi: {
 		character: TheScissors.Reiichi,
 		faction: factions.TheScissors,
-		imageLink: 'https://s2.loli.net/2024/09/28/Y4iGH3AZtbagjXv.png',
+		imageLink: 'https://s2.loli.net/2024/09/29/txSOyYkT4pXhGBn.png',
 		skills: {
 			Active: 'https://s2.loli.net/2024/09/25/C6qts5xeVpS1N4E.png',
 			Passive: 'https://s2.loli.net/2024/09/25/iuSvZDYnFTzmBrl.png',
@@ -166,7 +166,7 @@ export const characterData: {
 	Kanami: {
 		character: TheScissors.Kanami,
 		faction: factions.TheScissors,
-		imageLink: 'https://s2.loli.net/2024/09/25/ynbCQZvjfaSTqDA.png',
+		imageLink: 'https://s2.loli.net/2024/09/29/7DHOLqvWMzmlch3.png',
 		skills: {
 			Active: 'https://s2.loli.net/2024/09/25/UBJqoYz835GvVxy.png',
 			Passive: 'https://s2.loli.net/2024/09/25/OHbINYGSQhFazcd.png',
@@ -176,7 +176,7 @@ export const characterData: {
 	Eika: {
 		character: TheScissors.Eika,
 		faction: factions.TheScissors,
-		imageLink: 'https://s2.loli.net/2024/09/25/LsfhU12uXvDtm7S.png',
+		imageLink: 'https://s2.loli.net/2024/09/29/SrnDsxX5bAiBNcE.png',
 		skills: {
 			Active: 'https://s2.loli.net/2024/09/25/SPYXJZwHGObnrmV.png',
 			Passive: 'https://s2.loli.net/2024/09/25/JYfa5PdE6r4Kcio.png',
@@ -186,7 +186,7 @@ export const characterData: {
 	Fragrans: {
 		character: TheScissors.Fragrans,
 		faction: factions.TheScissors,
-		imageLink: 'https://s2.loli.net/2024/09/25/tfKwYLHmIxeUg1u.png',
+		imageLink: 'https://s2.loli.net/2024/09/29/AM58XCKyixJlTGO.png',
 		skills: {
 			Active: 'https://s2.loli.net/2024/09/25/L9j3uWBrl5hNyzx.png',
 			Passive: 'https://s2.loli.net/2024/09/25/B3HDdTpLjAyYQ74.png',
@@ -196,7 +196,10 @@ export const characterData: {
 	Audrey: {
 		character: Urbino.Audrey,
 		faction: factions.Urbino,
-		imageLink: 'https://s2.loli.net/2024/09/25/sZU6SJ3Vn4dfkap.png',
+		imageLink: {
+			defense: "https://s2.loli.net/2024/09/29/IVhuSTZvYmk4CNj.png",
+			attack: "https://s2.loli.net/2024/09/29/qD7YufUpTmbzX1x.png",
+		},
 		skills: {
 			Active: 'https://s2.loli.net/2024/09/26/9PqOBd7owjJrRVp.png',
 			Passive: 'https://s2.loli.net/2024/09/26/pfyJk2RLYsXlBFg.png',
@@ -206,7 +209,10 @@ export const characterData: {
 	Maddelena: {
 		character: Urbino.Maddelena,
 		faction: factions.Urbino,
-		imageLink: 'https://s2.loli.net/2024/09/25/o6DfG7n9KCtzvbE.png',
+		imageLink: {
+			defense: "https://s2.loli.net/2024/09/29/dxqSrs3ivIJlF5h.png",
+			attack: "https://s2.loli.net/2024/09/29/OGgXKe6pPERflQL.png",
+		},
 		skills: {
 			Active: 'https://s2.loli.net/2024/09/25/2r7wkizoLbpqMOZ.png',
 			Passive: 'https://s2.loli.net/2024/09/25/tazvXEJNs5HuyeD.png',
@@ -216,7 +222,10 @@ export const characterData: {
 	Fuchsia: {
 		character: Urbino.Fuchsia,
 		faction: factions.Urbino,
-		imageLink: 'https://s2.loli.net/2024/09/25/IS4QHlqreY97OCE.png',
+		imageLink: {
+			defense: "https://s2.loli.net/2024/09/29/TU81atfzDKiRV2o.png",
+			attack: "https://s2.loli.net/2024/09/29/5Vbc3mYw8KJtTDC.png",
+		},
 		skills: {
 			Active: 'https://s2.loli.net/2024/09/25/tkQ3jlHGeRTDPyn.png',
 			Passive: 'https://s2.loli.net/2024/09/25/5ZCmFuQhoP3zYnV.png',
@@ -226,7 +235,10 @@ export const characterData: {
 	Celestia: {
 		character: Urbino.Celestia,
 		faction: factions.Urbino,
-		imageLink: 'https://s2.loli.net/2024/09/25/VJUBm193pTqjxwb.png',
+		imageLink: {
+			defense: "https://s2.loli.net/2024/09/29/Zt93QEgreUnvaxX.png",
+			attack: "https://s2.loli.net/2024/09/29/PI6eiLuZfcAQ2aR.png",
+		},
 		skills: {
 			Active: 'https://s2.loli.net/2024/09/25/WmtSU2hFLBPaf85.png',
 			Passive: 'https://s2.loli.net/2024/09/25/O5dXCxh3R1wVINQ.png',
@@ -236,7 +248,10 @@ export const characterData: {
 	BaiMo: {
 		character: Urbino.BaiMo,
 		faction: factions.Urbino,
-		imageLink: 'https://s2.loli.net/2024/09/28/zfkl1pKGisPyhxA.png',
+		imageLink: {
+			defense: "https://s2.loli.net/2024/09/29/2KrCPXp5k1e6wfm.png",
+			attack: "https://s2.loli.net/2024/09/29/jt4621ivFRfbEqD.png",
+		},
 		skills: {
 			Active: 'https://s2.loli.net/2024/09/25/eUzu75aSXVw2kQF.png',
 			Passive: 'https://s2.loli.net/2024/09/25/xvVheX57uGJMI2k.png',
@@ -246,7 +261,10 @@ export const characterData: {
 	Galatea: {
 		character: Urbino.Galatea,
 		faction: factions.Urbino,
-		imageLink: 'https://s2.loli.net/2024/09/25/GJOlL4BZKjzSmMx.png',
+		imageLink: {
+			defense: "https://s2.loli.net/2024/09/29/t1vlASe5DNRHVZq.png",
+			attack: "https://s2.loli.net/2024/09/29/wpBbSjafRNFD43K.png",
+		},
 		skills: {
 			Active: 'https://s2.loli.net/2024/09/25/UQVBxmGPD9q1tsr.png',
 			Passive: 'https://s2.loli.net/2024/09/25/VmDbBPl9ezv5ZgU.png',
