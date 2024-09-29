@@ -1,11 +1,13 @@
 import { useState } from 'react';
-import { Modal, Button } from '@douyinfe/semi-ui';
+import { Modal, Button, Typography, Divider } from '@douyinfe/semi-ui';
 import { CiHeart } from "react-icons/ci";
 
 interface SupportUsPops {
     name: string;
     Content?: JSX.Element;
 }
+
+const { Title } = Typography;
 
 const SupportUs = (props: SupportUsPops) => {
     const [visible, setVisible] = useState(false);
@@ -43,7 +45,19 @@ const SupportUs = (props: SupportUsPops) => {
                     <br />
                     <div>但即便如此，你的赞助也可以给予开发者前进的动力，让这个项目变得更好。</div>
                     <div>无论你使用何种形式赞助，你都可以在<strong>卡拉彼丘地图助手</strong>的 GitHub 项目主页和网站展示您的信息（个人主页、公司主页、GitHub 资料页等）。</div>
-                    <div>如需展示，请在留言中留下需要展示的内容或将内容连同赞助收据发送至</div>
+                    <div>如需展示，请在留言中留下需要展示的内容或将内容连同赞助收据发送至 <a href='mailto:fsltech@email.cn'>fsltech@email.cn</a></div>
+                    <br />
+                    <Divider margin='12px' />
+                    <div><Title heading={6}>International</Title></div>
+                    <div onClick={() => { open("https://ko-fi.com/MiekoHikari", "_blank") }}>
+                        <img src='https://storage.ko-fi.com/cdn/brandasset/logo_white_stroke_small.png' style={{ height: "50px", marginTop: "10px" }} />
+                    </div>
+                    <Divider margin='12px' />
+                    <div><Title heading={6}>中国境内</Title></div>
+                    <div onClick={() => { open("https://afdian.com/a/fsltech", "_blank") }} style={{ display: "flex", height: "50px" }}>
+                        <img src='https://static.afdiancdn.com/static/img/logo/logo.png' style={{ height: "50px", marginTop: "10px", marginLeft: "5px" }} />
+                        <div style={{ display: "flex", height: "100%", placeItems: "center", fontSize: "20px", marginLeft: "20px", marginTop: "10px", color: "rgba(var(--semi-grey-9), 1)" }}><strong>爱发电</strong></div>
+                    </div>
                 </div>
             </Modal>
         </>
