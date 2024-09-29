@@ -1,6 +1,5 @@
 import React, { useLayoutEffect } from 'react'
 import { Pikaso, type BaseShapes } from 'pikaso'
-import { useDrop } from 'react-dnd'
 
 interface PikasoMapProps {
   pikasoRef: React.RefObject<HTMLDivElement>
