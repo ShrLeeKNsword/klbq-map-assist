@@ -31,9 +31,8 @@ const HeaderContent: React.FC<HeaderContentProps> = ({
 }) => {
   const currentLanguage = i18nData[currentLanguageMode]
 
-  console.log(i18nData[currentLanguageMode])
-
   const [currentThemeMode, setCurrentThemeMode] = useState(document.body.hasAttribute('theme-mode') ? false : true)
+  
   const themeMode = () => {
     if (document.body.hasAttribute('theme-mode')) {
       document.body.removeAttribute('theme-mode')
