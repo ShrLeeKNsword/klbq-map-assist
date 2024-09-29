@@ -60,18 +60,18 @@ const App: React.FC = () => {
         />
       </Header>
       <Layout>
-        <Sider style={{ backgroundColor: 'var(--semi-color-bg-1)', width: '15rem' }}>
-          <SiderContent currentLanguage={currentLanguage} />
-        </Sider>
-        <Content
-          style={{
-            backgroundColor: 'var(--semi-color-bg-2)',
-            height: '100%',
-            display: 'flex',
-            placeItems: 'center',
-            padding: '0 auto'
-          }}>
-          <DndProvider backend={HTML5Backend}>
+        <DndProvider backend={HTML5Backend}>
+          <Sider style={{ backgroundColor: 'var(--semi-color-bg-1)', width: '15rem' }}>
+            <SiderContent currentLanguage={currentLanguage} />
+          </Sider>
+          <Content
+            style={{
+              backgroundColor: 'var(--semi-color-bg-2)',
+              height: '100%',
+              display: 'flex',
+              placeItems: 'center',
+              padding: '0 auto'
+            }}>
             <div style={{ overflow: 'hidden', position: 'relative', top: 0, left: 0, width: '100%', height: '100%' }}>
               <MapCanvas
                 currentMap={mapPrepareMode ? presentMapURL.imgPrepareLink : presentMapURL.imgBlankLink}
@@ -89,22 +89,22 @@ const App: React.FC = () => {
                 penWidth={penWidth}
               />
             </div>
-          </DndProvider>
-        </Content>
-        <Sider style={{ backgroundColor: 'var(--semi-color-bg-1)', width: '4rem' }}>
-          <SiderTools
-            currentLanguage={currentLanguage}
-            canvasTool={canvasTool}
-            setTool={setTool}
-            penColor={penColor}
-            penWidth={penWidth}
-            setpenWidth={setpenWidth}
-            setLineWidth={setLineWidth}
-            lineWidth={lineWidth}
-            editor={drawCanvasEditor}
-            setPenColor={setpenColor}
-          />
-        </Sider>
+          </Content>
+          <Sider style={{ backgroundColor: 'var(--semi-color-bg-1)', width: '4rem' }}>
+            <SiderTools
+              currentLanguage={currentLanguage}
+              canvasTool={canvasTool}
+              setTool={setTool}
+              penColor={penColor}
+              penWidth={penWidth}
+              setpenWidth={setpenWidth}
+              setLineWidth={setLineWidth}
+              lineWidth={lineWidth}
+              editor={drawCanvasEditor}
+              setPenColor={setpenColor}
+            />
+          </Sider>
+        </DndProvider>
       </Layout>
       <Footer style={{ backgroundColor: 'var(--semi-color-bg-1)' }}>
         <FooterContent currentLanguage={currentLanguage} />
