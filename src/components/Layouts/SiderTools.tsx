@@ -1,15 +1,18 @@
 import React from 'react'
 import { mapTools } from '../../utils/canvasConstants'
 import Pikaso, { BaseShapes, DrawType } from 'pikaso'
-import { MdDelete, MdDraw, MdUndo } from 'react-icons/md'
+import { MdDelete, MdDeleteForever, MdDraw, MdUndo } from 'react-icons/md'
 import ToolPopoverButton from './Buttons/tool-popover-button'
 import ColorPopover from './Popovers/ColorPopover'
 import { FaMousePointer } from 'react-icons/fa'
 import ToolNormalButton from './Buttons/tool-normal-button'
 import { PiLineSegmentFill } from 'react-icons/pi'
 import ToolColorButton from './Buttons/tool-color-button'
+import { Popconfirm, Toast } from '@douyinfe/semi-ui'
+import { I18nData } from '../../data/i18n'
 
 interface SiderToolsProps {
+  currentLanguage: I18nData
   setTool: React.Dispatch<React.SetStateAction<mapTools>>
   canvasTool: mapTools
   setpenWidth: React.Dispatch<React.SetStateAction<number>>
@@ -30,8 +33,20 @@ const SiderTools: React.FC<SiderToolsProps> = ({
   lineWidth,
   setLineWidth,
   editor,
-  setPenColor
+  setPenColor,
+  currentLanguage
 }) => {
+  const [togglevisible, setToggleVisible] = React.useState(false)
+  const [selection, setSelection] = React.useState(false)
+
+  editor?.on('selection:change', (selection) => {
+    if (selection.shapes!.length > 0) {
+      setSelection(true)
+    } else {
+      setSelection(false)
+    }
+  })
+
   return (
     <div>
       <ToolNormalButton
@@ -74,14 +89,37 @@ const SiderTools: React.FC<SiderToolsProps> = ({
         isActiveTool={false}
         onClick={() => (editor!.history.getStep() > 1 ? editor?.undo() : undefined)}
       />
-
-      <ToolNormalButton
-        Icon={MdDelete}
-        isActiveTool={false}
-        onClick={() => {
+      <Popconfirm
+        visible={togglevisible}
+        title={currentLanguage.markbox.clearwarning.title}
+        content={currentLanguage.markbox.clearwarning.content}
+        okText={currentLanguage.markbox.clearwarning.ok}
+        cancelText={currentLanguage.markbox.clearwarning.cancel}
+        onConfirm={() => {
           editor?.history.jump(1)
+          setToggleVisible(!togglevisible)
+          Toast.success(currentLanguage.markbox.clearwarning.success)
         }}
-      />
+        onCancel={() => {
+          setToggleVisible(!togglevisible)
+        }}
+        position='left'>
+        {selection ? (
+          <ToolNormalButton
+            Icon={MdDelete}
+            typeOverride={selection ? 'secondary' : 'danger'}
+            isActiveTool={false}
+            onClick={() => editor?.selection.delete()}
+          />
+        ) : (
+          <ToolNormalButton
+            Icon={MdDeleteForever}
+            typeOverride={'danger'}
+            isActiveTool={false}
+            onClick={() => setToggleVisible(!togglevisible)}
+          />
+        )}
+      </Popconfirm>
     </div>
   )
 }

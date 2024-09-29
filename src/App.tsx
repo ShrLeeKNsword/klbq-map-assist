@@ -78,6 +78,7 @@ const App: React.FC = () => {
         </Content>
         <Sider style={{ backgroundColor: 'var(--semi-color-bg-1)', width: '4rem' }}>
           <SiderTools
+            currentLanguage={currentLanguage}
             canvasTool={canvasTool}
             setTool={setTool}
             penColor={penColor}
