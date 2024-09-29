@@ -15,7 +15,7 @@ const ToolColorButton = forwardRef<Button, ToolColorButtonProps>(({ color, onCli
       color={color}
       theme={'solid'}
       size='small'
-      style={{ width: '3rem', height: '3rem', backgroundColor: color }}
+      style={{ width: '3rem', height: '3rem', background: color }}
       onClick={() => onClick(color)}></Button>
   )
 })

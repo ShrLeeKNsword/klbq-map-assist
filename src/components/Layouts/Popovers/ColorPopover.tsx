@@ -1,4 +1,4 @@
-import { Popover } from '@douyinfe/semi-ui'
+import { ColorPicker, Popover } from '@douyinfe/semi-ui'
 import React from 'react'
 import { colorPalette } from '../../../utils/canvasConstants'
 import ToolColorButton from '../Buttons/tool-color-button'
@@ -14,11 +14,20 @@ const ColorPopover: React.FC<ColorPopoverProps> = ({ children, setPenColor }) =>
       {colorPalette.map((color) => (
         <ToolColorButton color={color} key={color} onClick={(value: string) => setPenColor(value)} />
       ))}
+      <ColorPicker
+        onChange={(value) => setPenColor(value.hex)}
+        alpha={false}
+        usePopover={true}
+        popoverProps={{ position: 'left' }}>
+        <div>
+          <ToolColorButton key={'custom'} color='linear-gradient(70deg, red, blue)' onClick={() => 0} />
+        </div>
+      </ColorPicker>
     </div>
   )
 
   return (
-    <Popover content={popOverContent} position='left' clickToHide={true}>
+    <Popover content={popOverContent} position='left'>
       <div>{children}</div>
     </Popover>
   )
