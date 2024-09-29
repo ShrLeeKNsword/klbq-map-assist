@@ -83,6 +83,10 @@ const App: React.FC = () => {
             penColor={penColor}
             penWidth={penWidth}
             setpenWidth={setpenWidth}
+            setLineWidth={setLineWidth}
+            lineWidth={lineWidth}
+            editor={editor}
+            setPenColor={setpenColor}
           />
         </Sider>
       </Layout>
