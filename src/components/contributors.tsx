@@ -22,7 +22,7 @@ const contributeList = [
         icon: "https://avatars.githubusercontent.com/u/77004524?v=4",
         github: "https://github.com/MiekoHikari/",
         bili: "",
-        X: "",
+        X: "https://x.com/MiekoHikariEN",
         twich: "https://www.twitch.tv/miekohikari",
     },
     {
