@@ -104,21 +104,12 @@ const SiderTools: React.FC<SiderToolsProps> = ({
           setToggleVisible(!togglevisible)
         }}
         position='left'>
-        {selection ? (
-          <ToolNormalButton
-            Icon={MdDelete}
-            typeOverride={selection ? 'secondary' : 'danger'}
-            isActiveTool={false}
-            onClick={() => editor?.selection.delete()}
-          />
-        ) : (
-          <ToolNormalButton
-            Icon={MdDeleteForever}
-            typeOverride={'danger'}
-            isActiveTool={false}
-            onClick={() => setToggleVisible(!togglevisible)}
-          />
-        )}
+        <ToolNormalButton
+          Icon={selection ? MdDelete : MdDeleteForever}
+          typeOverride={selection ? 'secondary' : 'danger'}
+          isActiveTool={false}
+          onClick={() => (selection ? editor?.selection.delete() : setToggleVisible(!togglevisible))}
+        />
       </Popconfirm>
     </div>
   )
