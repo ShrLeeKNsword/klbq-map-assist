@@ -9,7 +9,7 @@ import SiderContent from './components/Layouts/SiderContent'
 import PikasoMap from './components/pikasoMap'
 import usePikaso from 'pikaso-react-hook'
 import FooterContent from './components/Layouts/FooterContent'
-import { mapTools } from './utils/canvasConstants'
+import { colorPalette, mapTools } from './utils/canvasConstants'
 import SiderTools from './components/Layouts/SiderTools'
 
 const App: React.FC = () => {
@@ -19,7 +19,7 @@ const App: React.FC = () => {
   const [ref, editor] = usePikaso()
 
   const [canvasTool, setTool] = useState<mapTools>('SELECT')
-  const [penColor, setpenColor] = useState('red')
+  const [penColor, setpenColor] = useState(colorPalette[2])
 
   const [penWidth, setpenWidth] = useState(2)
   const [lineWidth, setLineWidth] = useState(2)

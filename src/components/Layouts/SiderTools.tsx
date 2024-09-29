@@ -1,7 +1,7 @@
 import React from 'react'
 import { mapTools } from '../../utils/canvasConstants'
 import Pikaso, { BaseShapes, DrawType } from 'pikaso'
-import { MdDraw, MdUndo } from 'react-icons/md'
+import { MdDelete, MdDraw, MdUndo } from 'react-icons/md'
 import ToolPopoverButton from './Buttons/tool-popover-button'
 import ColorPopover from './Popovers/ColorPopover'
 import { FaMousePointer } from 'react-icons/fa'
@@ -73,6 +73,14 @@ const SiderTools: React.FC<SiderToolsProps> = ({
         Icon={MdUndo}
         isActiveTool={false}
         onClick={() => (editor!.history.getStep() > 1 ? editor?.undo() : undefined)}
+      />
+
+      <ToolNormalButton
+        Icon={MdDelete}
+        isActiveTool={false}
+        onClick={() => {
+          editor?.history.jump(1)
+        }}
       />
     </div>
   )
