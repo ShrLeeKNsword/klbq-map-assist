@@ -38,40 +38,40 @@ const App: React.FC = () => {
   const currentLanguage = i18nData[presentLanguage]
 
   return (
-    <DndProvider backend={HTML5Backend}>
-      <Layout
-        style={{
-          border: '1px solid var(--semi-color-border)',
-          height: '100%',
-          width: '100%',
-          minHeight: '720px',
-          minWidth: '1280px'
-        }}>
-        <Header style={{ backgroundColor: 'var(--semi-color-bg-1)' }}>
-          {/* This takes language mode because of the language switcher */}
-          <HeaderContent
-            editor={drawCanvasEditor}
-            currentLanguageMode={presentLanguage}
-            currentMap={presentMap}
-            changeLanguage={setPresentLanguage}
-            setPresentMap={setPresentMap}
-            setPresentMapURL={setPresentMapURL}
-            mapPrepareMode={mapPrepareMode}
-            setMapPrepareMode={setMapPrepareMode}
-          />
-        </Header>
-        <Layout>
-          <Sider style={{ backgroundColor: 'var(--semi-color-bg-1)', width: '15rem' }}>
-            <SiderContent currentLanguage={currentLanguage} />
-          </Sider>
-          <Content
-            style={{
-              backgroundColor: 'var(--semi-color-bg-2)',
-              height: '100%',
-              display: 'flex',
-              placeItems: 'center',
-              padding: '0 auto'
-            }}>
+    <Layout
+      style={{
+        border: '1px solid var(--semi-color-border)',
+        height: '100%',
+        width: '100%',
+        minHeight: '720px',
+        minWidth: '1280px'
+      }}>
+      <Header style={{ backgroundColor: 'var(--semi-color-bg-1)' }}>
+        {/* This takes language mode because of the language switcher */}
+        <HeaderContent
+          editor={drawCanvasEditor}
+          currentLanguageMode={presentLanguage}
+          currentMap={presentMap}
+          changeLanguage={setPresentLanguage}
+          setPresentMap={setPresentMap}
+          setPresentMapURL={setPresentMapURL}
+          mapPrepareMode={mapPrepareMode}
+          setMapPrepareMode={setMapPrepareMode}
+        />
+      </Header>
+      <Layout>
+        <Sider style={{ backgroundColor: 'var(--semi-color-bg-1)', width: '15rem' }}>
+          <SiderContent currentLanguage={currentLanguage} />
+        </Sider>
+        <Content
+          style={{
+            backgroundColor: 'var(--semi-color-bg-2)',
+            height: '100%',
+            display: 'flex',
+            placeItems: 'center',
+            padding: '0 auto'
+          }}>
+          <DndProvider backend={HTML5Backend}>
             <div style={{ overflow: 'hidden', position: 'relative', top: 0, left: 0, width: '100%', height: '100%' }}>
               <MapCanvas
                 currentMap={mapPrepareMode ? presentMapURL.imgPrepareLink : presentMapURL.imgBlankLink}
@@ -89,27 +89,27 @@ const App: React.FC = () => {
                 penWidth={penWidth}
               />
             </div>
-          </Content>
-          <Sider style={{ backgroundColor: 'var(--semi-color-bg-1)', width: '4rem' }}>
-            <SiderTools
-              currentLanguage={currentLanguage}
-              canvasTool={canvasTool}
-              setTool={setTool}
-              penColor={penColor}
-              penWidth={penWidth}
-              setpenWidth={setpenWidth}
-              setLineWidth={setLineWidth}
-              lineWidth={lineWidth}
-              editor={drawCanvasEditor}
-              setPenColor={setpenColor}
-            />
-          </Sider>
-        </Layout>
-        <Footer style={{ backgroundColor: 'var(--semi-color-bg-1)' }}>
-          <FooterContent currentLanguage={currentLanguage} />
-        </Footer>
+          </DndProvider>
+        </Content>
+        <Sider style={{ backgroundColor: 'var(--semi-color-bg-1)', width: '4rem' }}>
+          <SiderTools
+            currentLanguage={currentLanguage}
+            canvasTool={canvasTool}
+            setTool={setTool}
+            penColor={penColor}
+            penWidth={penWidth}
+            setpenWidth={setpenWidth}
+            setLineWidth={setLineWidth}
+            lineWidth={lineWidth}
+            editor={drawCanvasEditor}
+            setPenColor={setpenColor}
+          />
+        </Sider>
       </Layout>
-    </DndProvider>
+      <Footer style={{ backgroundColor: 'var(--semi-color-bg-1)' }}>
+        <FooterContent currentLanguage={currentLanguage} />
+      </Footer>
+    </Layout>
   )
 }
 
