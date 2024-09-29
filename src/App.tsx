@@ -58,7 +58,7 @@ const App: React.FC = () => {
         <Sider style={{ backgroundColor: 'var(--semi-color-bg-1)', width: '15rem' }}>
           <SiderContent currentLanguage={currentLanguage} />
         </Sider>
-        <Content style={{ backgroundColor: 'var(--semi-color-bg-2)', height: '100%' }}>
+        <Content style={{ backgroundColor: 'var(--semi-color-bg-2)', height: '100%', display: "flex", placeItems: "center", padding: "0 auto" }}>
           <PikasoMap
             pikasoRef={ref}
             pikasoEditor={editor}

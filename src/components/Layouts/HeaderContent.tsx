@@ -1,12 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { i18nData, Languages } from '../../data/i18n'
 import { Button, Nav, Select } from '@douyinfe/semi-ui'
 import Title from '@douyinfe/semi-ui/lib/es/typography/title'
 import { MapName } from '../../data/maplist'
-import { MdOutlineTranslate } from 'react-icons/md'
+import { MdOutlineTranslate,MdOutlineLightMode,MdOutlineDarkMode} from 'react-icons/md'
 import ChangeMapButton from '../buttons/changeMapButton'
 import ChangeHighlightButton from '../buttons/changeHighlightButton'
-import { FaBrush } from 'react-icons/fa'
 
 interface HeaderContentProps {
   currentLanguageMode: Languages
@@ -31,11 +30,14 @@ const HeaderContent: React.FC<HeaderContentProps> = ({
 
   console.log(i18nData[currentLanguageMode])
 
+  const [currentThemeMode,setCurrentThemeMode] = useState(document.body.hasAttribute('theme-mode')?false:true)
   const themeMode = () => {
     if (document.body.hasAttribute('theme-mode')) {
       document.body.removeAttribute('theme-mode')
+      setCurrentThemeMode(true)
     } else {
       document.body.setAttribute('theme-mode', 'dark')
+      setCurrentThemeMode(false)
     }
   }
 
@@ -58,7 +60,8 @@ const HeaderContent: React.FC<HeaderContentProps> = ({
         </Nav.Item>
         <Nav.Footer>
           <Button
-            icon={<FaBrush size='1rem' style={{ padding: '0 1rem' }} color='rgba(var(--semi-grey-9), 1)' />}
+            icon={currentThemeMode?<MdOutlineLightMode size='1rem' style={{ padding: '0 1rem' }} color='rgba(var(--semi-grey-9), 1)' />:
+            <MdOutlineDarkMode size='1rem' style={{ padding: '0 1rem' }} color='rgba(var(--semi-grey-9), 1)' />}
             onClick={themeMode}
           />
           <MdOutlineTranslate size='1.5rem' style={{ padding: '0 1rem' }} color='rgba(var(--semi-grey-9), 1)' />
