@@ -22,13 +22,12 @@ const PikasoMap: React.FC<PikasoMapProps> = ({
   lineWidth
 }) => {
   // ! 295 is a static offset tested by @MiekoHikari on a 1920 x 1080 screen
+  pikasoEditor?.board.background.setImageFromUrl(currentMap, {
+    size: 'contain',
+    x: pikasoEditor?.board.stage.width() / 2 - 295
+  })
 
   useLayoutEffect(() => {
-    pikasoEditor?.board.background.setImageFromUrl(currentMap, {
-      size: 'contain',
-      x: pikasoEditor?.board.stage.width() / 2 - 295
-    })
-
     switch (canvasTool) {
       case DrawType.Line:
         pikasoEditor?.shapes.line.draw({
@@ -47,7 +46,7 @@ const PikasoMap: React.FC<PikasoMapProps> = ({
 
         break
     }
-  })
+  }, [currentMap, penColor, canvasTool, penWidth, lineWidth, pikasoEditor])
 
   const handleCanvasMouseDown = () => {
     switch (canvasTool) {

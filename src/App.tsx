@@ -45,6 +45,7 @@ const App: React.FC = () => {
       <Header style={{ backgroundColor: 'var(--semi-color-bg-1)' }}>
         {/* This takes language mode because of the language switcher */}
         <HeaderContent
+          editor={editor}
           currentLanguageMode={presentLanguage}
           currentMap={presentMap}
           changeLanguage={setPresentLanguage}

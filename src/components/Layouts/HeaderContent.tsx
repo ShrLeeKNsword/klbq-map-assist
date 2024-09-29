@@ -3,9 +3,10 @@ import { i18nData, Languages } from '../../data/i18n'
 import { Button, Nav, Select } from '@douyinfe/semi-ui'
 import Title from '@douyinfe/semi-ui/lib/es/typography/title'
 import { MapName } from '../../data/maplist'
-import { MdOutlineTranslate,MdOutlineLightMode,MdOutlineDarkMode} from 'react-icons/md'
+import { MdOutlineTranslate, MdOutlineLightMode, MdOutlineDarkMode } from 'react-icons/md'
 import ChangeMapButton from '../buttons/changeMapButton'
 import ChangeHighlightButton from '../buttons/changeHighlightButton'
+import Pikaso, { BaseShapes } from 'pikaso'
 
 interface HeaderContentProps {
   currentLanguageMode: Languages
@@ -15,6 +16,7 @@ interface HeaderContentProps {
   setPresentMap: React.Dispatch<React.SetStateAction<MapName>>
   setPresentMapURL: React.Dispatch<React.SetStateAction<{ imgPrepareLink: string; imgBlankLink: string }>>
   setMapPrepareMode: React.Dispatch<React.SetStateAction<boolean>>
+  editor: Pikaso<BaseShapes> | null
 }
 
 const HeaderContent: React.FC<HeaderContentProps> = ({
@@ -24,13 +26,14 @@ const HeaderContent: React.FC<HeaderContentProps> = ({
   mapPrepareMode,
   setPresentMap,
   setPresentMapURL,
-  setMapPrepareMode
+  setMapPrepareMode,
+  editor
 }) => {
   const currentLanguage = i18nData[currentLanguageMode]
 
   console.log(i18nData[currentLanguageMode])
 
-  const [currentThemeMode,setCurrentThemeMode] = useState(document.body.hasAttribute('theme-mode')?false:true)
+  const [currentThemeMode, setCurrentThemeMode] = useState(document.body.hasAttribute('theme-mode') ? false : true)
   const themeMode = () => {
     if (document.body.hasAttribute('theme-mode')) {
       document.body.removeAttribute('theme-mode')
@@ -49,6 +52,7 @@ const HeaderContent: React.FC<HeaderContentProps> = ({
         </Nav.Header>
         <Nav.Item style={{ flexDirection: 'column', justifyContent: 'center' }}>
           <ChangeMapButton
+            editor={editor}
             currentLanguage={currentLanguage}
             currentMap={currentMap}
             setPresentMap={setPresentMap}
@@ -60,8 +64,13 @@ const HeaderContent: React.FC<HeaderContentProps> = ({
         </Nav.Item>
         <Nav.Footer>
           <Button
-            icon={currentThemeMode?<MdOutlineLightMode size='1rem' style={{ padding: '0 1rem' }} color='rgba(var(--semi-grey-9), 1)' />:
-            <MdOutlineDarkMode size='1rem' style={{ padding: '0 1rem' }} color='rgba(var(--semi-grey-9), 1)' />}
+            icon={
+              currentThemeMode ? (
+                <MdOutlineLightMode size='1rem' style={{ padding: '0 1rem' }} color='rgba(var(--semi-grey-9), 1)' />
+              ) : (
+                <MdOutlineDarkMode size='1rem' style={{ padding: '0 1rem' }} color='rgba(var(--semi-grey-9), 1)' />
+              )
+            }
             onClick={themeMode}
           />
           <MdOutlineTranslate size='1.5rem' style={{ padding: '0 1rem' }} color='rgba(var(--semi-grey-9), 1)' />
