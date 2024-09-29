@@ -20,8 +20,8 @@ const SiderContent: React.FC<SiderContentProps> = ({ currentLanguage: currentLan
         <TabPane
           tab={
             <span>
-              <GiBroadsword />
-              Attack
+              <GiBroadsword style={{ marginRight: "5px" }} />
+              {currentLanguageMode.sidebar.attact}
             </span>
           }
           itemKey='1'>
@@ -44,8 +44,8 @@ const SiderContent: React.FC<SiderContentProps> = ({ currentLanguage: currentLan
         <TabPane
           tab={
             <span>
-              <GiShield />
-              Defense
+              <GiShield style={{ marginRight: "5px" }} />
+              {currentLanguageMode.sidebar.defense}
             </span>
           }
           itemKey='2'>
