@@ -55,11 +55,6 @@ const SiderTools: React.FC<SiderToolsProps> = ({
         setpenWidth={setLineWidth}
         penColor={penColor}
       />
-      <ToolNormalButton
-        Icon={MdUndo}
-        isActiveTool={false}
-        onClick={() => (editor!.history.getStep() > 1 ? editor?.undo() : undefined)}
-      />
       <ColorPopover setPenColor={setPenColor}>
         <div
           style={{
@@ -74,6 +69,11 @@ const SiderTools: React.FC<SiderToolsProps> = ({
           <ToolColorButton color={penColor} onClick={() => undefined} key={penColor} />
         </div>
       </ColorPopover>
+      <ToolNormalButton
+        Icon={MdUndo}
+        isActiveTool={false}
+        onClick={() => (editor!.history.getStep() > 1 ? editor?.undo() : undefined)}
+      />
     </div>
   )
 }
