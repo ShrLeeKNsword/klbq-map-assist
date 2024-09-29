@@ -30,12 +30,12 @@ import { MdCreate, MdDelete, MdOutlineTranslate, MdUndo } from 'react-icons/md'
 import { FaGithub, FaDiscord } from 'react-icons/fa'
 import usePikaso from 'pikaso-react-hook'
 import PikasoMap from './components/pikasoMap.tsx'
-import ButtonNoPopover from './components/buttons/buttonNoPopover.tsx'
+import ButtonNoPopover from './components/Layouts/Buttons/tool-normal-button.tsx'
 import { GiArrowCursor } from 'react-icons/gi'
 import { PiLineSegmentFill } from 'react-icons/pi'
 import ColorBtn from './components/buttons/colorBtn.tsx'
 import { colorPalette, mapTools } from './utils/canvasConstants.ts'
-import StandardButton from './components/buttons/standardButton.tsx'
+import toolPopoverButton from './components/Layouts/Buttons/tool-popover-button.tsx'
 import { DrawType } from 'pikaso'
 
 const styles = {
@@ -228,7 +228,9 @@ function App() {
   }
 
   return (
-    <Layout className='components-layout-demo semi-always-light' style={{ height: "100%", minHeight: 720, width: 1280, margin: 'auto' }}>
+    <Layout
+      className='components-layout-demo semi-always-light'
+      style={{ height: '100%', minHeight: 720, width: 1280, margin: 'auto' }}>
       <Header style={styles.commonStyles}>
         <Title heading={3} style={{ margin: '14px 0' }}>
           {presentLanguage.title}{' '}
@@ -334,7 +336,7 @@ function App() {
               <Row gutter={[16, 8]} type='flex' align='middle'>
                 <Col span={9}>{presentLanguage.lineupsetting.spotmark}</Col>
                 <Col span={7}>
-                  <Select defaultValue='禁用' style={{ width: 120 }} onChange={() => { }}>
+                  <Select defaultValue='禁用' style={{ width: 120 }} onChange={() => {}}>
                     <Select.Option value='禁用'>{presentLanguage.lineupsetting.spotmarks.disable}</Select.Option>
                     <Select.Option value='仅有效'>{presentLanguage.lineupsetting.spotmarks.available}</Select.Option>
                     <Select.Option value='全部'>{presentLanguage.lineupsetting.spotmarks.all}</Select.Option>
@@ -375,7 +377,7 @@ function App() {
               <Row gutter={[16, 8]} type='flex' align='middle'>
                 <Col span={9}>{presentLanguage.mobaisuperjumpsetting.spotmark}</Col>
                 <Col span={7}>
-                  <Select defaultValue='禁用' style={{ width: 120 }} onChange={() => { }}>
+                  <Select defaultValue='禁用' style={{ width: 120 }} onChange={() => {}}>
                     <Select.Option value='禁用'>
                       {presentLanguage.mobaisuperjumpsetting.spotmarks.disable}
                     </Select.Option>
@@ -391,7 +393,7 @@ function App() {
               <Row gutter={[16, 8]} type='flex' align='middle'>
                 <Col span={9}>{presentLanguage.mobaisuperjumpsetting.spotmark}</Col>
                 <Col span={7}>
-                  <Select defaultValue='禁用' style={{ width: 120 }} onChange={() => { }}>
+                  <Select defaultValue='禁用' style={{ width: 120 }} onChange={() => {}}>
                     <Select.Option value='禁用'>
                       {presentLanguage.mobaisuperjumpsetting.spotmarks.disable}
                     </Select.Option>
@@ -408,7 +410,7 @@ function App() {
               <Row gutter={[16, 8]} type='flex' align='middle' style={{ marginTop: '5px' }}>
                 <Col span={9}>{presentLanguage.bugpointsetting.spotmark}</Col>
                 <Col span={7}>
-                  <Select defaultValue='禁用' style={{ width: 120 }} onChange={() => { }}>
+                  <Select defaultValue='禁用' style={{ width: 120 }} onChange={() => {}}>
                     <Select.Option value='禁用'>{presentLanguage.bugpointsetting.spotmarks.disable}</Select.Option>
                     <Select.Option value='仅有效'>{presentLanguage.bugpointsetting.spotmarks.available}</Select.Option>
                     <Select.Option value='全部'>{presentLanguage.bugpointsetting.spotmarks.all}</Select.Option>
@@ -438,7 +440,7 @@ function App() {
           />
           <div style={{ position: 'relative', top: '-20px', right: '40px', width: '58px', height: 'max' }}>
             <ButtonNoPopover
-              icon={GiArrowCursor}
+              Icon={GiArrowCursor}
               onClick={() => setTool('SELECT')}
               isActiveTool={canvasTool === 'SELECT'}
             />
@@ -447,7 +449,7 @@ function App() {
                 <ColorBtn color={penColor} />
               </div>
             </Popover>
-            <StandardButton
+            <toolPopoverButton
               icon={MdCreate}
               penWidth={penWidth}
               penColor={penColor}
@@ -455,7 +457,7 @@ function App() {
               onClick={() => setTool(DrawType.Pencil)}
               isActiveTool={canvasTool === DrawType.Pencil}
             />
-            <StandardButton
+            <toolPopoverButton
               icon={PiLineSegmentFill}
               penWidth={lineWidth}
               penColor={penColor}
@@ -465,7 +467,7 @@ function App() {
             />
             <Tooltip content={presentLanguage.markbox.undo}>
               <ButtonNoPopover
-                icon={MdUndo}
+                Icon={MdUndo}
                 onClick={() => (editor?.history.getStep() === 1 ? null : editor?.undo())}
                 isActiveTool={false}
               />
