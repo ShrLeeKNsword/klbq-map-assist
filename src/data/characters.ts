@@ -43,10 +43,22 @@ type skillData = {
 	"Ultimate": string;
 }
 
-interface CharacterData {
-	character: PUS | TheScissors | Urbino;
+type CharacterData = StandardCharacterData | UrbinoCharacterData;
+
+interface StandardCharacterData {
+	character: PUS | TheScissors;
 	faction: factions;
 	imageLink: string;
+	skills: skillData;
+}
+
+interface UrbinoCharacterData {
+	character: Urbino;
+	faction: factions.Urbino;
+	imageLink: {
+		defense: string;
+		attack: string;
+	};
 	skills: skillData;
 }
 

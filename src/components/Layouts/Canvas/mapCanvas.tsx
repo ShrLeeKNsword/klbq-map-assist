@@ -1,5 +1,6 @@
 import React, { useLayoutEffect } from 'react'
-import { Pikaso, type BaseShapes } from 'pikaso'
+import { Konva, Pikaso, type BaseShapes } from 'pikaso'
+import { characterData } from '../../../data/characters'
 
 interface PikasoMapProps {
   pikasoRef: React.RefObject<HTMLDivElement>
@@ -12,9 +13,15 @@ const MapCanvas: React.FC<PikasoMapProps> = ({ pikasoRef, pikasoEditor, currentM
   useLayoutEffect(() => {
     const image = new Image()
     image.src = currentMap
+
+    pikasoEditor?.shapes.image.insert(characterData['Celestia'].imageLink, {
+      cornerRadius: 10,
+      fill: 'red',
+      width: 50,
+      height: 50
+    })
     image.onload = () => {
       const scale = image.height / pikasoEditor!.board.stage.height()
-      // ! 295 is a static offset tested by @MiekoHikari on a 1920 x 1080 screen
       pikasoEditor?.board.background.setImageFromUrl(currentMap, {
         size: 'contain',
         x: pikasoEditor.board.stage.width() / 2 - image.width / 2 / scale
