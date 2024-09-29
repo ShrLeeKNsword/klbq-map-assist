@@ -3,7 +3,7 @@ import { i18nData, Languages } from '../../data/i18n'
 import { Button, Nav, Select } from '@douyinfe/semi-ui'
 import Title from '@douyinfe/semi-ui/lib/es/typography/title'
 import { MapName } from '../../data/maplist'
-import { MdOutlineTranslate, MdOutlineLightMode, MdOutlineDarkMode } from 'react-icons/md'
+import { MdOutlineTranslate, MdLightMode, MdDarkMode } from 'react-icons/md'
 import ChangeMapButton from '../buttons/changeMapButton'
 import ChangeHighlightButton from '../buttons/changeHighlightButton'
 import Pikaso, { BaseShapes } from 'pikaso'
@@ -32,7 +32,7 @@ const HeaderContent: React.FC<HeaderContentProps> = ({
   const currentLanguage = i18nData[currentLanguageMode]
 
   const [currentThemeMode, setCurrentThemeMode] = useState(document.body.hasAttribute('theme-mode') ? false : true)
-  
+
   const themeMode = () => {
     if (document.body.hasAttribute('theme-mode')) {
       document.body.removeAttribute('theme-mode')
@@ -65,9 +65,9 @@ const HeaderContent: React.FC<HeaderContentProps> = ({
           <Button
             icon={
               currentThemeMode ? (
-                <MdOutlineLightMode size='1rem' style={{ padding: '0 1rem' }} color='rgba(var(--semi-grey-9), 1)' />
+                <MdLightMode size='1rem' style={{ padding: '0 1rem' }} color='rgba(var(--semi-grey-9), 1)' />
               ) : (
-                <MdOutlineDarkMode size='1rem' style={{ padding: '0 1rem' }} color='rgba(var(--semi-grey-9), 1)' />
+                <MdDarkMode size='1rem' style={{ padding: '0 1rem' }} color='rgba(var(--semi-grey-9), 1)' />
               )
             }
             onClick={themeMode}
