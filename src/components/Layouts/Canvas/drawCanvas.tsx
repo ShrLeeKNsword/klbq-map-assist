@@ -95,11 +95,14 @@ const DrawMap: React.FC<PikasoMapProps> = ({
 
     const imgLink = fetchCharLink(character, side as 'attack' | 'defense')
 
-    const rectLeft = pikasoEditor?.board.container?.clientLeft ?? 0
-    const rectTop = pikasoEditor?.board.container?.clientTop ?? 0
+    const rect = pikasoRef.current?.getBoundingClientRect()
+
+    const size = 35
     pikasoEditor?.shapes.image.insert(imgLink, {
-      x: e.clientX - rectLeft,
-      y: e.clientY - rectTop
+      x: e.clientX - rect!.left - size / 2,
+      y: e.clientY - rect!.top - size / 2,
+      width: size,
+      height: size
     })
   }
 
