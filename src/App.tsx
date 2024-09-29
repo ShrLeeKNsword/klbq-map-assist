@@ -58,7 +58,14 @@ const App: React.FC = () => {
         <Sider style={{ backgroundColor: 'var(--semi-color-bg-1)', width: '15rem' }}>
           <SiderContent currentLanguage={currentLanguage} />
         </Sider>
-        <Content style={{ backgroundColor: 'var(--semi-color-bg-2)', height: '100%', display: "flex", placeItems: "center", padding: "0 auto" }}>
+        <Content
+          style={{
+            backgroundColor: 'var(--semi-color-bg-2)',
+            height: '100%',
+            display: 'flex',
+            placeItems: 'center',
+            padding: '0 auto'
+          }}>
           <PikasoMap
             pikasoRef={ref}
             pikasoEditor={editor}
@@ -70,7 +77,13 @@ const App: React.FC = () => {
           />
         </Content>
         <Sider style={{ backgroundColor: 'var(--semi-color-bg-1)', width: '4rem' }}>
-          <SiderTools canvasTool={canvasTool} setTool={setTool} />
+          <SiderTools
+            canvasTool={canvasTool}
+            setTool={setTool}
+            penColor={penColor}
+            penWidth={penWidth}
+            setpenWidth={setpenWidth}
+          />
         </Sider>
       </Layout>
       <Footer style={{ backgroundColor: 'var(--semi-color-bg-1)' }}>
