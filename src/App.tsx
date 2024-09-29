@@ -6,17 +6,19 @@ import HeaderContent from './components/Layouts/HeaderContent'
 import { i18nData, Languages } from './data/i18n'
 import { mapList, MapName } from './data/maplist'
 import SiderContent from './components/Layouts/SiderContent'
-import PikasoMap from './components/pikasoMap'
+import DrawMap from './components/Layouts/Canvas/drawCanvas'
 import usePikaso from 'pikaso-react-hook'
 import FooterContent from './components/Layouts/FooterContent'
 import { colorPalette, mapTools } from './utils/canvasConstants'
 import SiderTools from './components/Layouts/SiderTools'
+import MapCanvas from './components/Layouts/Canvas/mapCanvas'
 
 const App: React.FC = () => {
   const [presentLanguage, setPresentLanguage] = useState<Languages>(Languages.English)
   const [presentMap, setPresentMap] = useState(MapName.WindyTown)
 
-  const [ref, editor] = usePikaso()
+  const [drawCanvasRef, drawCanvasEditor] = usePikaso()
+  const [drawMapRef, drawMapEditor] = usePikaso()
 
   const [canvasTool, setTool] = useState<mapTools>('SELECT')
   const [penColor, setpenColor] = useState(colorPalette[2])
@@ -45,7 +47,7 @@ const App: React.FC = () => {
       <Header style={{ backgroundColor: 'var(--semi-color-bg-1)' }}>
         {/* This takes language mode because of the language switcher */}
         <HeaderContent
-          editor={editor}
+          editor={drawCanvasEditor}
           currentLanguageMode={presentLanguage}
           currentMap={presentMap}
           changeLanguage={setPresentLanguage}
@@ -67,15 +69,23 @@ const App: React.FC = () => {
             placeItems: 'center',
             padding: '0 auto'
           }}>
-          <PikasoMap
-            pikasoRef={ref}
-            pikasoEditor={editor}
-            currentMap={mapPrepareMode ? presentMapURL.imgPrepareLink : presentMapURL.imgBlankLink}
-            canvasTool={canvasTool}
-            lineWidth={lineWidth}
-            penColor={penColor}
-            penWidth={penWidth}
-          />
+          <div style={{ position: 'relative', top: 0, left: 0, width: '100%', height: '100%' }}>
+            <MapCanvas
+              currentMap={mapPrepareMode ? presentMapURL.imgPrepareLink : presentMapURL.imgBlankLink}
+              pikasoEditor={drawMapEditor}
+              pikasoRef={drawMapRef}
+              style={{ position: 'absolute', top: '0', left: '0' }}
+            />
+            <DrawMap
+              pikasoRef={drawCanvasRef}
+              pikasoEditor={drawCanvasEditor}
+              currentMap={mapPrepareMode ? presentMapURL.imgPrepareLink : presentMapURL.imgBlankLink}
+              canvasTool={canvasTool}
+              lineWidth={lineWidth}
+              penColor={penColor}
+              penWidth={penWidth}
+            />
+          </div>
         </Content>
         <Sider style={{ backgroundColor: 'var(--semi-color-bg-1)', width: '4rem' }}>
           <SiderTools
@@ -87,7 +97,7 @@ const App: React.FC = () => {
             setpenWidth={setpenWidth}
             setLineWidth={setLineWidth}
             lineWidth={lineWidth}
-            editor={editor}
+            editor={drawCanvasEditor}
             setPenColor={setpenColor}
           />
         </Sider>

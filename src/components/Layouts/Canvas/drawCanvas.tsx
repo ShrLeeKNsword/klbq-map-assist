@@ -1,6 +1,6 @@
 import React, { useLayoutEffect } from 'react'
 import { DrawType, Pikaso, type BaseShapes } from 'pikaso'
-import { mapTools } from '../utils/canvasConstants'
+import { mapTools } from '../../../utils/canvasConstants'
 
 interface PikasoMapProps {
   pikasoRef: React.RefObject<HTMLDivElement>
@@ -12,7 +12,7 @@ interface PikasoMapProps {
   lineWidth: number
 }
 
-const PikasoMap: React.FC<PikasoMapProps> = ({
+const DrawMap: React.FC<PikasoMapProps> = ({
   pikasoRef,
   pikasoEditor,
   currentMap,
@@ -22,12 +22,6 @@ const PikasoMap: React.FC<PikasoMapProps> = ({
   lineWidth
 }) => {
   useLayoutEffect(() => {
-    // ! 295 is a static offset tested by @MiekoHikari on a 1920 x 1080 screen
-    pikasoEditor?.board.background.setImageFromUrl(currentMap, {
-      size: 'contain',
-      x: pikasoEditor?.board.stage.width() / 2 - 295
-    })
-
     switch (canvasTool) {
       case DrawType.Line:
         pikasoEditor?.shapes.line.draw({
@@ -83,10 +77,10 @@ const PikasoMap: React.FC<PikasoMapProps> = ({
   return (
     <div
       ref={pikasoRef}
-      style={{ width: '100%', height: '100%', minHeight: '600px' }}
+      style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', minHeight: '600px' }}
       className='pikaso'
       onClick={handleCanvasMouseDown}></div>
   )
 }
 
-export default PikasoMap
+export default DrawMap

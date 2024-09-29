@@ -7,12 +7,11 @@ interface ChangeHighlightButtonProps {
 }
 
 const ChangeHighlightButton: React.FC<ChangeHighlightButtonProps> = ({ mapPrepareMode, setMapPrepareMode }) => {
-  const onClick = () => {
-    setMapPrepareMode(!mapPrepareMode)
-  }
-
   return (
-    <Button theme={mapPrepareMode ? 'solid' : 'outline'} type='primary' onClick={onClick}>
+    <Button
+      theme={mapPrepareMode ? 'solid' : 'outline'}
+      type='primary'
+      onClick={() => setMapPrepareMode(!mapPrepareMode)}>
       Team Highlight
     </Button>
   )
