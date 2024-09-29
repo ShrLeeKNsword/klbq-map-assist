@@ -3,24 +3,28 @@ import { I18nData } from '../../data/i18n'
 import { Button, Dropdown } from '@douyinfe/semi-ui'
 import { FaMap } from 'react-icons/fa'
 import { mapList, MapName } from '../../data/maplist'
+import Pikaso, { BaseShapes } from 'pikaso'
 
 interface ChangeMapButtonProps {
   currentLanguage: I18nData
   currentMap: MapName
   setPresentMap: React.Dispatch<React.SetStateAction<MapName>>
   setPresentMapURL: React.Dispatch<React.SetStateAction<{ imgPrepareLink: string; imgBlankLink: string }>>
+  editor: Pikaso<BaseShapes> | null
 }
 
 const ChangeMapButton: React.FC<ChangeMapButtonProps> = ({
   currentLanguage,
   currentMap,
   setPresentMap,
-  setPresentMapURL
+  setPresentMapURL,
+  editor
 }) => {
   const changePresentmap = (value: string) => {
     setPresentMap(MapName[value as keyof typeof MapName])
     for (const mapinfo of mapList) {
       if (mapinfo.map === value) {
+        editor?.reset()
         setPresentMapURL({ imgPrepareLink: mapinfo.imgPrepareLink, imgBlankLink: mapinfo.imgBlankLink })
       }
     }
