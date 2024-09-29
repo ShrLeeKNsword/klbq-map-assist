@@ -37,10 +37,15 @@ export type Characters = {
 	};
 }
 
-type skillData = {
+interface standardSkillData {
 	"Active": string;
 	"Passive": string;
 	"Ultimate": string;
+}
+
+interface urbinoSkillData {
+	attack: standardSkillData
+	defense: standardSkillData
 }
 
 type CharacterData = StandardCharacterData | UrbinoCharacterData;
@@ -70,7 +75,7 @@ interface StandardCharacterData {
 	character: PUS | TheScissors;
 	faction: factions;
 	imageLink: string;
-	skills: skillData;
+	skills: standardSkillData;
 }
 
 interface UrbinoCharacterData {
@@ -80,7 +85,7 @@ interface UrbinoCharacterData {
 		defense: string;
 		attack: string;
 	};
-	skills: skillData;
+	skills: urbinoSkillData;
 }
 
 export const factionData: {
