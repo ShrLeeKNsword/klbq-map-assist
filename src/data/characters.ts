@@ -45,6 +45,27 @@ type skillData = {
 
 type CharacterData = StandardCharacterData | UrbinoCharacterData;
 
+export function isUrbino(data: CharacterData): data is UrbinoCharacterData {
+	return data.faction === factions.Urbino;
+}
+
+export function isStandardCharacterData(data: CharacterData): data is StandardCharacterData {
+	return !isUrbino(data);
+}
+
+export const fetchCharLink = (key: unknown, side: 'attack' | 'defense') => {
+	const char = characterData[key as TheScissors]
+	if (isStandardCharacterData(char)) {
+		return char.imageLink
+	} else {
+		if (side === 'defense') {
+			return char.imageLink.defense
+		} else {
+			return char.imageLink.attack
+		}
+	}
+}
+
 interface StandardCharacterData {
 	character: PUS | TheScissors;
 	faction: factions;
