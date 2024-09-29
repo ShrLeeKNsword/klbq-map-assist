@@ -45,6 +45,14 @@ type skillData = {
 
 type CharacterData = StandardCharacterData | UrbinoCharacterData;
 
+export function isUrbino(data: CharacterData): data is UrbinoCharacterData {
+	return data.faction === factions.Urbino;
+}
+
+export function isStandardCharacterData(data: CharacterData): data is StandardCharacterData {
+	return !isUrbino(data);
+}
+
 interface StandardCharacterData {
 	character: PUS | TheScissors;
 	faction: factions;
