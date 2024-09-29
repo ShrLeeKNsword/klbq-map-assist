@@ -4,7 +4,7 @@ export enum factions {
 	Urbino = 'Urbino',
 }
 
-enum PUS {
+export enum PUS {
 	Michele = 'Michele',
 	Nobunaga = 'Nobunaga',
 	Kokona = 'Kokona',
@@ -12,7 +12,7 @@ enum PUS {
 	Flavia = 'Flavia',
 }
 
-enum TheScissors {
+export enum TheScissors {
 	Ming = 'Ming',
 	Lawine = 'Lawine',
 	Meredith = 'Meredith',
@@ -22,7 +22,7 @@ enum TheScissors {
 	Fragrans = 'Fragrans',
 }
 
-enum Urbino {
+export enum Urbino {
 	Celestia = 'Celestia',
 	Audrey = 'Audrey',
 	Maddelena = 'Maddelena',

@@ -1,7 +1,8 @@
 import React from 'react'
 import { I18nData } from '../../data/i18n'
-import { Nav, TabPane, Tabs } from '@douyinfe/semi-ui'
+import { Avatar, Divider, TabPane, Tabs } from '@douyinfe/semi-ui'
 import { GiBroadsword, GiShield } from 'react-icons/gi'
+import { characterData, PUS, TheScissors, Urbino } from '../../data/characters'
 
 interface SiderContentProps {
   currentLanguage: I18nData
@@ -19,7 +20,13 @@ const SiderContent: React.FC<SiderContentProps> = ({ currentLanguage: currentLan
             </span>
           }
           itemKey='1'>
-          Attack
+          {Object.keys(TheScissors).map((key: unknown) => {
+            return <Avatar src={characterData[key as TheScissors].imageLink} style={{ padding: '0.25rem' }} />
+          })}
+          <Divider dashed={true} margin={'1rem'} />
+          {Object.keys(Urbino).map((key: unknown) => {
+            return <Avatar src={characterData[key as Urbino].imageLink} style={{ padding: '0.25rem' }} />
+          })}
         </TabPane>
         <TabPane
           tab={
@@ -29,7 +36,13 @@ const SiderContent: React.FC<SiderContentProps> = ({ currentLanguage: currentLan
             </span>
           }
           itemKey='2'>
-          Defense
+          {Object.keys(PUS).map((key: unknown) => {
+            return <Avatar src={characterData[key as PUS].imageLink} style={{ padding: '0.25rem' }} />
+          })}
+          <Divider dashed={true} margin={'1rem'} />
+          {Object.keys(Urbino).map((key: unknown) => {
+            return <Avatar src={characterData[key as Urbino].imageLink} style={{ padding: '0.25rem' }} />
+          })}
         </TabPane>
       </Tabs>
     </div>
