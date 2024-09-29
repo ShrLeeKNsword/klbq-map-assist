@@ -84,11 +84,7 @@ const SiderTools: React.FC<SiderToolsProps> = ({
           <ToolColorButton color={penColor} onClick={() => undefined} key={penColor} />
         </div>
       </ColorPopover>
-      <ToolNormalButton
-        Icon={MdUndo}
-        isActiveTool={false}
-        onClick={() => (editor!.history.getStep() > 1 ? editor?.undo() : undefined)}
-      />
+      <ToolNormalButton Icon={MdUndo} isActiveTool={false} onClick={() => editor?.undo()} />
       <Popconfirm
         visible={togglevisible}
         title={currentLanguage.markbox.clearwarning.title}
@@ -96,7 +92,7 @@ const SiderTools: React.FC<SiderToolsProps> = ({
         okText={currentLanguage.markbox.clearwarning.ok}
         cancelText={currentLanguage.markbox.clearwarning.cancel}
         onConfirm={() => {
-          editor?.history.jump(1)
+          editor?.reset()
           setToggleVisible(!togglevisible)
           Toast.success(currentLanguage.markbox.clearwarning.success)
         }}

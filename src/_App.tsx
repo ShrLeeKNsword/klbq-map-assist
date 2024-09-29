@@ -29,7 +29,7 @@ import { grenadeData } from './data/grenades.ts'
 import { MdCreate, MdDelete, MdOutlineTranslate, MdUndo } from 'react-icons/md'
 import { FaGithub, FaDiscord } from 'react-icons/fa'
 import usePikaso from 'pikaso-react-hook'
-import PikasoMap from './components/pikasoMap.tsx'
+import DrawMap from './components/Layouts/Canvas/drawCanvas.tsx'
 import ButtonNoPopover from './components/Layouts/Buttons/tool-normal-button.tsx'
 import { GiArrowCursor } from 'react-icons/gi'
 import { PiLineSegmentFill } from 'react-icons/pi'
@@ -429,7 +429,7 @@ function App() {
             display: 'flex',
             placeItems: 'center'
           }}>
-          <PikasoMap
+          <DrawMap
             pikasoRef={ref}
             pikasoEditor={editor}
             currentMap={mapPrepareMode ? presentMapURL.imgPrepareLink : presentMapURL.imgBlankLink}
