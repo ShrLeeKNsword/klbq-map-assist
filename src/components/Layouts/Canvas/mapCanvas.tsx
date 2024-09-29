@@ -20,7 +20,7 @@ const MapCanvas: React.FC<PikasoMapProps> = ({ pikasoRef, pikasoEditor, currentM
         x: pikasoEditor.board.stage.width() / 2 - image.width / 2 / scale
       })
     }
-  }, [currentMap, pikasoEditor?.board.background, pikasoEditor?.board.stage])
+  }, [currentMap, pikasoEditor, pikasoEditor?.board.background, pikasoEditor?.board.stage])
 
   return (
     <div
