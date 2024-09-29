@@ -69,7 +69,7 @@ const App: React.FC = () => {
             placeItems: 'center',
             padding: '0 auto'
           }}>
-          <div style={{ position: 'relative', top: 0, left: 0, width: '100%', height: '100%' }}>
+          <div style={{ overflow: 'hidden', position: 'relative', top: 0, left: 0, width: '100%', height: '100%' }}>
             <MapCanvas
               currentMap={mapPrepareMode ? presentMapURL.imgPrepareLink : presentMapURL.imgBlankLink}
               pikasoEditor={drawMapEditor}
