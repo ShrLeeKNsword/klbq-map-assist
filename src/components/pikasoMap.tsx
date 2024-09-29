@@ -64,7 +64,7 @@ const PikasoMap: React.FC<PikasoMapProps> = ({ pikasoRef, pikasoEditor, currentM
 	}
 
 	return (
-		<div ref={pikasoRef} style={{ width: '100%', height: '600px' }} className='pikaso' onClick={handleCanvasMouseDown}>
+		<div ref={pikasoRef} style={{ width: '100%', height: "100%", minHeight: '600px' }} className='pikaso' onClick={handleCanvasMouseDown}>
 		</div >
 	);
 };
