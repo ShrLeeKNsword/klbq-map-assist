@@ -12,8 +12,6 @@ import FooterContent from './components/Layouts/FooterContent'
 import { colorPalette, mapTools } from './utils/canvasConstants'
 import SiderTools from './components/Layouts/SiderTools'
 import MapCanvas from './components/Layouts/Canvas/mapCanvas'
-import { DndProvider } from 'react-dnd'
-import { HTML5Backend } from 'react-dnd-html5-backend'
 
 const App: React.FC = () => {
   const [presentLanguage, setPresentLanguage] = useState<Languages>(Languages.English)
@@ -60,51 +58,49 @@ const App: React.FC = () => {
         />
       </Header>
       <Layout>
-        <DndProvider backend={HTML5Backend}>
-          <Sider style={{ backgroundColor: 'var(--semi-color-bg-1)', width: '15rem' }}>
-            <SiderContent currentLanguage={currentLanguage} />
-          </Sider>
-          <Content
-            style={{
-              backgroundColor: 'var(--semi-color-bg-2)',
-              height: '100%',
-              display: 'flex',
-              placeItems: 'center',
-              padding: '0 auto'
-            }}>
-            <div style={{ overflow: 'hidden', position: 'relative', top: 0, left: 0, width: '100%', height: '100%' }}>
-              <MapCanvas
-                currentMap={mapPrepareMode ? presentMapURL.imgPrepareLink : presentMapURL.imgBlankLink}
-                pikasoEditor={drawMapEditor}
-                pikasoRef={drawMapRef}
-                style={{ position: 'absolute', top: '0', left: '0' }}
-              />
-              <DrawMap
-                pikasoRef={drawCanvasRef}
-                pikasoEditor={drawCanvasEditor}
-                currentMap={mapPrepareMode ? presentMapURL.imgPrepareLink : presentMapURL.imgBlankLink}
-                canvasTool={canvasTool}
-                lineWidth={lineWidth}
-                penColor={penColor}
-                penWidth={penWidth}
-              />
-            </div>
-          </Content>
-          <Sider style={{ backgroundColor: 'var(--semi-color-bg-1)', width: '4rem' }}>
-            <SiderTools
-              currentLanguage={currentLanguage}
+        <Sider style={{ backgroundColor: 'var(--semi-color-bg-1)', width: '15rem' }}>
+          <SiderContent currentLanguage={currentLanguage} />
+        </Sider>
+        <Content
+          style={{
+            backgroundColor: 'var(--semi-color-bg-2)',
+            height: '100%',
+            display: 'flex',
+            placeItems: 'center',
+            padding: '0 auto'
+          }}>
+          <div style={{ overflow: 'hidden', position: 'relative', top: 0, left: 0, width: '100%', height: '100%' }}>
+            <MapCanvas
+              currentMap={mapPrepareMode ? presentMapURL.imgPrepareLink : presentMapURL.imgBlankLink}
+              pikasoEditor={drawMapEditor}
+              pikasoRef={drawMapRef}
+              style={{ position: 'absolute', top: '0', left: '0' }}
+            />
+            <DrawMap
+              pikasoRef={drawCanvasRef}
+              pikasoEditor={drawCanvasEditor}
+              currentMap={mapPrepareMode ? presentMapURL.imgPrepareLink : presentMapURL.imgBlankLink}
               canvasTool={canvasTool}
-              setTool={setTool}
+              lineWidth={lineWidth}
               penColor={penColor}
               penWidth={penWidth}
-              setpenWidth={setpenWidth}
-              setLineWidth={setLineWidth}
-              lineWidth={lineWidth}
-              editor={drawCanvasEditor}
-              setPenColor={setpenColor}
             />
-          </Sider>
-        </DndProvider>
+          </div>
+        </Content>
+        <Sider style={{ backgroundColor: 'var(--semi-color-bg-1)', width: '4rem' }}>
+          <SiderTools
+            currentLanguage={currentLanguage}
+            canvasTool={canvasTool}
+            setTool={setTool}
+            penColor={penColor}
+            penWidth={penWidth}
+            setpenWidth={setpenWidth}
+            setLineWidth={setLineWidth}
+            lineWidth={lineWidth}
+            editor={drawCanvasEditor}
+            setPenColor={setpenColor}
+          />
+        </Sider>
       </Layout>
       <Footer style={{ backgroundColor: 'var(--semi-color-bg-1)' }}>
         <FooterContent currentLanguage={currentLanguage} />

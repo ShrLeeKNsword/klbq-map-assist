@@ -21,6 +21,7 @@ const SiderContent: React.FC<SiderContentProps> = ({ currentLanguage: currentLan
       }
     }
   }
+
   return (
     <div>
       <Tabs style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
