@@ -37,7 +37,12 @@ const App: React.FC = () => {
         enabled: false
       }
     },
-    disableCanvasContextMenu: true
+    disableCanvasContextMenu: true,
+    history: {
+      keyboard: {
+        enabled: false
+      }
+    }
   })
 
   const [canvasTool, setTool] = useState<mapTools>('SELECT')
