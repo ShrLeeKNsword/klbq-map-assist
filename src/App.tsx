@@ -18,7 +18,15 @@ const App: React.FC = () => {
   const [presentMap, setPresentMap] = useState(MapName.WindyTown)
 
   const [drawCanvasRef, drawCanvasEditor] = usePikaso()
-  const [drawMapRef, drawMapEditor] = usePikaso()
+  const [drawMapRef, drawMapEditor] = usePikaso({
+    selection: {
+      interactive: false,
+      keyboard: {
+        enabled: false
+      }
+    },
+    disableCanvasContextMenu: true
+  })
 
   const [canvasTool, setTool] = useState<mapTools>('SELECT')
   const [penColor, setpenColor] = useState(colorPalette[2])
