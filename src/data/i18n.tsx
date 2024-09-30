@@ -3,6 +3,8 @@ import { grenades as grenades } from './grenades'
 import { MapName } from './maplist'
 
 interface Sidebar {
+  attact: string
+  defense: string
   mapsetting: string
   character: string
   skill: string
@@ -28,10 +30,6 @@ interface MapSetting {
     blank: string
   }
   Landmarks: string
-  LandmarkOptions: {
-    enable: string
-    disable: string
-  }
 }
 
 interface LineupSetting {
@@ -68,6 +66,7 @@ interface BugPointSetting {
 interface MarkBox {
   mark: string
   straightline: string
+  arrowline: string
   color: string
   undo: string
   clear: string
@@ -113,6 +112,8 @@ export const i18nData: {
       language: Languages['简体中文'],
       title: '卡拉彼丘地图助手',
       sidebar: {
+        attact: "进攻",
+        defense: "防守",
         mapsetting: '地图设置',
         character: '超弦体',
         skill: '技能',
@@ -142,16 +143,12 @@ export const i18nData: {
           Area88: '88区',
           Base404: '404基地'
         },
-        TeamHighlight: '地图类型',
+        TeamHighlight: '区分阵营',
         TeamHighlightOptions: {
           prepare: '准备阶段',
           blank: '空白'
         },
         Landmarks: '点位标记',
-        LandmarkOptions: {
-          enable: '启用',
-          disable: '禁用'
-        }
       },
       lineupsetting: {
         spotmark: '点位标记',
@@ -230,6 +227,7 @@ export const i18nData: {
       markbox: {
         mark: '画笔',
         straightline: '直线',
+        arrowline: '箭头',
         color: '颜色',
         undo: '撤销',
         clear: '清空',
@@ -247,6 +245,8 @@ export const i18nData: {
       language: Languages.English,
       title: 'Strinova Map Assistant',
       sidebar: {
+        attact: "Attack",
+        defense: "Defense",
         mapsetting: 'Map Setting',
         character: 'Character',
         skill: 'Skills',
@@ -282,10 +282,6 @@ export const i18nData: {
           blank: 'Hide'
         },
         Landmarks: 'Landmarks',
-        LandmarkOptions: {
-          enable: 'Show',
-          disable: 'Hide'
-        }
       },
       lineupsetting: {
         spotmark: 'Spot Mark',
@@ -364,6 +360,7 @@ export const i18nData: {
       markbox: {
         mark: 'Mark',
         straightline: 'Straight Line',
+        arrowline: 'Arrow Line',
         color: 'Color',
         undo: 'Undo',
         clear: 'Clear',
@@ -381,6 +378,8 @@ export const i18nData: {
       language: Languages.日本語,
       title: 'Strinova マップアシスタント',
       sidebar: {
+        attact: "Attack",
+        defense: "Defense",
         mapsetting: 'マップの設定',
         character: 'キャラクター（超弦体）',
         skill: 'スキル',
@@ -416,10 +415,6 @@ export const i18nData: {
           blank: '非表示'
         },
         Landmarks: 'ランドマーク',
-        LandmarkOptions: {
-          enable: '表示',
-          disable: '非表示'
-        }
       },
       lineupsetting: {
         spotmark: 'スポットマーク',
@@ -498,6 +493,7 @@ export const i18nData: {
       markbox: {
         mark: 'マーク',
         straightline: '直線',
+        arrowline: 'Arrow Line',
         color: 'カラー',
         undo: '戻す',
         clear: '消去',

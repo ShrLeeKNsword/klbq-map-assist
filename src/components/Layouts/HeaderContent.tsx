@@ -59,7 +59,7 @@ const HeaderContent: React.FC<HeaderContentProps> = ({
           />
         </Nav.Item>
         <Nav.Item style={{ flexDirection: 'column', justifyContent: 'center' }}>
-          <ChangeHighlightButton mapPrepareMode={mapPrepareMode} setMapPrepareMode={setMapPrepareMode} />
+          <ChangeHighlightButton content={currentLanguage.mapsetting.TeamHighlight} mapPrepareMode={mapPrepareMode} setMapPrepareMode={setMapPrepareMode} />
         </Nav.Item>
         <Nav.Footer>
           <Button
