@@ -17,7 +17,19 @@ const App: React.FC = () => {
   const [presentLanguage, setPresentLanguage] = useState<Languages>(Languages.English)
   const [presentMap, setPresentMap] = useState(MapName.WindyTown)
 
-  const [drawCanvasRef, drawCanvasEditor] = usePikaso()
+  const [drawCanvasRef, drawCanvasEditor] = usePikaso({
+    selection: {
+      transformer: {
+        borderStroke: 'rgba(77, 238, 234, 1)',
+        anchorStroke: 'rgba(77, 238, 234, 1)',
+        anchorFill: 'rgba(77, 238, 234, 1)'
+      },
+      zone: {
+        fill: 'rgba(77, 238, 234, 0.1)',
+        stroke: 'rgba(77, 238, 234, 1)'
+      }
+    }
+  })
   const [drawMapRef, drawMapEditor] = usePikaso({
     selection: {
       interactive: false,
