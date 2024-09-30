@@ -78,7 +78,7 @@ const App: React.FC = () => {
         />
       </Header>
       <Layout>
-        <Sider style={{ backgroundColor: 'var(--semi-color-bg-1)', width: '15rem' }}>
+        <Sider style={{ backgroundColor: 'var(--semi-color-bg-1)', width: '260px' }}>
           <SiderContent currentLanguage={currentLanguage} />
         </Sider>
         <Content
