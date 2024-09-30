@@ -2,7 +2,8 @@ import React from 'react'
 import { I18nData } from '../../data/i18n'
 import { Avatar, Divider, TabPane, Tabs, Col, Row } from '@douyinfe/semi-ui'
 import { GiBroadsword, GiShield } from 'react-icons/gi'
-import { CharacterData, characterData, fetchCharLink, PUS, TheScissors, Urbino } from '../../data/characters'
+import { CharacterData, characterData, fetchCharLink } from '../../data/characters'
+import { PUS, TheScissors, Urbino } from '../../data/characters/factions'
 
 interface SiderContentProps {
   currentLanguage: I18nData
