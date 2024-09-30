@@ -38,9 +38,24 @@ export type Characters = {
 }
 
 interface standardSkillData {
-	"Active": string;
-	"Passive": string;
-	"Ultimate": string;
+	Active: {
+		name: string;
+		description: string;
+		previewLink: string;
+		canvasLink: string;
+	};
+	Passive: {
+		name: string;
+		description: string;
+		previewLink: string;
+		canvasLink: string;
+	};
+	Ultimate: {
+		name: string;
+		description: string;
+		previewLink: string;
+		canvasLink: string;
+	};
 }
 
 interface urbinoSkillData {
