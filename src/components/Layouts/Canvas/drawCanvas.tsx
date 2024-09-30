@@ -1,7 +1,7 @@
 import React, { useLayoutEffect } from 'react'
 import { DrawType, Pikaso, type BaseShapes } from 'pikaso'
 import { mapTools } from '../../../utils/canvasConstants'
-import { fetchCharLink } from '../../../data/characters'
+import { characterData } from '../../../data/characters/characters'
 
 interface PikasoMapProps {
   pikasoRef: React.RefObject<HTMLDivElement>
@@ -93,17 +93,24 @@ const DrawMap: React.FC<PikasoMapProps> = ({
     const character = e.dataTransfer.getData('character')
     const side = e.dataTransfer.getData('side')
 
-    const imgLink = fetchCharLink(character, side as 'attack' | 'defense')
+    const char = characterData[character as keyof typeof characterData]
+    const imgLink = side === 'attack' ? char.attack!.canvasImage : char.defense!.canvasImage
 
     const rect = pikasoRef.current?.getBoundingClientRect()
 
-    const size = 35
-    pikasoEditor?.shapes.image.insert(imgLink, {
-      x: e.clientX - rect!.left - size / 2,
-      y: e.clientY - rect!.top - size / 2,
-      width: size,
-      height: size
-    })
+    const img = new Image()
+    img.src = imgLink
+    img.onload = () => {
+      const size = 35
+      const ratio = img.width / img.height
+
+      pikasoEditor?.shapes.image.insert(imgLink, {
+        x: e.clientX - rect!.left - size / 2,
+        y: e.clientY - rect!.top - size / 2,
+        width: size * ratio,
+        height: size
+      })
+    }
   }
 
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {

@@ -1,25 +1,25 @@
 import React from 'react'
-import { CharacterData } from '../../data/characters'
 import Text from '@douyinfe/semi-ui/lib/es/typography/text'
 import SkillNormalButton from './Buttons/skill-normal-button'
+import { characterData } from '../../data/characters/characters'
 
 interface SkillSiderProps {
-  selectedCharacter: CharacterData | null
-  setSelectedCharacter: React.Dispatch<React.SetStateAction<CharacterData | null>>
+  selectedCharacter: characterData | null
+  setSelectedCharacter: React.Dispatch<React.SetStateAction<characterData | null>>
+  currentSiderSide: 'attack' | 'defense'
 }
 
-const SkillSider: React.FC<SkillSiderProps> = ({ selectedCharacter, setSelectedCharacter }) => {
+const SkillSider: React.FC<SkillSiderProps> = ({ selectedCharacter, setSelectedCharacter, currentSiderSide }) => {
   const noCharacterSelected = (
     <div
       style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: '100%',
-        width: '100%',
         transform: 'rotate(180deg)',
-        writingMode: 'vertical-rl'
+        writingMode: 'vertical-rl',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
+        padding: '2rem 0'
       }}>
       <Text weight={100} style={{ color: 'var(--semi-color-disabled-text)' }}>
         Drag a character from the sidebar to get started!
@@ -27,13 +27,7 @@ const SkillSider: React.FC<SkillSiderProps> = ({ selectedCharacter, setSelectedC
     </div>
   )
 
-  const characterSelected = (
-    <div>
-      <SkillNormalButton />
-    </div>
-  )
-
-  return <div>{selectedCharacter ? characterSelected : noCharacterSelected}</div>
+  return <div>{selectedCharacter ? <SkillNormalButton abilityData={selectedCharacter[currentSiderSide]!.skills} onClick={() => 0} /> : noCharacterSelected}</div>
 }
 
 export default SkillSider

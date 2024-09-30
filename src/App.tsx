@@ -12,8 +12,8 @@ import FooterContent from './components/Layouts/FooterContent'
 import { colorPalette, mapTools } from './utils/canvasConstants'
 import SiderTools from './components/Layouts/SiderTools'
 import MapCanvas from './components/Layouts/Canvas/mapCanvas'
-import { CharacterData } from './data/characters'
 import SkillSider from './components/Layouts/SkillSider'
+import { characterData } from './data/characters/characters'
 
 const App: React.FC = () => {
   const [presentLanguage, setPresentLanguage] = useState<Languages>(Languages.English)
@@ -47,7 +47,7 @@ const App: React.FC = () => {
     }
   })
 
-  const [selectedCharacter, setSelectedCharacter] = useState<CharacterData | null>(null)
+  const [selectedCharacter, setSelectedCharacter] = useState<characterData | null>(null)
 
   const [canvasTool, setTool] = useState<mapTools>('SELECT')
   const [penColor, setpenColor] = useState(colorPalette[2])
@@ -56,6 +56,7 @@ const App: React.FC = () => {
   const [lineWidth, setLineWidth] = useState(2)
 
   const [mapPrepareMode, setMapPrepareMode] = useState(true)
+  const [currentSiderSide, setCurrentSiderSide] = useState<'attack' | 'defense'>('attack')
   const [presentMapURL, setPresentMapURL] = useState({
     imgPrepareLink: mapList[0].imgPrepareLink,
     imgBlankLink: mapList[0].imgBlankLink
@@ -88,15 +89,16 @@ const App: React.FC = () => {
       </Header>
       <Layout>
         <Sider style={{ backgroundColor: 'var(--semi-color-bg-1)', width: '260px' }}>
-          <SiderContent currentLanguage={currentLanguage} setSelectedCharacter={setSelectedCharacter} />
+          <SiderContent currentLanguage={currentLanguage} setSelectedCharacter={setSelectedCharacter} setSiderSide={setCurrentSiderSide}/>
         </Sider>
         <Sider
           style={{
             backgroundColor: 'var(--semi-color-bg-1)',
             width: '4rem',
+            height: '100%',
             border: '1px solid var(--semi-color-border)'
           }}>
-          <SkillSider selectedCharacter={selectedCharacter} setSelectedCharacter={setSelectedCharacter} />
+          <SkillSider currentSiderSide={currentSiderSide} selectedCharacter={selectedCharacter} setSelectedCharacter={setSelectedCharacter} />
         </Sider>
         <Content
           style={{

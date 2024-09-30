@@ -1,6 +1,6 @@
 import { factions, PUS, TheScissors, Urbino } from "./factions";
 
-interface abilityData {
+export interface abilityData {
 	passive: {
 		canvasImage: string;
 	},
@@ -14,7 +14,7 @@ interface abilityData {
 	}
 }
 
-type characterData = {
+export type characterData = {
 	faction: factions;
 	id: PUS | TheScissors | Urbino;
 	attack?: {
