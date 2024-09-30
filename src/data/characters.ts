@@ -48,7 +48,7 @@ interface urbinoSkillData {
 	defense: standardSkillData
 }
 
-type CharacterData = StandardCharacterData | UrbinoCharacterData;
+export type CharacterData = StandardCharacterData | UrbinoCharacterData;
 
 export function isUrbino(data: CharacterData): data is UrbinoCharacterData {
 	return data.faction === factions.Urbino;

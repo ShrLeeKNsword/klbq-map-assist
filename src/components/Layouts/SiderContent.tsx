@@ -2,16 +2,20 @@ import React from 'react'
 import { I18nData } from '../../data/i18n'
 import { Avatar, Divider, TabPane, Tabs, Col, Row } from '@douyinfe/semi-ui'
 import { GiBroadsword, GiShield } from 'react-icons/gi'
-import { fetchCharLink, PUS, TheScissors, Urbino } from '../../data/characters'
+import { CharacterData, characterData, fetchCharLink, PUS, TheScissors, Urbino } from '../../data/characters'
 
 interface SiderContentProps {
   currentLanguage: I18nData
+  setSelectedCharacter: React.Dispatch<React.SetStateAction<CharacterData | null>>
 }
 
-const SiderContent: React.FC<SiderContentProps> = ({ currentLanguage: currentLanguageMode }) => {
+const SiderContent: React.FC<SiderContentProps> = ({ currentLanguage: currentLanguageMode, setSelectedCharacter }) => {
   const onDragStart = (event: React.DragEvent<HTMLSpanElement>, character: string, side: 'attack' | 'defense') => {
     event.dataTransfer.setData('character', character)
     event.dataTransfer.setData('side', side)
+
+    const char = characterData[character as unknown as keyof typeof characterData]
+    setSelectedCharacter(char)
   }
 
   return (
