@@ -1,9 +1,10 @@
-import { Popover, Tooltip, Button } from '@douyinfe/semi-ui'
+import { Popover, Tooltip } from '@douyinfe/semi-ui'
 import React from 'react'
 import { FaGithub, FaDiscord } from 'react-icons/fa'
 import ContributeBox from '../contributors'
 import { I18nData, Languages } from '../../data/i18n'
 import SupportUs from '../supportus'
+import SiteList from '../sitelist'
 
 interface FooterContentProps {
   currentLanguage: I18nData
@@ -47,9 +48,7 @@ const FooterContent: React.FC<FooterContentProps> = ({ currentLanguage }) => {
       </div>
       <div style={{ marginBottom: '0px', marginLeft: '10px', marginRight: '10px' }}>{' | '}</div>
       <div style={{ marginBottom: '0px' }}>
-        {currentLanguage.language === 0 ?
-          <Button type="primary" onClick={() => open("https://strinova.fsltech.cn/", "_blank")}>International Site</Button> :
-          <Button type='primary' onClick={() => open('https://klbq.fsltech.cn/mapassist.html', '_blank')}>中国境内站点</Button>}
+        <SiteList name={"选择网站节点"} />
         <SupportUs name={currentLanguage.sidebar.supportus} />
       </div>
     </div>

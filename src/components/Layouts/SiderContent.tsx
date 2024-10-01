@@ -1,6 +1,6 @@
 import React from 'react'
 import { I18nData } from '../../data/i18n'
-import { Avatar, Divider, TabPane, Tabs, Col, Row } from '@douyinfe/semi-ui'
+import { Avatar, Divider, TabPane, Tabs, Col, Row, Tooltip } from '@douyinfe/semi-ui'
 import { GiBroadsword, GiShield } from 'react-icons/gi'
 import { PUS, TheScissors, Urbino } from '../../data/characters/factions'
 import { characterData } from '../../data/characters/characters'
@@ -22,7 +22,7 @@ const SiderContent: React.FC<SiderContentProps> = ({ currentLanguage: currentLan
 
   return (
     <div>
-      <Tabs onChange={(activeKey) => {setSiderSide(activeKey as 'attack' | 'defense'); setSelectedCharacter(null)}} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <Tabs onChange={(activeKey) => { setSiderSide(activeKey as 'attack' | 'defense'); setSelectedCharacter(null) }} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <TabPane
           tab={
             <span>
@@ -35,12 +35,14 @@ const SiderContent: React.FC<SiderContentProps> = ({ currentLanguage: currentLan
             {Object.keys(TheScissors).map((key: unknown) => {
               return (
                 <Col span={6} style={{ display: 'flex', placeItems: 'center', placeContent: 'center' }}>
-                  <span draggable onDragStart={(e) => onDragStart(e, key as string, 'attack')}>
-                    <Avatar
-                      src={characterData[key as keyof typeof characterData].attack?.canvasImage}
-                      style={{ padding: '0.25rem' }}
-                    />
-                  </span>
+                  <Tooltip position='topLeft' content={key as string}>
+                    <span draggable onDragStart={(e) => onDragStart(e, key as string, 'attack')}>
+                      <Avatar
+                        src={characterData[key as keyof typeof characterData].attack?.canvasImage}
+                        style={{ padding: '0.25rem' }}
+                      />
+                    </span>
+                  </Tooltip>
                 </Col>
               )
             })}
@@ -50,12 +52,14 @@ const SiderContent: React.FC<SiderContentProps> = ({ currentLanguage: currentLan
             {Object.keys(Urbino).map((key: unknown) => {
               return (
                 <Col span={6} style={{ display: 'flex', placeItems: 'center', placeContent: 'center' }}>
-                  <span draggable onDragStart={(e) => onDragStart(e, key as string, 'attack')}>
-                    <Avatar
-                      src={characterData[key as keyof typeof characterData].attack?.canvasImage}
-                      style={{ padding: '0.25rem' }}
-                    />
-                  </span>
+                  <Tooltip position='topLeft' content={key as string}>
+                    <span draggable onDragStart={(e) => onDragStart(e, key as string, 'attack')}>
+                      <Avatar
+                        src={characterData[key as keyof typeof characterData].attack?.canvasImage}
+                        style={{ padding: '0.25rem' }}
+                      />
+                    </span>
+                  </Tooltip>
                 </Col>
               )
             })}
@@ -73,12 +77,15 @@ const SiderContent: React.FC<SiderContentProps> = ({ currentLanguage: currentLan
             {Object.keys(PUS).map((key: unknown) => {
               return (
                 <Col span={6} style={{ display: 'flex', placeItems: 'center', placeContent: 'center' }}>
-                  <span draggable onDragStart={(e) => onDragStart(e, key as string, 'defense')}>
-                    <Avatar
-                      src={characterData[key as keyof typeof characterData].defense?.canvasImage}
-                      style={{ padding: '0.25rem' }}
-                    />
-                  </span>
+                  <Tooltip position='topLeft' content={key as string}>
+                    <span draggable onDragStart={(e) => onDragStart(e, key as string, 'defense')}>
+                      <Avatar
+                        className='none-drag'
+                        src={characterData[key as keyof typeof characterData].defense?.canvasImage}
+                        style={{ padding: '0.25rem' }}
+                      />
+                    </span>
+                  </Tooltip>
                 </Col>
               )
             })}
@@ -88,12 +95,14 @@ const SiderContent: React.FC<SiderContentProps> = ({ currentLanguage: currentLan
             {Object.keys(Urbino).map((key: unknown) => {
               return (
                 <Col span={6} style={{ display: 'flex', placeItems: 'center', placeContent: 'center' }}>
-                  <span draggable onDragStart={(e) => onDragStart(e, key as string, 'defense')}>
-                    <Avatar
-                      src={characterData[key as keyof typeof characterData].defense?.canvasImage}
-                      style={{ padding: '0.25rem' }}
-                    />
-                  </span>
+                  <Tooltip position='topLeft' content={key as string}>
+                    <span draggable onDragStart={(e) => onDragStart(e, key as string, 'defense')}>
+                      <Avatar
+                        src={characterData[key as keyof typeof characterData].defense?.canvasImage}
+                        style={{ padding: '0.25rem' }}
+                      />
+                    </span>
+                  </Tooltip>
                 </Col>
               )
             })}
