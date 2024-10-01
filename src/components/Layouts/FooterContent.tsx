@@ -1,4 +1,4 @@
-import { Popover, Tooltip, Button } from '@douyinfe/semi-ui'
+import { Popover, Tooltip } from '@douyinfe/semi-ui'
 import React from 'react'
 import { FaGithub, FaDiscord } from 'react-icons/fa'
 import ContributeBox from '../contributors'

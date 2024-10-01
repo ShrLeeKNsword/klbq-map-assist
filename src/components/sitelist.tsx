@@ -69,7 +69,7 @@ const SiteList = (props: SupportUsPops) => {
                     <Row style={{ width: "100%", marginTop: "10px" }}>
                         {sitedata.Global.map((site) => {
                             return <Col span={12} style={{}}>
-                                <Button onClick={() => { open(site.url, "_blank") }} style={{ width: "90%" }}>
+                                <Button type="tertiary" onClick={() => { open(site.url, "_blank") }} style={{ width: "90%" }}>
                                     {site.icon}{site.content}
                                 </Button>
                             </Col>
@@ -82,7 +82,7 @@ const SiteList = (props: SupportUsPops) => {
                     <Row style={{ width: "100%", marginTop: "10px" }}>
                         {sitedata.CN.map((site) => {
                             return <Col span={12} style={{}}>
-                                <Button onClick={() => { open(site.url, "_blank") }} style={{ width: "90%" }}>
+                                <Button type="tertiary" onClick={() => { open(site.url, "_blank") }} style={{ width: "90%" }}>
                                     {site.icon}{site.content}
                                 </Button>
                             </Col>
