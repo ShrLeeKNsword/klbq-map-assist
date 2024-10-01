@@ -13,9 +13,12 @@ import { colorPalette, mapTools } from './utils/canvasConstants'
 import SiderTools from './components/Layouts/SiderTools'
 import MapCanvas from './components/Layouts/Canvas/mapCanvas'
 import SkillSider from './components/Layouts/SkillSider'
-import { characterData } from './data/characters/characters'
+import characterRegistry, { loadAllCharacters } from './data/characters/characterRegistry'
 
 const App: React.FC = () => {
+  if (!characterRegistry) {
+    loadAllCharacters();
+  }
   const [presentLanguage, setPresentLanguage] = useState<Languages>(Languages.English)
   const [presentMap, setPresentMap] = useState(MapName.WindyTown)
 
