@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Layout } from '@douyinfe/semi-ui'
 import './index.css'
 import './App.css'
@@ -13,7 +13,7 @@ import { colorPalette, mapTools } from './utils/canvasConstants'
 import SiderTools from './components/Layouts/SiderTools'
 import MapCanvas from './components/Layouts/Canvas/mapCanvas'
 import SkillSider from './components/Layouts/SkillSider'
-import { characterData } from './data/characters/characters'
+import { characterData, characterRegistry, loadAllCharacters } from './data/characters/characterRegistry'
 
 const App: React.FC = () => {
   const [presentLanguage, setPresentLanguage] = useState<Languages>(Languages.English)
@@ -62,8 +62,16 @@ const App: React.FC = () => {
     imgBlankLink: mapList[0].imgBlankLink
   })
 
+  const [characterData, setCharacterData] = useState<characterRegistry | null>(null)
+
   const { Header, Footer, Sider, Content } = Layout
   const currentLanguage = i18nData[presentLanguage]
+
+  useEffect(() => {
+    if (!characterData) {
+      loadAllCharacters().then(data => setCharacterData(data));
+    }
+  }, [setCharacterData, characterData])
 
   return (
     <Layout
