@@ -1,7 +1,11 @@
 import path from 'node:path';
 import { factions, PUS, TheScissors, Urbino } from "./factions";
 
-const characterRegistry: { [key: string]: characterData } = {};
+export interface characterRegistry {
+	[key: string]: characterData
+}
+
+const characterRegistry: characterRegistry = {};
 
 export function registerCharacter(character: characterData) {
 	characterRegistry[character.id] = character;
@@ -22,6 +26,8 @@ export async function loadAllCharacters() {
 			}
 		}
 	}
+
+	return characterRegistry;
 }
 
 export default characterRegistry;
