@@ -3,7 +3,7 @@ import { Modal, Button, Typography, Divider, Col, Row } from '@douyinfe/semi-ui'
 import { CiCloudOn } from "react-icons/ci";
 import { FaGithub } from "react-icons/fa";
 
-interface SupportUsPops {
+interface SiteListPops {
     name: string;
     Content?: JSX.Element;
 }
@@ -32,7 +32,7 @@ const sitedata = {
 
 const { Title } = Typography;
 
-const SiteList = (props: SupportUsPops) => {
+const SiteList = (props: SiteListPops) => {
     const [visible, setVisible] = useState(false);
     const showDialog = () => {
         setVisible(true);
@@ -66,9 +66,9 @@ const SiteList = (props: SupportUsPops) => {
                     <br />
                     <Title heading={5}>Global</Title>
                     <Divider margin='12px' />
-                    <Row style={{ width: "100%", marginTop: "10px" }}>
+                    <Row gutter={[0, 12]} style={{ width: "100%", marginTop: "10px" }}>
                         {sitedata.Global.map((site) => {
-                            return <Col span={12} style={{}}>
+                            return <Col span={10} style={{ width: "50%" }}>
                                 <Button type="tertiary" onClick={() => { open(site.url, "_self") }} style={{ width: "90%" }}>
                                     {site.icon}{site.content}
                                 </Button>
@@ -79,9 +79,9 @@ const SiteList = (props: SupportUsPops) => {
                     <br />
                     <Title heading={5}>中国节点</Title>
                     <Divider margin='12px' />
-                    <Row style={{ width: "100%", marginTop: "10px" }}>
+                    <Row gutter={[0, 12]} style={{ width: "100%", marginTop: "10px" }}>
                         {sitedata.CN.map((site) => {
-                            return <Col span={12} style={{}}>
+                            return <Col span={10} style={{ width: "50%" }}>
                                 <Button type="tertiary" onClick={() => { open(site.url, "_self") }} style={{ width: "90%" }}>
                                     {site.icon}{site.content}
                                 </Button>
