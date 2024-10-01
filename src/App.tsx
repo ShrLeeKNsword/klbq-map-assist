@@ -10,6 +10,15 @@ const App: React.FC = () => {
   const [loading, setLoading] = useState(true);
 
   useLayoutEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const prefersDarkMode = mediaQuery.matches;
+
+    if (prefersDarkMode) {
+      document.body.setAttribute('theme-mode', 'dark')
+    } else {
+      document.body.removeAttribute('theme-mode')
+    }
+
     if (!characterData) {
       loadAllCharacters().then(data => {
         setCharacterData(data)
@@ -20,7 +29,6 @@ const App: React.FC = () => {
     }
   }, [setCharacterData, characterData])
 
-
   if (loading) {
     return (
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100svh', width: '100%' }}>
@@ -28,8 +36,6 @@ const App: React.FC = () => {
       </div>
     )
   }
-
-
 
   return (
     <AppShell characterData={characterData!} />
