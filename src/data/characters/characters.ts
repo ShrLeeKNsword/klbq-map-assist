@@ -329,10 +329,10 @@ export const characterData: characterDatas = {
 			canvasImage: "https://s2.loli.net/2024/09/29/OGgXKe6pPERflQL.png",
 			skills: {
 				passive: {
-					canvasImage: "https://s2.loli.net/2024/09/25/tazvXEJNs5HuyeD.png"
+					canvasImage: "https://s2.loli.net/2024/09/25/2r7wkizoLbpqMOZ.png"
 				},
 				active: {
-					canvasImage: "https://s2.loli.net/2024/09/25/2r7wkizoLbpqMOZ.png",
+					canvasImage: "https://s2.loli.net/2024/09/25/q61FltINbyrA8YV.png",
 					rangeRadius: undefined
 				},
 				ultimate: {

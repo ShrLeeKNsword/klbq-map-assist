@@ -1,18 +1,22 @@
 body {
   color: var(--semi-color-text-0);
   background-color: var(--semi-color-bg-0);
-  scrollbar-width: none; /* 对于Firefox浏览器，隐藏滚动条 */
+  scrollbar-width: none;
+  /* 对于Firefox浏览器，隐藏滚动条 */
   overflow: hidden;
 }
 
 body::-webkit-scrollbar {
-  display: none; /* 对于WebKit浏览器，隐藏滚动条 */
+  display: none;
+  /* 对于WebKit浏览器，隐藏滚动条 */
 }
 
 .none-scrollbar::-webkit-scrollbar {
-  display: none; /* 对于WebKit浏览器，隐藏滚动条 */
+  display: none;
+  /* 对于WebKit浏览器，隐藏滚动条 */
 }
 
-.none-scrollbar{
-  scrollbar-width: none; /* 对于Firefox浏览器，隐藏滚动条 */
+.none-scrollbar {
+  scrollbar-width: none;
+  /* 对于Firefox浏览器，隐藏滚动条 */
 }
