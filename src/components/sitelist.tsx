@@ -20,12 +20,12 @@ const sitedata = {
         {
             icon: <></>,
             content: "腾讯云 -  上海 - 1",
-            url: "https://klbq.fsltech.cn/mapassist.html"
+            url: "https://sh-1.strinova.fsltech.cn/"
         },
         {
             icon: <></>,
             content: "香港 - 1",
-            url: ""
+            url: "https://hk-1.strinova.fsltech.cn/"
         }
     ],
 }
