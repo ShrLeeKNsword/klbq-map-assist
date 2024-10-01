@@ -19,12 +19,12 @@ const sitedata = {
     CN: [
         {
             icon: <></>,
-            content: "腾讯云 -  上海 - 1",
+            content: "腾讯云CDN -  上海 - 1",
             url: "https://sh-1.strinova.fsltech.cn/"
         },
         {
             icon: <></>,
-            content: "香港 - 1",
+            content: "腾讯云CDN - 香港 - 1",
             url: "https://hk-1.strinova.fsltech.cn/"
         }
     ],
@@ -64,12 +64,12 @@ const SiteList = (props: SupportUsPops) => {
                     <div>为了提供更快的访问速度以及减轻服务器压力，</div>
                     <div>我们开设了不同节点</div>
                     <br />
-                    <Title heading={5}>国际节点</Title>
+                    <Title heading={5}>Global</Title>
                     <Divider margin='12px' />
                     <Row style={{ width: "100%", marginTop: "10px" }}>
                         {sitedata.Global.map((site) => {
                             return <Col span={12} style={{}}>
-                                <Button type="tertiary" onClick={() => { open(site.url, "_blank") }} style={{ width: "90%" }}>
+                                <Button type="tertiary" onClick={() => { open(site.url, "_self") }} style={{ width: "90%" }}>
                                     {site.icon}{site.content}
                                 </Button>
                             </Col>
@@ -82,7 +82,7 @@ const SiteList = (props: SupportUsPops) => {
                     <Row style={{ width: "100%", marginTop: "10px" }}>
                         {sitedata.CN.map((site) => {
                             return <Col span={12} style={{}}>
-                                <Button type="tertiary" onClick={() => { open(site.url, "_blank") }} style={{ width: "90%" }}>
+                                <Button type="tertiary" onClick={() => { open(site.url, "_self") }} style={{ width: "90%" }}>
                                     {site.icon}{site.content}
                                 </Button>
                             </Col>
