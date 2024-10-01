@@ -1,4 +1,3 @@
-import path from 'node:path';
 import { factions, PUS, TheScissors, Urbino } from "./factions";
 
 export interface characterRegistry {
@@ -12,17 +11,20 @@ export function registerCharacter(character: characterData) {
 }
 
 export async function loadAllCharacters() {
-	const factionEnums = [PUS, TheScissors, Urbino];
+	const factionEnums = {
+		[factions.PUS]: PUS,
+		[factions.TheScissors]: TheScissors,
+		[factions.Urbino]: Urbino
+	};
 
-	for (const factionEnum of factionEnums) {
-		for (const characterName of Object.values(factionEnum)) {
-			const characterPath = path.resolve(__dirname, `./data/characters/${factionEnum}/${characterName}.tsx`);
+	for (const faction of Object.keys(factionEnums)) {
+		for (const characterName of Object.keys(factionEnums[faction as factions])) {
 			try {
-				const characterModule = await import(characterPath);
+				const characterModule = await import(`./${faction}/${characterName}.tsx`);
 				const character: characterData = characterModule.default;
 				registerCharacter(character);
 			} catch (error) {
-				console.error(`Failed to load character: ${characterName} from faction: ${factionEnum}`, error);
+				console.error(`Failed to load character: ${characterName} from faction: ${faction}`, error);
 			}
 		}
 	}

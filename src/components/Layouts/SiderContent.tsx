@@ -3,21 +3,24 @@ import { I18nData } from '../../data/i18n'
 import { Avatar, Divider, TabPane, Tabs, Col, Row, Tooltip } from '@douyinfe/semi-ui'
 import { GiBroadsword, GiShield } from 'react-icons/gi'
 import { PUS, TheScissors, Urbino } from '../../data/characters/factions'
-import { characterData } from '../../data/characters/characters'
+import { characterData, characterRegistry } from '../../data/characters/characterRegistry'
 
 interface SiderContentProps {
   currentLanguage: I18nData
+  characterRegistry: characterRegistry | null;
   setSelectedCharacter: React.Dispatch<React.SetStateAction<characterData | null>>
   setSiderSide: React.Dispatch<React.SetStateAction<'attack' | 'defense'>>
 }
 
-const SiderContent: React.FC<SiderContentProps> = ({ currentLanguage: currentLanguageMode, setSelectedCharacter, setSiderSide }) => {
+const SiderContent: React.FC<SiderContentProps> = ({ currentLanguage: currentLanguageMode, setSelectedCharacter, setSiderSide, characterRegistry }) => {
   const onDragStart = (event: React.DragEvent<HTMLSpanElement>, character: string, side: 'attack' | 'defense') => {
     event.dataTransfer.setData('character', character)
     event.dataTransfer.setData('side', side)
 
-    const char = characterData[character as keyof typeof characterData]
-    setSelectedCharacter(char)
+    if (characterRegistry) {
+      const char = characterRegistry[character]
+      setSelectedCharacter(char)
+    }
   }
 
   return (
@@ -38,7 +41,7 @@ const SiderContent: React.FC<SiderContentProps> = ({ currentLanguage: currentLan
                   <Tooltip position='topLeft' content={key as string}>
                     <span draggable onDragStart={(e) => onDragStart(e, key as string, 'attack')}>
                       <Avatar
-                        src={characterData[key as keyof typeof characterData].attack?.canvasImage}
+                        src={characterRegistry![key as string].attack?.canvasImage}
                         style={{ padding: '0.25rem' }}
                       />
                     </span>
@@ -55,7 +58,7 @@ const SiderContent: React.FC<SiderContentProps> = ({ currentLanguage: currentLan
                   <Tooltip position='topLeft' content={key as string}>
                     <span draggable onDragStart={(e) => onDragStart(e, key as string, 'attack')}>
                       <Avatar
-                        src={characterData[key as keyof typeof characterData].attack?.canvasImage}
+                        src={characterRegistry![key as string].attack?.canvasImage}
                         style={{ padding: '0.25rem' }}
                       />
                     </span>
@@ -81,7 +84,7 @@ const SiderContent: React.FC<SiderContentProps> = ({ currentLanguage: currentLan
                     <span draggable onDragStart={(e) => onDragStart(e, key as string, 'defense')}>
                       <Avatar
                         className='none-drag'
-                        src={characterData[key as keyof typeof characterData].defense?.canvasImage}
+                        src={characterRegistry![key as string].defense?.canvasImage}
                         style={{ padding: '0.25rem' }}
                       />
                     </span>
@@ -98,7 +101,7 @@ const SiderContent: React.FC<SiderContentProps> = ({ currentLanguage: currentLan
                   <Tooltip position='topLeft' content={key as string}>
                     <span draggable onDragStart={(e) => onDragStart(e, key as string, 'defense')}>
                       <Avatar
-                        src={characterData[key as keyof typeof characterData].defense?.canvasImage}
+                        src={characterRegistry![key as string].defense?.canvasImage}
                         style={{ padding: '0.25rem' }}
                       />
                     </span>
