@@ -38,8 +38,8 @@ const SupportUs = (props: SupportUsPops) => {
                 closeOnEsc={true}
             >
                 <div>
-                    <div><strong>卡拉彼丘地图助手</strong>是一款开源软件，</div>
-                    <div>因此你可以免费在 GPL-3.0 开源协议的范畴下使用本软件。</div>
+                    <div><strong>卡拉彼丘地图助手</strong>是一款开源应用，</div>
+                    <div>因此你可以免费在 GPL-3.0 开源协议的范畴下使用本应用。</div>
                     <div>美术资料与部分UI版权归原作者与官方所有，</div>
                     <div>请咨询对应作者与官方授权！</div>
                     <br />

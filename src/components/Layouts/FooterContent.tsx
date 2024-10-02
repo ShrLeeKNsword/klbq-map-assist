@@ -5,6 +5,7 @@ import ContributeBox from '../contributors'
 import { I18nData, Languages } from '../../data/i18n'
 import SupportUs from '../supportus'
 import SiteList from '../sitelist'
+import FriendLink from '../friendlink'
 
 interface FooterContentProps {
   currentLanguage: I18nData
@@ -28,11 +29,6 @@ const FooterContent: React.FC<FooterContentProps> = ({ currentLanguage }) => {
         <Popover content={<ContributeBox learnmore={currentLanguage.sidebar.learnmore} />} position={'top'}>
           <a>Contributors</a>
         </Popover>
-        {' & '}
-        <a href='https://wiki.biligame.com/klbq/%E9%A6%96%E9%A1%B5' target='_blank'>
-          卡拉彼丘Wiki
-        </a>
-        {' | '}
       </div>
       <div style={{ height: 'max', display: 'flex', alignItems: 'center', marginLeft: '10px', marginTop: '6px' }}>
         <Tooltip content='Github repository'>
@@ -46,8 +42,8 @@ const FooterContent: React.FC<FooterContentProps> = ({ currentLanguage }) => {
           </a>
         </Tooltip>
       </div>
-      <div style={{ marginBottom: '0px', marginLeft: '10px', marginRight: '10px' }}>{' | '}</div>
       <div style={{ marginBottom: '0px' }}>
+        <FriendLink name={"友情链接"} />
         <SiteList name={"选择网站节点"} />
         <SupportUs name={currentLanguage.sidebar.supportus} />
       </div>
