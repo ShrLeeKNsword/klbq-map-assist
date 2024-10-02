@@ -1,15 +1,14 @@
 import React from 'react'
 import Text from '@douyinfe/semi-ui/lib/es/typography/text'
 import SkillNormalButton from './Buttons/skill-normal-button'
-import { characterData } from '../../data/characters/characters'
+import { characterData } from '../../data/characters/characterRegistry'
 
 interface SkillSiderProps {
   selectedCharacter: characterData | null
-  setSelectedCharacter: React.Dispatch<React.SetStateAction<characterData | null>>
   currentSiderSide: 'attack' | 'defense'
 }
 
-const SkillSider: React.FC<SkillSiderProps> = ({ selectedCharacter, setSelectedCharacter, currentSiderSide }) => {
+const SkillSider: React.FC<SkillSiderProps> = ({ selectedCharacter, currentSiderSide }) => {
   const noCharacterSelected = (
     <div
       style={{
@@ -27,7 +26,7 @@ const SkillSider: React.FC<SkillSiderProps> = ({ selectedCharacter, setSelectedC
     </div>
   )
 
-  return <div>{selectedCharacter ? <SkillNormalButton abilityData={selectedCharacter[currentSiderSide]!.skills} onClick={() => 0} /> : noCharacterSelected}</div>
+  return <div>{selectedCharacter ? <SkillNormalButton sideData={selectedCharacter[currentSiderSide]!} onClick={() => 0} /> : noCharacterSelected}</div>
 }
 
 export default SkillSider
