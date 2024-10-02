@@ -7,6 +7,7 @@ import { MdOutlineTranslate, MdLightMode, MdDarkMode } from 'react-icons/md'
 import ChangeMapButton from '../buttons/changeMapButton'
 import ChangeHighlightButton from '../buttons/changeHighlightButton'
 import Pikaso, { BaseShapes } from 'pikaso'
+import Announcement from '../announcement'
 
 interface HeaderContentProps {
   currentLanguageMode: Languages
@@ -62,6 +63,7 @@ const HeaderContent: React.FC<HeaderContentProps> = ({
           <ChangeHighlightButton content={currentLanguage.mapsetting.TeamHighlight} mapPrepareMode={mapPrepareMode} setMapPrepareMode={setMapPrepareMode} />
         </Nav.Item>
         <Nav.Footer>
+        <Announcement name='公告' />
           <Button
             icon={
               currentThemeMode ? (
