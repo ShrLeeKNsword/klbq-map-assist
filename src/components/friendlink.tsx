@@ -21,7 +21,7 @@ const friendlinkdata = {
     wiki:
         [{
             name: "",
-            icon: <img style={{ height: "32px", filter: "drop-shadow(0 0 2px rgba(var(--semi-grey-1))" }} src='https://s2.loli.net/2024/10/01/NQTMvDZ5ah4omYR.png' />,
+            icon: <img style={{ height: "32px", filter: "drop-shadow(0 0 2px rgba(var(--semi-grey-9))" }} src='https://s2.loli.net/2024/10/01/NQTMvDZ5ah4omYR.png' />,
             url: "https://wiki.biligame.com/klbq/",
         }, {
             name: "",
@@ -42,6 +42,11 @@ const friendlinkdata = {
             icon: <img style={{ height: "35px", filter: "drop-shadow(0 0 2px rgba(var(--semi-grey-1))", marginRight: "8px" }} src='https://s2.loli.net/2024/10/01/pmYnw16rL2PQWBy.png' />,
             url: "https://klbq.fsltech.cn/",
         }],
+    contact: {
+        content: <div style={{ width: "100%", textAlign: "center" }}>
+            添加友链请联系 <a href='mailto:fsltech@email.cn'>fsltech@email.cn</a>
+        </div>
+    }
 }
 
 const { Title } = Typography;
@@ -114,6 +119,8 @@ const FriendLink = (props: FriendLinkPops) => {
                         }
                     </Row>
                     <br />
+                    <Divider margin='12px' />
+                    {friendlinkdata.contact.content}
                 </div>
             </Modal>
         </>
