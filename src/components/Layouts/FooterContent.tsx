@@ -37,14 +37,14 @@ const FooterContent: React.FC<FooterContentProps> = ({ currentLanguage }) => {
           </a>
         </Tooltip>
         <Tooltip content='Discord channel'>
-          <a href='https://discord.com/invite/C6AYFvgR' target='_blank' style={{ marginLeft: '5px' }}>
+          <a href='https://discord.gg/Zn6fWgT4Sb' target='_blank' style={{ marginLeft: '5px' }}>
             <FaDiscord />
           </a>
         </Tooltip>
       </div>
       <div style={{ marginBottom: '0px' }}>
-        <FriendLink name={"友情链接"} />
-        <SiteList name={"选择网站节点"} />
+        <FriendLink name={currentLanguage.friendlink} />
+        <SiteList name={currentLanguage.sitelist} />
         <SupportUs name={currentLanguage.sidebar.supportus} />
       </div>
     </div>

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Modal, Button, Typography, Divider, Row, Col, Tag } from '@douyinfe/semi-ui';
+import { Modal, Button, Typography, Divider, Tag } from '@douyinfe/semi-ui';
 import { MdOutlineAnnouncement, MdPushPin } from "react-icons/md";
 
 interface AnnouncementPops {
@@ -34,7 +34,7 @@ const announcementdata = [{
     pin: {
         title: "网站测试运行",
         date: "2024.10.2",
-        summary: "网站基础功能完善，角色图标已可拖拽。",
+        summary: "网站基础功能完善，角色图标已可拖拽。其余功能尽情期待！",
         data: {}
     },
     history: {}
@@ -45,7 +45,7 @@ const { Title } = Typography;
 const Announcement = (props: AnnouncementPops) => {
     const presentdate = new Date();
     console.log(presentdate.getDate())
-    const [visible, setVisible] = useState(getCookie("today_announcement") ? false : (getCookie("today_announcement") === presentdate.getDate().toString() ? () => { deleteCookie("today_announcement"); return false } : true));
+    const [visible, setVisible] = useState(getCookie("today_announcement") ? (getCookie("today_announcement") === presentdate.getDate().toString() ? false : () => { deleteCookie("today_announcement"); return true }) : true);
     const showDialog = () => {
         setVisible(true);
     };
@@ -72,7 +72,7 @@ const Announcement = (props: AnnouncementPops) => {
                 afterClose={handleAfterClose} //>=1.16.0
                 onCancel={handleCancel}
                 closeOnEsc={true}
-                okText={"24小时不再显示"}
+                okText={"今日不再显示"}
             >
                 <div>
                     <div style={{ display: "flex" }}>
