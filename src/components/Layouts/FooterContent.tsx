@@ -37,7 +37,7 @@ const FooterContent: React.FC<FooterContentProps> = ({ currentLanguage }) => {
           </a>
         </Tooltip>
         <Tooltip content='Discord channel'>
-          <a href='https://discord.com/invite/C6AYFvgR' target='_blank' style={{ marginLeft: '5px' }}>
+          <a href='https://discord.gg/Zn6fWgT4Sb' target='_blank' style={{ marginLeft: '5px' }}>
             <FaDiscord />
           </a>
         </Tooltip>
