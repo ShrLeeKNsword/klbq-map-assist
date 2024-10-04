@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Modal, Button, Typography, Divider, Row, Col, Tag } from '@douyinfe/semi-ui';
+import { Modal, Button, Typography, Divider, Tag } from '@douyinfe/semi-ui';
 import { MdOutlineAnnouncement, MdPushPin } from "react-icons/md";
 
 interface AnnouncementPops {
@@ -34,7 +34,7 @@ const announcementdata = [{
     pin: {
         title: "网站测试运行",
         date: "2024.10.2",
-        summary: "网站基础功能完善，角色图标已可拖拽。",
+        summary: "网站基础功能完善，角色图标已可拖拽。其余功能尽情期待！",
         data: {}
     },
     history: {}
