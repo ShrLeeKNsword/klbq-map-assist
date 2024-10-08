@@ -63,7 +63,7 @@ const HeaderContent: React.FC<HeaderContentProps> = ({
           <ChangeHighlightButton content={currentLanguage.mapsetting.TeamHighlight} mapPrepareMode={mapPrepareMode} setMapPrepareMode={setMapPrepareMode} />
         </Nav.Item>
         <Nav.Footer>
-        <Announcement name='公告' />
+          <Announcement name={currentLanguage.announcement} content={currentLanguage.announcementdata} />
           <Button
             icon={
               currentThemeMode ? (

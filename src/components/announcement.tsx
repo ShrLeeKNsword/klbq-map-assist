@@ -2,9 +2,22 @@ import { useState } from 'react';
 import { Modal, Button, Typography, Divider, Tag } from '@douyinfe/semi-ui';
 import { MdOutlineAnnouncement, MdPushPin } from "react-icons/md";
 
+interface AnnouncementForm {
+    title: string
+    date: string
+    summary: string
+    data: object
+}
+
+interface AnnouncementData {
+    notshowntoday: string
+    pin: AnnouncementForm
+    history: Array<AnnouncementForm> | null | undefined
+}
+
 interface AnnouncementPops {
     name: string;
-    Content?: JSX.Element;
+    content: AnnouncementData;
 }
 
 // 设置 cookie
@@ -28,17 +41,6 @@ function getCookie(name: string) {
 function deleteCookie(name: string) {
     setCookie(name, "", -1);
 }
-
-
-const announcementdata = [{
-    pin: {
-        title: "网站测试运行",
-        date: "2024.10.2",
-        summary: "网站基础功能完善，角色图标已可拖拽。其余功能尽情期待！",
-        data: {}
-    },
-    history: {}
-}]
 
 const { Title } = Typography;
 
@@ -76,10 +78,10 @@ const Announcement = (props: AnnouncementPops) => {
             >
                 <div>
                     <div style={{ display: "flex" }}>
-                        <MdPushPin style={{ marginTop: "3px", marginRight: "5px", fontSize: "18px" }} /><Title heading={6}>{announcementdata[0].pin.title}<Tag shape='circle' color='cyan' style={{ marginLeft: "5px" }}>{announcementdata[0].pin.date}</Tag></Title>
+                        <MdPushPin style={{ marginTop: "3px", marginRight: "5px", fontSize: "18px" }} /><Title heading={6}>{props.content.pin.title}<Tag shape='circle' color='cyan' style={{ marginLeft: "5px" }}>{props.content.pin.date}</Tag></Title>
                     </div>
                     <Divider margin='8px' />
-                    <div>{announcementdata[0].pin.summary}</div>
+                    <div>{props.content.pin.summary}</div>
                 </div>
             </Modal>
         </>

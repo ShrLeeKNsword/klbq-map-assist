@@ -1,6 +1,7 @@
 import { factions, PUS, TheScissors, Urbino } from './characters/factions'
 import { grenades as grenades } from './grenades'
 import { MapName } from './maplist'
+import { FaGithub } from "react-icons/fa";
 
 interface Sidebar {
   attact: string
@@ -17,6 +18,46 @@ interface Sidebar {
   learnmore: string
   supportus: string
   supportusContent: JSX.Element
+}
+
+interface AnnouncementForm {
+  title: string
+  date: string
+  summary: string
+  data: object
+}
+
+interface AnnouncementData {
+  notshowntoday: string
+  pin: AnnouncementForm
+  history: Array<AnnouncementForm> | null | undefined
+}
+
+interface FriendLinkForm {
+  name: string
+  icon: JSX.Element
+  url: string
+}
+
+interface FriendLinkData {
+  official: Array<FriendLinkForm>
+  wiki: Array<FriendLinkForm>
+  others: Array<FriendLinkForm>
+  contact: {
+    content: JSX.Element
+  }
+}
+
+interface SiteListForm {
+  icon: JSX.Element | null | undefined
+  content: string
+  url: string
+}
+
+interface SiteListData {
+  content: JSX.Element
+  Global: Array<SiteListForm>
+  CN: Array<SiteListForm>
 }
 
 interface MapSetting {
@@ -92,6 +133,9 @@ export interface I18nData {
   announcement: string
   friendlink: string
   sitelist: string
+  announcementdata: AnnouncementData
+  friendlinkdata: FriendLinkData
+  sitelistdata: SiteListData
   factions: {
     [key in factions]: string
   }
@@ -127,6 +171,82 @@ export const i18nData: {
       announcement: "公告",
       friendlink: "友情链接",
       sitelist: "切换网站节点",
+      announcementdata: {
+        notshowntoday: "今日不再显示",
+        pin: {
+          title: "网站测试运行",
+          date: "2024.10.2",
+          summary: "网站基础功能完善，角色图标已可拖拽。其余功能尽情期待！",
+          data: {}
+        },
+        history: []
+      },
+      friendlinkdata: {
+        official:
+          [{
+            name: "",
+            icon: <img style={{ height: "35px", filter: "brightness(1000%) drop-shadow(0 0 2px rgba(var(--semi-grey-7))" }} src='https://game.gtimg.cn/images/kq/m/web20230505/sec_ordlogo.png' />,
+            url: "https://klbq.qq.com/",
+          }, {
+            name: "",
+            icon: <img style={{ height: "22px", filter: "drop-shadow(0 0 2px rgba(var(--semi-grey-9))" }} src='https://klbq-web-cms.strinova.com/prod/strinova_static/home_v12/img/icon/logo-white.png' />,
+            url: "https://www.strinova.com/",
+          }],
+        wiki:
+          [{
+            name: "",
+            icon: <img style={{ height: "32px", filter: "drop-shadow(0 0 2px rgba(var(--semi-grey-9))" }} src='https://s2.loli.net/2024/10/01/NQTMvDZ5ah4omYR.png' />,
+            url: "https://wiki.biligame.com/klbq/",
+          }, {
+            name: "",
+            icon: <img style={{ height: "22px", filter: "drop-shadow(0 0 2px rgba(var(--semi-grey-1))" }} src='https://s2.loli.net/2024/10/01/R4UxmBPGd2f8kQ7.webp' />,
+            url: "https://strinova.wiki.gg/wiki/Strinova_Wiki",
+          }, {
+            name: "Miraheze Meta",
+            icon: <></>,
+            url: "https://strinova.org/wiki/",
+          }, {
+            name: "日本語wiki",
+            icon: <img style={{ height: "28px", filter: "drop-shadow(0 0 2px rgba(var(--semi-grey-1))", marginRight: "8px" }} src='https://w.atwiki.jp/common/_img/atwiki_logo_small.svg?t=741a51e81c8c8d5fe9627b874ecad193' />,
+            url: "https://w.atwiki.jp/calabiyau_jp/",
+          },],
+        others:
+          [{
+            name: "自建房助手",
+            icon: <img style={{ height: "35px", filter: "drop-shadow(0 0 2px rgba(var(--semi-grey-1))", marginRight: "8px" }} src='https://s2.loli.net/2024/10/01/pmYnw16rL2PQWBy.png' />,
+            url: "https://klbq.fsltech.cn/",
+          }],
+        contact: {
+          content: <div style={{ width: "100%", textAlign: "center" }}>
+            添加友链请联系 <a href='mailto:fsltech@email.cn'>fsltech@email.cn</a>
+          </div>
+        }
+      },
+      sitelistdata: {
+        content: <>
+          <div>为了提供更快的访问速度以及减轻服务器压力，</div>
+          <div>我们开设了不同节点</div>
+        </>,
+        Global: [
+          {
+            icon: <><FaGithub style={{ color: "rgba(var(--semi-grey-9), 1)", fontSize: "20px", marginRight: "10px" }} /></>,
+            content: "Github Page",
+            url: "https://strinova.fsltech.cn/"
+          }
+        ],
+        CN: [
+          {
+            icon: <></>,
+            content: "腾讯云CDN -  上海 - 1",
+            url: "https://sh-1.strinova.fsltech.cn/"
+          },
+          {
+            icon: <></>,
+            content: "腾讯云CDN - 香港 - 1",
+            url: "https://hk-1.strinova.fsltech.cn/"
+          }
+        ],
+      },
       sidebar: {
         attact: '进攻',
         defense: '防守',
@@ -263,6 +383,82 @@ export const i18nData: {
       announcement: "Announcement",
       friendlink: "Friend Link",
       sitelist: "Switch Server",
+      announcementdata: {
+        notshowntoday: "今日不再显示",
+        pin: {
+          title: "网站测试运行",
+          date: "2024.10.2",
+          summary: "网站基础功能完善，角色图标已可拖拽。其余功能尽情期待！",
+          data: {}
+        },
+        history: []
+      },
+      friendlinkdata: {
+        official:
+          [{
+            name: "",
+            icon: <img style={{ height: "35px", filter: "brightness(1000%) drop-shadow(0 0 2px rgba(var(--semi-grey-7))" }} src='https://game.gtimg.cn/images/kq/m/web20230505/sec_ordlogo.png' />,
+            url: "https://klbq.qq.com/",
+          }, {
+            name: "",
+            icon: <img style={{ height: "22px", filter: "drop-shadow(0 0 2px rgba(var(--semi-grey-9))" }} src='https://klbq-web-cms.strinova.com/prod/strinova_static/home_v12/img/icon/logo-white.png' />,
+            url: "https://www.strinova.com/",
+          }],
+        wiki:
+          [{
+            name: "",
+            icon: <img style={{ height: "32px", filter: "drop-shadow(0 0 2px rgba(var(--semi-grey-9))" }} src='https://s2.loli.net/2024/10/01/NQTMvDZ5ah4omYR.png' />,
+            url: "https://wiki.biligame.com/klbq/",
+          }, {
+            name: "",
+            icon: <img style={{ height: "22px", filter: "drop-shadow(0 0 2px rgba(var(--semi-grey-1))" }} src='https://s2.loli.net/2024/10/01/R4UxmBPGd2f8kQ7.webp' />,
+            url: "https://strinova.wiki.gg/wiki/Strinova_Wiki",
+          }, {
+            name: "Miraheze Meta",
+            icon: <></>,
+            url: "https://strinova.org/wiki/",
+          }, {
+            name: "日本語wiki",
+            icon: <img style={{ height: "28px", filter: "drop-shadow(0 0 2px rgba(var(--semi-grey-1))", marginRight: "8px" }} src='https://w.atwiki.jp/common/_img/atwiki_logo_small.svg?t=741a51e81c8c8d5fe9627b874ecad193' />,
+            url: "https://w.atwiki.jp/calabiyau_jp/",
+          },],
+        others:
+          [{
+            name: "自建房助手",
+            icon: <img style={{ height: "35px", filter: "drop-shadow(0 0 2px rgba(var(--semi-grey-1))", marginRight: "8px" }} src='https://s2.loli.net/2024/10/01/pmYnw16rL2PQWBy.png' />,
+            url: "https://klbq.fsltech.cn/",
+          }],
+        contact: {
+          content: <div style={{ width: "100%", textAlign: "center" }}>
+            添加友链请联系 <a href='mailto:fsltech@email.cn'>fsltech@email.cn</a>
+          </div>
+        }
+      },
+      sitelistdata: {
+        content: <>
+          <div>为了提供更快的访问速度以及减轻服务器压力，</div>
+          <div>我们开设了不同节点</div>
+        </>,
+        Global: [
+          {
+            icon: <><FaGithub style={{ color: "rgba(var(--semi-grey-9), 1)", fontSize: "20px", marginRight: "10px" }} /></>,
+            content: "Github Page",
+            url: "https://strinova.fsltech.cn/"
+          }
+        ],
+        CN: [
+          {
+            icon: <></>,
+            content: "腾讯云CDN -  上海 - 1",
+            url: "https://sh-1.strinova.fsltech.cn/"
+          },
+          {
+            icon: <></>,
+            content: "腾讯云CDN - 香港 - 1",
+            url: "https://hk-1.strinova.fsltech.cn/"
+          }
+        ],
+      },
       sidebar: {
         attact: 'Attack',
         defense: 'Defense',
@@ -399,6 +595,82 @@ export const i18nData: {
       announcement: "Announcement",
       friendlink: "Friend Link",
       sitelist: "Switch Server",
+      announcementdata: {
+        notshowntoday: "今日不再显示",
+        pin: {
+          title: "网站测试运行",
+          date: "2024.10.2",
+          summary: "网站基础功能完善，角色图标已可拖拽。其余功能尽情期待！",
+          data: {}
+        },
+        history: []
+      },
+      friendlinkdata: {
+        official:
+          [{
+            name: "",
+            icon: <img style={{ height: "35px", filter: "brightness(1000%) drop-shadow(0 0 2px rgba(var(--semi-grey-7))" }} src='https://game.gtimg.cn/images/kq/m/web20230505/sec_ordlogo.png' />,
+            url: "https://klbq.qq.com/",
+          }, {
+            name: "",
+            icon: <img style={{ height: "22px", filter: "drop-shadow(0 0 2px rgba(var(--semi-grey-9))" }} src='https://klbq-web-cms.strinova.com/prod/strinova_static/home_v12/img/icon/logo-white.png' />,
+            url: "https://www.strinova.com/",
+          }],
+        wiki:
+          [{
+            name: "",
+            icon: <img style={{ height: "32px", filter: "drop-shadow(0 0 2px rgba(var(--semi-grey-9))" }} src='https://s2.loli.net/2024/10/01/NQTMvDZ5ah4omYR.png' />,
+            url: "https://wiki.biligame.com/klbq/",
+          }, {
+            name: "",
+            icon: <img style={{ height: "22px", filter: "drop-shadow(0 0 2px rgba(var(--semi-grey-1))" }} src='https://s2.loli.net/2024/10/01/R4UxmBPGd2f8kQ7.webp' />,
+            url: "https://strinova.wiki.gg/wiki/Strinova_Wiki",
+          }, {
+            name: "Miraheze Meta",
+            icon: <></>,
+            url: "https://strinova.org/wiki/",
+          }, {
+            name: "日本語wiki",
+            icon: <img style={{ height: "28px", filter: "drop-shadow(0 0 2px rgba(var(--semi-grey-1))", marginRight: "8px" }} src='https://w.atwiki.jp/common/_img/atwiki_logo_small.svg?t=741a51e81c8c8d5fe9627b874ecad193' />,
+            url: "https://w.atwiki.jp/calabiyau_jp/",
+          },],
+        others:
+          [{
+            name: "自建房助手",
+            icon: <img style={{ height: "35px", filter: "drop-shadow(0 0 2px rgba(var(--semi-grey-1))", marginRight: "8px" }} src='https://s2.loli.net/2024/10/01/pmYnw16rL2PQWBy.png' />,
+            url: "https://klbq.fsltech.cn/",
+          }],
+        contact: {
+          content: <div style={{ width: "100%", textAlign: "center" }}>
+            添加友链请联系 <a href='mailto:fsltech@email.cn'>fsltech@email.cn</a>
+          </div>
+        }
+      },
+      sitelistdata: {
+        content: <>
+          <div>为了提供更快的访问速度以及减轻服务器压力，</div>
+          <div>我们开设了不同节点</div>
+        </>,
+        Global: [
+          {
+            icon: <><FaGithub style={{ color: "rgba(var(--semi-grey-9), 1)", fontSize: "20px", marginRight: "10px" }} /></>,
+            content: "Github Page",
+            url: "https://strinova.fsltech.cn/"
+          }
+        ],
+        CN: [
+          {
+            icon: <></>,
+            content: "腾讯云CDN -  上海 - 1",
+            url: "https://sh-1.strinova.fsltech.cn/"
+          },
+          {
+            icon: <></>,
+            content: "腾讯云CDN - 香港 - 1",
+            url: "https://hk-1.strinova.fsltech.cn/"
+          }
+        ],
+      },
       sidebar: {
         attact: 'Attack',
         defense: 'Defense',

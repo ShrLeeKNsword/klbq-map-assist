@@ -43,8 +43,8 @@ const FooterContent: React.FC<FooterContentProps> = ({ currentLanguage }) => {
         </Tooltip>
       </div>
       <div style={{ marginBottom: '0px' }}>
-        <FriendLink name={currentLanguage.friendlink} />
-        <SiteList name={currentLanguage.sitelist} />
+        <FriendLink name={currentLanguage.friendlink} content={currentLanguage.friendlinkdata} />
+        <SiteList name={currentLanguage.sitelist} content={currentLanguage.sitelistdata} />
         <SupportUs name={currentLanguage.sidebar.supportus} />
       </div>
     </div>

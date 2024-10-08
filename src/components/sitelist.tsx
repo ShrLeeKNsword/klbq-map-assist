@@ -1,33 +1,23 @@
 import { useState } from 'react';
 import { Modal, Button, Typography, Divider, Col, Row } from '@douyinfe/semi-ui';
 import { CiCloudOn } from "react-icons/ci";
-import { FaGithub } from "react-icons/fa";
+
+interface SiteListForm {
+    icon: JSX.Element | null | undefined
+    content: string
+    url: string
+  }
+  
+  interface SiteListData {
+    content: JSX.Element
+    Global: Array<SiteListForm>
+    CN: Array<SiteListForm>
+  }
+  
 
 interface SiteListPops {
     name: string;
-    Content?: JSX.Element;
-}
-
-const sitedata = {
-    Global: [
-        {
-            icon: <><FaGithub style={{ color: "rgba(var(--semi-grey-9), 1)", fontSize: "20px", marginRight: "10px" }} /></>,
-            content: "Github Page",
-            url: "https://strinova.fsltech.cn/"
-        }
-    ],
-    CN: [
-        {
-            icon: <></>,
-            content: "腾讯云CDN -  上海 - 1",
-            url: "https://sh-1.strinova.fsltech.cn/"
-        },
-        {
-            icon: <></>,
-            content: "腾讯云CDN - 香港 - 1",
-            url: "https://hk-1.strinova.fsltech.cn/"
-        }
-    ],
+    content: SiteListData;
 }
 
 const { Title } = Typography;
@@ -67,7 +57,7 @@ const SiteList = (props: SiteListPops) => {
                     <Title heading={5}>Global</Title>
                     <Divider margin='12px' />
                     <Row gutter={[0, 12]} style={{ width: "100%", marginTop: "10px" }}>
-                        {sitedata.Global.map((site) => {
+                        {props.content.Global.map((site) => {
                             return <Col span={10} style={{ width: "50%" }}>
                                 <Button type="tertiary" onClick={() => { open(site.url, "_self") }} style={{ width: "90%" }}>
                                     {site.icon}{site.content}
@@ -80,7 +70,7 @@ const SiteList = (props: SiteListPops) => {
                     <Title heading={5}>中国节点</Title>
                     <Divider margin='12px' />
                     <Row gutter={[0, 12]} style={{ width: "100%", marginTop: "10px" }}>
-                        {sitedata.CN.map((site) => {
+                        {props.content.CN.map((site) => {
                             return <Col span={10} style={{ width: "50%" }}>
                                 <Button type="tertiary" onClick={() => { open(site.url, "_self") }} style={{ width: "90%" }}>
                                     {site.icon}{site.content}
