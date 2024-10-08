@@ -45,7 +45,7 @@ const FooterContent: React.FC<FooterContentProps> = ({ currentLanguage }) => {
       <div style={{ marginBottom: '0px' }}>
         <FriendLink name={currentLanguage.friendlink} content={currentLanguage.friendlinkdata} />
         <SiteList name={currentLanguage.sitelist} content={currentLanguage.sitelistdata} />
-        <SupportUs name={currentLanguage.sidebar.supportus} />
+        <SupportUs name={currentLanguage.sidebar.supportus} content={currentLanguage.supportusdata} />
       </div>
     </div>
   )

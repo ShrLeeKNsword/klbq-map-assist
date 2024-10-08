@@ -60,6 +60,12 @@ interface SiteListData {
   CN: Array<SiteListForm>
 }
 
+interface SupportUsData {
+  content: JSX.Element
+  global: string
+  CN: string
+}
+
 interface MapSetting {
   choosemap: string
   maps: {
@@ -136,6 +142,7 @@ export interface I18nData {
   announcementdata: AnnouncementData
   friendlinkdata: FriendLinkData
   sitelistdata: SiteListData
+  supportusdata: SupportUsData
   factions: {
     [key in factions]: string
   }
@@ -246,6 +253,20 @@ export const i18nData: {
             url: "https://hk-1.strinova.fsltech.cn/"
           }
         ],
+      },
+      supportusdata: {
+        content: <>
+          <div><strong>卡拉彼丘地图助手</strong>是一款开源应用，</div>
+          <div>因此你可以免费在 GPL-3.0 开源协议的范畴下使用本应用。</div>
+          <div>美术资料与部分UI版权归原作者与官方所有，</div>
+          <div>请咨询对应作者与官方授权！</div>
+          <br />
+          <div>但即便如此，你的赞助也可以给予开发者前进的动力，让这个项目变得更好。</div>
+          <div>无论你使用何种形式赞助，你都可以在<strong>卡拉彼丘地图助手</strong>的 GitHub 项目主页和网站展示您的信息（个人主页、公司主页、GitHub 资料页等）。</div>
+          <div>如需展示，请在留言中留下需要展示的内容或将内容连同赞助收据发送至 <a href='mailto:fsltech@email.cn'>fsltech@email.cn</a></div>
+        </>,
+        global: "国际",
+        CN: "中国境内"
       },
       sidebar: {
         attact: '进攻',
@@ -459,6 +480,20 @@ export const i18nData: {
           }
         ],
       },
+      supportusdata: {
+        content: <>
+          <div><strong>卡拉彼丘地图助手</strong>是一款开源应用，</div>
+          <div>因此你可以免费在 GPL-3.0 开源协议的范畴下使用本应用。</div>
+          <div>美术资料与部分UI版权归原作者与官方所有，</div>
+          <div>请咨询对应作者与官方授权！</div>
+          <br />
+          <div>但即便如此，你的赞助也可以给予开发者前进的动力，让这个项目变得更好。</div>
+          <div>无论你使用何种形式赞助，你都可以在<strong>卡拉彼丘地图助手</strong>的 GitHub 项目主页和网站展示您的信息（个人主页、公司主页、GitHub 资料页等）。</div>
+          <div>如需展示，请在留言中留下需要展示的内容或将内容连同赞助收据发送至 <a href='mailto:fsltech@email.cn'>fsltech@email.cn</a></div>
+        </>,
+        global: "国际",
+        CN: "中国境内"
+      },
       sidebar: {
         attact: 'Attack',
         defense: 'Defense',
@@ -670,6 +705,20 @@ export const i18nData: {
             url: "https://hk-1.strinova.fsltech.cn/"
           }
         ],
+      },
+      supportusdata: {
+        content: <>
+          <div><strong>卡拉彼丘地图助手</strong>是一款开源应用，</div>
+          <div>因此你可以免费在 GPL-3.0 开源协议的范畴下使用本应用。</div>
+          <div>美术资料与部分UI版权归原作者与官方所有，</div>
+          <div>请咨询对应作者与官方授权！</div>
+          <br />
+          <div>但即便如此，你的赞助也可以给予开发者前进的动力，让这个项目变得更好。</div>
+          <div>无论你使用何种形式赞助，你都可以在<strong>卡拉彼丘地图助手</strong>的 GitHub 项目主页和网站展示您的信息（个人主页、公司主页、GitHub 资料页等）。</div>
+          <div>如需展示，请在留言中留下需要展示的内容或将内容连同赞助收据发送至 <a href='mailto:fsltech@email.cn'>fsltech@email.cn</a></div>
+        </>,
+        global: "国际",
+        CN: "中国境内"
       },
       sidebar: {
         attact: 'Attack',

@@ -2,9 +2,15 @@ import { useState } from 'react';
 import { Modal, Button, Typography, Divider } from '@douyinfe/semi-ui';
 import { CiHeart } from "react-icons/ci";
 
+interface SupportUsData {
+    content: JSX.Element
+    global: string
+    CN: string
+  }
+
 interface SupportUsPops {
     name: string;
-    Content?: JSX.Element;
+    content: SupportUsData;
 }
 
 const { Title } = Typography;
