@@ -22,7 +22,7 @@ const contributeList = [
         icon: "https://avatars.githubusercontent.com/u/77004524?v=4",
         github: "https://github.com/MiekoHikari/",
         bili: "",
-        X: "",
+        X: "https://x.com/MiekoHikariEN",
         twich: "https://www.twitch.tv/miekohikari",
     },
     {
@@ -38,11 +38,11 @@ const contributeList = [
 
 const ContributeBox = (props: ContributeBoxPops) => {
     return <div style={{ maxHeight: "800px", width: "400px", paddingTop: "5px", paddingBottom: "5px" }}>
-        <div style={{ height: "100%", width: "100%", overflowY: "scroll" }}>
+        <div className='none-scrollbar' style={{ height: "100%", width: "100%", overflowY: "scroll" }}>
             {contributeList.map((child) => {
-                return <div key={child.name} style={{ height: "60px", width: "100%", display: "flex", alignItems: "center", justifyContent: "center", margin: "5px" }}>
+                return <div key={child.name} style={{ height: "60px", width: "100%", display: "flex", alignItems: "center", justifyContent: "center", padding: "5px", color: "rgba(var(--semi-grey-9), 1)" }}>
                     <Row style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", textAlign: "center" }}>
-                        <Col span={1.5}></Col>
+                        <Col span={1}></Col>
                         <Col span={4}><img src={child.icon} style={{ height: "50px", borderRadius: "50%", marginRight: "10px" }}></img></Col>
                         <Col span={10} style={{ textAlign: "left", fontSize: "15px", fontWeight: "bold" }}>
                             <div style={{ width: "100%", marginBottom: "3px", marginTop: "3px" }}>{child.name}</div>
@@ -56,12 +56,12 @@ const ContributeBox = (props: ContributeBoxPops) => {
                             {child.X != "" ? <a href={child.X} target='_blank' style={{ margin: "5px" }}><FaXTwitter /></a> : <div style={{ width: "25px", height: "100%", textAlign: "center", marginTop: "2px" }}>/</div>}
                             {child.twich != "" ? <a href={child.twich} target='_blank' style={{ margin: "5px" }}><FaTwitch /></a> : <div style={{ width: "25px", height: "100%", textAlign: "center", marginTop: "2px" }}>/</div>}
                         </Col>
-                        <Col span={1.5} style={{}}></Col>
+                        <Col span={2} style={{}}></Col>
                     </Row>
                 </div>
             })}
         </div>
-        {props.learnmore != "" || props.learnmore != undefined ? <div style={{ fontSize: "15px", fontWeight: "bold", textAlign: 'center', display: "flex", alignItems: "center", justifyContent: "center", height: "30px", margin: "5px" }}>{props.learnmore}</div> : <></>}
+        {props.learnmore != "" || props.learnmore != undefined ? <div style={{ fontSize: "15px", fontWeight: "bold", textAlign: 'center', display: "flex", alignItems: "center", justifyContent: "center", height: "30px", margin: "5px", color: "rgba(var(--semi-grey-9), 1)" }}>{props.learnmore}</div> : <></>}
     </div>
 }
 
