@@ -64,6 +64,7 @@ interface SupportUsData {
   content: JSX.Element
   global: string
   CN: string
+  list: string
 }
 
 interface MapSetting {
@@ -266,7 +267,8 @@ export const i18nData: {
           <div>如需展示，请在留言中留下需要展示的内容或将内容连同赞助收据发送至 <a href='mailto:fsltech@email.cn'>fsltech@email.cn</a></div>
         </>,
         global: "国际",
-        CN: "中国境内"
+        CN: "中国境内",
+        list: "赞助列表"
       },
       sidebar: {
         attact: '进攻',
@@ -492,7 +494,8 @@ export const i18nData: {
           <div>如需展示，请在留言中留下需要展示的内容或将内容连同赞助收据发送至 <a href='mailto:fsltech@email.cn'>fsltech@email.cn</a></div>
         </>,
         global: "国际",
-        CN: "中国境内"
+        CN: "中国境内",
+        list: "赞助列表"
       },
       sidebar: {
         attact: 'Attack',
@@ -718,7 +721,8 @@ export const i18nData: {
           <div>如需展示，请在留言中留下需要展示的内容或将内容连同赞助收据发送至 <a href='mailto:fsltech@email.cn'>fsltech@email.cn</a></div>
         </>,
         global: "国际",
-        CN: "中国境内"
+        CN: "中国境内",
+        list: "赞助列表"
       },
       sidebar: {
         attact: 'Attack',
