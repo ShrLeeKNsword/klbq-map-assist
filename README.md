@@ -4,6 +4,8 @@
 
 ![Static Badge](https://img.shields.io/badge/React.js-blue)  ![Static Badge](https://img.shields.io/badge/Typescript-blue)  ![Static Badge](https://img.shields.io/badge/License-GPL3.0-orange)
 
+[**Strinova Map Assistant (fsltech.cn)**](https://strinova.fsltech.cn/)
+
 ## What is our Project ?
 
 Our project is for :
@@ -24,7 +26,3 @@ We're moving on the other components .
 ## How to contact us?
 
 See our website ,our social media is over there
-
-```
-
-```
