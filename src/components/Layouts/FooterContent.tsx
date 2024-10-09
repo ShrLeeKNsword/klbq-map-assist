@@ -1,6 +1,6 @@
 import { Popover, Tooltip } from '@douyinfe/semi-ui'
 import React from 'react'
-import { FaGithub, FaDiscord } from 'react-icons/fa'
+import { FaGithub, FaDiscord, FaQq } from 'react-icons/fa'
 import ContributeBox from '../contributors'
 import { I18nData, Languages } from '../../data/i18n'
 import SupportUs from '../supportus'
@@ -39,6 +39,11 @@ const FooterContent: React.FC<FooterContentProps> = ({ currentLanguage }) => {
         <Tooltip content='Discord channel'>
           <a href='https://discord.gg/Zn6fWgT4Sb' target='_blank' style={{ marginLeft: '5px' }}>
             <FaDiscord />
+          </a>
+        </Tooltip>
+        <Tooltip content='QQ群'>
+          <a href='https://qm.qq.com/q/E96Z4s8eze' target='_blank' style={{ marginLeft: '5px' }}>
+            <FaQq />
           </a>
         </Tooltip>
       </div>

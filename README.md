@@ -1,50 +1,30 @@
-# React + TypeScript + Vite
+# Strinova Map Assistant
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=38C2FF&width=435&lines=Map+Marking;Strategy+Discussing;Lineup+Learning)](https://git.io/typing-svg)
 
-Currently, two official plugins are available:
+![Static Badge](https://img.shields.io/badge/React.js-blue)  ![Static Badge](https://img.shields.io/badge/Typescript-blue)  ![Static Badge](https://img.shields.io/badge/License-GPL3.0-orange)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## What is our Project ?
 
-## Expanding the ESLint configuration
+Our project is for :
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Marking map for strategy
+- Line-up tutorial and shareing
+- Bug point Avoiding
+- …
 
-- Configure the top-level `parserOptions` property like this:
+## How is the progress?
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+🚧 **Developing**
+
+We've just finished marking canvas and character icon draging .
+
+We're moving on the other components .
+
+## How to contact us?
+
+See our website ,our social media is over there
+
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
 ```
