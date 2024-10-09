@@ -25,4 +25,4 @@ We're moving on the other components .
 
 ## How to contact us?
 
-See our website ,our social media is over there
+See the bottom of our website ,our social media is over there .
