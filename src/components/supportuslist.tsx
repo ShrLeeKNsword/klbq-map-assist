@@ -13,7 +13,7 @@ const supportlistdata = [
     {
         name: "废喵咸鱼TrashMeow",
         url: "https://space.bilibili.com/24437188"
-}
+    }
 ]
 
 const { Title } = Typography;
@@ -52,7 +52,7 @@ const SupportUsList = (props: SupportUsListPops) => {
                     <Row gutter={[0, 12]} style={{ width: "100%", marginTop: "10px" }}>
                         {supportlistdata.map((data) => {
                             return <Col span={6} style={{ width: "50%" }}>
-                                <Button type="tertiary" onClick={() => { open(data.url, "_blank") }} style={{ width: "90%" }}>
+                                <Button type="tertiary" onClick={() => { data.url ? open(data.url, "_blank") : "" }} style={{ width: "90%" }}>
                                     {data.name}
                                 </Button>
                             </Col>
