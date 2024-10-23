@@ -69,7 +69,7 @@ const AppShell: React.FC<AppShellProps> = ({ characterData }) => {
 	const currentLanguage = i18nData[presentLanguage]
 
 	const canvases = (
-		<div style={{ overflow: 'hidden', position: 'relative', top: 0, left: 0, width: '100%', height: '100%' }}>
+		<div id="capture" style={{ overflow: 'hidden', position: 'relative', top: 0, left: 0, width: '100%', height: '100%' }}>
 			<MapCanvas
 				currentMap={mapPrepareMode ? presentMapURL.imgPrepareLink : presentMapURL.imgBlankLink}
 				pikasoEditor={drawMapEditor}

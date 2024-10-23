@@ -10,6 +10,8 @@ import { PiArrowRightFill, PiLineSegmentFill } from 'react-icons/pi'
 import ToolColorButton from './Buttons/tool-color-button'
 import { Popconfirm, Toast } from '@douyinfe/semi-ui'
 import { I18nData } from '../../data/i18n'
+import { RiScreenshot2Fill } from "react-icons/ri";
+import html2canvas from 'html2canvas'
 
 interface SiderToolsProps {
   currentLanguage: I18nData
@@ -115,6 +117,9 @@ const SiderTools: React.FC<SiderToolsProps> = ({
           onClick={() => (selection ? editor?.selection.delete() : setToggleVisible(!togglevisible))}
         />
       </Popconfirm>
+      <ToolNormalButton Icon={RiScreenshot2Fill} isActiveTool={false} onClick={() => html2canvas(document.querySelector("#capture") as HTMLElement).then(canvas => {
+    document.body.appendChild(canvas)
+})} />
     </div>
   )
 }
