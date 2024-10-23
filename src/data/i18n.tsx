@@ -749,12 +749,12 @@ export const i18nData: {
         choosemap: 'マップ',
         maps: {
           WindyTown: 'ウィンディタウン',
-          SpaceLab: 'スペースラボ',
+          SpaceLab: 'スペース研究センター',
           Khesmet: '科斯迷特',
-          CauchyDistrict: '柯西街区',
+          CauchyDistrict: 'コーシー街区',
           EulerPort: 'オイラー港',
           Area88: '88街区',
-          Base404: 'ベース404'
+          Base404: '404基地'
         },
         TeamHighlight: 'チームハイライト',
         TeamHighlightOptions: {
@@ -803,8 +803,8 @@ export const i18nData: {
       characters: {
         PUS: {
           Michele: 'ミシェル',
-          Nobunaga: 'ノブナガ',
-          Kokona: 'ココナ',
+          Nobunaga: '信長',
+          Kokona: '心夏',
           Yvette: 'イヴェット',
           Flavia: 'フラヴィア'
         },
@@ -812,17 +812,17 @@ export const i18nData: {
           Ming: 'ミン',
           Lawine: 'ラヴィーネ',
           Meredith: 'メレディス',
-          Reiichi: 'レイイチ',
-          Kanami: 'カナミ',
+          Reiichi: '令一',
+          Kanami: '香奈美',
           Eika: 'アイカ',
           Fragrans: 'フラグランス'
         },
         Urbino: {
-          Celestia: 'ホシリエ',
+          Celestia: '星理恵',
           Audrey: 'オードリー',
           Maddelena: 'マダレーナ',
-          Fuchsia: 'フェイシャ',
-          BaiMo: 'ハクボク',
+          Fuchsia: 'フューシャ',
+          BaiMo: '白墨',
           Galatea: 'ガラテア'
         }
       },
