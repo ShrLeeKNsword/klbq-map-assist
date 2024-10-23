@@ -46,7 +46,6 @@ const { Title } = Typography;
 
 const Announcement = (props: AnnouncementPops) => {
     const presentdate = new Date();
-    console.log(presentdate.getDate())
     const [visible, setVisible] = useState(getCookie("today_announcement") ? (getCookie("today_announcement") === presentdate.getDate().toString() ? false : () => { deleteCookie("today_announcement"); return true }) : true);
     const showDialog = () => {
         setVisible(true);

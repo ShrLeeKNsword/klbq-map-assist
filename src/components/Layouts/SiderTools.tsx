@@ -117,9 +117,28 @@ const SiderTools: React.FC<SiderToolsProps> = ({
           onClick={() => (selection ? editor?.selection.delete() : setToggleVisible(!togglevisible))}
         />
       </Popconfirm>
-      <ToolNormalButton Icon={RiScreenshot2Fill} isActiveTool={false} onClick={() => html2canvas(document.querySelector("#capture") as HTMLElement).then(canvas => {
-    document.body.appendChild(canvas)
-})} />
+      <ToolNormalButton Icon={RiScreenshot2Fill} isActiveTool={false} onClick={() => {
+        const MarkingCanvas = document.querySelector("#capture") as HTMLElement
+        /*
+        let Ink = document.createElement("span")
+        Ink.appendChild(document.createTextNode("Strinova Map Assist"))
+        Ink.style.position = "absolute"
+        Ink.style.bottom = "0"
+        Ink.style.fontSize = "50px"
+        Ink.style.opacity = "0.5"
+        Ink.style.margin = "10px"
+        MarkingCanvas.appendChild(Ink)
+        */
+        html2canvas(MarkingCanvas).then(canvas => {
+          const Presentdate = new Date()
+          let imgData = canvas
+          let link = document.createElement('a')
+          link.href = imgData.toDataURL()
+          const presenttime = Presentdate.getFullYear().toString() + (Presentdate.getMonth() + 1 < 10 ? "0" : "") + (Presentdate.getMonth() + 1).toString() + (Presentdate.getDate() < 10 ? "0" : "") + Presentdate.getDate().toString() + Presentdate.getHours().toString() + Presentdate.getMinutes().toString() + Presentdate.getSeconds().toString()
+          link.download = 'MapAssistant - ' + presenttime + '.png'
+          link.click()
+        })
+      }} />
     </div>
   )
 }

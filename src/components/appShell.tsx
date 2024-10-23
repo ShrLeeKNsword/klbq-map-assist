@@ -70,6 +70,10 @@ const AppShell: React.FC<AppShellProps> = ({ characterData }) => {
 
 	const canvases = (
 		<div id="capture" style={{ overflow: 'hidden', position: 'relative', top: 0, left: 0, width: '100%', height: '100%' }}>
+			<div className='no-select' style={{ position: "absolute", bottom: "20px", opacity: 0.1, fontSize: "30px", marginLeft: "30px" }}>
+				<div>Strinova Map Assistant</div>
+				<div style={{ fontSize: "20px" }}>strinova.fsltech.cn</div>
+			</div>
 			<MapCanvas
 				currentMap={mapPrepareMode ? presentMapURL.imgPrepareLink : presentMapURL.imgBlankLink}
 				pikasoEditor={drawMapEditor}
