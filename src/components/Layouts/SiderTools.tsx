@@ -4,7 +4,7 @@ import Pikaso, { BaseShapes, DrawType } from 'pikaso'
 import { MdDelete, MdDeleteForever, MdDraw, MdUndo } from 'react-icons/md'
 import ToolPopoverButton from './Buttons/tool-popover-button'
 import ColorPopover from './Popovers/ColorPopover'
-import { FaMousePointer } from 'react-icons/fa'
+import { FaMousePointer, FaUpload, FaDownload } from 'react-icons/fa'
 import ToolNormalButton from './Buttons/tool-normal-button'
 import { PiArrowRightFill, PiLineSegmentFill } from 'react-icons/pi'
 import ToolColorButton from './Buttons/tool-color-button'
@@ -139,6 +139,8 @@ const SiderTools: React.FC<SiderToolsProps> = ({
           link.click()
         })
       }} />
+      <ToolNormalButton Icon={FaUpload} isActiveTool={false} onClick={() => { }} />
+      <ToolNormalButton Icon={FaDownload} isActiveTool={false} onClick={() => { }} />
     </div>
   )
 }
