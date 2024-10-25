@@ -5,7 +5,7 @@
   "keywords": [],
   "main": "./main.js",
   "version": "1.0.0",
-  "author": "lee34",
+  "author": "acer",
   "scripts": {
     "start": "electron ."
   },
