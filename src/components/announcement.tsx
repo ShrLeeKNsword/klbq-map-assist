@@ -73,7 +73,7 @@ const Announcement = (props: AnnouncementPops) => {
                 afterClose={handleAfterClose} //>=1.16.0
                 onCancel={handleCancel}
                 closeOnEsc={true}
-                okText={"今日不再显示"}
+                okText={props.content.notshowntoday}
             >
                 <div>
                     <div style={{ display: "flex" }}>

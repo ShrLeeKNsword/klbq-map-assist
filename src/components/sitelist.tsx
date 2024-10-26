@@ -51,8 +51,7 @@ const SiteList = (props: SiteListPops) => {
                 closeOnEsc={true}
             >
                 <div>
-                    <div>为了提供更快的访问速度以及减轻服务器压力，</div>
-                    <div>我们开设了不同节点</div>
+                    {props.content.content}
                     <br />
                     <Title heading={5}>Global</Title>
                     <Divider margin='12px' />

@@ -8,7 +8,14 @@ interface FriendLinkForm {
     url: string
 }
 
+interface ClassifyForm {
+    official: string
+    wiki: string
+    others: string
+}
+
 interface FriendLinkData {
+    classify:ClassifyForm
     official: Array<FriendLinkForm>
     wiki: Array<FriendLinkForm>
     others: Array<FriendLinkForm>
@@ -54,7 +61,7 @@ const FriendLink = (props: FriendLinkPops) => {
                 closeOnEsc={true}
             >
                 <div>
-                    <Title heading={6}>官方</Title>
+                    <Title heading={6}>{props.content.classify.official}</Title>
                     <Divider margin='12px' />
                     <Row gutter={[0, 10]} style={{ width: "100%", marginTop: "10px" }}>
                         {props.content.official.map((site) => {
@@ -67,7 +74,7 @@ const FriendLink = (props: FriendLinkPops) => {
                         }
                     </Row>
                     <br />
-                    <Title heading={6}>Wiki</Title>
+                    <Title heading={6}>{props.content.classify.wiki}</Title>
                     <Divider margin='12px' />
                     <Row gutter={[0, 10]} style={{ width: "100%", marginTop: "10px" }}>
                         {props.content.wiki.map((site) => {
@@ -80,7 +87,7 @@ const FriendLink = (props: FriendLinkPops) => {
                         }
                     </Row>
                     <br />
-                    <Title heading={6}>其他</Title>
+                    <Title heading={6}>{props.content.classify.others}</Title>
                     <Divider margin='12px' />
                     <Row gutter={[0, 10]} style={{ width: "100%", marginTop: "10px" }}>
                         {props.content.others.map((site) => {
