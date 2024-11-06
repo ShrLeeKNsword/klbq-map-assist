@@ -1,7 +1,6 @@
 import React, { useLayoutEffect } from 'react'
 import { DrawType, Pikaso, type BaseShapes } from 'pikaso'
 import { mapTools } from '../../../utils/canvasConstants'
-import { characterRegistry } from '../../../data/characters/characterRegistry'
 
 interface PikasoMapProps {
   pikasoRef: React.RefObject<HTMLDivElement>
@@ -11,7 +10,6 @@ interface PikasoMapProps {
   canvasTool: mapTools
   penWidth: number
   lineWidth: number
-  characterRegistry: characterRegistry | null
 }
 
 const DrawMap: React.FC<PikasoMapProps> = ({
@@ -21,8 +19,7 @@ const DrawMap: React.FC<PikasoMapProps> = ({
   penColor,
   canvasTool,
   penWidth,
-  lineWidth,
-  characterRegistry
+  lineWidth
 }) => {
   useLayoutEffect(() => {
     switch (canvasTool) {
@@ -92,11 +89,7 @@ const DrawMap: React.FC<PikasoMapProps> = ({
   }
 
   const handleOnDrop = (e: React.DragEvent<HTMLDivElement>) => {
-    const character = e.dataTransfer.getData('character')
-    const side = e.dataTransfer.getData('side')
-
-    const char = characterRegistry![character]
-    const imgLink = side === 'attack' ? char.attack!.canvasImage : char.defense!.canvasImage
+    const imgLink = e.dataTransfer.getData("imageLink")
 
     const rect = pikasoRef.current?.getBoundingClientRect()
 
