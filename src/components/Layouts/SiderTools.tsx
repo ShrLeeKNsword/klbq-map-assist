@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
 import { mapTools } from '../../utils/canvasConstants'
 import Pikaso, { BaseShapes, DrawType } from 'pikaso'
-import { MdDelete, MdDeleteForever, MdDownload, MdDraw, MdRedo, MdUndo, MdUpload } from 'react-icons/md'
+import { MdDelete, MdDeleteForever, MdDraw, MdUndo } from 'react-icons/md'
 import ToolPopoverButton from './Buttons/tool-popover-button'
 import ColorPopover from './Popovers/ColorPopover'
-import { FaMousePointer } from 'react-icons/fa'
+import { FaMousePointer, FaUpload, FaDownload } from 'react-icons/fa'
 import ToolNormalButton from './Buttons/tool-normal-button'
 import { PiArrowRightFill, PiLineSegmentFill } from 'react-icons/pi'
 import ToolColorButton from './Buttons/tool-color-button'
@@ -23,8 +23,6 @@ interface SiderToolsProps {
   penColor: string
   editor: Pikaso<BaseShapes> | null
   setPenColor: React.Dispatch<React.SetStateAction<string>>
-  save: React.Dispatch<React.SetStateAction<void>>
-  load: React.Dispatch<React.SetStateAction<void>>
 }
 
 const SiderTools: React.FC<SiderToolsProps> = ({
@@ -36,10 +34,7 @@ const SiderTools: React.FC<SiderToolsProps> = ({
   lineWidth,
   setLineWidth,
   editor,
-  setPenColor,
-  currentLanguage,
-  save,
-  load
+  setPenColor
 }) => {
   const [togglevisible, setToggleVisible] = React.useState(false)
   const [selection, setSelection] = React.useState(false)
@@ -100,7 +95,6 @@ const SiderTools: React.FC<SiderToolsProps> = ({
         </div>
       </ColorPopover>
       <ToolNormalButton Icon={MdUndo} isActiveTool={false} onClick={() => editor?.undo()} />
-      <ToolNormalButton Icon={MdRedo} isActiveTool={false} onClick={() => editor?.redo()} />
       <Popconfirm
         visible={togglevisible}
         title={currentLanguage.markbox.clearwarning.title}
