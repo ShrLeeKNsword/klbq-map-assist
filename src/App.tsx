@@ -10,22 +10,12 @@ const App: React.FC = () => {
   const [loading, setLoading] = useState(true);
 
   useLayoutEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    const prefersDarkMode = mediaQuery.matches;
-
-    if (prefersDarkMode) {
-      document.body.setAttribute('theme-mode', 'dark')
-    } else {
-      document.body.removeAttribute('theme-mode')
-    }
-
     if (!characterData) {
       loadAllCharacters().then(data => {
         setCharacterData(data)
         console.log(characterData)
         setLoading(false);
       });
-
     }
   }, [setCharacterData, characterData])
 
