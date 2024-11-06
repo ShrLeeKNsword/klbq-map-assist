@@ -4,6 +4,7 @@ import { i18nData, Languages } from '../data/i18n';
 import { Layout } from '@douyinfe/semi-ui';
 import { characterData, characterRegistry } from '../data/characters/characterRegistry';
 import { MapName, mapList } from '../data/maplist';
+import { save, load } from '../data/stateManagement';
 import { mapTools, colorPalette } from '../utils/canvasConstants';
 import DrawMap from './Layouts/Canvas/drawCanvas';
 import MapCanvas from './Layouts/Canvas/mapCanvas';
@@ -72,17 +73,12 @@ const AppShell: React.FC<AppShellProps> = ({ characterData }) => {
 
 	const currentLanguage = i18nData[presentLanguage]
 
-	document.body.setAttribute("theme-mode", presentTheme)
-
-	const setLanguage = (lang: Languages) => {
-		setPresentLanguage(lang)
-		saveLanguage(lang)
+	const saveFile = () => {
+		save({ presentMap, drawCanvasEditor })
 	}
 
-	const setTheme = (theme: ThemeType) => {
-		setPresentTheme(theme)
-		saveTheme(theme)
-		document.body.setAttribute("theme-mode", theme)
+	const loadFile = () => {
+		load({ setPresentMap, setPresentMapURL, drawCanvasEditor })
 	}
 
 	const canvases = (
