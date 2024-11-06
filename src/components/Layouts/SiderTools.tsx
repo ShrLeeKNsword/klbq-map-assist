@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { mapTools } from '../../utils/canvasConstants'
 import Pikaso, { BaseShapes, DrawType } from 'pikaso'
 import { MdDelete, MdDeleteForever, MdDownload, MdDraw, MdRedo, MdUndo, MdUpload } from 'react-icons/md'
@@ -9,10 +9,11 @@ import ToolNormalButton from './Buttons/tool-normal-button'
 import { PiArrowRightFill, PiLineSegmentFill } from 'react-icons/pi'
 import ToolColorButton from './Buttons/tool-color-button'
 import { Popconfirm, Toast } from '@douyinfe/semi-ui'
-import { I18nData } from '../../data/i18n'
+import { RiScreenshot2Fill } from "react-icons/ri";
+import html2canvas from 'html2canvas'
+import { LanguageContext } from '../../contexts/LanguageContext.ts'
 
 interface SiderToolsProps {
-  currentLanguage: I18nData
   setTool: React.Dispatch<React.SetStateAction<mapTools>>
   canvasTool: mapTools
   setpenWidth: React.Dispatch<React.SetStateAction<number>>
@@ -42,6 +43,8 @@ const SiderTools: React.FC<SiderToolsProps> = ({
 }) => {
   const [togglevisible, setToggleVisible] = React.useState(false)
   const [selection, setSelection] = React.useState(false)
+
+  const currentLanguage = useContext(LanguageContext)
 
   editor?.on('selection:change', (selection) => {
     if (selection.shapes!.length > 0) {
@@ -120,9 +123,30 @@ const SiderTools: React.FC<SiderToolsProps> = ({
           onClick={() => (selection ? editor?.selection.delete() : setToggleVisible(!togglevisible))}
         />
       </Popconfirm>
-
-      <ToolNormalButton Icon={MdDownload} isActiveTool={false} onClick={() => save()} />
-      <ToolNormalButton Icon={MdUpload} isActiveTool={false} onClick={() => load()} />
+      <ToolNormalButton Icon={RiScreenshot2Fill} isActiveTool={false} onClick={() => {
+        const MarkingCanvas = document.querySelector("#capture") as HTMLElement
+        /*
+        let Ink = document.createElement("span")
+        Ink.appendChild(document.createTextNode("Strinova Map Assist"))
+        Ink.style.position = "absolute"
+        Ink.style.bottom = "0"
+        Ink.style.fontSize = "50px"
+        Ink.style.opacity = "0.5"
+        Ink.style.margin = "10px"
+        MarkingCanvas.appendChild(Ink)
+        */
+        html2canvas(MarkingCanvas).then(canvas => {
+          const Presentdate = new Date()
+          const imgData = canvas
+          const link = document.createElement('a')
+          link.href = imgData.toDataURL()
+          const presenttime = Presentdate.getFullYear().toString() + (Presentdate.getMonth() + 1 < 10 ? "0" : "") + (Presentdate.getMonth() + 1).toString() + (Presentdate.getDate() < 10 ? "0" : "") + Presentdate.getDate().toString() + Presentdate.getHours().toString() + Presentdate.getMinutes().toString() + Presentdate.getSeconds().toString()
+          link.download = 'MapAssistant - ' + presenttime + '.png'
+          link.click()
+        })
+      }} />
+      <ToolNormalButton Icon={FaUpload} isActiveTool={false} onClick={() => { }} />
+      <ToolNormalButton Icon={FaDownload} isActiveTool={false} onClick={() => { }} />
     </div>
   )
 }
