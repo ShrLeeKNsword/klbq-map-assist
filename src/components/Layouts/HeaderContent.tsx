@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useState } from 'react'
 import { i18nData, Languages } from '../../data/i18n'
 import { Button, Nav, Select } from '@douyinfe/semi-ui'
 import Title from '@douyinfe/semi-ui/lib/es/typography/title'
@@ -8,12 +8,10 @@ import ChangeMapButton from '../buttons/changeMapButton'
 import ChangeHighlightButton from '../buttons/changeHighlightButton'
 import Pikaso, { BaseShapes } from 'pikaso'
 import Announcement from '../announcement'
-import { LanguageContext } from '../../contexts/LanguageContext.ts'
-import { ThemeContext, ThemeType } from '../../contexts/ThemeContext.ts'
 
 interface HeaderContentProps {
-  changeLanguage: (lang: Languages) => void
-  changeTheme: (theme: ThemeType) => void
+  currentLanguageMode: Languages
+  changeLanguage: React.Dispatch<React.SetStateAction<Languages>>
   currentMap: MapName
   mapPrepareMode: boolean
   setPresentMap: React.Dispatch<React.SetStateAction<MapName>>
@@ -24,7 +22,7 @@ interface HeaderContentProps {
 
 const HeaderContent: React.FC<HeaderContentProps> = ({
   changeLanguage,
-  changeTheme,
+  currentLanguageMode,
   currentMap,
   mapPrepareMode,
   setPresentMap,
@@ -32,11 +30,18 @@ const HeaderContent: React.FC<HeaderContentProps> = ({
   setMapPrepareMode,
   editor
 }) => {
-  const currentLanguage = useContext(LanguageContext)
-  const currentTheme = useContext(ThemeContext)
+  const currentLanguage = i18nData[currentLanguageMode]
 
-  const switchTheme = () => {
-    changeTheme(currentTheme === "dark" ? "light" : "dark")
+  const [currentThemeMode, setCurrentThemeMode] = useState(document.body.hasAttribute('theme-mode') ? false : true)
+
+  const themeMode = () => {
+    if (document.body.hasAttribute('theme-mode')) {
+      document.body.removeAttribute('theme-mode')
+      setCurrentThemeMode(true)
+    } else {
+      document.body.setAttribute('theme-mode', 'dark')
+      setCurrentThemeMode(false)
+    }
   }
 
   return (
@@ -61,13 +66,13 @@ const HeaderContent: React.FC<HeaderContentProps> = ({
           <Announcement name={currentLanguage.announcement} content={currentLanguage.announcementdata} />
           <Button
             icon={
-              currentTheme === "light" ? (
+              currentThemeMode ? (
                 <MdLightMode size='1rem' style={{ padding: '0 1rem' }} color='rgba(var(--semi-grey-9), 1)' />
               ) : (
                 <MdDarkMode size='1rem' style={{ padding: '0 1rem' }} color='rgba(var(--semi-grey-9), 1)' />
               )
             }
-            onClick={switchTheme}
+            onClick={themeMode}
           />
           <MdOutlineTranslate size='1.5rem' style={{ padding: '0 1rem' }} color='rgba(var(--semi-grey-9), 1)' />
           <Select

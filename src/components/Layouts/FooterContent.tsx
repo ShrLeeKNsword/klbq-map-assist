@@ -1,15 +1,17 @@
 import { Popover, Tooltip } from '@douyinfe/semi-ui'
-import React, { useContext } from 'react'
+import React from 'react'
 import { FaGithub, FaDiscord, FaQq } from 'react-icons/fa'
 import ContributeBox from '../contributors'
+import { I18nData, Languages } from '../../data/i18n'
 import SupportUs from '../supportus'
 import SiteList from '../sitelist'
 import FriendLink from '../friendlink'
-import { LanguageContext } from '../../contexts/LanguageContext.ts'
 
-const FooterContent: React.FC = () => {
-  const currentLanguage = useContext(LanguageContext)
+interface FooterContentProps {
+  currentLanguage: I18nData
+}
 
+const FooterContent: React.FC<FooterContentProps> = ({ currentLanguage }) => {
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginLeft: '80px', color: "rgba(var(--semi-grey-9), 1)" }}>
       <a href='https://creativecommons.org/licenses/by-nc-sa/4.0/' target='_blank' rel='nofollow'>
