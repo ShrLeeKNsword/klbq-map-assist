@@ -4,6 +4,7 @@ import { i18nData, Languages } from '../data/i18n';
 import { Layout } from '@douyinfe/semi-ui';
 import { characterData, characterRegistry } from '../data/characters/characterRegistry';
 import { MapName, mapList } from '../data/maplist';
+import { save, load } from '../data/stateManagement';
 import { mapTools, colorPalette } from '../utils/canvasConstants';
 import DrawMap from './Layouts/Canvas/drawCanvas';
 import MapCanvas from './Layouts/Canvas/mapCanvas';
@@ -67,6 +68,14 @@ const AppShell: React.FC<AppShellProps> = ({ characterData }) => {
 
 	const { Header, Footer, Sider, Content } = Layout
 	const currentLanguage = i18nData[presentLanguage]
+
+	const saveFile = () => {
+		save({ presentMap, drawCanvasEditor })
+	}
+
+	const loadFile = () => {
+		load({ setPresentMap, setPresentMapURL, drawCanvasEditor })
+	}
 
 	const canvases = (
 		<div id="capture" style={{ overflow: 'hidden', position: 'relative', top: 0, left: 0, width: '100%', height: '100%' }}>
@@ -151,6 +160,8 @@ const AppShell: React.FC<AppShellProps> = ({ characterData }) => {
 						lineWidth={lineWidth}
 						editor={drawCanvasEditor}
 						setPenColor={setpenColor}
+						save={saveFile}
+						load={loadFile}
 					/>
 				</Sider>
 			</Layout>
