@@ -3,7 +3,7 @@ import { Avatar, Divider, TabPane, Tabs, Col, Row, Tooltip } from '@douyinfe/sem
 import { GiBroadsword, GiShield, GiStunGrenade } from 'react-icons/gi'
 import { characterData, characterRegistry } from '../../../data/characters/characterRegistry.ts'
 import { grenadeData } from '../../../data/grenades.ts'
-import { PUSRow, TheScissorsRow, UrbinoRow } from './SiderContentRow.tsx'
+import { GrenadeRow, PUSRow, TheScissorsRow, UrbinoRow } from './SiderContentRow.tsx'
 import { LanguageContext } from '../../../contexts/LanguageContext.ts'
 
 interface SiderContentProps {
@@ -53,20 +53,7 @@ const SiderContent: React.FC<SiderContentProps> = ({ setSelectedCharacter, setSi
             </span>
           }
           itemKey='grenade'>
-          <Row gutter={[16, 6]} style={{ width: '100%', margin: "0 auto" }}>
-            {grenadeData.map((grenade) => {
-              return (
-                <Col span={6} style={{ display: 'flex', placeItems: 'center', placeContent: 'center' }}>
-                  <Tooltip position='topLeft' content={currentLanguage.grenades[grenade.grenade]}>
-                    <Avatar
-                      src={grenade.imageLink}
-                      style={{ margin: '0.25rem', backgroundColor: "grey", height: "48px", width: "48px" }}
-                    />
-                  </Tooltip>
-                </Col>
-              )
-            })}
-          </Row>
+          <GrenadeRow />
         </TabPane>
       </Tabs>
       <Divider margin={'1rem'} />

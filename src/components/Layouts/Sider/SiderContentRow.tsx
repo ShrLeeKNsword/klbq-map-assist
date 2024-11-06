@@ -42,7 +42,7 @@ export const PUSRow: React.FC<RowProps> = ({characterRegistry}) => {
   return <SiderContentRow data={Object.values(PUS).map((k: string) => characterRegistry[k])} side="defense" />
 }
 
-export const GrenadeRow: React.FC<RowProps> = () => {
+export const GrenadeRow: React.FC = () => {
   return (
     <Row gutter={[16, 6]} style={{ width: '100%', margin: "0 auto" }}>
       {grenadeData.map((itemData, i) => (
