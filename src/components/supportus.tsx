@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Modal, Button, Typography, Divider } from '@douyinfe/semi-ui';
 import { CiHeart } from "react-icons/ci";
-import SupportUsList from './supportusList';
+import SupportUsList from './supportuslist';
 
 interface SupportUsData {
     content: JSX.Element
