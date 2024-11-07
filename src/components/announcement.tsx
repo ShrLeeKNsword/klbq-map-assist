@@ -46,7 +46,6 @@ const { Title } = Typography;
 
 const Announcement = (props: AnnouncementPops) => {
     const presentdate = new Date();
-    console.log(presentdate.getDate())
     const [visible, setVisible] = useState(getCookie("today_announcement") ? (getCookie("today_announcement") === presentdate.getDate().toString() ? false : () => { deleteCookie("today_announcement"); return true }) : true);
     const showDialog = () => {
         setVisible(true);
@@ -74,7 +73,7 @@ const Announcement = (props: AnnouncementPops) => {
                 afterClose={handleAfterClose} //>=1.16.0
                 onCancel={handleCancel}
                 closeOnEsc={true}
-                okText={"今日不再显示"}
+                okText={props.content.notshowntoday}
             >
                 <div>
                     <div style={{ display: "flex" }}>

@@ -39,7 +39,14 @@ interface FriendLinkForm {
   url: string
 }
 
+interface ClassifyForm {
+  official: string
+  wiki: string
+  others: string
+}
+
 interface FriendLinkData {
+  classify: ClassifyForm
   official: Array<FriendLinkForm>
   wiki: Array<FriendLinkForm>
   others: Array<FriendLinkForm>
@@ -64,6 +71,7 @@ interface SupportUsData {
   content: JSX.Element
   global: string
   CN: string
+  list: string
 }
 
 interface MapSetting {
@@ -189,6 +197,11 @@ export const i18nData: {
         history: []
       },
       friendlinkdata: {
+        classify: {
+          official: "官方",
+          wiki: "Wiki",
+          others: "其他"
+        },
         official:
           [{
             name: "",
@@ -266,7 +279,8 @@ export const i18nData: {
           <div>如需展示，请在留言中留下需要展示的内容或将内容连同赞助收据发送至 <a href='mailto:fsltech@email.cn'>fsltech@email.cn</a></div>
         </>,
         global: "国际",
-        CN: "中国境内"
+        CN: "中国境内",
+        list: "赞助列表"
       },
       sidebar: {
         attact: '进攻',
@@ -405,16 +419,21 @@ export const i18nData: {
       friendlink: "Friend Link",
       sitelist: "Switch Server",
       announcementdata: {
-        notshowntoday: "今日不再显示",
+        notshowntoday: "Got it",
         pin: {
-          title: "网站测试运行",
+          title: "Site Beta test",
           date: "2024.10.2",
-          summary: "网站基础功能完善，角色图标已可拖拽。其余功能尽情期待！",
+          summary: "Most of the core function is ready to use, but some are still in progress. We will continue to optimize and update the site.",
           data: {}
         },
         history: []
       },
       friendlinkdata: {
+        classify: {
+          official: "Official",
+          wiki: "Wiki",
+          others: "Others"
+        },
         official:
           [{
             name: "",
@@ -451,14 +470,13 @@ export const i18nData: {
           }],
         contact: {
           content: <div style={{ width: "100%", textAlign: "center" }}>
-            添加友链请联系 <a href='mailto:fsltech@email.cn'>fsltech@email.cn</a>
+            Add friend link contact <a href='mailto:fsltech@email.cn'>fsltech@email.cn</a>
           </div>
         }
       },
       sitelistdata: {
         content: <>
-          <div>为了提供更快的访问速度以及减轻服务器压力，</div>
-          <div>我们开设了不同节点</div>
+          <div>We set several sites for better connection.</div>
         </>,
         Global: [
           {
@@ -482,17 +500,18 @@ export const i18nData: {
       },
       supportusdata: {
         content: <>
-          <div><strong>卡拉彼丘地图助手</strong>是一款开源应用，</div>
-          <div>因此你可以免费在 GPL-3.0 开源协议的范畴下使用本应用。</div>
-          <div>美术资料与部分UI版权归原作者与官方所有，</div>
-          <div>请咨询对应作者与官方授权！</div>
+          <div><strong>STRINOVA MAP ASSISTANT</strong>is an open-source React project.</div>
+          <div>So you can use it freely under license GPL-3.0.</div>
+          <div>Some image source may need further permission.</div>
+          <div>Please ask the official.</div>
           <br />
-          <div>但即便如此，你的赞助也可以给予开发者前进的动力，让这个项目变得更好。</div>
-          <div>无论你使用何种形式赞助，你都可以在<strong>卡拉彼丘地图助手</strong>的 GitHub 项目主页和网站展示您的信息（个人主页、公司主页、GitHub 资料页等）。</div>
-          <div>如需展示，请在留言中留下需要展示的内容或将内容连同赞助收据发送至 <a href='mailto:fsltech@email.cn'>fsltech@email.cn</a></div>
+          <div>Even thougth, you can donate to the developers to make this project better.</div>
+          <div>Whatever support you gave ,your would be listed on <strong>STRINOVA MAP ASSISTANT</strong>'s namelist.</div>
+          <div>Contact <a href='mailto:fsltech@email.cn'>fsltech@email.cn</a> if you have any more requests.</div>
         </>,
-        global: "国际",
-        CN: "中国境内"
+        global: "International",
+        CN: "CN",
+        list: "Support List"
       },
       sidebar: {
         attact: 'Attack',
@@ -641,6 +660,11 @@ export const i18nData: {
         history: []
       },
       friendlinkdata: {
+        classify: {
+          official: "official",
+          wiki: "Wiki",
+          others: "Others"
+        },
         official:
           [{
             name: "",
@@ -718,7 +742,8 @@ export const i18nData: {
           <div>如需展示，请在留言中留下需要展示的内容或将内容连同赞助收据发送至 <a href='mailto:fsltech@email.cn'>fsltech@email.cn</a></div>
         </>,
         global: "国际",
-        CN: "中国境内"
+        CN: "中国境内",
+        list: "赞助列表"
       },
       sidebar: {
         attact: 'Attack',
@@ -745,12 +770,12 @@ export const i18nData: {
         choosemap: 'マップ',
         maps: {
           WindyTown: 'ウィンディタウン',
-          SpaceLab: 'スペースラボ',
+          SpaceLab: 'スペース研究センター',
           Khesmet: '科斯迷特',
-          CauchyDistrict: '柯西街区',
+          CauchyDistrict: 'コーシー街区',
           EulerPort: 'オイラー港',
           Area88: '88街区',
-          Base404: 'ベース404'
+          Base404: '404基地'
         },
         TeamHighlight: 'チームハイライト',
         TeamHighlightOptions: {
@@ -799,8 +824,8 @@ export const i18nData: {
       characters: {
         PUS: {
           Michele: 'ミシェル',
-          Nobunaga: 'ノブナガ',
-          Kokona: 'ココナ',
+          Nobunaga: '信長',
+          Kokona: '心夏',
           Yvette: 'イヴェット',
           Flavia: 'フラヴィア'
         },
@@ -808,17 +833,17 @@ export const i18nData: {
           Ming: 'ミン',
           Lawine: 'ラヴィーネ',
           Meredith: 'メレディス',
-          Reiichi: 'レイイチ',
-          Kanami: 'カナミ',
+          Reiichi: '令一',
+          Kanami: '香奈美',
           Eika: 'アイカ',
           Fragrans: 'フラグランス'
         },
         Urbino: {
-          Celestia: 'ホシリエ',
+          Celestia: '星理恵',
           Audrey: 'オードリー',
           Maddelena: 'マダレーナ',
-          Fuchsia: 'フェイシャ',
-          BaiMo: 'ハクボク',
+          Fuchsia: 'フューシャ',
+          BaiMo: '白墨',
           Galatea: 'ガラテア'
         }
       },
