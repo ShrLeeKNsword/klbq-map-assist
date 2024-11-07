@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { mapTools } from '../../utils/canvasConstants'
 import Pikaso, { BaseShapes, DrawType } from 'pikaso'
-import { MdDelete, MdDeleteForever, MdDraw, MdUndo } from 'react-icons/md'
+import { MdDelete, MdDeleteForever, MdDraw, MdRedo, MdUndo } from 'react-icons/md'
 import ToolPopoverButton from './Buttons/tool-popover-button'
 import ColorPopover from './Popovers/ColorPopover'
 import { FaMousePointer, FaUpload, FaDownload } from 'react-icons/fa'
@@ -9,12 +9,11 @@ import ToolNormalButton from './Buttons/tool-normal-button'
 import { PiArrowRightFill, PiLineSegmentFill } from 'react-icons/pi'
 import ToolColorButton from './Buttons/tool-color-button'
 import { Popconfirm, Toast } from '@douyinfe/semi-ui'
-import { I18nData } from '../../data/i18n'
 import { RiScreenshot2Fill } from "react-icons/ri";
 import html2canvas from 'html2canvas'
+import { LanguageContext } from '../../contexts/LanguageContext.ts'
 
 interface SiderToolsProps {
-  currentLanguage: I18nData
   setTool: React.Dispatch<React.SetStateAction<mapTools>>
   canvasTool: mapTools
   setpenWidth: React.Dispatch<React.SetStateAction<number>>
@@ -24,6 +23,8 @@ interface SiderToolsProps {
   penColor: string
   editor: Pikaso<BaseShapes> | null
   setPenColor: React.Dispatch<React.SetStateAction<string>>
+  save: React.Dispatch<React.SetStateAction<void>>
+  load: React.Dispatch<React.SetStateAction<void>>
 }
 
 const SiderTools: React.FC<SiderToolsProps> = ({
@@ -36,10 +37,13 @@ const SiderTools: React.FC<SiderToolsProps> = ({
   setLineWidth,
   editor,
   setPenColor,
-  currentLanguage
+  save,
+  load
 }) => {
   const [togglevisible, setToggleVisible] = React.useState(false)
   const [selection, setSelection] = React.useState(false)
+
+  const currentLanguage = useContext(LanguageContext)
 
   editor?.on('selection:change', (selection) => {
     if (selection.shapes!.length > 0) {
@@ -95,6 +99,7 @@ const SiderTools: React.FC<SiderToolsProps> = ({
         </div>
       </ColorPopover>
       <ToolNormalButton Icon={MdUndo} isActiveTool={false} onClick={() => editor?.undo()} />
+      <ToolNormalButton Icon={MdRedo} isActiveTool={false} onClick={() => editor?.redo()} />
       <Popconfirm
         visible={togglevisible}
         title={currentLanguage.markbox.clearwarning.title}
@@ -131,16 +136,16 @@ const SiderTools: React.FC<SiderToolsProps> = ({
         */
         html2canvas(MarkingCanvas).then(canvas => {
           const Presentdate = new Date()
-          let imgData = canvas
-          let link = document.createElement('a')
+          const imgData = canvas
+          const link = document.createElement('a')
           link.href = imgData.toDataURL()
           const presenttime = Presentdate.getFullYear().toString() + (Presentdate.getMonth() + 1 < 10 ? "0" : "") + (Presentdate.getMonth() + 1).toString() + (Presentdate.getDate() < 10 ? "0" : "") + Presentdate.getDate().toString() + Presentdate.getHours().toString() + Presentdate.getMinutes().toString() + Presentdate.getSeconds().toString()
           link.download = 'MapAssistant - ' + presenttime + '.png'
           link.click()
         })
       }} />
-      <ToolNormalButton Icon={FaUpload} isActiveTool={false} onClick={() => { }} />
-      <ToolNormalButton Icon={FaDownload} isActiveTool={false} onClick={() => { }} />
+      <ToolNormalButton Icon={FaUpload} isActiveTool={false} onClick={() => { save() }} />
+      <ToolNormalButton Icon={FaDownload} isActiveTool={false} onClick={() => { load() }} />
     </div>
   )
 }

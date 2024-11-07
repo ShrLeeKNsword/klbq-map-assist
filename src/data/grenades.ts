@@ -11,7 +11,7 @@ export enum grenades {
 	SnowBall = "SnowBall"
 }
 
-interface grenadeData {
+export interface grenadeData {
 	grenade: grenades;
 	imageLink: string;
 }
