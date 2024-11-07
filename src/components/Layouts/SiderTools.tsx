@@ -89,7 +89,7 @@ const SiderTools: React.FC<SiderToolsProps> = ({
           style={{
             width: '4rem',
             height: '4rem',
-            backgroundColor: 'var(--semi-color-bg-3)',
+            backgroundColor: 'var(--semi-color-tertiary-light-hover)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
