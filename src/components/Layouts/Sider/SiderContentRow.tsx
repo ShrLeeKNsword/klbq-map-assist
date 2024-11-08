@@ -14,8 +14,8 @@ const SiderContentRow: React.FC<SiderContentRowProps> = ({data, side}) => {
   return (
     <Row gutter={[16, 6]} style={{ width: '100%', margin: "0 auto" }}>
       {data.map((itemData, i) => (
-          <Col span={6} style={{ display: 'flex', placeItems: 'center', placeContent: 'center' }}>
-            <CharacterSiderItem key={i} data={itemData} side={side} />
+          <Col key={i} span={6} style={{ display: 'flex', placeItems: 'center', placeContent: 'center' }}>
+            <CharacterSiderItem data={itemData} side={side} />
           </Col>
       ))}
     </Row>
@@ -46,8 +46,8 @@ export const GrenadeRow: React.FC = () => {
   return (
     <Row gutter={[16, 6]} style={{ width: '100%', margin: "0 auto" }}>
       {grenadeData.map((itemData, i) => (
-        <Col span={6} style={{ display: 'flex', placeItems: 'center', placeContent: 'center' }}>
-          <GrenadeSiderItem key={i} data={itemData} />
+        <Col key={i} span={6} style={{ display: 'flex', placeItems: 'center', placeContent: 'center' }}>
+          <GrenadeSiderItem data={itemData} />
         </Col>
       ))}
     </Row>

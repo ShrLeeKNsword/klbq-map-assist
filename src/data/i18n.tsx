@@ -33,7 +33,7 @@ interface AnnouncementData {
   history: Array<AnnouncementForm> | null | undefined
 }
 
-interface FriendLinkForm {
+export interface FriendLinkForm {
   name: string
   icon: JSX.Element
   url: string
@@ -55,7 +55,7 @@ interface FriendLinkData {
   }
 }
 
-interface SiteListForm {
+export interface SiteListForm {
   icon: JSX.Element | null | undefined
   content: string
   url: string

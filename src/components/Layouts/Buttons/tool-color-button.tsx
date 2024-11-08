@@ -4,13 +4,13 @@ import { forwardRef } from 'react'
 interface ToolColorButtonProps {
   color: string
   onClick: (value: string) => void
-  key: string
+  text: string
 }
 
-const ToolColorButton = forwardRef<Button, ToolColorButtonProps>(({ color, onClick, key }, ref) => {
+const ToolColorButton = forwardRef<Button, ToolColorButtonProps>(({ color, onClick, text }, ref) => {
   return (
     <Button
-      key={key}
+      key={text}
       ref={ref}
       color={color}
       theme={'solid'}

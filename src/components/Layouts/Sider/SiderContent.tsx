@@ -1,8 +1,7 @@
 import React, { useContext } from 'react'
-import { Avatar, Divider, TabPane, Tabs, Col, Row, Tooltip } from '@douyinfe/semi-ui'
+import { Divider, TabPane, Tabs } from '@douyinfe/semi-ui'
 import { GiBroadsword, GiShield, GiStunGrenade } from 'react-icons/gi'
 import { characterData, characterRegistry } from '../../../data/characters/characterRegistry.ts'
-import { grenadeData } from '../../../data/grenades.ts'
 import { GrenadeRow, PUSRow, TheScissorsRow, UrbinoRow } from './SiderContentRow.tsx'
 import { LanguageContext } from '../../../contexts/LanguageContext.ts'
 

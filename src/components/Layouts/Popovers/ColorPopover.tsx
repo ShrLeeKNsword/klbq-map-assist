@@ -11,8 +11,8 @@ interface ColorPopoverProps {
 const ColorPopover: React.FC<ColorPopoverProps> = ({ children, setPenColor }) => {
   const popOverContent = (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
-      {colorPalette.map((color) => (
-        <ToolColorButton color={color} key={color} onClick={(value: string) => setPenColor(value)} />
+      {colorPalette.map((color, i) => (
+        <ToolColorButton key={i} color={color} text={color} onClick={(value: string) => setPenColor(value)} />
       ))}
       <ColorPicker
         onChange={(value) => setPenColor(value.hex)}
@@ -20,7 +20,7 @@ const ColorPopover: React.FC<ColorPopoverProps> = ({ children, setPenColor }) =>
         usePopover={true}
         popoverProps={{ position: 'left' }}>
         <div>
-          <ToolColorButton key={'custom'} color='linear-gradient(70deg, red, blue)' onClick={() => 0} />
+          <ToolColorButton text={'custom'} color='linear-gradient(70deg, red, blue)' onClick={() => 0} />
         </div>
       </ColorPicker>
     </div>
