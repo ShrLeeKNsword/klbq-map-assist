@@ -34,6 +34,33 @@ const contributeList = [
         X: "https://x.com/salutemenowjp",
         twich: "https://www.twitch.tv/salute_me_now_",
     },
+    {
+        job: ["translation"],
+        name: "restart0x",
+        icon: "https://s2.loli.net/2024/11/08/HgB9Dqo6CPsL7Ql.jpg",
+        github: "",
+        bili: "https://space.bilibili.com/497387234",
+        X: "",
+        twich: "",
+    },
+    {
+        job: ["code"],
+        name: "Sheppsu",
+        icon: "https://avatars.githubusercontent.com/u/49356627?v=4",
+        github: "https://github.com/Sheppsu",
+        bili: "",
+        X: "",
+        twich: "",
+    },
+    {
+        job: ["code"],
+        name: "Jsynk",
+        icon: "https://avatars.githubusercontent.com/u/14832958?v=4",
+        github: "https://github.com/Jsynk",
+        bili: "",
+        X: "",
+        twich: "",
+    },
 ]
 
 const ContributeBox = (props: ContributeBoxPops) => {

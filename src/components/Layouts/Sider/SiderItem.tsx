@@ -3,13 +3,24 @@ import { Avatar, Card, Descriptions, Popover, TabPane, Tabs, Tooltip } from '@do
 import { characterData } from '../../../data/characters/characterRegistry.ts'
 import { grenadeData } from '../../../data/grenades.ts'
 import { LanguageContext } from '../../../contexts/LanguageContext.ts'
+import { GrDrag } from "react-icons/gr";
 
 interface CharacterSiderItemProps {
   data: characterData
   side: "attack" | "defense"
 }
 
-export const CharacterSiderItem: React.FC<CharacterSiderItemProps> = ({data, side}) => {
+const hoverStyle = {
+  backgroundColor: 'var(--semi-color-overlay-bg)',
+  height: '100%',
+  width: '100%',
+  display: 'flex',
+  alianItems: 'center',
+  justifyContent: 'center'
+};
+const HoverMask = () => <div style={hoverStyle}><GrDrag style={{margin:"auto",color:"rgba(var(--semi-light-blue-5), 1)"}}/></div>;
+
+export const CharacterSiderItem: React.FC<CharacterSiderItemProps> = ({ data, side }) => {
   const sideData = data[side]!;
 
   const onDragStart = (e: React.DragEvent<HTMLSpanElement>) => {
@@ -28,6 +39,9 @@ export const CharacterSiderItem: React.FC<CharacterSiderItemProps> = ({data, sid
               <img draggable="false" src="https://s2.loli.net/2024/10/27/c7QDINMXFyuav6b.png" style={{ filter: "invert(100%)", height: "25px" }} />
               <span style={{ fontSize: "18px", margin: "1.5px", marginLeft: "5px", color: "white" }}><strong>决斗</strong></span>
             </div>
+            <div style={{ position: "absolute", left: "35px", bottom: "90px", height: "25px", display: "flex", alignContent: "center", filter: "drop-shadow(0 0 5px rgba(var(--semi-grey-7))" }}>
+              <span style={{ fontSize: "18px", margin: "1.5px", marginLeft: "5px", color: "white" }}><strong>明</strong></span>
+            </div>
           </div>
           <div style={{ width: "100%", fontSize: "10px", marginRight: "15px", marginTop: "3px" }}>
             <Tabs type="button">
@@ -36,6 +50,7 @@ export const CharacterSiderItem: React.FC<CharacterSiderItemProps> = ({data, sid
                   <Avatar
                     src={sideData.skills.active.skillIcon}
                     style={{ margin: '0 auto', height: "40px", width: "40px" }}
+                    hoverMask={<HoverMask />}
                   />
                 }
                 itemKey="1"
@@ -64,6 +79,7 @@ export const CharacterSiderItem: React.FC<CharacterSiderItemProps> = ({data, sid
                   <Avatar
                     src={sideData.skills.passive.skillIcon}
                     style={{ margin: '0 auto', height: "40px", width: "40px" }}
+                    hoverMask={<HoverMask />}
                   />
                 }
                 itemKey="2"
@@ -77,6 +93,7 @@ export const CharacterSiderItem: React.FC<CharacterSiderItemProps> = ({data, sid
                   <Avatar
                     src={sideData.skills.ultimate.skillIcon}
                     style={{ margin: '0 auto', height: "40px", width: "40px" }}
+                    hoverMask={<HoverMask />}
                   />
                 }
                 itemKey="3"
@@ -94,6 +111,7 @@ export const CharacterSiderItem: React.FC<CharacterSiderItemProps> = ({data, sid
         <Avatar
           src={sideData.canvasImage}
           style={{ padding: '0.25rem' }}
+          hoverMask={<HoverMask />}
         />
       </span>
     </Popover>
@@ -104,7 +122,7 @@ interface GrenadeSiderItemProps {
   data: grenadeData
 }
 
-export const GrenadeSiderItem: React.FC<GrenadeSiderItemProps> = ({data}) => {
+export const GrenadeSiderItem: React.FC<GrenadeSiderItemProps> = ({ data }) => {
   const currentLanguage = useContext(LanguageContext)
 
   return (
@@ -112,6 +130,7 @@ export const GrenadeSiderItem: React.FC<GrenadeSiderItemProps> = ({data}) => {
       <Avatar
         src={data.imageLink}
         style={{ margin: '0.25rem', backgroundColor: "grey", height: "48px", width: "48px" }}
+        hoverMask={<HoverMask />}
       />
     </Tooltip>
   )

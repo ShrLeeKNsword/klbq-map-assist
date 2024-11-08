@@ -140,12 +140,12 @@ const SiderTools: React.FC<SiderToolsProps> = ({
           const link = document.createElement('a')
           link.href = imgData.toDataURL()
           const presenttime = Presentdate.getFullYear().toString() + (Presentdate.getMonth() + 1 < 10 ? "0" : "") + (Presentdate.getMonth() + 1).toString() + (Presentdate.getDate() < 10 ? "0" : "") + Presentdate.getDate().toString() + Presentdate.getHours().toString() + Presentdate.getMinutes().toString() + Presentdate.getSeconds().toString()
-          link.download = 'MapAssistant - ' + presenttime + '.png'
+          link.download = 'SMA_' + presenttime + '.png'
           link.click()
         })
       }} />
-      <ToolNormalButton Icon={FaUpload} isActiveTool={false} onClick={() => { save() }} />
-      <ToolNormalButton Icon={FaDownload} isActiveTool={false} onClick={() => { load() }} />
+      <ToolNormalButton Icon={FaUpload} isActiveTool={false} onClick={() => { load() }} />
+      <ToolNormalButton Icon={FaDownload} isActiveTool={false} onClick={() => { save() }} />
     </div>
   )
 }
