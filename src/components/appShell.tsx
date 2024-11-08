@@ -4,7 +4,7 @@ import { i18nData, Languages } from '../data/i18n';
 import { Layout } from '@douyinfe/semi-ui';
 import { characterData, characterRegistry } from '../data/characters/characterRegistry';
 import { MapName, mapList } from '../data/maplist';
-import { save, load } from '../data/stateManagement';
+import { save, load, loadCurrentAppState } from '../data/stateManagement';
 import { mapTools, colorPalette } from '../utils/canvasConstants';
 import DrawMap from './Layouts/Canvas/drawCanvas';
 import MapCanvas from './Layouts/Canvas/mapCanvas';
@@ -94,6 +94,10 @@ const AppShell: React.FC<AppShellProps> = ({ characterData }) => {
 		load({ setPresentMap, setPresentMapURL, drawCanvasEditor })
 	}
 
+	const loadJson = (json: any) => {
+		loadCurrentAppState({ json, setPresentMap, setPresentMapURL, drawCanvasEditor })
+	}
+
 	const canvases = (
 		<div id="capture" style={{ overflow: 'hidden', position: 'relative', top: 0, left: 0, width: '100%', height: '100%' }}>
 			<div className='no-select' style={{ position: "absolute", bottom: "20px", opacity: 0.1, fontSize: "25px", marginLeft: "30px" }}>
@@ -106,7 +110,7 @@ const AppShell: React.FC<AppShellProps> = ({ characterData }) => {
 				setCurrentMap={setPresentMap}
 				pikasoRef={drawMapRef}
 				style={{ position: 'absolute', top: '0', left: '0' }}
-			/>
+				/>
 			<DrawMap
 				pikasoRef={drawCanvasRef}
 				pikasoEditor={drawCanvasEditor}
@@ -115,6 +119,7 @@ const AppShell: React.FC<AppShellProps> = ({ characterData }) => {
 				lineWidth={lineWidth}
 				penColor={penColor}
 				penWidth={penWidth}
+				load={loadJson}
 			/>
 		</div>
 	);

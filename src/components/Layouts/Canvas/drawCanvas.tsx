@@ -1,6 +1,7 @@
 import React, { useLayoutEffect } from 'react'
 import { DrawType, Pikaso, type BaseShapes } from 'pikaso'
 import { mapTools } from '../../../utils/canvasConstants'
+import { clear } from 'console'
 
 interface PikasoMapProps {
   pikasoRef: React.RefObject<HTMLDivElement>
@@ -10,6 +11,7 @@ interface PikasoMapProps {
   canvasTool: mapTools
   penWidth: number
   lineWidth: number
+  load: React.Dispatch<React.SetStateAction<void>>
 }
 
 const DrawMap: React.FC<PikasoMapProps> = ({
@@ -19,7 +21,8 @@ const DrawMap: React.FC<PikasoMapProps> = ({
   penColor,
   canvasTool,
   penWidth,
-  lineWidth
+  lineWidth,
+  load
 }) => {
   useLayoutEffect(() => {
     switch (canvasTool) {
@@ -105,6 +108,16 @@ const DrawMap: React.FC<PikasoMapProps> = ({
         width: size * ratio,
         height: size
       })
+    }
+
+    if(e.dataTransfer.files[0]?.type == 'application/json') {
+      let reader = new FileReader();
+      reader.onload = function(re) {
+        const json = JSON.parse(re.target!.result as string);
+        load(json)
+      };
+      reader.readAsText(e.dataTransfer.files[0]);
+      e.preventDefault()
     }
   }
 
