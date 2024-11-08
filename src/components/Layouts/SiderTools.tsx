@@ -91,7 +91,7 @@ const SiderTools: React.FC<SiderToolsProps> = ({
             justifyContent: 'center',
             cursor: 'pointer'
           }}>
-          <ToolColorButton color={penColor} onClick={() => undefined} key={penColor} />
+          <ToolColorButton color={penColor} onClick={() => undefined} text={penColor} />
         </div>
       </ColorPopover>
       <ToolNormalButton Icon={MdUndo} isActiveTool={false} onClick={() => editor?.undo()} />

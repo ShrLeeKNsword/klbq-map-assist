@@ -1,11 +1,11 @@
 import { Popover, Tooltip } from '@douyinfe/semi-ui'
 import React, { useContext } from 'react'
 import { FaGithub, FaDiscord, FaQq } from 'react-icons/fa'
-import ContributeBox from '../contributors'
-import SupportUs from '../supportus'
-import SiteList from '../sitelist'
-import FriendLink from '../friendlink'
-import { LanguageContext } from '../../contexts/LanguageContext.ts'
+import ContributeBox from '../../contributors.tsx'
+import SupportUs from './SupportUs.tsx'
+import SiteList from './SiteList.tsx'
+import FriendLink from './FriendLink.tsx'
+import { LanguageContext } from '../../../contexts/LanguageContext.ts'
 
 const FooterContent: React.FC = () => {
   const currentLanguage = useContext(LanguageContext)
@@ -46,9 +46,9 @@ const FooterContent: React.FC = () => {
         </Tooltip>
       </div>
       <div style={{ marginBottom: '0px' }}>
-        <FriendLink name={currentLanguage.friendlink} content={currentLanguage.friendlinkdata} />
-        <SiteList name={currentLanguage.sitelist} content={currentLanguage.sitelistdata} />
-        <SupportUs name={currentLanguage.sidebar.supportus} content={currentLanguage.supportusdata} />
+        <FriendLink />
+        <SiteList />
+        <SupportUs />
       </div>
     </div>
   )

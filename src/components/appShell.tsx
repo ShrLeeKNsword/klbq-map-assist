@@ -7,7 +7,7 @@ import { MapName, mapList } from '../data/maplist';
 import { mapTools, colorPalette } from '../utils/canvasConstants';
 import DrawMap from './Layouts/Canvas/drawCanvas';
 import MapCanvas from './Layouts/Canvas/mapCanvas';
-import FooterContent from './Layouts/FooterContent';
+import FooterContent from './Layouts/Footer/FooterContent.tsx';
 import HeaderContent from './Layouts/HeaderContent';
 import SiderContent from './Layouts/Sider/SiderContent.tsx';
 import SiderTools from './Layouts/SiderTools';
