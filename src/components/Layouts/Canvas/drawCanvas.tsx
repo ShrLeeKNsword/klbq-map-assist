@@ -1,7 +1,6 @@
 import React, { useLayoutEffect } from 'react'
 import { DrawType, Pikaso, type BaseShapes } from 'pikaso'
 import { mapTools } from '../../../utils/canvasConstants'
-import { clear } from 'console'
 
 interface PikasoMapProps {
   pikasoRef: React.RefObject<HTMLDivElement>
@@ -24,6 +23,13 @@ const DrawMap: React.FC<PikasoMapProps> = ({
   lineWidth,
   load
 }) => {
+  const rescaleEditor = () => {
+    if (!pikasoEditor) return
+    const scaleSize = Math.round(window.screen.width * 0.5)
+    pikasoEditor?.board.stage.setSize({width: scaleSize, height: scaleSize}) 
+    pikasoEditor?.board.rescale()
+  }
+
   useLayoutEffect(() => {
     switch (canvasTool) {
       case DrawType.Arrow:
@@ -46,8 +52,13 @@ const DrawMap: React.FC<PikasoMapProps> = ({
         break
       case 'SELECT':
         pikasoEditor?.shapes.pencil.stopDrawing()
-
+        
         break
+    }
+    rescaleEditor()
+    window.addEventListener('resize', rescaleEditor)
+    return () => {
+      window.removeEventListener('resize', rescaleEditor)
     }
   }, [
     currentMap,
@@ -128,7 +139,7 @@ const DrawMap: React.FC<PikasoMapProps> = ({
   return (
     <div
       ref={pikasoRef}
-      style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', minHeight: '600px' }}
+      style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
       className='drawCanvas'
       onDrop={handleOnDrop}
       onDragOver={handleDragOver}
