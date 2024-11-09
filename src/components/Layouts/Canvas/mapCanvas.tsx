@@ -11,16 +11,29 @@ interface PikasoMapProps {
 }
 
 const MapCanvas: React.FC<PikasoMapProps> = ({ pikasoRef, pikasoEditor, currentMap, style, setCurrentMap }) => {
-  useLayoutEffect(() => {
+  const rescaleEditor = () => {
+    if (!pikasoEditor) return
+    const scaleSize = Math.round(window.screen.width * 0.5)
+    pikasoEditor?.board.stage.setSize({width: scaleSize, height: scaleSize})
+
     const image = new Image()
     image.src = currentMap
-
+    
     image.onload = () => {
       const scale = image.height / pikasoEditor!.board.stage.height()
       pikasoEditor?.board.background.setImageFromUrl(currentMap, {
         size: 'contain',
         x: pikasoEditor.board.stage.width() / 2 - image.width / 2 / scale
       })
+      pikasoEditor?.board.rescale()
+    }
+  }
+
+  useLayoutEffect(() => {
+    rescaleEditor()
+    window.addEventListener('resize', rescaleEditor)
+    return () => {
+      window.removeEventListener('resize', rescaleEditor)
     }
   }, [currentMap, setCurrentMap, pikasoEditor, pikasoEditor?.board.background, pikasoEditor?.board.stage])
 
