@@ -28,6 +28,10 @@ export const CharacterSiderItem: React.FC<CharacterSiderItemProps> = ({ data, si
     // setSelectedCharacter(data)
   }
 
+  const onDragStartImage = (e: React.DragEvent<HTMLSpanElement>, imageLink: string) => {
+    e.dataTransfer.setData('imageLink', imageLink);
+  }
+
   return (
     <Popover
       position='rightTop'
@@ -47,11 +51,13 @@ export const CharacterSiderItem: React.FC<CharacterSiderItemProps> = ({ data, si
             <Tabs type="button">
               <TabPane
                 tab={
-                  <Avatar
-                    src={sideData.skills.active.skillIcon}
-                    style={{ margin: '0 auto', height: "40px", width: "40px" }}
-                    hoverMask={<HoverMask />}
-                  />
+                  <span draggable onDragStart={(e)=>{ onDragStartImage(e, sideData.skills.active.skillIcon) }}>
+                    <Avatar
+                      src={sideData.skills.active.skillIcon}
+                      style={{ margin: '0 auto', height: "40px", width: "40px" }}
+                      hoverMask={<HoverMask />}
+                    />
+                  </span>
                 }
                 itemKey="1"
               >
@@ -76,11 +82,13 @@ export const CharacterSiderItem: React.FC<CharacterSiderItemProps> = ({ data, si
               </TabPane>
               <TabPane
                 tab={
-                  <Avatar
-                    src={sideData.skills.passive.skillIcon}
-                    style={{ margin: '0 auto', height: "40px", width: "40px" }}
-                    hoverMask={<HoverMask />}
-                  />
+                  <span draggable onDragStart={(e)=>{ onDragStartImage(e, sideData.skills.passive.skillIcon) }}>
+                    <Avatar
+                      src={sideData.skills.passive.skillIcon}
+                      style={{ margin: '0 auto', height: "40px", width: "40px" }}
+                      hoverMask={<HoverMask />}
+                    />
+                  </span>
                 }
                 itemKey="2"
               >
@@ -90,11 +98,13 @@ export const CharacterSiderItem: React.FC<CharacterSiderItemProps> = ({ data, si
               </TabPane>
               <TabPane
                 tab={
-                  <Avatar
-                    src={sideData.skills.ultimate.skillIcon}
-                    style={{ margin: '0 auto', height: "40px", width: "40px" }}
-                    hoverMask={<HoverMask />}
-                  />
+                  <span draggable onDragStart={(e)=>{ onDragStartImage(e, sideData.skills.ultimate.skillIcon) }}>
+                    <Avatar
+                      src={sideData.skills.ultimate.skillIcon}
+                      style={{ margin: '0 auto', height: "40px", width: "40px" }}
+                      hoverMask={<HoverMask />}
+                    />
+                  </span>
                 }
                 itemKey="3"
               >
@@ -125,13 +135,19 @@ interface GrenadeSiderItemProps {
 export const GrenadeSiderItem: React.FC<GrenadeSiderItemProps> = ({ data }) => {
   const currentLanguage = useContext(LanguageContext)
 
+  const onDragStart = (e: React.DragEvent<HTMLSpanElement>, data: grenadeData) => {
+    e.dataTransfer.setData('imageLink', data.imageLink);
+  }
+
   return (
     <Tooltip position='topLeft' content={currentLanguage.grenades[data.grenade]}>
-      <Avatar
-        src={data.imageLink}
-        style={{ margin: '0.25rem', backgroundColor: "grey", height: "48px", width: "48px" }}
-        hoverMask={<HoverMask />}
-      />
+      <span draggable onDragStart={(e)=>{ onDragStart(e, data) }}>
+        <Avatar
+          src={data.imageLink}
+          style={{ margin: '0.25rem', backgroundColor: "grey", height: "48px", width: "48px" }}
+          hoverMask={<HoverMask />}
+        />
+      </span>
     </Tooltip>
   )
 }
