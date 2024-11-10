@@ -7,6 +7,7 @@ const character: characterData = {
 	id: PUS.Flavia,
 	defense: {
 		canvasImage: 'https://s2.loli.net/2024/09/29/jC98Rq3NhrUXYWK.png',
+		bodyImage: 'https://s2.loli.net/2024/10/26/iD1g23pnC9d6hVM.png',
 		skills: {
 			active: {
 				skillIcon: 'https://s2.loli.net/2024/09/25/58dg6OpPntlviqW.png',

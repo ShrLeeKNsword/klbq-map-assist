@@ -36,6 +36,7 @@ export default characterRegistry;
 
 interface sideData {
 	canvasImage: string;
+	bodyImage: string;
 	skills: {
 		passive: {
 			skillIcon: string;

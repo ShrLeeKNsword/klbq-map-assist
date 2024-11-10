@@ -105,7 +105,7 @@ const DrawMap: React.FC<PikasoMapProps> = ({
   const handleOnDrop = (e: React.DragEvent<HTMLDivElement>) => {
     const imgLink = e.dataTransfer.getData("imageLink")
 
-    const rect = pikasoRef.current?.getBoundingClientRect()
+    const rect = (e.target as HTMLDivElement)?.getBoundingClientRect()
 
     const img = new Image()
     img.src = imgLink

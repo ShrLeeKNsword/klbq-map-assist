@@ -7,6 +7,7 @@ const character: characterData = {
 	id: Urbino.BaiMo,
 	attack: {
 		canvasImage: 'https://s2.loli.net/2024/09/29/jt4621ivFRfbEqD.png',
+		bodyImage: 'https://s2.loli.net/2024/10/26/iD1g23pnC9d6hVM.png',
 		skills: {
 			active: {
 				skillIcon: 'https://s2.loli.net/2024/09/25/xvVheX57uGJMI2k.png',
@@ -24,6 +25,7 @@ const character: characterData = {
 	},
 	defense: {
 		canvasImage: 'https://s2.loli.net/2024/09/29/2KrCPXp5k1e6wfm.png',
+		bodyImage: 'https://s2.loli.net/2024/10/26/iD1g23pnC9d6hVM.png',
 		skills: {
 			active: {
 				skillIcon: 'https://s2.loli.net/2024/09/25/xvVheX57uGJMI2k.png',
