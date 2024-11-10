@@ -2,6 +2,7 @@ import { useContext } from 'react'
 import { Typography, Divider } from '@douyinfe/semi-ui';
 import SupportUsList from './SupportUsList.tsx';
 import { LanguageContext } from '../../../contexts/LanguageContext.ts'
+import { IoMdHeart } from "react-icons/io";
 import FooterModal from './FooterModal.tsx'
 
 const { Title } = Typography;
@@ -13,7 +14,7 @@ const SupportUs: React.FC = () => {
   const children =  (
     <>
       {langData.content}
-      <SupportUsList name={langData.list} />
+      <SupportUsList />
       <br />
       <Divider margin='12px' />
       <div><Title heading={6}>{langData.global}</Title></div>
@@ -29,7 +30,7 @@ const SupportUs: React.FC = () => {
     </>
   );
 
-  return <FooterModal title={lang.sidebar.supportus} children={children} />
+  return <FooterModal icon={<IoMdHeart style={{marginRight: "5px"}} />} title={lang.sidebar.supportus} children={children} />
 };
 
 export default SupportUs;

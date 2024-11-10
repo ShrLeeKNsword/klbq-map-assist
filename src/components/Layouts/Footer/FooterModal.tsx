@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { Button, Modal } from '@douyinfe/semi-ui'
-import { FaLink } from 'react-icons/fa6'
 
 interface FooterPopupItemProps {
+  icon?: JSX.Element
   title: string
   children: JSX.Element
 }
 
-const FooterModal: React.FC<FooterPopupItemProps> = ({title, children}) => {
+const FooterModal: React.FC<FooterPopupItemProps> = ({ icon, title, children }) => {
   const [visible, setVisible] = useState(false);
   const showDialog = () => {
     setVisible(true);
@@ -26,7 +26,7 @@ const FooterModal: React.FC<FooterPopupItemProps> = ({title, children}) => {
 
   return (
     <>
-      <Button onClick={showDialog} style={{ marginLeft: "10px" }}><FaLink style={{ color: "rgba(var(--semi-grey-9), 1)", fontSize: "20px", marginRight: "5px" }} />{title}</Button>
+      <Button onClick={showDialog} style={{ marginLeft: "10px" }}>{icon ? icon : <></>}{title}</Button>
       <Modal
         title={title}
         visible={visible}
