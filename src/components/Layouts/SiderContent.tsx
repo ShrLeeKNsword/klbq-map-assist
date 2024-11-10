@@ -5,7 +5,6 @@ import { GiBroadsword, GiShield, GiStunGrenade } from 'react-icons/gi'
 import { PUS, TheScissors, Urbino } from '../../data/characters/factions'
 import { characterData, characterRegistry } from '../../data/characters/characterRegistry'
 import { grenadeData } from '../../data/grenades'
-import { LuTimerReset } from "react-icons/lu";
 
 interface SiderContentProps {
   currentLanguage: I18nData

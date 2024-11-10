@@ -10,13 +10,13 @@ interface SiderContentRowProps {
   side: "attack" | "defense"
 }
 
-const SiderContentRow: React.FC<SiderContentRowProps> = ({data, side}) => {
+const SiderContentRow: React.FC<SiderContentRowProps> = ({ data, side }) => {
   return (
     <Row gutter={[16, 6]} style={{ width: '100%', margin: "0 auto" }}>
       {data.map((itemData, i) => (
-          <Col key={i} span={6} style={{ display: 'flex', placeItems: 'center', placeContent: 'center' }}>
-            <CharacterSiderItem data={itemData} side={side} />
-          </Col>
+        <Col key={i} span={6} style={{ display: 'flex', placeItems: 'center', placeContent: 'center' }}>
+          <CharacterSiderItem data={itemData} side={side} />
+        </Col>
       ))}
     </Row>
   )
@@ -30,15 +30,15 @@ interface ExtendedRowProps extends RowProps {
   side: "attack" | "defense";
 }
 
-export const TheScissorsRow: React.FC<RowProps> = ({characterRegistry}) => {
+export const TheScissorsRow: React.FC<RowProps> = ({ characterRegistry }) => {
   return <SiderContentRow data={Object.values(TheScissors).map((k: string) => characterRegistry[k])} side="attack" />
 }
 
-export const UrbinoRow: React.FC<ExtendedRowProps> = ({characterRegistry, side}) => {
+export const UrbinoRow: React.FC<ExtendedRowProps> = ({ characterRegistry, side }) => {
   return <SiderContentRow data={Object.values(Urbino).map((k: string) => characterRegistry[k])} side={side} />
 }
 
-export const PUSRow: React.FC<RowProps> = ({characterRegistry}) => {
+export const PUSRow: React.FC<RowProps> = ({ characterRegistry }) => {
   return <SiderContentRow data={Object.values(PUS).map((k: string) => characterRegistry[k])} side="defense" />
 }
 
