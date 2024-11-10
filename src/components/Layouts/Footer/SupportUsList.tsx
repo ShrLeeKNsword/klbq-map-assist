@@ -1,5 +1,5 @@
-import { useContext, useState } from 'react'
-import { Modal, Button, Typography, Divider, Col, Row } from '@douyinfe/semi-ui';
+import { useContext } from 'react'
+import { Button, Typography, Divider, Col, Row } from '@douyinfe/semi-ui';
 import FooterModal from './FooterModal.tsx'
 import { LanguageContext } from '../../../contexts/LanguageContext.ts'
 
@@ -39,7 +39,7 @@ const SupportUsList: React.FC = () => {
       </Row>
     </>
   );
-  
+
   return <FooterModal title={langData.list} children={children} />
 };
 
