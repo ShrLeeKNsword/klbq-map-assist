@@ -7,6 +7,7 @@ const character: characterData = {
 	id: Urbino.Audrey,
 	attack: {
 		canvasImage: 'https://s2.loli.net/2024/09/29/qD7YufUpTmbzX1x.png',
+		bodyImage: 'https://s2.loli.net/2024/10/26/iD1g23pnC9d6hVM.png',
 		skills: {
 			active: {
 				skillIcon: 'https://s2.loli.net/2024/09/26/9PqOBd7owjJrRVp.png',
@@ -24,6 +25,7 @@ const character: characterData = {
 	},
 	defense: {
 		canvasImage: 'https://s2.loli.net/2024/09/29/IVhuSTZvYmk4CNj.png',
+		bodyImage: 'https://s2.loli.net/2024/10/26/iD1g23pnC9d6hVM.png',
 		skills: {
 			active: {
 				skillIcon: 'https://s2.loli.net/2024/09/26/9PqOBd7owjJrRVp.png',
