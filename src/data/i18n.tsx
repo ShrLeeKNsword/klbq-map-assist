@@ -398,148 +398,148 @@ export const i18nData: {
       },
       characterInfo: {
         Michele: {
-          skillActiveName: `喵喵！炮塔`,
-          skillActiveDescription: `米歇尔投掷一个小炮塔，可以附着在任何表面（除玩家外）。炮塔会自动攻击敌人（3 伤害/秒）并减慢他们的速度。`,
-          skillPassiveName: `猫感知`,
-          skillPassiveDescription: `攻击米歇尔的敌人将被米歇尔和她的队友高亮显示。`,
-          skillUltimateName: `终极！喵喵！`,
-          skillUltimateDescription: `米歇尔部署一个强大的喵喵无人机，会自动以更大的伤害和范围攻击敌人。`
+          skillActiveName: `喵喵卫士`,
+          skillActiveDescription: `米雪儿投掷可附着在建筑表面的喵喵卫士，喵喵卫士将自动攻击一定范围内的敌方角色，并使其减速。`,
+          skillPassiveName: `猫踪喵迹`,
+          skillPassiveDescription: `米雪儿被武器直接命中时，可以使造成伤害的敌人进入透视状态。`,
+          skillUltimateName: `火力大喵`,
+          skillUltimateDescription: `米雪儿部署一架强大火力的火力炮艇，火力炮艇将自动攻击一定范围内的敌方角色。`
         },
         Nobunaga: {
-          skillActiveName: `观察者`,
-          skillActiveDescription: `信长在地面上放置一个装置，当他在其范围内时，他的射速、重装速度和护甲恢复速度都会提高。最多有 2 次充能。如果 2 个观察者在彼此的范围内，则增益效果增加。该装置可以被破坏。`,
+          skillActiveName: `守望之眼`,
+          skillActiveDescription: `信可布置至多两个守望之眼，在守望之眼的范围内将获得射速和人机工效提升并回复护甲；两个守望之眼互相连接时，增益效果提升。`,
           skillPassiveName: `致盲脉冲`,
-          skillPassiveDescription: `瞄准时，信长的步枪会积累能量。当充能完毕时，击中敌人会导致他们的瞄准失准。信长的基础护甲+10。`,
-          skillUltimateName: `电磁脉冲`,
-          skillUltimateDescription: `在地面放置一个脉冲装置，发出大范围脉冲波。范围内的敌人会被连续高亮显示并沉默。可以被任何武器破坏。`
+          skillPassiveDescription: `开镜状态下的信开始积蓄能量，能量续满后，他的射击将使敌人在开镜状态下丢失准星。`,
+          skillUltimateName: `脉冲过载`,
+          skillUltimateDescription: `信原地部署一个向四周不断发射脉冲波的脉冲装置，被脉冲波命中的敌人将被透视给全体队友且进入一段时间的沉默状态。`
         },
         Kokona: {
           skillActiveName: `治疗无人机`,
-          skillActiveDescription: `可可娜派出一台治疗无人机，治疗和恢复选定盟友或她自己的护甲。附近的盟友也会受到治疗。`,
-          skillPassiveName: `紧急救援`,
-          skillPassiveDescription: `可可娜可以召唤无人机自动复活倒下的盟友。可以同时复活多个盟友，复活的盟友拥有 50 点生命值。此外，可可娜每秒恢复 2 点生命值。`,
-          skillUltimateName: `重建`,
-          skillUltimateDescription: `可可娜启动终端选择一个盟友，用无人机复活他。复活的盟友将拥有满生命值和护甲。可以通过在她施放技能前击杀可可娜或摧毁复活无人机来取消。`
+          skillActiveDescription: `心夏选择自己或一个友方角色为目标生成—个治疗无人机，无人机可以为被释放目标回复护甲，并给无人机周围所有友方目标回复生命值。`,
+          skillPassiveName: `急速救援`,
+          skillPassiveDescription: `心夏会在未受击时缓慢回复自身生命值，同时在救援友方角色时，心夏会放出援护无人机自动扶起队友。`,
+          skillUltimateName: `卡丘重塑`,
+          skillUltimateDescription: `心夏选择一个阵亡的友方角色，将其复活在自己附近。`
         },
         Yvette: {
-          skillActiveName: `飞飞`,
-          skillActiveDescription: `伊薇特召唤她的泰迪熊飞飞，变成一只真正的熊。再次按技能键控制飞飞，飞飞可以向前冲撞敌人并留下一片冰地（2 次充能），使敌人滑行并承受更多伤害。按住右键召回飞飞。控制飞飞时伊薇特会变得脆弱。`,
-          skillPassiveName: `隐雪`,
-          skillPassiveDescription: `伊薇特静止几秒后会进入隐身状态。只有在她的隐身范围内靠近敌人时才会被发现。`,
-          skillUltimateName: `寒风`,
-          skillUltimateDescription: `伊薇特召唤愤怒的飞飞，猛击地面 3 次，形成越来越大的冰地。冰地内的敌人会滑行、承受更多伤害，并降低装填速度、瞄准速度和射速。`
+          skillActiveName: `熊熊出击`,
+          skillActiveDescription: `伊薇特召出战术熊，熊可以冲撞，撞到障碍物或是再次按下左键会在地面上留下冰面。冰面附带打滑和易伤效果。`,
+          skillPassiveName: `皑皑藏雪`,
+          skillPassiveDescription: `伊薇特站立不动一段时间后，会进入迷彩状态，远处的敌人看不见伊薇特，当愈发靠近时才会慢慢显示其轮廓。`,
+          skillUltimateName: `爽爽霜风`,
+          skillUltimateDescription: `伊薇特召唤出一只巨大的冰霜熊，分三段展开极寒领域，敌人在此将受到打滑和易伤，降低射速及人机工效的效果。`
         },
         Flavia: {
-          skillActiveName: `幻象幽灵`,
-          skillActiveDescription: `弗拉维亚召唤幻象蝴蝶跟随她 5 秒，此期间若她受到攻击，变得无敌 2 秒并在原地生成一个幻象光球。幻象光球会使附近敌人短暂失明并可以被摧毁。再次使用技能会立即取消无敌状态。`,
-          skillPassiveName: `重生圈`,
-          skillPassiveDescription: `每当弗拉维亚受到 15 点伤害时，幻象幽灵的冷却时间减少 1 秒。每累计 160 点伤害，她获得 1 点临时终极点数，仅在当前回合有效。弗拉维亚的基础护甲 +5。`,
-          skillUltimateName: `梦蝶变`,
-          skillUltimateDescription: `弗拉维亚在自己周围创建一个幻象领域，若她在领域中倒下，将变成蝴蝶并在 3 秒后复活（终极持续期间重复）。领域外的敌人看不到弗拉维亚，但仍可攻击她；如果弗拉维亚被领域外敌人击杀，将无法自动复活，立即死亡。`
+          skillActiveName: `致幻魅影`,
+          skillActiveDescription: `芙拉薇娅召唤幻蝶短时间跟随自己，期间受到攻击损失生命值时进入短时间的无敌状态并原地生成一个致幻球。致幻球限制敌方视野且可被击碎。`,
+          skillPassiveName: `周生复始`,
+          skillPassiveDescription: `芙拉薇娅累计受到少量伤害时会减少主动技能的冷却时间；累计受到大量伤害时会获得临时绝招点数，通过此方式获得的绝招点数当前回合有效。`,
+          skillUltimateName: `幻梦化蝶`,
+          skillUltimateDescription: `芙拉薇娅以自身为中心释放致幻领域，领域内的敌方单位造成致命伤害时，芙拉薇娅会化身为蝴蝶，短时间后重塑身体，继续战斗。领域外敌方无视重塑规则但仅在被攻击时可视芙拉薇娅。`
         },
         Ming: {
-          skillActiveName: `等离子球`,
+          skillActiveName: `破甲电球`,
           skillActiveDescription: `明发射一个电球，其达到最大距离、碰到敌方超弦体时会自动引爆，也可通过手动再次按下技能键后主动引爆。电球会破坏范围内所有敌方单位（包含召唤物）的护甲并造成减速。明进入电场将提升移动速度。`,
-          skillPassiveName: `护甲吸收`,
+          skillPassiveName: `吸能赋甲`,
           skillPassiveDescription: `明使用枪械和主动技能对敌方护甲或护盾造成伤害时，自己的护甲将得到基于该伤害量的回复。绝招持续时间内，被动会回复临时护甲并增加回复量。`,
-          skillUltimateName: `等离子护甲`,
+          skillUltimateName: `强雷铸甲`,
           skillUltimateDescription: `明获得临时护甲并使自己的射击附带可叠加的减速效果。明使用枪械和主动技能对敌人的护甲造成伤害时，可延长该技能持续时间并回复临时护甲。`
         },
         Lawine: {
-          skillActiveName: `脉冲刀`,
-          skillActiveDescription: `投掷脉冲刀，在范围内生成一个大磁场，使敌人被缓慢高亮显示给拉维娜及其队友。脉冲刀扫描失败时会立即消失。脉冲刀最多可以扫描 3 次，可以被任何武器或手雷摧毁。`,
-          skillPassiveName: `暴露痕迹`,
-          skillPassiveDescription: `被拉维娜的主要武器击中的敌人会被高亮显示，仅拉维娜可见。`,
-          skillUltimateName: `逃离阴影`,
-          skillUltimateDescription: `拉维娜在面前创建一个矩形磁场，进入磁场后变为隐身状态。隐身状态下无法使用任何武器。`
+          skillActiveName: `寻影猎刃`,
+          skillActiveDescription: `拉薇投掷脉冲刀，制造一个磁力场，将一定范围内的敌方单位暴露给拉薇及其队友，脉冲刀每次扫描探测不到敌人时会立刻消失，最多扫描三次。`,
+          skillPassiveName: `曝影显踪`,
+          skillPassiveDescription: `拉薇主武器命中敌方单位时，会将其短暂透视给自己。`,
+          skillUltimateName: `遁影藏踪`,
+          skillUltimateDescription: `拉薇于自身正前方生成一片矩形磁场。进入磁场时，拉薇将进入隐身状态。隐身状态下的拉薇无法射击。`
         },
         Meredith: {
-          skillActiveName: `沙热波`,
-          skillActiveDescription: `梅雷迪斯发射一个能量球，击中敌人或障碍物时会生成沙地。沙地内的敌人会被减速，装填速度降低，生命值随时间减少。`,
-          skillPassiveName: `时间扭曲`,
-          skillPassiveDescription: `瞄准、使用技能和投掷手雷时，梅雷迪斯的下落速度减少。`,
-          skillUltimateName: `流沙埋葬`,
-          skillUltimateDescription: `梅雷迪斯投掷一个金字塔神器，产生一个巨大的沙尘暴。沙尘暴中的敌人会短暂失明、生命值随时间减少、被减速并被拉向中心。盟友也会受到短暂失明效果。`
+          skillActiveName: `金沙热浪`,
+          skillActiveDescription: `梅瑞狄斯打出一颗弦能球体，于落点处创造一片黄沙领域，降低敌方角色移速和人机工效一段时间并暂时削减其生命值。`,
+          skillPassiveName: `时零沙环`,
+          skillPassiveDescription: `滞空状态下，当梅瑞狄斯进入技能瞄准、武器瞄准或者战术瞄准的状态时，自身的下落速度会被降低。`,
+          skillUltimateName: `流沙大葬`,
+          skillUltimateDescription: `梅瑞狄斯投掷出一个能制造巨大沙暴领域的金字塔。沙暴领域可以遮蔽视野，并暂时削减敌方角色生命值。`
         },
         Reiichi: {
-          skillActiveName: `曙光幕`,
-          skillActiveDescription: `Reiichi创造一个纸状能量幕，可垂直或水平部署以遮挡视线。`,
-          skillPassiveName: `曙光洞察`,
-          skillPassiveDescription: `在瞄准时，Reiichi的狙击步枪会积蓄能量。充能完毕后，它会在前方小范围扫描，并为Reiichi和他的队友高亮所有敌人。`,
+          skillActiveName: `破晓帷幕`,
+          skillActiveDescription: `令使用自己的伞制造出一堵可以纵向释放或者横向释放的弦能光幕，光幕会遮蔽视野。`,
+          skillPassiveName: `黎明洞悉`,
+          skillPassiveDescription: `在保持开镜状态时，令每一段时间会扫描一遍前方敌人及其召唤物，使其透视，仅令可见。`,
           skillUltimateName: `庇护圣屏`,
-          skillUltimateDescription: `刷新曙光幕并强化，使其能够阻挡敌方子弹。该效果适用于新部署的和已有的曙光幕。`
+          skillUltimateDescription: `立即刷新主动技能，在持续时间内增强光幕，使其能够格挡所有来自敌方角色的子弹。`
         },
         Kanami: {
-          skillActiveName: `交响曲`,
-          skillActiveDescription: `Kanami给她的狙击步枪注入旋律，射击表面产生共鸣，并在半径范围内高亮所有敌人，供Kanami和她的队友查看。`,
-          skillPassiveName: `音爆`,
-          skillPassiveDescription: `当子弹击中目标时，会短暂透视墙壁显示敌人和装置。`,
-          skillUltimateName: `表演时间`,
-          skillUltimateDescription: `Kanami召唤她的全息影像，音乐会干扰敌人瞄准，同时减速并将他们拉向中心。`
+          skillActiveName: `旋律回响`,
+          skillActiveDescription: `香奈美可以用枪射出声呐片，声呐片会释放出声波实时探查其前方180°一定范围内无建筑障碍物遮挡的敌人，被发现的敌人会暴露给香奈美及其队友。`,
+          skillPassiveName: `交响爆音`,
+          skillPassiveDescription: `香奈美的主武器发射子弹之后，会以子弹落点范围产生一个圆形音波区，处在音波区内的敌人信息会被暴露给香奈美自己。`,
+          skillUltimateName: `演出开始`,
+          skillUltimateDescription: `香奈美在战场内展开舞台，舞台展开后开始播放音乐，所有在舞台一定范围内的敌人都会被歌声吸引、减速、丢失准星的同时还会被晕眩，降低射速。`
         },
         Eika: {
-          skillActiveName: `地狱火笼`,
-          skillActiveDescription: `制造一个火焰笼罩，通过笼子中的敌人会受到燃烧伤害。若没有敌人留在笼中，笼子会消散。在最大热度下，火焰会变为蓝色并造成更高伤害。`,
-          skillPassiveName: `备用火花`,
-          skillPassiveDescription: `Eika通过对敌人造成伤害来积攒热量，最高可达100。达到最大热度时，对易受伤害的敌人造成额外伤害，并增强她的技能。`,
-          skillUltimateName: `火风暴`,
-          skillUltimateDescription: `投掷最多3个火球，爆炸后形成龙卷风，将敌人拉起并持续造成火焰伤害。在最大热度时，龙卷风的范围和伤害增加，并高亮其中的敌人。`
+          skillActiveName: `炼狱牢笼`,
+          skillActiveDescription: `在面前生成一个球形火牢，敌人穿过牢壁受到火焰伤害，牢内没敌人时提前结束。艾卡在火牢内，主武器对内部敌人造成额外火焰伤害。消耗100热量所获增益：牢壁的伤害更高。`,
+          skillPassiveName: `日珥蓄火`,
+          skillPassiveDescription: `每次射击命中敌人会积攒热量，最多100值。满热时对弦化敌人造伤能力增强。满热下，其他技能可以消耗热量获得强化。`,
+          skillUltimateName: `烈焰风暴`,
+          skillUltimateDescription: `本回合内最多丢出3道烈焰风暴，吹飞敌人并造成火焰伤害。每发消耗100热量所获增益：风暴更大，伤害更高，且敌人高亮。`
         },
         Fragrans: {
-          skillActiveName: `芳香四溢`,
-          skillActiveDescription: `Fragrans释放两个香水装置，产生芳香区域，提升区域内盟友的射速或移动速度。效果会随时间减弱。`,
-          skillPassiveName: `复活香气`,
-          skillPassiveDescription: `Fragrans会散发微弱的治愈香气，缓慢恢复自己和附近队友的生命值。`,
-          skillUltimateName: `浓郁芳香`,
-          skillUltimateDescription: `创造一个浓烈的芳香区域，为盟友提供高速射击、移动速度加成和生命恢复。在效果期间，Fragrans无法使用武器，但获得显著的伤害减免。`
+          skillActiveName: `活力芬芳`,
+          skillActiveDescription: `珐格兰丝可以释放两种有限数量的香水。释放后会以自己为中心创造香氛区域，区域内己方会获得射速或移速提升，香氛效果会随着时间推移逐渐减弱，最终消失。`,
+          skillPassiveName: `复苏芳香`,
+          skillPassiveDescription: `珐格兰丝会散发淡淡的恢复香氛，附近的队友和自己都会缓慢恢复生命值。`,
+          skillUltimateName: `激昂芬芳`,
+          skillUltimateDescription: `珐格兰丝会以自己为中心制造强烈香氛区域，区域内友军会获得高额射速、移速提升和生命值恢复，该效果不会衰减且生命值恢复不会被伤害中断，释放期间珐格兰丝无法使用武器，但会获得大幅减伤。`
         },
         Celestia: {
-          skillActiveName: `星守护`,
-          skillActiveDescription: `Celestia向盟友发送一颗守护之星，恢复其临时护甲。星星随后返回Celestia，赋予她一半的效果。`,
-          skillPassiveName: `宇宙`,
-          skillPassiveDescription: `当盟友靠近Celestia时，她和盟友会逐渐恢复护甲（+2/s）。`,
-          skillUltimateName: `星门`,
-          skillUltimateDescription: `Celestia打开星门，选择地图上的一位盟友，为他们和自己提供额外护甲。充能后，她会传送至所选盟友位置。若Celestia受伤或再次使用技能，传送会取消并返回原位，护甲不损失。`
+          skillActiveName: `守护星芒`,
+          skillActiveDescription: `星绘选择一个友方角色，投掷流星弦能，赋予其临时护甲。之后流星弦能将返回星绘身边，赋予星绘临时护甲。`,
+          skillPassiveName: `星弦甲生`,
+          skillPassiveDescription: `星绘周围有友方角色时，可缓慢恢复该角色与自身的护甲值。`,
+          skillUltimateName: `星空之门`,
+          skillUltimateDescription: `星绘选择一个友方角色，为该队友和自身提供临时护甲值，并开始蓄能。蓄能完毕后，星绘将传送到该角色身边，蓄能期间按下大招键可取消传送（不取消护甲增益）。`
         },
         Audrey: {
-          skillActiveName: `重火力`,
-          skillActiveDescription: `Audrey进入静止状态，大幅增加机枪的射速和最大护盾。机枪不再需要重新装填，但会随时间过热且无后坐力。`,
-          skillPassiveName: `皇家护盾`,
-          skillPassiveDescription: `Audrey在瞄准时额外获得30护甲，破损后会短暂恢复。她的基础护甲增加5。`,
-          skillUltimateName: `轰炸`,
-          skillUltimateDescription: `Audrey进入静止状态并召唤一个榴弹发射器，发射6发燃烧弹。每发燃烧弹会在地面上生成火焰区域，持续造成伤害。`
+          skillActiveName: `重火倾泄`,
+          skillActiveDescription: `进入架设状态，大幅提升射速，无后坐力，连续射击不需更换弹匣。若奥黛丽的连续射击时间过长，便会进入枪口过热状态无法射击。`,
+          skillPassiveName: `皇家盾牌`,
+          skillPassiveDescription: `奥黛丽进入架枪模式或进入开镜模式时，召唤护盾守护自身正面，且架枪模式下会获得额外护盾最大值。`,
+          skillUltimateName: `狂轰滥炸`,
+          skillUltimateDescription: `奥黛丽架设一把榴弹发射器，可发射六枚榴弹炮。榴弹炮爆炸后会分裂成弹跳炸弹，弹跳炸弹爆炸时将于地面生成火海。`
         },
         Maddelena: {
-          skillActiveName: `色彩束缚`,
-          skillActiveDescription: `Maddelena发射一滩颜料，经过的敌人会被减速，且无法使用纸张模式。`,
-          skillPassiveName: `色彩足迹`,
-          skillPassiveDescription: `被Maddelena的主武器或技能命中的敌人会被减速并留下可见的足迹。`,
-          skillUltimateName: `色彩泡泡`,
-          skillUltimateDescription: `Maddelena释放一个不断扩大的泡泡，使其中的敌人无法使用纸张模式并显示其足迹。泡泡爆炸后会减速并使敌人易受伤害。`
+          skillActiveName: `颜料束缚`,
+          skillActiveDescription: `玛德蕾娜发射一滩颜料，经过这滩颜料的敌人将被减速、弦化禁止并暴露脚印。`,
+          skillPassiveName: `颜料脚印`,
+          skillPassiveDescription: `玛德蕾娜使用主武器命中敌方角色时，可使敌方角色减速并暴露脚印。`,
+          skillUltimateName: `颜料泡泡`,
+          skillUltimateDescription: `玛德蕾娜发射巨大泡泡，泡泡内的敌人将被禁止弦化且暴露脚印。泡泡爆炸后将对爆炸范围内的敌人施加额外的减速和易伤效果。`
         },
         Fuchsia: {
-          skillActiveName: `猎人感应`,
-          skillActiveDescription: `Fuchsia感应附近的敌人，短暂高亮全血的敌人并持续高亮受伤的敌人，同时增加她的移动速度。`,
-          skillPassiveName: `战斗进食`,
-          skillPassiveDescription: `击杀或助攻敌人会掉落能量晶体，Fuchsia吸收后可恢复50生命值。`,
-          skillUltimateName: `血浴`,
-          skillUltimateDescription: `Fuchsia获得极高的射速、装填速度、瞄准速度和移动速度。猎人感应增强，视线中的所有敌人都会高亮。吸收能量晶体会延长持续时间。`
+          skillActiveName: `残息追踪`,
+          skillActiveDescription: `对周围敌人感知，满血敌人被短暂透视，生命值不满则被持续透视，上述效果仅自己可视。感应到敌人将增加绯莎的移动速度。`,
+          skillPassiveName: `以战养战`,
+          skillPassiveDescription: `绯莎参与击破时，死亡的敌人将原地掉落能量晶体。绯莎可以靠近并吸收能量晶体，回复自身生命值。绯莎第一次吸取能量晶体时可增加自身生命值上限。`,
+          skillUltimateName: `浴血狂戮`,
+          skillUltimateDescription: `绯莎大幅度提升自身的射速和人机工效，并使得主动技能可令视野内敌人高亮。吸收能量晶体将延长该效果持续时间。`
         },
         BaiMo: {
-          skillActiveName: `天空舞`,
-          skillActiveDescription: `BaiMo迅速向前冲刺，并为霰弹枪重新装填两发子弹。击杀时技能会刷新。`,
-          skillPassiveName: `嘻哈色彩`,
-          skillPassiveDescription: `当造成至少50点伤害时，BaiMo会短暂禁用敌人的纸张模式。`,
-          skillUltimateName: `街头之王`,
-          skillUltimateDescription: `BaiMo进入街头之王状态，获得生命吸收并降低所有技能冷却时间。击杀会使技能冷却时间清零。`
+          skillActiveName: `炫空斗舞`,
+          skillActiveDescription: `白墨进入弦化状态，向前翻转跳跃贴近敌人，并为主武器自动补充子弹。白墨参与击破将刷新冷却。`,
+          skillPassiveName: `嘻哈嘣彩`,
+          skillPassiveDescription: `白墨的主武器单次射击命中敌人造成至少50点伤害后，使其弦化禁止。`,
+          skillUltimateName: `重返街头`,
+          skillUltimateDescription: `白墨原地放置一个重生信标，死亡或倒地时可以立即在信标处重生。白墨可以选择主动返回信标，并回复全部生命值。`
         },
         Galatea: {
-          skillActiveName: `飞卡闪现`,
-          skillActiveDescription: `Galatea释放一张沿弧线飞出的卡牌，当卡牌触地或触墙时，会生成一个克隆体，Galatea可以通过按互动键传送到克隆体的位置，且克隆体可以被摧毁。每个克隆体可以探测10米范围内的可见敌人，并暴露给Galatea及其所有队友，同时短时间内显示攻击克隆体的敌人位置。`,
-          skillPassiveName: `欺诈之影`,
-          skillPassiveDescription: `当Galatea脱离墙壁时，会在墙上留下一个克隆体，每次离墙时会重新生成。当克隆体受到伤害时，将进入冷却。`,
-          skillUltimateName: `影子卡牌戏法`,
-          skillUltimateDescription: `Galatea向前投掷一堆卡牌，每张卡牌生成一个克隆体并传送Galatea。`
+          skillActiveName: `飞牌瞬闪`,
+          skillActiveDescription: `加拉蒂亚释放出一张卡牌以弧线飞出，卡牌碰到地面、墙面时会生成分身，按下交互键可以传送到分身位置。`,
+          skillPassiveName: `欺诈牌影`,
+          skillPassiveDescription: `当加拉蒂亚脱离墙面时，会在贴墙位置留下一个分身，每次下墙都会重新生成分身，当分身受伤时该被动进入冷却。加拉蒂亚的每一个分身在生成时都可以短暂探测周围无建筑障碍物遮挡的敌人给加拉蒂亚及全体友方，攻击分身的敌人也会被暂时暴露。`,
+          skillUltimateName: `牌影戏法`,
+          skillUltimateDescription: `加拉蒂亚朝前方随意投出大量卡牌，每一个卡牌都可以生成分身并让加拉蒂亚传送。`
         }
       },
       grenades: {
