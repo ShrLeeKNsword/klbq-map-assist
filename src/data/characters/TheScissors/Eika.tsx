@@ -7,7 +7,7 @@ const character: characterData = {
 	id: TheScissors.Eika,
 	attack: {
 		canvasImage: 'https://s2.loli.net/2024/09/29/SrnDsxX5bAiBNcE.png',
-		bodyImage: 'https://s2.loli.net/2024/10/26/iD1g23pnC9d6hVM.png',
+		bodyImage: 'https://s2.loli.net/2024/11/10/jXaL6kc8unqSFJ3.png',
 		skills: {
 			active: {
 				skillIcon: 'https://s2.loli.net/2024/09/25/SPYXJZwHGObnrmV.png',

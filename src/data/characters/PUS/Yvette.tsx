@@ -7,7 +7,7 @@ const character: characterData = {
 	id: PUS.Yvette,
 	defense: {
 		canvasImage: 'https://s2.loli.net/2024/09/29/eIVFmswk3tUlOcR.png',
-		bodyImage: 'https://s2.loli.net/2024/10/26/iD1g23pnC9d6hVM.png',
+		bodyImage: 'https://s2.loli.net/2024/11/10/q6fITYibXaDp7G4.png',
 		skills: {
 			active: {
 				skillIcon: 'https://s2.loli.net/2024/09/25/ESH6FNKQjbafMZn.png',

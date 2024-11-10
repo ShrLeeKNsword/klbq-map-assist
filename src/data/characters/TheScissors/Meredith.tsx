@@ -7,7 +7,7 @@ const character: characterData = {
 	id: TheScissors.Meredith,
 	attack: {
 		canvasImage: 'https://s2.loli.net/2024/09/29/C4QmVOhp1rB9Gd6.png',
-		bodyImage: 'https://s2.loli.net/2024/10/26/iD1g23pnC9d6hVM.png',
+		bodyImage: 'https://s2.loli.net/2024/11/10/9FWtLHEXkMTuvxl.png',
 		skills: {
 			active: {
 				skillIcon: 'https://s2.loli.net/2024/09/25/KWYZTSQmjOHJ2RX.png',

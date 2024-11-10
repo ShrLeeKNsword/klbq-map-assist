@@ -6,7 +6,7 @@ const character: characterData = {
 		id: PUS.Nobunaga,
 		defense: {
 			canvasImage: 'https://s2.loli.net/2024/09/29/7UuX5VTR8AYWD2o.png',
-			bodyImage: 'https://s2.loli.net/2024/10/26/iD1g23pnC9d6hVM.png',
+			bodyImage: 'https://s2.loli.net/2024/11/10/KaCqzDoHp8cwkUV.png',
 			skills: {
 				active: {
 					skillIcon: 'https://s2.loli.net/2024/09/25/VJFzGhSyXmsiHpO.png',
