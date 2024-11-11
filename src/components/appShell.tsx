@@ -16,6 +16,8 @@ import usePikaso from 'pikaso-react-hook';
 import { getLanguage, LanguageContext, saveLanguage } from '../contexts/LanguageContext.ts'
 import { getTheme, saveTheme, ThemeContext, ThemeType } from '../contexts/ThemeContext.ts'
 
+import { TbLayoutSidebarLeftCollapse, TbLayoutSidebarLeftExpand } from "react-icons/tb";
+
 interface AppShellProps {
 	characterData: characterRegistry
 }
@@ -52,6 +54,7 @@ const AppShell: React.FC<AppShellProps> = ({ characterData }) => {
 	const [presentLanguage, setPresentLanguage] = useState<Languages>(getLanguage)
 	const [presentMap, setPresentMap] = useState(MapName.WindyTown)
 	const [presentTheme, setPresentTheme] = useState<ThemeType>(getTheme)
+	const [panelcollaps, setPanelcollaps] = useState(false)
 
 	const [canvasTool, setTool] = useState<mapTools>('SELECT')
 	const [penColor, setpenColor] = useState(colorPalette[2])
@@ -106,7 +109,7 @@ const AppShell: React.FC<AppShellProps> = ({ characterData }) => {
 				setCurrentMap={setPresentMap}
 				pikasoRef={drawMapRef}
 				style={{ position: 'absolute', top: '0', left: '0' }}
-				/>
+			/>
 			<DrawMap
 				pikasoRef={drawCanvasRef}
 				pikasoEditor={drawCanvasEditor}
@@ -145,13 +148,19 @@ const AppShell: React.FC<AppShellProps> = ({ characterData }) => {
 						/>
 					</Header>
 					<Layout>
-						<Sider style={{ backgroundColor: 'var(--semi-color-bg-1)', width: '320px' }}>
-							<SiderContent characterRegistry={characterData}/>
+						<Sider style={{ backgroundColor: 'var(--semi-color-bg-1)', height: "100%", position: "relative" }}>
+							<SiderContent characterRegistry={characterData} collaps={panelcollaps} />
+							<button
+								style={{ position: "absolute", width: "50px", height: "50px", backgroundColor: "var(--semi-color-bg-1)", color: "var(--semi-color-bg-7)" }}
+								onClick={() => setPanelcollaps(!panelcollaps)}>
+								{panelcollaps ? <TbLayoutSidebarLeftExpand /> : <TbLayoutSidebarLeftCollapse />}
+							</button>
 						</Sider>
 						<Content
 							style={{
 								backgroundColor: 'var(--semi-color-bg-2)',
 								height: '100%',
+								width: "100%",
 								display: 'flex',
 								placeItems: 'center',
 								padding: '0 auto'
