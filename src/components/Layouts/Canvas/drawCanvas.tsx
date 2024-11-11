@@ -25,7 +25,8 @@ const DrawMap: React.FC<PikasoMapProps> = ({
 }) => {
   const rescaleEditor = () => {
     if (!pikasoEditor) return
-    const scaleSize = Math.round(window.innerWidth * 0.5)
+    // const scaleSize = Math.round(window.innerWidth * 0.5)
+    const scaleSize = Math.round(window.screen.width * 0.5)
     pikasoEditor?.board.stage.setSize({width: scaleSize, height: scaleSize}) 
     pikasoEditor?.board.rescale()
   }
@@ -105,13 +106,20 @@ const DrawMap: React.FC<PikasoMapProps> = ({
   const handleOnDrop = (e: React.DragEvent<HTMLDivElement>) => {
     const imgLink = e.dataTransfer.getData("imageLink")
 
-    const rect = (e.target as HTMLDivElement)?.getBoundingClientRect()
 
     const img = new Image()
     img.src = imgLink
     img.onload = () => {
       const size = 35
       const ratio = img.width / img.height
+// 
+      // const pikasoDiv = (e.target as HTMLCanvasElement).parentElement as HTMLDivElement
+      // const transform = parseFloat(pikasoDiv.style.transform.match(/scale\(\d+\.+\d+\)/)?.[0].replace(/[^\d\.]+/g,'') as string) || 1
+      const rect = (e.target as HTMLCanvasElement)?.getBoundingClientRect()
+      // const diff = { x: (e.clientX - rect!.left) / transform, y: (e.clientY - rect!.top) / transform }
+      // const pikasoSize = pikasoEditor?.board.stage.getSize() 
+
+      // console.log(transform, diff, pikasoSize)
 
       pikasoEditor?.shapes.image.insert(imgLink, {
         x: e.clientX - rect!.left - size / 2,
