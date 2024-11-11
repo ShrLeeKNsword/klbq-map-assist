@@ -30,7 +30,7 @@ const FooterContent: React.FC = () => {
       </div>
       <div style={{ height: 'max', display: 'flex', alignItems: 'center', marginLeft: '10px', marginTop: '6px' }}>
         <Tooltip content='Github repository'>
-          <a href='https://github.com/ShrLeeKNsword/klbq-map-assist' target='_blank' style={{}}>
+          <a href='https://github.com/fsltech-team/Strinova-Map-Assistant' target='_blank' style={{}}>
             <FaGithub />
           </a>
         </Tooltip>
