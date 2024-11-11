@@ -54,7 +54,7 @@ export const CharacterSiderItem: React.FC<CharacterSiderItemProps> = ({ data, si
               <span style={{ fontSize: "18px", margin: "1.5px", marginLeft: "5px", color: "white" }}><strong>{currentLanguage.characterInfo[data.id].Name}</strong></span>
             </div>
           </div>
-          <div style={{ width: "100%", fontSize: "10px", marginRight: "15px", marginTop: "3px" }}>
+          <div style={{ width: "100%", fontSize: "14px", marginRight: "15px", marginTop: "3px" }}>
             <Tabs type="button">
               <TabPane
                 tab={
@@ -69,7 +69,7 @@ export const CharacterSiderItem: React.FC<CharacterSiderItemProps> = ({ data, si
                 itemKey="1"
               >
                 <div style={{ fontWeight: "bold" }}>{currentLanguage.characterInfo[data.id].skillActiveName}</div>
-                <div style={{ margin: "2px" }}>
+                <div style={{ margin: "2px", maxHeight: "100%", overflowY: "scroll" }} className='none-scrollbar'>
                   {currentLanguage.characterInfo[data.id].skillActiveDescription}
                 </div>
                 {/* <div className='none-scrollbar' style={{ margin: "2px", height: "70px", overflowY: "scroll" }}>
@@ -104,7 +104,7 @@ export const CharacterSiderItem: React.FC<CharacterSiderItemProps> = ({ data, si
                 itemKey="2"
               >
                 <div style={{ fontWeight: "bold" }}>{currentLanguage.characterInfo[data.id].skillPassiveName}</div>
-                <div style={{ margin: "2px" }}>
+                <div style={{ margin: "2px", maxHeight: "100%", overflowY: "scroll" }} className='none-scrollbar'>
                   {currentLanguage.characterInfo[data.id].skillPassiveDescription}
                 </div>
                 {/* <div style={{ margin: "3px" }}>
@@ -124,7 +124,7 @@ export const CharacterSiderItem: React.FC<CharacterSiderItemProps> = ({ data, si
                 itemKey="3"
               >
                 <div style={{ fontWeight: "bold" }}>{currentLanguage.characterInfo[data.id].skillUltimateName}</div>
-                <div style={{ margin: "2px" }}>
+                <div style={{ margin: "2px", maxHeight: "100%", overflowY: "scroll" }} className='none-scrollbar'>
                   {currentLanguage.characterInfo[data.id].skillUltimateDescription}
                 </div>
                 {/* <div style={{ margin: "3px" }}>
