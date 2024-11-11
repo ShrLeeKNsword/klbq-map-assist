@@ -1,17 +1,15 @@
 import React, { useContext } from 'react'
 import { Divider, TabPane, Tabs } from '@douyinfe/semi-ui'
 import { GiBroadsword, GiShield, GiStunGrenade } from 'react-icons/gi'
-import { characterData, characterRegistry } from '../../../data/characters/characterRegistry.ts'
+import { characterRegistry } from '../../../data/characters/characterRegistry.ts'
 import { GrenadeRow, PUSRow, TheScissorsRow, UrbinoRow } from './SiderContentRow.tsx'
 import { LanguageContext } from '../../../contexts/LanguageContext.ts'
 
 interface SiderContentProps {
   characterRegistry: characterRegistry | null;
-  setSelectedCharacter: React.Dispatch<React.SetStateAction<characterData | null>>
-  setSiderSide: React.Dispatch<React.SetStateAction<'attack' | 'defense'>>
 }
 
-const SiderContent: React.FC<SiderContentProps> = ({ setSelectedCharacter, setSiderSide, characterRegistry }) => {
+const SiderContent: React.FC<SiderContentProps> = ({ characterRegistry }) => {
   const currentLanguage = useContext(LanguageContext)
 
   if (characterRegistry === null)
@@ -19,7 +17,7 @@ const SiderContent: React.FC<SiderContentProps> = ({ setSelectedCharacter, setSi
 
   return (
     <div>
-      <Tabs onChange={(activeKey) => { setSiderSide(activeKey as 'attack' | 'defense'); setSelectedCharacter(null) }} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <Tabs style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <TabPane
           tab={
             <span>

@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { i18nData, Languages } from '../data/i18n';
 import { Layout } from '@douyinfe/semi-ui';
-import { characterData, characterRegistry } from '../data/characters/characterRegistry';
+import { characterRegistry } from '../data/characters/characterRegistry';
 import { MapName, mapList } from '../data/maplist';
 import { save, load, loadCurrentAppState } from '../data/stateManagement';
 import { mapTools, colorPalette } from '../utils/canvasConstants';
@@ -12,7 +12,6 @@ import FooterContent from './Layouts/Footer/FooterContent.tsx';
 import HeaderContent from './Layouts/HeaderContent';
 import SiderContent from './Layouts/Sider/SiderContent.tsx';
 import SiderTools from './Layouts/SiderTools';
-import SkillSider from './Layouts/SkillSider';
 import usePikaso from 'pikaso-react-hook';
 import { getLanguage, LanguageContext, saveLanguage } from '../contexts/LanguageContext.ts'
 import { getTheme, saveTheme, ThemeContext, ThemeType } from '../contexts/ThemeContext.ts'
@@ -54,8 +53,6 @@ const AppShell: React.FC<AppShellProps> = ({ characterData }) => {
 	const [presentMap, setPresentMap] = useState(MapName.WindyTown)
 	const [presentTheme, setPresentTheme] = useState<ThemeType>(getTheme)
 
-	const [selectedCharacter, setSelectedCharacter] = useState<characterData | null>(null)
-
 	const [canvasTool, setTool] = useState<mapTools>('SELECT')
 	const [penColor, setpenColor] = useState(colorPalette[2])
 
@@ -63,7 +60,6 @@ const AppShell: React.FC<AppShellProps> = ({ characterData }) => {
 	const [lineWidth, setLineWidth] = useState(2)
 
 	const [mapPrepareMode, setMapPrepareMode] = useState(true)
-	const [currentSiderSide, setCurrentSiderSide] = useState<'attack' | 'defense'>('attack')
 	const [presentMapURL, setPresentMapURL] = useState({
 		imgPrepareLink: mapList[0].imgPrepareLink,
 		imgBlankLink: mapList[0].imgBlankLink
@@ -150,16 +146,7 @@ const AppShell: React.FC<AppShellProps> = ({ characterData }) => {
 					</Header>
 					<Layout>
 						<Sider style={{ backgroundColor: 'var(--semi-color-bg-1)', width: '320px' }}>
-							<SiderContent characterRegistry={characterData} setSelectedCharacter={setSelectedCharacter} setSiderSide={setCurrentSiderSide} />
-						</Sider>
-						<Sider
-							style={{
-								backgroundColor: 'var(--semi-color-bg-1)',
-								width: '4rem',
-								height: '100%',
-								border: '1px solid var(--semi-color-border)'
-							}}>
-							<SkillSider currentSiderSide={currentSiderSide} selectedCharacter={selectedCharacter} setSelectedCharacter={setSelectedCharacter} />
+							<SiderContent characterRegistry={characterData}/>
 						</Sider>
 						<Content
 							style={{
