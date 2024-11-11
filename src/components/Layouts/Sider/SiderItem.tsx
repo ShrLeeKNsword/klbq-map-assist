@@ -36,7 +36,7 @@ export const CharacterSiderItem: React.FC<CharacterSiderItemProps> = ({ data, si
 
   return (
     <Popover
-      position='rightTop'
+      position='rightTop' trigger='focus'
       content={<Card style={{ width: '500px', height: "100%", margin: "0 auto", overflow: "hidden" }}>
         <div style={{ display: "flex", height: "100%" }}>
           <div style={{ height: "360px", width: "200px", margin: "0 auto" }}>
