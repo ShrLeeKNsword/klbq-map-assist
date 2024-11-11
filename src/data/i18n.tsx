@@ -147,6 +147,14 @@ interface CharacterInfo {
   skillUltimateDescription: string
 }
 
+interface CharacterTypes {
+  Sentinel: string,
+  Support: string,
+  Controller: string,
+  Duellist: string,
+  Vanguard: string
+}
+
 export interface I18nData {
   language: Languages
   title: string
@@ -180,6 +188,7 @@ export interface I18nData {
   characterInfo: {
     [key in PUS | TheScissors | Urbino]: CharacterInfo
   }
+  characterTypes: CharacterTypes
   grenades: {
     [key in grenades]: string
   }
@@ -592,6 +601,13 @@ export const i18nData: {
           skillUltimateDescription: `加拉蒂亚朝前方随意投出大量卡牌，每一个卡牌都可以生成分身并让加拉蒂亚传送。`
         }
       },
+      characterTypes: {
+        Sentinel: '守护',
+        Support: '支援',
+        Controller: '控场',
+        Duellist: '决斗',
+        Vanguard: '先锋'
+      },
       grenades: {
         Flashbang: '闪光弹',
         FragGrenade: '手雷',
@@ -827,7 +843,7 @@ export const i18nData: {
       characterInfo: {
         Michele: {
           Name: "Michele",
-          Type: "",
+          Type: "Sentinel",
           skillActiveName: `Meow Meow! Turret`,
           skillActiveDescription: `Michele throws a small turret that attached to any surface (except player). The turret will automaticaly attack enemy (3 dmg/s) and slow them down.`,
           skillPassiveName: `Cat Sense`,
@@ -837,7 +853,7 @@ export const i18nData: {
         },
         Nobunaga: {
           Name: "Nobunaga",
-          Type: "",
+          Type: "Sentinel",
           skillActiveName: `Observer`,
           skillActiveDescription: `Nobunaga place a device on the ground which will gains Rate Of Fire, faster reload & restore Armor when he's within it range. Max 2 charges. If 2 Observer are placed within each other range, the buff effects are increased. It can be destroyed.`,
           skillPassiveName: `Blinding Pulse`,
@@ -847,7 +863,7 @@ export const i18nData: {
         },
         Kokona: {
           Name: "Kokona",
-          Type: "",
+          Type: "Support",
           skillActiveName: `Healing Drone`,
           skillActiveDescription: `Kokona sends a healing drone to heal and recover armor a selected ally or herself. Allies that stand near the drone will also healed.`,
           skillPassiveName: `Emergency Rescue`,
@@ -857,7 +873,7 @@ export const i18nData: {
         },
         Yvette: {
           Name: "Yvette",
-          Type: "",
+          Type: "Controller",
           skillActiveName: `Fei`,
           skillActiveDescription: `Yvette summon her teddy bear Fei to tranform into a real bear. Press the skill again to control Fei, Fei can dash forward to knock enemies up & leave an icy ground behind (2 charges). Which makes enemy slides & take more damage. Hold right mouse to recall Fei. Yvette is vulnerable while controlling Fei.`,
           skillPassiveName: `Hidden Snow`,
@@ -867,7 +883,7 @@ export const i18nData: {
         },
         Flavia: {
           Name: "Flavia",
-          Type: "",
+          Type: "Duellist",
           skillActiveName: `Illusory Phantom`,
           skillActiveDescription: `Flavia summons the Phantom Butterfly to follows her for 5 seconds, during which time she loses 1HP from an attack, she becomes invincible for 2 seconds and spawns a Phantom Orb on the spot. The Phantom Orb will near-sight surrounding enemies and can be destroyed. Use the skill again to cancel invincible state instantly.`,
           skillPassiveName: `Rebirth Circle`,
@@ -877,17 +893,17 @@ export const i18nData: {
         },
         Yugiri: {
           Name: "Yugiri",
-          Type: "",
-          skillActiveName: `蚀甲毒雾`,
-          skillActiveDescription: `布置一个蜗牛装置，激活后可产生球形毒雾，临时腐蚀附近敌方角色的护甲。`,
-          skillPassiveName: `毒雾爆发`,
-          skillPassiveDescription: `使用主武器对敌方角色造成一定量的生命值伤害后，会引爆敌人体内的腐蚀性毒素，临时腐蚀附近敌方角色的护甲。`,
-          skillUltimateName: `凌毒侵蚀`,
-          skillUltimateDescription: `召唤大范围的毒雾向前方缓慢推进，腐蚀范围内敌方角色的护甲上限。`
+          Type: "Controller",
+          skillActiveName: `Poison Mist`,
+          skillActiveDescription: `Throws a snail forward, creating a poisonous mist in a spherical area upon activation. The mist continuously lowers the maximum armour of enemies, which will then recover shortly after leaving the mist. Activating the snail will cost energy, and activating multiple snails will consume more energy then if one is activated. `,
+          skillPassiveName: `Toxic Fog Eruption`,
+          skillPassiveDescription: `After dealing a set amount of HP, she will cause an explosion within the enemy, affecting it with corrosion, temporarily corroding the nearby enemy’s shield. `,
+          skillUltimateName: `Poison Erosion`,
+          skillUltimateDescription: `Summons a large wave of mist that slowly advances forwards, reducing the max shields of any enemy struck and also applying the Corrosion effect. `
         },
         Ming: {
           Name: "Ming",
-          Type: "",
+          Type: "Duellist",
           skillActiveName: `Plasma Ball`,
           skillActiveDescription: `Fires a ball of electricity that will automatically detonate when it reaches the maximum distance or hits an enemy superstring. It can also be manually detonated by pressing the skill key again. The ball of electricity will destroy the armor of all enemy units (including summons) within the range and slow them down. Ming will increase his movement speed when entering the electric field.`,
           skillPassiveName: `Armor Absorbing`,
@@ -897,7 +913,7 @@ export const i18nData: {
         },
         Lawine: {
           Name: "Lawine",
-          Type: "",
+          Type: "Vanguard",
           skillActiveName: `Pulse Knife`,
           skillActiveDescription: `Throws the Pulse Knife to create a large magnetic field, slowly highlight enemies within range to Lawine and her teammates. The pulse knife will disappear immediately after a failed scan. The pulse knife can scan up to 3 times and can be destroyed by any weapons & nades.`,
           skillPassiveName: `Exposure Trace`,
@@ -907,7 +923,7 @@ export const i18nData: {
         },
         Meredith: {
           Name: "Meredith",
-          Type: "",
+          Type: "Controller",
           skillActiveName: `Sand Heatwave`,
           skillActiveDescription: `Meredith fires an energy orb which will creates a sand field when hit enemy or obstacles. All enemy inside will be slowed, reduces reload speed and their HP will reduces overtime.`,
           skillPassiveName: `Time Warp`,
@@ -917,7 +933,7 @@ export const i18nData: {
         },
         Reiichi: {
           Name: "Reiichi",
-          Type: "",
+          Type: "Controller",
           skillActiveName: `Dawn Curtain`,
           skillActiveDescription: `Reiichi uses his umbrella to create a curtain of Paper energy light that can be released vertically or horizontally, which obscures the field of view.`,
           skillPassiveName: `Dawn Insight`,
@@ -927,7 +943,7 @@ export const i18nData: {
         },
         Kanami: {
           Name: "Kanami",
-          Type: "",
+          Type: "Vanguard",
           skillActiveName: `Symphony`,
           skillActiveDescription: `Kanami infuses her sniper with her melody, then shoot to any surface which will resonate and hightlight all enemy in it radius for Kanami & teammates.`,
           skillPassiveName: `Sonic Boom`,
@@ -937,7 +953,7 @@ export const i18nData: {
         },
         Eika: {
           Name: "Eika",
-          Type: "",
+          Type: "Duellist",
           skillActiveName: `Hellfire Cage`,
           skillActiveDescription: `Creates a fire cage in front of Aika that burns enemies who pass through its boundaries, and the cage disippates prematurely if there are no more enemies inside. When Aika enters the cage, her shotgun will deals additional burn damage against enemies within the cage. Casting the skill with 100 heat, the flame will turn to blue & enemy takes more damage.`,
           skillPassiveName: `Reserve Flare`,
@@ -947,7 +963,7 @@ export const i18nData: {
         },
         Fragrans: {
           Name: "Fragrans",
-          Type: "",
+          Type: "Support",
           skillActiveName: `Vibrant And Fragrant`,
           skillActiveDescription: `Fragrans can release two limited quantities of perfumes. After being released, it will create a fragrance area centered on itself, and the area will increase the fire rate or movement speed of the ally, and the fragrance effect will gradually decrease over time, and eventually disappear.`,
           skillPassiveName: `Revive The Aroma`,
@@ -957,7 +973,7 @@ export const i18nData: {
         },
         Celestia: {
           Name: "Celestia",
-          Type: "",
+          Type: "Support",
           skillActiveName: `Guardian Of The Star`,
           skillActiveDescription: `Celestia targets an allied character with a guardian star, replenishing temporary armor. The star then returns to her, granting her the half of the original effect.`,
           skillPassiveName: `Cosmos`,
@@ -967,7 +983,7 @@ export const i18nData: {
         },
         Audrey: {
           Name: "Audrey",
-          Type: "",
+          Type: "Sentinel",
           skillActiveName: `Heavy Fire`,
           skillActiveDescription: `Audrey enters stationary state & cannot move. Greatly increase Rate Of Fire & Max Shield Limit of her MG. Her MG is no longer need to reload but will overheat overtime. Audrey MG no longer has recoil.`,
           skillPassiveName: `Royal Shield`,
@@ -977,7 +993,7 @@ export const i18nData: {
         },
         Maddelena: {
           Name: "Maddelena",
-          Type: "",
+          Type: "Controller",
           skillActiveName: `Color Binding`,
           skillActiveDescription: `Maddelena fires a puddle of paint, enemies that pass through this puddle will be slowed and cannot use Paper Mode.`,
           skillPassiveName: `Color Footprint`,
@@ -987,7 +1003,7 @@ export const i18nData: {
         },
         Fuchsia: {
           Name: "Fuchsia",
-          Type: "",
+          Type: "Duellist",
           skillActiveName: `Predator's Sense`,
           skillActiveDescription: `Fuchsia senses surrounding enemies which highlights full HP enemies briefly & continiously for injured enemies. Sensing enemy will also increase Fuchsia's movement speed for short time.`,
           skillPassiveName: `Fight To Feed`,
@@ -997,7 +1013,7 @@ export const i18nData: {
         },
         BaiMo: {
           Name: "BaiMo",
-          Type: "",
+          Type: "Duellist",
           skillActiveName: `Skydance`,
           skillActiveDescription: `Baimo quickly dash forward & immediately reload 2 shell to his shotgun. Getting a kill will refresh the skill.`,
           skillPassiveName: `Hip-Hop Boom Color`,
@@ -1007,7 +1023,7 @@ export const i18nData: {
         },
         Galatea: {
           Name: "Galatea",
-          Type: "",
+          Type: "Vanguard",
           skillActiveName: `Flying Cards Flash`,
           skillActiveDescription: `Galatea releases a card that flies out in an arc, and when the card touches the ground or wall, a clone will be generated, and Galatea can teleport to the location of the clone by pressing the interaction button, and the clone can be destroyed. Each clone can detect visible enemies within a 10-meter radius and expose them to Galatea and all of her teammates, as well as enemies attacking the clone for a short period of time`,
           skillPassiveName: `Fraudulent Shadow`,
@@ -1015,6 +1031,13 @@ export const i18nData: {
           skillUltimateName: `Shadow Card Trick`,
           skillUltimateDescription: `Galatea throws a bunch of cards in front of her, each of which spawns a clone and teleports Galatea.`
         }
+      },
+      characterTypes: {
+        Sentinel: 'Sentinel',
+        Support: 'Support',
+        Controller: 'Controller',
+        Duellist: 'Duellist',
+        Vanguard: 'Vanguard'
       },
       grenades: {
         Flashbang: 'Flashbang',
@@ -1251,8 +1274,8 @@ export const i18nData: {
       },
       characterInfo: {
         Michele: {
-          Name: "",
-          Type: "",
+          Name: "ミシェル",
+          Type: "センチネル",
           skillActiveName: `ミャウミャウ！タレット`,
           skillActiveDescription: `ミシェルは小さなタレットを投げ、プレイヤー以外の表面に設置します。タレットは自動的に敵を攻撃し（3ダメージ/秒）、減速させます。`,
           skillPassiveName: `キャットセンス`,
@@ -1261,8 +1284,8 @@ export const i18nData: {
           skillUltimateDescription: `ミシェルは強力な火力を持つ大きなミャウミャウドローンを展開します。より大きなダメージと範囲で敵を自動的に攻撃します。`
         },
         Nobunaga: {
-          Name: "",
-          Type: "",
+          Name: "信長",
+          Type: "センチネル",
           skillActiveName: `オブザーバー`,
           skillActiveDescription: `信長は地面に装置を設置し、その範囲内にいる時に射撃速度、リロード速度が上昇し、アーマーが回復します。最大2チャージ。2つのオブザーバーが互いの範囲内に設置されると、バフ効果が増加します。破壊可能です。`,
           skillPassiveName: `ブラインディングパルス`,
@@ -1271,8 +1294,8 @@ export const i18nData: {
           skillUltimateDescription: `地面にパルス装置を設置し、広範囲のパルス波を放出します。範囲内の敵は継続的にハイライト表示され、沈黙状態になります。あらゆる武器で破壊可能です。`
         },
         Kokona: {
-          Name: "",
-          Type: "",
+          Name: "ココナ",
+          Type: "サポーター",
           skillActiveName: `ヒーリングドローン`,
           skillActiveDescription: `ここなは選択した味方または自身を回復しアーマーを回復するドローンを送ります。ドローンの近くにいる味方も回復します。`,
           skillPassiveName: `エマージェンシーレスキュー`,
@@ -1281,8 +1304,8 @@ export const i18nData: {
           skillUltimateDescription: `ここなはK.I.A端末を開き、ドローンを使用して味方を復活させることができます。復活した味方はHPとアーマーが全回復します。ここなが復活前に倒されるか、復活中のドローンが破壊されるとキャンセルされます。`
         },
         Yvette: {
-          Name: "",
-          Type: "",
+          Name: "イヴェット",
+          Type: "コントローラー",
           skillActiveName: `フェイ`,
           skillActiveDescription: `イヴェットは彼女のテディベアのフェイを召喚し、本物の熊に変身させます。スキルを再度押すとフェイを操作でき、フェイは前方にダッシュして敵を打ち上げ、氷の地面を残します（2チャージ）。敵はスライドしより多くのダメージを受けます。右クリック長押しでフェイを呼び戻します。フェイを操作中のイヴェットは無防備です。`,
           skillPassiveName: `ヒドゥンスノー`,
@@ -1291,8 +1314,8 @@ export const i18nData: {
           skillUltimateDescription: `イヴェットは激怒したフェイを召喚し、地面を3回叩きつけ、叩くたびに大きくなる氷の地面を作ります。範囲内の敵はスライドし、より多くのダメージを受け、リロード速度、ADS速度、射撃速度が低下します。`
         },
         Flavia: {
-          Name: "",
-          Type: "",
+          Name: "フラヴィア",
+          Type: "デュエリスト",
           skillActiveName: `幻影のファントム`,
           skillActiveDescription: `フラヴィアはファントムバタフライを召喚し5秒間追従させます。この間1HPのダメージを受けると2秒間無敵になり、その場にファントムオーブを生成します。ファントムオーブは周囲の敵の視界を制限し、破壊可能です。スキルを再度使用すると無敵状態を即座にキャンセルできます。`,
           skillPassiveName: `リバースサークル`,
@@ -1301,8 +1324,8 @@ export const i18nData: {
           skillUltimateDescription: `フラヴィアは自身を中心に幻影フィールドを作成します。フィールド内でノックダウンすると、フラヴィアは蝶に変身し3秒後に復活します（アルティメット終了まで繰り返し）。フィールド外の敵はフラヴィアを見ることができませんが、攻撃することは可能で、フラヴィアに攻撃された場合は見えるようになります。フィールド外の敵に倒された場合、自動復活は発動せず即座に死亡します。`
         },
         Yugiri: {
-          Name: "",
-          Type: "",
+          Name: "夕霧",
+          Type: "コントローラー",
           skillActiveName: `蚀甲毒雾`,
           skillActiveDescription: `布置一个蜗牛装置，激活后可产生球形毒雾，临时腐蚀附近敌方角色的护甲。`,
           skillPassiveName: `毒雾爆发`,
@@ -1311,8 +1334,8 @@ export const i18nData: {
           skillUltimateDescription: `召唤大范围的毒雾向前方缓慢推进，腐蚀范围内敌方角色的护甲上限。`
         },
         Ming: {
-          Name: "",
-          Type: "",
+          Name: "明",
+          Type: "デュエリスト",
           skillActiveName: `プラズマボール`,
           skillActiveDescription: `最大距離に達するか敵のスーパーストリングに命中すると自動的に爆発する電気の球を発射します。スキルキーを再度押すことで手動で爆発させることもできます。範囲内のすべての敵ユニット（召喚物を含む）のアーマーを破壊し、減速させます。ミンは電場に入ると移動速度が上昇します。`,
           skillPassiveName: `アーマー吸収`,
@@ -1321,8 +1344,8 @@ export const i18nData: {
           skillUltimateDescription: `ミンは一時的なアーマーを獲得し、ショットに重ね掛け可能な減速効果を付与します。ミンが銃やアクティブスキルで敵のアーマーにダメージを与えると、スキルの継続時間が延長され、一時的なアーマーが回復します。`
         },
         Lawine: {
-          Name: "",
-          Type: "",
+          Name: "ラヴィーネ",
+          Type: "イニシエーター",
           skillActiveName: `パルスナイフ`,
           skillActiveDescription: `パルスナイフを投げて大きな磁場を作り、範囲内の敵をラヴィンとそのチームメイトにゆっくりとハイライト表示します。スキャンに失敗するとパルスナイフは直ちに消滅します。パルスナイフは最大3回スキャンでき、あらゆる武器とグレネードで破壊可能です。`,
           skillPassiveName: `露出トレース`,
@@ -1331,8 +1354,8 @@ export const i18nData: {
           skillUltimateDescription: `ラヴィンは前方に長方形の磁場を作成します。磁場に入るとラヴィンは透明になります。透明化中は武器を使用できません。`
         },
         Meredith: {
-          Name: "",
-          Type: "",
+          Name: "メレディス",
+          Type: "コントローラー",
           skillActiveName: `サンドヒートウェーブ`,
           skillActiveDescription: `メレディスは敵や障害物に当たると砂場を作るエネルギーオーブを発射します。範囲内の敵は減速し、リロード速度が低下し、HPが時間とともに減少します。`,
           skillPassiveName: `タイムワープ`,
@@ -1341,8 +1364,8 @@ export const i18nData: {
           skillUltimateDescription: `メレディスはピラミッドのアーティファクトを投げ、巨大な砂嵐を作り出します。範囲内の敵は視界が制限され、HPが時間とともに減少し、中心に引き寄せられながら減速します。味方も視界が制限されます。`
         },
         Reiichi: {
-          Name: "",
-          Type: "",
+          Name: "令一",
+          Type: "コントローラー",
           skillActiveName: `暁のカーテン`,
           skillActiveDescription: `霊一は傘を使って、縦または横に展開できる紙のエネルギー光のカーテンを作り出し、視界を遮ります。`,
           skillPassiveName: `暁の洞察`,
@@ -1351,8 +1374,8 @@ export const i18nData: {
           skillUltimateDescription: `直ちに暁のカーテンをリフレッシュし、敵の弾を遮断できるように強化します。この遮断効果は事前に使用した暁のカーテンにも適用されます。`
         },
         Kanami: {
-          Name: "",
-          Type: "",
+          Name: "香奈美",
+          Type: "イニシエーター",
           skillActiveName: `シンフォニー`,
           skillActiveDescription: `カナミは自身のスナイパーにメロディーを注入し、任意の表面に射撃すると共鳴し、範囲内のすべての敵をカナミとチームメイトにハイライト表示します。`,
           skillPassiveName: `ソニックブーム`,
@@ -1361,8 +1384,8 @@ export const i18nData: {
           skillUltimateDescription: `カナミは自身のホログラムを召喚し、音楽が流れ始め、敵のADSスコープをグリッチさせながら、減速させ中心に引き寄せます。`
         },
         Eika: {
-          Name: "",
-          Type: "",
+          Name: "アイカ",
+          Type: "デュエリスト",
           skillActiveName: `ヘルファイアケージ`,
           skillActiveDescription: `アイカの前方に火のケージを作成し、境界を通過する敵を燃焼させます。ケージ内に敵がいなくなると早期に消滅します。アイカがケージに入ると、ケージ内の敵に対してショットガンが追加の燃焼ダメージを与えます。ヒートゲージが100の状態でスキルを使用すると、炎が青色に変化し、敵がより多くのダメージを受けます。`,
           skillPassiveName: `リザーブフレア`,
@@ -1371,8 +1394,8 @@ export const i18nData: {
           skillUltimateDescription: `最大3つのファイアボールを投げ出し、竜巻に爆発し、敵を持ち上げ（風爆効果のように）引き寄せながら、継続的な火炎ダメージを与えます。ヒートゲージが100の状態でスキルを使用すると、竜巻のサイズとダメージが増加し、範囲内の敵をハイライト表示（壁越しは不可）します。`
         },
         Fragrans: {
-          Name: "",
-          Type: "",
+          Name: "フレグランス",
+          Type: "サポーター",
           skillActiveName: `バイブラントアンドフレグラント`,
           skillActiveDescription: `フレグランスは2種類の限定量の香りを放出できます。放出後、自身を中心に香りの領域を作り出し、その領域内で味方の射撃速度または移動速度を上昇させます。香りの効果は時間とともに徐々に減少し、最終的に消滅します。`,
           skillPassiveName: `リバイブザアロマ`,
@@ -1381,8 +1404,8 @@ export const i18nData: {
           skillUltimateDescription: `フレグランスは自身を中心に強烈な香りの領域を作り出し、範囲内の味方は高い射撃速度、移動速度上昇、HP回復を得ます。効果は減衰せず、フレグランスは放出中に武器を使用できませんが、大幅なダメージ軽減を受けます。`
         },
         Celestia: {
-          Name: "",
-          Type: "",
+          Name: "星理恵",
+          Type: "サポーター",
           skillActiveName: `ガーディアンオブザスター`,
           skillActiveDescription: `セレスティアは味方キャラクターにガーディアンスターを付与し、一時的なアーマーを回復させます。スターは彼女に戻り、元の効果の半分を彼女に付与します。`,
           skillPassiveName: `コスモス`,
@@ -1391,8 +1414,8 @@ export const i18nData: {
           skillUltimateDescription: `フーシンはスターゲートを開き、マップ上の味方を選択し、即座に自身と選択した味方に大量の追加アーマーを付与し、その後エネルギーを蓄積し始めます。フルチャージ時、フーシンは選択した味方の位置にテレポートします。一定量のダメージを受けるかスキルを再度使用するとキャンセル可能です。キャンセル時、フーシンはスキルを使用した場所に戻りますが、追加アーマーバフは失われません。`
         },
         Audrey: {
-          Name: "",
-          Type: "",
+          Name: "オードリー",
+          Type: "センチネル",
           skillActiveName: `ヘビーファイア`,
           skillActiveDescription: `オードリーは固定状態となり移動不可能になります。彼女のマシンガンの射撃速度と最大シールド限界が大幅に上昇します。マシンガンはリロードが不要になりますが、時間とともにオーバーヒートします。オードリーのマシンガンの反動がなくなります。`,
           skillPassiveName: `ロイヤルシールド`,
@@ -1401,8 +1424,8 @@ export const i18nData: {
           skillUltimateDescription: `オードリーは固定状態となり、6発の焼夷弾を発射するグレネードランチャーを召喚します。各弾は壁で跳ね返り、地面に当たると爆発し、継続的なダメージを与える3つの小さな火炎地帯を作り出します。`
         },
         Maddelena: {
-          Name: "",
-          Type: "",
+          Name: "マダレーナ",
+          Type: "コントローラー",
           skillActiveName: `カラーバインディング`,
           skillActiveDescription: `マッデレーナは塗料の水たまりを発射し、この水たまりを通過する敵は減速しペーパーモードを使用できなくなります。`,
           skillPassiveName: `カラーフットプリント`,
@@ -1411,8 +1434,8 @@ export const i18nData: {
           skillUltimateDescription: `マッデレーナは時間とともに大きくなる巨大なバブルを発射し、バブル内の敵はペーパーモードを使用できず、足跡を残します。バブルが爆発すると、爆発範囲内の敵に減速と脆弱化効果を与えます。`
         },
         Fuchsia: {
-          Name: "",
-          Type: "",
+          Name: "フューシャ",
+          Type: "デュエリスト",
           skillActiveName: `プレデターズセンス`,
           skillActiveDescription: `フクシアは周囲の敵を感知し、フルHPの敵を一時的に、負傷した敵を継続的にハイライト表示します。敵を感知すると短時間フクシアの移動速度が上昇します。`,
           skillPassiveName: `ファイトトゥフィード`,
@@ -1421,8 +1444,8 @@ export const i18nData: {
           skillUltimateDescription: `フクシアは大幅な射撃速度、リロード速度、ADS速度、移動速度を獲得します。プレデターズセンスが強化され、視界内のすべての敵をハイライト表示します。エネルギークリスタルを吸収すると継続時間が延長されます。`
         },
         BaiMo: {
-          Name: "",
-          Type: "",
+          Name: "白墨",
+          Type: "デュエリスト",
           skillActiveName: `スカイダンス`,
           skillActiveDescription: `バイモは素早く前方にダッシュし、即座にショットガンに2発をリロードします。キルを獲得するとスキルがリフレッシュされます。`,
           skillPassiveName: `ヒップホップブームカラー`,
@@ -1431,8 +1454,8 @@ export const i18nData: {
           skillUltimateDescription: `バイモは選択した場所にリスポーンビーコンを設置し、音楽が流れ始めます。倒されるかスキルを再度使用すると、バイモはビーコンに戻りHPが全回復します。`
         },
         Galatea: {
-          Name: "",
-          Type: "",
+          Name: "ガラテア",
+          Type: "イニシエーター",
           skillActiveName: `フライングカーズフラッシュ`,
           skillActiveDescription: `ガラテアは弧を描いて飛ぶカードを放出し、カードが地面や壁に触れるとクローンが生成されます。ガラテアは相互作用ボタンを押してクローンの位置にテレポートでき、クローンは破壊可能です。各クローンは10メートル範囲内の可視の敵を検知し、ガラテアとすべてのチームメイトに露見させ、さらにクローンを攻撃する敵も短時間露見させます。`,
           skillPassiveName: `フロードゥレントシャドウ`,
@@ -1440,6 +1463,13 @@ export const i18nData: {
           skillUltimateName: `シャドウカードトリック`,
           skillUltimateDescription: `ガラテアは前方に複数のカードを投げ、それぞれがクローンを生成し、ガラテアをテレポートさせます。`
         }
+      },
+      characterTypes: {
+        Sentinel: 'センチネル',
+        Support: 'サポーター',
+        Controller: 'コントローラー',
+        Duellist: 'デュエリスト',
+        Vanguard: 'イニシエーター'
       },
       grenades: {
         Flashbang: '閃光弹',
