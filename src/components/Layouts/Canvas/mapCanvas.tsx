@@ -13,8 +13,7 @@ interface PikasoMapProps {
 const MapCanvas: React.FC<PikasoMapProps> = ({ pikasoRef, pikasoEditor, currentMap, style, setCurrentMap }) => {
   const rescaleEditor = () => {
     if (!pikasoEditor) return
-    // const scaleSize = Math.round(window.innerWidth * 0.5)
-    const scaleSize = Math.round(window.screen.width * 0.5)
+    const scaleSize = 1000
     pikasoEditor?.board.stage.setSize({width: scaleSize, height: scaleSize})
 
     const image = new Image()
