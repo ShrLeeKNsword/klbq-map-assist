@@ -25,7 +25,7 @@ const DrawMap: React.FC<PikasoMapProps> = ({
 }) => {
   const rescaleEditor = () => {
     if (!pikasoEditor) return
-    const scaleSize = Math.round(window.innerWidth * 0.8)
+    const scaleSize = Math.round(window.innerWidth * 0.5)
     pikasoEditor?.board.stage.setSize({width: scaleSize, height: scaleSize}) 
     pikasoEditor?.board.rescale()
   }
