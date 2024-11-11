@@ -1,4 +1,3 @@
-import character from './characters/PUS/Flavia';
 import { factions, PUS, TheScissors, Urbino } from './characters/factions'
 import { grenades as grenades } from './grenades'
 import { MapName } from './maplist'
