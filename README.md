@@ -1,3 +1,5 @@
+![Strinova Map Assistant](https://repository-images.githubusercontent.com/861667818/85c06c11-28ec-4bad-aff7-3fe0e50a82c9)
+
 # Strinova Map Assistant
 
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=38C2FF&width=435&lines=Map+Marking;Strategy+Discussing;Lineup+Learning)](https://git.io/typing-svg)
