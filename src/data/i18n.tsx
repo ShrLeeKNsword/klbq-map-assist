@@ -241,6 +241,10 @@ export const i18nData: {
             icon: <img style={{ height: "32px", filter: "drop-shadow(0 0 2px rgba(var(--semi-grey-9))" }} src='https://s2.loli.net/2024/10/01/NQTMvDZ5ah4omYR.png' />,
             url: "https://wiki.biligame.com/klbq/",
           }, {
+            name: "Strinovajp Wiki",
+            icon: <></>,
+            url: "https://www.strinovajp-wiki.jp/index.html",
+          }, {
             name: "",
             icon: <img style={{ height: "22px", filter: "drop-shadow(0 0 2px rgba(var(--semi-grey-1))" }} src='https://s2.loli.net/2024/10/01/R4UxmBPGd2f8kQ7.webp' />,
             url: "https://strinova.wiki.gg/wiki/Strinova_Wiki",
@@ -673,6 +677,10 @@ export const i18nData: {
             icon: <img style={{ height: "32px", filter: "drop-shadow(0 0 2px rgba(var(--semi-grey-9))" }} src='https://s2.loli.net/2024/10/01/NQTMvDZ5ah4omYR.png' />,
             url: "https://wiki.biligame.com/klbq/",
           }, {
+            name: "Strinovajp Wiki",
+            icon: <></>,
+            url: "https://www.strinovajp-wiki.jp/index.html",
+          }, {
             name: "",
             icon: <img style={{ height: "22px", filter: "drop-shadow(0 0 2px rgba(var(--semi-grey-1))" }} src='https://s2.loli.net/2024/10/01/R4UxmBPGd2f8kQ7.webp' />,
             url: "https://strinova.wiki.gg/wiki/Strinova_Wiki",
@@ -1103,6 +1111,10 @@ export const i18nData: {
             name: "",
             icon: <img style={{ height: "32px", filter: "drop-shadow(0 0 2px rgba(var(--semi-grey-9))" }} src='https://s2.loli.net/2024/10/01/NQTMvDZ5ah4omYR.png' />,
             url: "https://wiki.biligame.com/klbq/",
+          }, {
+            name: "Strinovajp Wiki",
+            icon: <></>,
+            url: "https://www.strinovajp-wiki.jp/index.html",
           }, {
             name: "",
             icon: <img style={{ height: "22px", filter: "drop-shadow(0 0 2px rgba(var(--semi-grey-1))" }} src='https://s2.loli.net/2024/10/01/R4UxmBPGd2f8kQ7.webp' />,
