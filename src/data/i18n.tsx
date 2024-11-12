@@ -212,9 +212,9 @@ export const i18nData: {
       announcementdata: {
         notshowntoday: "今日不再显示",
         pin: {
-          title: "网站测试运行",
-          date: "2024.10.2",
-          summary: "网站基础功能完善，角色图标已可拖拽。其余功能尽情期待！",
+          title: "正式版发布",
+          date: "2024.11.12",
+          summary: "网站正式版已上线，欢迎使用！有任何问题可以通过网页最下方联系我们。",
           data: {}
         },
         history: []
@@ -648,9 +648,9 @@ export const i18nData: {
       announcementdata: {
         notshowntoday: "Got it",
         pin: {
-          title: "Site Beta test",
-          date: "2024.10.2",
-          summary: "Most of the core function is ready to use, but some are still in progress. We will continue to optimize and update the site.",
+          title: "Milestone Release V1.0",
+          date: "2024.11.12",
+          summary: "Milestone release complete.You'll find our social media at the footer of the page.",
           data: {}
         },
         history: []
@@ -1083,9 +1083,9 @@ export const i18nData: {
       announcementdata: {
         notshowntoday: "今日不再显示",
         pin: {
-          title: "网站测试运行",
-          date: "2024.10.2",
-          summary: "网站基础功能完善，角色图标已可拖拽。其余功能尽情期待！",
+          title: "正式版发布",
+          date: "2024.11.12",
+          summary: "网站正式版已上线，欢迎使用！有任何问题可以通过网页最下方联系我们。",
           data: {}
         },
         history: []
