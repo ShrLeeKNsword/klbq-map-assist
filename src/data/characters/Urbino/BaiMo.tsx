@@ -10,11 +10,11 @@ const character: characterData = {
 		bodyImage: 'https://s2.loli.net/2024/11/10/Dt4NkXWiBxOrFby.png',
 		skills: {
 			active: {
-				skillIcon: 'https://s2.loli.net/2024/09/25/xvVheX57uGJMI2k.png',
+				skillIcon: 'https://s2.loli.net/2024/09/25/eUzu75aSXVw2kQF.png',
 				generateOnCanvas: active
 			},
 			passive: {
-				skillIcon: 'https://s2.loli.net/2024/09/25/eUzu75aSXVw2kQF.png',
+				skillIcon: 'https://s2.loli.net/2024/09/25/xvVheX57uGJMI2k.png',
 				generateOnCanvas: passive
 			},
 			ultimate: {
@@ -28,11 +28,11 @@ const character: characterData = {
 		bodyImage: 'https://s2.loli.net/2024/11/10/Dt4NkXWiBxOrFby.png',
 		skills: {
 			active: {
-				skillIcon: 'https://s2.loli.net/2024/09/25/xvVheX57uGJMI2k.png',
+				skillIcon: 'https://s2.loli.net/2024/09/25/eUzu75aSXVw2kQF.png',
 				generateOnCanvas: active
 			},
 			passive: {
-				skillIcon: 'https://s2.loli.net/2024/09/25/eUzu75aSXVw2kQF.png',
+				skillIcon: 'https://s2.loli.net/2024/09/25/xvVheX57uGJMI2k.png',
 				generateOnCanvas: passive
 			},
 			ultimate: {
