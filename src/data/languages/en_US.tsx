@@ -1,8 +1,8 @@
 import { FaGithub } from "react-icons/fa";
-import { Languages } from "../i18n";
+import { Languages } from "../../types/interface";
 
 export default {
-	language: Languages.English,
+	language: Languages.en_US,
 	title: 'Strinova Map Assistant',
 	announcement: "Announcement",
 	friendlink: "Friend Link",

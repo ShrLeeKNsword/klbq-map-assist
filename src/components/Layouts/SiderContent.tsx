@@ -1,10 +1,10 @@
 import React from 'react'
-import { I18nData } from '../../data/i18n'
 import { Avatar, Divider, TabPane, Tabs, Col, Row, Tooltip, Card, Popover, Descriptions } from '@douyinfe/semi-ui'
 import { GiBroadsword, GiShield, GiStunGrenade } from 'react-icons/gi'
 import { PUS, TheScissors, Urbino } from '../../data/characters/factions'
 import { characterData, characterRegistry } from '../../data/characters/characterRegistry'
 import { grenadeData } from '../../data/grenades'
+import { I18nData } from '../../types/interface'
 
 interface SiderContentProps {
   currentLanguage: I18nData
@@ -43,7 +43,7 @@ const SiderContent: React.FC<SiderContentProps> = ({ currentLanguage: currentLan
                     position='rightTop'
                     content={<Card style={{ width: '500px', height: "100%", margin: "0 auto", overflow: "hidden" }}>
                       <div style={{ display: "flex", height: "100%" }}>
-                        <div style={{ height: "360px", width: "200px", margin: "0 auto" ,display: "relative" }}>
+                        <div style={{ height: "360px", width: "200px", margin: "0 auto", display: "relative" }}>
                           <img draggable="false" src="https://s2.loli.net/2024/10/26/iD1g23pnC9d6hVM.png" style={{ height: "360px", filter: "drop-shadow(0 0 5px rgba(var(--semi-grey-7))" }} />
                           <div style={{ position: "absolute", left: "40px", bottom: "60px", height: "25px", display: "flex", alignContent: "center", filter: "drop-shadow(0 0 5px rgba(var(--semi-grey-7))" }}>
                             <img draggable="false" src="https://s2.loli.net/2024/10/27/c7QDINMXFyuav6b.png" style={{ filter: "invert(100%)", height: "25px" }} />

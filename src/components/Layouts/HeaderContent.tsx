@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { i18nData, Languages } from '../../data/i18n'
+import { i18nData } from '../../data/i18n'
 import { Button, Nav, Select } from '@douyinfe/semi-ui'
 import Title from '@douyinfe/semi-ui/lib/es/typography/title'
 import { MapName } from '../../data/maplist'
@@ -10,6 +10,7 @@ import Pikaso, { BaseShapes } from 'pikaso'
 import Announcement from '../announcement'
 import { LanguageContext } from '../../contexts/LanguageContext.ts'
 import { ThemeContext, ThemeType } from '../../contexts/ThemeContext.ts'
+import { Languages } from '../../types/interface.ts'
 
 interface HeaderContentProps {
   changeLanguage: (lang: Languages) => void
@@ -71,11 +72,11 @@ const HeaderContent: React.FC<HeaderContentProps> = ({
           />
           <MdOutlineTranslate size='1.5rem' style={{ padding: '0 1rem' }} color='rgba(var(--semi-grey-9), 1)' />
           <Select
-            defaultValue={Languages[currentLanguage.language]}
+            defaultValue={currentLanguage.language}
             onChange={(value) => changeLanguage(value as Languages)}>
             {Object.keys(i18nData).map((key) => (
               <Select.Option key={key} value={key}>
-                {Languages[key as unknown as Languages]}
+                {Languages[key as keyof typeof Languages]}
               </Select.Option>
             ))}
           </Select>

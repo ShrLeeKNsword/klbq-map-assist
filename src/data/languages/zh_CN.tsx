@@ -1,8 +1,8 @@
 import { FaGithub } from "react-icons/fa";
-import { Languages } from "../i18n";
+import { Languages } from "../../types/interface";
 
 export default {
-	language: Languages['简体中文'],
+	language: Languages.zh_CN,
 	title: '卡拉彼丘地图助手',
 	announcement: "公告",
 	friendlink: "友情链接",
