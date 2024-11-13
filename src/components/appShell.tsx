@@ -138,8 +138,8 @@ const AppShell: React.FC<AppShellProps> = ({ characterData }) => {
 	}
 
 	return (
-		<LanguageContext.Provider value={currentLanguage}>
-			<LocaleProvider locale={localeMap[presentLanguage]}>
+		<LocaleProvider locale={localeMap[presentLanguage]}>
+			<LanguageContext.Provider value={currentLanguage}>
 				<ThemeContext.Provider value={presentTheme}>
 					<Layout
 						style={{
@@ -203,8 +203,8 @@ const AppShell: React.FC<AppShellProps> = ({ characterData }) => {
 						</Footer>
 					</Layout>
 				</ThemeContext.Provider>
-			</LocaleProvider>
-		</LanguageContext.Provider>
+			</LanguageContext.Provider>
+		</LocaleProvider>
 	);
 };
 
