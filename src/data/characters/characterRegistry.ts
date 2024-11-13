@@ -34,7 +34,7 @@ export async function loadAllCharacters() {
 
 export default characterRegistry;
 
-interface sideData {
+export interface sideData {
 	canvasImage: string;
 	bodyImage: string;
 	skills: {
