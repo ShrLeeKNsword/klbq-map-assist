@@ -4,7 +4,12 @@ import { Languages } from '../types/interface.ts'
 
 export function getLanguage(): Languages {
   const language = window.localStorage.getItem("language")
-  return language === null ? Languages.en_US : language as Languages
+
+  if (language && Object.values(Languages).includes(language as Languages)) {
+    return language as Languages
+  }
+
+  return Languages.en_US
 }
 
 export function saveLanguage(lang: Languages) {
