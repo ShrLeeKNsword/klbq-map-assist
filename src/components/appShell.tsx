@@ -1,10 +1,11 @@
 
-import React, { useState } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import { i18nData } from '../data/i18n';
 import { Layout, LocaleProvider } from '@douyinfe/semi-ui';
 import { characterRegistry } from '../data/characters/characterRegistry';
 import { MapName, mapList } from '../data/maplist';
 import { save, load, loadCurrentAppState } from '../data/stateManagement';
+import { initShare, share, rebindShare, cleanUpShare, updateLobbyRefs, updateLiveMap } from '../data/liveShare.ts';
 import { mapTools, colorPalette } from '../utils/canvasConstants';
 import DrawMap from './Layouts/Canvas/drawCanvas';
 import MapCanvas from './Layouts/Canvas/mapCanvas';
@@ -103,6 +104,33 @@ const AppShell: React.FC<AppShellProps> = ({ characterData }) => {
 		loadCurrentAppState({ json, setPresentMap, setPresentMapURL, drawCanvasEditor })
 	}
 
+	const liveShare = () => {
+		share({ ui: true })
+	}
+	
+	useLayoutEffect(() => {
+		const onHashChange = () => { share()}
+		if(drawCanvasEditor) {
+			initShare({ presentMap, setPresentMap, setPresentMapURL, drawCanvasEditor })
+			if (location.hash) {
+				share()
+			}
+			window.addEventListener('hashchange', onHashChange)
+		}
+		requestAnimationFrame(()=>{
+		})
+		 return () => {
+			window.removeEventListener('hashchange', onHashChange)
+			cleanUpShare()
+		}
+	}, [drawCanvasEditor])
+
+	useLayoutEffect(() => {
+		updateLobbyRefs({presentMap})
+		rebindShare()
+		updateLiveMap()
+	}, [presentMap, setPresentMap, presentMapURL, setPresentMapURL])
+
 	const canvases = (
 		<div id="capture" style={{ overflow: 'hidden', position: 'relative', top: 0, left: 0, width: '100%', height: '100%' }}>
 			<div className='no-select' style={{ position: "absolute", bottom: "20px", opacity: 0.1, fontSize: "25px", marginLeft: "30px" }}>
@@ -160,6 +188,7 @@ const AppShell: React.FC<AppShellProps> = ({ characterData }) => {
 								setPresentMapURL={setPresentMapURL}
 								mapPrepareMode={mapPrepareMode}
 								setMapPrepareMode={setMapPrepareMode}
+								share={liveShare}
 							/>
 						</Header>
 						<Layout>

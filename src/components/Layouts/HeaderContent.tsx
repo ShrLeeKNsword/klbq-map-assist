@@ -3,7 +3,7 @@ import { i18nData } from '../../data/i18n'
 import { Button, Nav, Select } from '@douyinfe/semi-ui'
 import Title from '@douyinfe/semi-ui/lib/es/typography/title'
 import { MapName } from '../../data/maplist'
-import { MdOutlineTranslate, MdLightMode, MdDarkMode } from 'react-icons/md'
+import { MdOutlineTranslate, MdLightMode, MdDarkMode, MdCastConnected } from 'react-icons/md'
 import ChangeMapButton from '../buttons/changeMapButton'
 import ChangeHighlightButton from '../buttons/changeHighlightButton'
 import Pikaso, { BaseShapes } from 'pikaso'
@@ -21,6 +21,7 @@ interface HeaderContentProps {
   setPresentMapURL: React.Dispatch<React.SetStateAction<{ imgPrepareLink: string; imgBlankLink: string }>>
   setMapPrepareMode: React.Dispatch<React.SetStateAction<boolean>>
   editor: Pikaso<BaseShapes> | null
+  share: React.Dispatch<React.SetStateAction<void>>
 }
 
 const HeaderContent: React.FC<HeaderContentProps> = ({
@@ -31,7 +32,8 @@ const HeaderContent: React.FC<HeaderContentProps> = ({
   setPresentMap,
   setPresentMapURL,
   setMapPrepareMode,
-  editor
+  editor,
+  share
 }) => {
   const currentLanguage = useContext(LanguageContext)
   const currentTheme = useContext(ThemeContext)
@@ -57,6 +59,9 @@ const HeaderContent: React.FC<HeaderContentProps> = ({
         </Nav.Item>
         <Nav.Item style={{ flexDirection: 'column', justifyContent: 'center' }}>
           <ChangeHighlightButton content={currentLanguage.mapsetting.TeamHighlight} mapPrepareMode={mapPrepareMode} setMapPrepareMode={setMapPrepareMode} />
+        </Nav.Item>
+        <Nav.Item style={{ flexDirection: 'column', justifyContent: 'center' }}>
+          <Button icon={<MdCastConnected style={{fontSize:32}}/>} size={'large'} onClick={() => { share() }} />
         </Nav.Item>
         <Nav.Footer>
           <Announcement name={currentLanguage.announcement} content={currentLanguage.announcementdata} />
