@@ -1,5 +1,5 @@
 import { Button, Typography, Divider, Col, Row } from '@douyinfe/semi-ui';
-import { SiteListForm } from '../../../data/i18n.tsx'
+import { SiteListForm } from '../../../types/interface'
 import { useContext } from 'react'
 import { LanguageContext } from '../../../contexts/LanguageContext.ts'
 import { IoMdCloudOutline } from "react-icons/io";

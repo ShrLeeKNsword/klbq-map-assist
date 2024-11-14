@@ -38,7 +38,7 @@ const SiderTools: React.FC<SiderToolsProps> = ({
   editor,
   setPenColor,
   save,
-  load
+  load,
 }) => {
   const [togglevisible, setToggleVisible] = React.useState(false)
   const [selection, setSelection] = React.useState(false)

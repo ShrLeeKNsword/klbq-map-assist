@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { Button, Typography, Divider, Row, Col } from '@douyinfe/semi-ui';
 import { LanguageContext } from '../../../contexts/LanguageContext.ts'
-import { FriendLinkForm } from '../../../data/i18n.tsx'
+import { FriendLinkForm } from '../../../types/interface'
 import { FaLink } from 'react-icons/fa6'
 import FooterModal from './FooterModal.tsx'
 

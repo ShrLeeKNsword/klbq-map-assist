@@ -1,5 +1,5 @@
 import React from 'react'
-import { I18nData } from '../../data/i18n'
+import { I18nData } from '../../types/interface'
 import { Button, Dropdown } from '@douyinfe/semi-ui'
 import { FaMap } from 'react-icons/fa'
 import { mapList, MapName } from '../../data/maplist'
