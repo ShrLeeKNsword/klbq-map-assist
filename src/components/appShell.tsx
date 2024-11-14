@@ -93,15 +93,15 @@ const AppShell: React.FC<AppShellProps> = ({ characterData }) => {
 	}
 
 	const saveFile = () => {
-		save({ presentMap, drawCanvasEditor })
+		save({ presentMap, mapPrepareMode, drawCanvasEditor })
 	}
 
 	const loadFile = () => {
-		load({ setPresentMap, setPresentMapURL, drawCanvasEditor })
+		load({ setPresentMap, setPresentMapURL, setMapPrepareMode, drawCanvasEditor })
 	}
 
 	const loadJson = (json: any) => {
-		loadCurrentAppState({ json, setPresentMap, setPresentMapURL, drawCanvasEditor })
+		loadCurrentAppState({ json, setPresentMap, setPresentMapURL, setMapPrepareMode, drawCanvasEditor })
 	}
 
 	const liveShare = () => {
@@ -111,7 +111,7 @@ const AppShell: React.FC<AppShellProps> = ({ characterData }) => {
 	useLayoutEffect(() => {
 		const onHashChange = () => { share()}
 		if(drawCanvasEditor) {
-			initShare({ presentMap, setPresentMap, setPresentMapURL, drawCanvasEditor })
+			initShare({ presentMap, setPresentMap, setPresentMapURL, mapPrepareMode, setMapPrepareMode, drawCanvasEditor })
 			if (location.hash) {
 				share()
 			}
@@ -126,10 +126,10 @@ const AppShell: React.FC<AppShellProps> = ({ characterData }) => {
 	}, [drawCanvasEditor])
 
 	useLayoutEffect(() => {
-		updateLobbyRefs({presentMap})
+		updateLobbyRefs({presentMap, mapPrepareMode})
 		rebindShare()
 		updateLiveMap()
-	}, [presentMap, setPresentMap, presentMapURL, setPresentMapURL])
+	}, [presentMap, setPresentMap, presentMapURL, setPresentMapURL, mapPrepareMode, setMapPrepareMode])
 
 	const canvases = (
 		<div id="capture" style={{ overflow: 'hidden', position: 'relative', top: 0, left: 0, width: '100%', height: '100%' }}>

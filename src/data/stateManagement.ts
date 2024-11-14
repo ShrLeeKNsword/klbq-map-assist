@@ -1,10 +1,10 @@
 import { MapName, mapList } from '../data/maplist';
 
-export const getCurrentAppState = ({ presentMap, drawCanvasEditor }: any) => {
-    return ({ v: '1.0.0', map: presentMap, editor: drawCanvasEditor?.export.toJson() } as any)
+export const getCurrentAppState = ({ presentMap, mapPrepareMode, drawCanvasEditor }: any) => {
+    return ({ v: '1.0.0', map: presentMap, mapHighlight: mapPrepareMode, editor: drawCanvasEditor?.export.toJson() } as any)
 }
 
-export const loadCurrentAppState = ({ json, setPresentMap, setPresentMapURL, drawCanvasEditor }: any) => {
+export const loadCurrentAppState = ({ json, setPresentMap, setPresentMapURL, setMapPrepareMode, drawCanvasEditor }: any) => {
     if (json.map in MapName) {
         setPresentMap(json.map)
         for (const mapinfo of mapList) {
@@ -14,15 +14,18 @@ export const loadCurrentAppState = ({ json, setPresentMap, setPresentMapURL, dra
             }
         }
     }
+    if(json.mapHighlight != null) {
+        setMapPrepareMode(json.mapHighlight)
+    }
     if (json.editor) {
         drawCanvasEditor?.import.json(json.editor)
     }
 }
 
-export const save = ({ presentMap, drawCanvasEditor }: any) => {
+export const save = ({ presentMap, mapPrepareMode, drawCanvasEditor }: any) => {
     const a = document.createElement("a")
     const file = new Blob(
-        [JSON.stringify(getCurrentAppState({ presentMap, drawCanvasEditor }))],
+        [JSON.stringify(getCurrentAppState({ presentMap, mapPrepareMode, drawCanvasEditor }))],
         { type: 'text/plain' }
     )
     const Presentdate = new Date()
@@ -32,7 +35,7 @@ export const save = ({ presentMap, drawCanvasEditor }: any) => {
     a.click()
 }
 
-export const load = ({ setPresentMap, setPresentMapURL, drawCanvasEditor }: any) => {
+export const load = ({ setPresentMap, setPresentMapURL, setMapPrepareMode, drawCanvasEditor }: any) => {
     const input = document.createElement("input")
     input.type = "file"
     input.accept = ".json"
@@ -40,7 +43,7 @@ export const load = ({ setPresentMap, setPresentMapURL, drawCanvasEditor }: any)
         const file = (e.target as any).files[0]
         const reader = new FileReader()
         reader.onload = function (e) {
-            loadCurrentAppState({ setPresentMap, setPresentMapURL, drawCanvasEditor, json: JSON.parse(e.target!.result as string) })
+            loadCurrentAppState({ setPresentMap, setPresentMapURL, setMapPrepareMode, drawCanvasEditor, json: JSON.parse(e.target!.result as string) })
         }
         reader.readAsText(file)
     });

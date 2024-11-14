@@ -27,7 +27,7 @@ export class Lobby {
   }
   listen() {
     const s = this
-    const { presentMap, setPresentMap, setPresentMapURL, drawCanvasEditor } = s.args
+    const { presentMap, setPresentMap, setPresentMapURL, mapPrepareMode, setMapPrepareMode, drawCanvasEditor } = s.args
     if (s.peer) return
     s.peer = new Peer()
     s.connectionState = ConnectionState.CONNECTING
@@ -71,7 +71,7 @@ export class Lobby {
           const joinPeerIdIndex = s.peerIds.indexOf('')
           if (joinPeerIdIndex !== -1) {
             s.peerIds[joinPeerIdIndex] = connection.peer
-            const currentAppState = getCurrentAppState({ presentMap, drawCanvasEditor })
+            const currentAppState = getCurrentAppState({ presentMap, mapPrepareMode, drawCanvasEditor })
             const sendJoinResponse = { type: "joinResponse", peerIds: s.peerIds, state: currentAppState }
             connection.send(sendJoinResponse)
             for (let i = 0; i < s.peerIds.length; i++) {
@@ -97,7 +97,7 @@ export class Lobby {
           drawInteraction = false
           clearTimeout(drawInteractionTO)
           drawInteractionTO =setTimeout(() => { drawInteraction = true }, 2000)
-          loadCurrentAppState({ json: data.state, setPresentMap, setPresentMapURL, drawCanvasEditor })
+          loadCurrentAppState({ json: data.state, setPresentMap, setPresentMapURL, setMapPrepareMode, drawCanvasEditor })
         }
       })
     })
@@ -120,7 +120,7 @@ export class Lobby {
   }
   connect({ id }: { id: string }) {
     const s = this
-    const { setPresentMap, setPresentMapURL, drawCanvasEditor } = s.args
+    const { setPresentMap, setPresentMapURL, setMapPrepareMode, drawCanvasEditor } = s.args
     const connection = s.peer.connect(id, { reliable: true, ebug: 3 })
     connection.on("open", () => {
       s.connections.push(connection)
@@ -144,13 +144,13 @@ export class Lobby {
           drawInteraction = false
           clearTimeout(drawInteractionTO)
           drawInteractionTO =setTimeout(() => { drawInteraction = true }, 2000)
-          loadCurrentAppState({ json: data.state, setPresentMap, setPresentMapURL, drawCanvasEditor })
+          loadCurrentAppState({ json: data.state, setPresentMap, setPresentMapURL, setMapPrepareMode, drawCanvasEditor })
         } else if (data.type === 'state') {
           lastAppState = data.state
           drawInteraction = false
           clearTimeout(drawInteractionTO)
           drawInteractionTO =setTimeout(() => { drawInteraction = true }, 2000)
-          loadCurrentAppState({ json: data.state, setPresentMap, setPresentMapURL, drawCanvasEditor })
+          loadCurrentAppState({ json: data.state, setPresentMap, setPresentMapURL, setMapPrepareMode, drawCanvasEditor })
         }
       })
     })
@@ -200,9 +200,9 @@ export class Lobby {
   }
 }
 
-export const initShare = ({ presentMap, setPresentMap, setPresentMapURL, drawCanvasEditor }: any) => {
+export const initShare = (args: any) => {
   if (!lobby) {
-    lobby = new Lobby({ presentMap, setPresentMap, setPresentMapURL, drawCanvasEditor })
+    lobby = new Lobby(args)
   }
 }
 
@@ -229,8 +229,8 @@ export const rebindShare = () => {
 
 export const updateLiveMap = () => {
   if (lobby && lobby.connectionState === ConnectionState.CONNECTED) {
-    const { presentMap, drawCanvasEditor } = lobby.args
-    const currentAppState = getCurrentAppState({ presentMap, drawCanvasEditor })
+    const { presentMap, mapPrepareMode, drawCanvasEditor } = lobby.args
+    const currentAppState = getCurrentAppState({ presentMap, mapPrepareMode, drawCanvasEditor })
     if (drawInteraction && JSON.stringify(lastAppState) != JSON.stringify(currentAppState)) {
       for (let i = 0; i < lobby.connections.length; i++) {
         const c = lobby.connections[i]
@@ -260,9 +260,10 @@ export const share = ({ ui }: any = {}) => {
   }, 1000)
 }
 
-export const updateLobbyRefs = ({ presentMap }: any) => {
+export const updateLobbyRefs = ({ presentMap, mapPrepareMode }: any) => {
   if(lobby) {
     lobby.args.presentMap = presentMap
+    lobby.args.mapPrepareMode = mapPrepareMode
   }
   return lobby
 }

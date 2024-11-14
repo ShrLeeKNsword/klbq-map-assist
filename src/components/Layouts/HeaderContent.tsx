@@ -1,9 +1,9 @@
 import React, { useContext } from 'react'
 import { i18nData } from '../../data/i18n'
-import { Button, Nav, Select } from '@douyinfe/semi-ui'
+import { ButtonGroup, Button, Nav, Select } from '@douyinfe/semi-ui'
 import Title from '@douyinfe/semi-ui/lib/es/typography/title'
 import { MapName } from '../../data/maplist'
-import { MdOutlineTranslate, MdLightMode, MdDarkMode, MdCastConnected } from 'react-icons/md'
+import { MdOutlineTranslate, MdLightMode, MdDarkMode, MdCastConnected, MdContentCopy } from 'react-icons/md'
 import ChangeMapButton from '../buttons/changeMapButton'
 import ChangeHighlightButton from '../buttons/changeHighlightButton'
 import Pikaso, { BaseShapes } from 'pikaso'
@@ -42,6 +42,10 @@ const HeaderContent: React.FC<HeaderContentProps> = ({
     changeTheme(currentTheme === "dark" ? "light" : "dark")
   }
 
+  const copyUrl = () => {
+    navigator.clipboard.writeText(location.href).then(function () {/* on clipboard success */ }, function () {/* on clipboard failed */ })
+  }
+
   return (
     <div style={{ width: '100%' }}>
       <Nav mode='horizontal'>
@@ -61,7 +65,10 @@ const HeaderContent: React.FC<HeaderContentProps> = ({
           <ChangeHighlightButton content={currentLanguage.mapsetting.TeamHighlight} mapPrepareMode={mapPrepareMode} setMapPrepareMode={setMapPrepareMode} />
         </Nav.Item>
         <Nav.Item style={{ flexDirection: 'column', justifyContent: 'center' }}>
-          <Button icon={<MdCastConnected style={{fontSize:32}}/>} size={'large'} onClick={() => { share() }} />
+          <ButtonGroup>
+            <Button icon={<MdCastConnected style={{ fontSize: 32 }} />} size={'large'} onClick={() => { share() }} />
+            <Button icon={<MdContentCopy style={{ fontSize: 32 }} />} size={'large'} onClick={() => { copyUrl() }} />
+          </ButtonGroup>
         </Nav.Item>
         <Nav.Footer>
           <Announcement name={currentLanguage.announcement} content={currentLanguage.announcementdata} />
