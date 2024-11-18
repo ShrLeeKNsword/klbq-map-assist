@@ -5,6 +5,7 @@ import { MdDelete, MdDeleteForever, MdDraw, MdRedo, MdUndo } from 'react-icons/m
 import ToolPopoverButton from './Buttons/tool-popover-button'
 import ColorPopover from './Popovers/ColorPopover'
 import { FaMousePointer, FaUpload, FaDownload } from 'react-icons/fa'
+import { RxText } from "react-icons/rx"
 import ToolNormalButton from './Buttons/tool-normal-button'
 import { PiArrowRightFill, PiLineSegmentFill } from 'react-icons/pi'
 import ToolColorButton from './Buttons/tool-color-button'
@@ -20,6 +21,8 @@ interface SiderToolsProps {
   penWidth: number
   lineWidth: number
   setLineWidth: React.Dispatch<React.SetStateAction<number>>
+  fontSize: number
+  setFontSize: React.Dispatch<React.SetStateAction<number>>
   penColor: string
   editor: Pikaso<BaseShapes> | null
   setPenColor: React.Dispatch<React.SetStateAction<string>>
@@ -35,6 +38,8 @@ const SiderTools: React.FC<SiderToolsProps> = ({
   penColor,
   lineWidth,
   setLineWidth,
+  fontSize,
+  setFontSize,
   editor,
   setPenColor,
   save,
@@ -84,6 +89,16 @@ const SiderTools: React.FC<SiderToolsProps> = ({
         setpenWidth={setLineWidth}
         penColor={penColor}
       />
+      <span draggable onDragStart={(e) => { e.dataTransfer.setData('action', 'addText') }}>
+        <ToolPopoverButton
+          icon={RxText}
+          isActiveTool={canvasTool === 'SELECT'}
+          onClick={() => setTool('SELECT')}
+          penWidth={fontSize}
+          setpenWidth={setFontSize}
+          penColor={penColor}
+        />
+      </span>
       <ColorPopover setPenColor={setPenColor}>
         <div
           style={{

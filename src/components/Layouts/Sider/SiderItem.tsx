@@ -41,7 +41,6 @@ export const CharacterSiderItem: React.FC<CharacterSiderItemProps> = ({ data, si
         <div style={{ display: "flex", height: "100%" }}>
           <div style={{ height: "360px", width: "200px", margin: "0 auto" }}>
             <img draggable="false" src={sideData.bodyImage} style={{ height: "360px", filter: "drop-shadow(0 0 5px rgba(var(--semi-grey-7))" }} />
-            {/* <img draggable="false" src="https://s2.loli.net/2024/10/26/iD1g23pnC9d6hVM.png" style={{ height: "360px", filter: "drop-shadow(0 0 5px rgba(var(--semi-grey-7))" }} /> */}
             <div style={{ position: "absolute", left: "40px", bottom: "60px", height: "25px", display: "flex", alignContent: "center", filter: "drop-shadow(0 0 5px rgba(var(--semi-grey-7))" }}>
               {currentLanguage.characterInfo[data.id].Type == currentLanguage.characterTypes.Duellist ? <img draggable="false" src="https://s2.loli.net/2024/10/27/c7QDINMXFyuav6b.png" style={{ filter: "invert(100%)", height: "25px" }} /> : <></>}
               {currentLanguage.characterInfo[data.id].Type == currentLanguage.characterTypes.Support ? <img draggable="false" src="https://s2.loli.net/2024/11/11/seAIvkZLtWGrlwd.png" style={{ filter: "invert(100%)", height: "25px" }} /> : <></>}
@@ -72,24 +71,6 @@ export const CharacterSiderItem: React.FC<CharacterSiderItemProps> = ({ data, si
                 <div style={{ margin: "2px", maxHeight: "100%", overflowY: "scroll", filter: "drop-shadow(0 0 5px rgba(var(--semi-grey-2))" }} className='none-scrollbar'>
                   {currentLanguage.characterInfo[data.id].skillActiveDescription}
                 </div>
-                {/* <div className='none-scrollbar' style={{ margin: "2px", height: "70px", overflowY: "scroll" }}>
-                  明发射一个电球，其达到最大距离、碰到敌方超弦体时会自动引爆，也可通过手动再次按下技能键后主动引爆。电球会破坏范围内所有敌方单位（包含召唤物）的护甲并造成减速。明进入电场将提升移动速度。
-                </div>
-                <Descriptions
-                  className='none-scrollbar'
-                  style={{ marginTop: "10px", maxHeight: "190px", overflowY: "scroll" }}
-                  align='left'
-                  data={[
-                    { key: "冷却", value: "25秒" },
-                    { key: "最远距离", value: "60米" },
-                    { key: "最短起爆", value: "8米" },
-                    { key: "作用范围", value: "半径5米" },
-                    { key: "移速提升", value: "20%" },
-                    { key: "移速提升", value: "20%" },
-                    { key: "移速提升", value: "20%" },
-                    { key: "移速提升", value: "20%" },
-                  ]}
-                /> */}
               </TabPane>
               <TabPane
                 tab={
@@ -107,9 +88,6 @@ export const CharacterSiderItem: React.FC<CharacterSiderItemProps> = ({ data, si
                 <div style={{ margin: "2px", maxHeight: "100%", overflowY: "scroll", filter: "drop-shadow(0 0 5px rgba(var(--semi-grey-2))" }} className='none-scrollbar'>
                   {currentLanguage.characterInfo[data.id].skillPassiveDescription}
                 </div>
-                {/* <div style={{ margin: "3px" }}>
-                  明使用枪械和主动技能对敌方护甲或护盾造成伤害时，自己的护甲将得到基于该伤害量的回复。绝招持续时间内，被动会回复临时护甲并增加回复量。
-                </div> */}
               </TabPane>
               <TabPane
                 tab={
@@ -127,9 +105,6 @@ export const CharacterSiderItem: React.FC<CharacterSiderItemProps> = ({ data, si
                 <div style={{ margin: "2px", maxHeight: "100%", overflowY: "scroll", filter: "drop-shadow(0 0 5px rgba(var(--semi-grey-2))" }} className='none-scrollbar'>
                   {currentLanguage.characterInfo[data.id].skillUltimateDescription}
                 </div>
-                {/* <div style={{ margin: "3px" }}>
-                  明获得临时护甲并使自己的射击附带可叠加的减速效果。明使用枪械和主动技能对敌人的护甲造成伤害时，可延长该技能持续时间并回复临时护甲。  
-                </div> */}
               </TabPane>
             </Tabs>
           </div>

@@ -10,6 +10,7 @@ interface PikasoMapProps {
   canvasTool: mapTools
   penWidth: number
   lineWidth: number
+  fontSize: number
   load: React.Dispatch<React.SetStateAction<void>>
 }
 
@@ -21,6 +22,7 @@ const DrawMap: React.FC<PikasoMapProps> = ({
   canvasTool,
   penWidth,
   lineWidth,
+  fontSize,
   load
 }) => {
   const rescaleEditor = () => {
@@ -66,6 +68,7 @@ const DrawMap: React.FC<PikasoMapProps> = ({
     canvasTool,
     penWidth,
     lineWidth,
+    fontSize,
     pikasoEditor?.board.background,
     pikasoEditor?.board.stage,
     pikasoEditor?.shapes.line,
@@ -104,29 +107,47 @@ const DrawMap: React.FC<PikasoMapProps> = ({
 
   const handleOnDrop = (e: React.DragEvent<HTMLDivElement>) => {
     const imgLink = e.dataTransfer.getData("imageLink")
-
-
-    const img = new Image()
-    img.src = imgLink
-    img.onload = () => {
-      const size = 35
-      const ratio = img.width / img.height
-
+    const action = e.dataTransfer.getData("action")
+    if(imgLink) {
+      const img = new Image()
+      img.src = imgLink
+      img.onload = () => {
+        const size = 35
+        const ratio = img.width / img.height
+  
+        const rect = (e.target as HTMLCanvasElement)?.getBoundingClientRect()
+        const pikasoSize = pikasoEditor?.board.stage.getSize()
+        const scale = { x: pikasoSize!.width / rect!.width, y: pikasoSize!.height / rect!.height }
+        const diff = { x: e.clientX - rect!.left, y: e.clientY - rect!.top }
+        const imgPos = { x: diff.x * scale.x, y: diff.y * scale.y }
+  
+        pikasoEditor?.shapes.image.insert(imgLink, {
+          x: imgPos.x - size / 2,
+          y: imgPos.y - size / 2,
+          width: size * ratio,
+          height: size
+        })
+      }
+    } else if (action == 'addText') {
       const rect = (e.target as HTMLCanvasElement)?.getBoundingClientRect()
       const pikasoSize = pikasoEditor?.board.stage.getSize()
       const scale = { x: pikasoSize!.width / rect!.width, y: pikasoSize!.height / rect!.height }
       const diff = { x: e.clientX - rect!.left, y: e.clientY - rect!.top }
-      const imgPos = { x: diff.x * scale.x, y: diff.y * scale.y }
+      const textPos = { x: diff.x * scale.x, y: diff.y * scale.y }
 
-      pikasoEditor?.shapes.image.insert(imgLink, {
-        x: imgPos.x - size / 2,
-        y: imgPos.y - size / 2,
-        width: size * ratio,
-        height: size
+      const label = pikasoEditor?.shapes.label.insert({
+        container: {
+          x: textPos.x,
+          y: textPos.y
+        },
+        text: {
+          text: 'Type here',
+          fill: penColor,
+          fontSize: fontSize * 16
+        }
       })
-    }
-
-    if(e.dataTransfer.files[0]?.type == 'application/json') {
+      label?.select()
+    } else if(e.dataTransfer.files[0]?.type == 'application/json') {
       let reader = new FileReader();
       reader.onload = function(re) {
         const json = JSON.parse(re.target!.result as string);
