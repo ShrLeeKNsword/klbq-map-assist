@@ -10,6 +10,7 @@ interface PikasoMapProps {
   canvasTool: mapTools
   penWidth: number
   lineWidth: number
+  fontSize: number
   load: React.Dispatch<React.SetStateAction<void>>
 }
 
@@ -21,6 +22,7 @@ const DrawMap: React.FC<PikasoMapProps> = ({
   canvasTool,
   penWidth,
   lineWidth,
+  fontSize,
   load
 }) => {
   const rescaleEditor = () => {
@@ -66,6 +68,7 @@ const DrawMap: React.FC<PikasoMapProps> = ({
     canvasTool,
     penWidth,
     lineWidth,
+    fontSize,
     pikasoEditor?.board.background,
     pikasoEditor?.board.stage,
     pikasoEditor?.shapes.line,
@@ -140,7 +143,7 @@ const DrawMap: React.FC<PikasoMapProps> = ({
         text: {
           text: 'Type here',
           fill: penColor,
-          fontSize: lineWidth * 16
+          fontSize: fontSize * 16
         }
       })
       label?.select()

@@ -21,6 +21,8 @@ interface SiderToolsProps {
   penWidth: number
   lineWidth: number
   setLineWidth: React.Dispatch<React.SetStateAction<number>>
+  fontSize: number
+  setFontSize: React.Dispatch<React.SetStateAction<number>>
   penColor: string
   editor: Pikaso<BaseShapes> | null
   setPenColor: React.Dispatch<React.SetStateAction<string>>
@@ -36,6 +38,8 @@ const SiderTools: React.FC<SiderToolsProps> = ({
   penColor,
   lineWidth,
   setLineWidth,
+  fontSize,
+  setFontSize,
   editor,
   setPenColor,
   save,
@@ -90,8 +94,8 @@ const SiderTools: React.FC<SiderToolsProps> = ({
           icon={RxText}
           isActiveTool={canvasTool === 'SELECT'}
           onClick={() => setTool('SELECT')}
-          penWidth={lineWidth}
-          setpenWidth={setLineWidth}
+          penWidth={fontSize}
+          setpenWidth={setFontSize}
           penColor={penColor}
         />
       </span>

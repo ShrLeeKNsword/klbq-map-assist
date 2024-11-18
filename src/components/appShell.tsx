@@ -68,6 +68,7 @@ const AppShell: React.FC<AppShellProps> = ({ characterData }) => {
 
 	const [penWidth, setpenWidth] = useState(2)
 	const [lineWidth, setLineWidth] = useState(2)
+	const [fontSize, setFontSize] = useState(2)
 
 	const [mapPrepareMode, setMapPrepareMode] = useState(true)
 	const [presentMapURL, setPresentMapURL] = useState({
@@ -150,6 +151,7 @@ const AppShell: React.FC<AppShellProps> = ({ characterData }) => {
 				currentMap={mapPrepareMode ? presentMapURL.imgPrepareLink : presentMapURL.imgBlankLink}
 				canvasTool={canvasTool}
 				lineWidth={lineWidth}
+				fontSize={fontSize}
 				penColor={penColor}
 				penWidth={penWidth}
 				load={loadJson}
@@ -220,6 +222,8 @@ const AppShell: React.FC<AppShellProps> = ({ characterData }) => {
 									setpenWidth={setpenWidth}
 									setLineWidth={setLineWidth}
 									lineWidth={lineWidth}
+									fontSize={fontSize}
+									setFontSize={setFontSize}
 									editor={drawCanvasEditor}
 									setPenColor={setpenColor}
 									save={saveFile}
