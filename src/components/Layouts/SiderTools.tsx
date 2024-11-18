@@ -3,6 +3,7 @@ import { mapTools } from '../../utils/canvasConstants'
 import Pikaso, { BaseShapes, DrawType } from 'pikaso'
 import { MdDelete, MdDeleteForever, MdDraw, MdRedo, MdUndo } from 'react-icons/md'
 import ToolPopoverButton from './Buttons/tool-popover-button'
+import ToolTextPopoverButton from './Buttons/tool-popover-text-button'
 import ColorPopover from './Popovers/ColorPopover'
 import { FaMousePointer, FaUpload, FaDownload } from 'react-icons/fa'
 import { RxText } from "react-icons/rx"
@@ -90,7 +91,7 @@ const SiderTools: React.FC<SiderToolsProps> = ({
         penColor={penColor}
       />
       <span draggable onDragStart={(e) => { e.dataTransfer.setData('action', 'addText') }}>
-        <ToolPopoverButton
+        <ToolTextPopoverButton
           icon={RxText}
           isActiveTool={canvasTool === 'SELECT'}
           onClick={() => setTool('SELECT')}
