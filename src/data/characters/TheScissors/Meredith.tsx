@@ -22,7 +22,7 @@ const character: characterData = {
 				generateOnCanvas: ultimate
 			},
 			sub: {
-				skillIcon: 'https://cdn.sa.net/2024/11/19/fvrVnE8Ocl21Dpz.png',
+				skillIcon: 'https://cdn.sa.net/2024/11/19/7sSae9nRhO2Ddzg.png',
 				generateOnCanvas: sub
 			}
 		}
