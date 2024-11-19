@@ -220,8 +220,8 @@ export default {
 			skillPassiveDescription: `米雪儿被武器直接命中时，可以使造成伤害的敌人进入透视状态。`,
 			skillUltimateName: `火力大喵`,
 			skillUltimateDescription: `米雪儿部署一架强大火力的火力炮艇，火力炮艇将自动攻击一定范围内的敌方角色。`,
-			subName: `subName`,
-			subDescription: `subDescription`,
+			subName: `破法喵喵`,
+			subDescription: `米雪儿抛出能附着在建筑表面的破法喵喵，破法喵喵可被米雪儿主动激活，并在短暂延迟后对周围敌人造成沉默效果。`,
 		},
 		Nobunaga: {
 			Name: "信",
@@ -232,8 +232,8 @@ export default {
 			skillPassiveDescription: `开镜状态下的信开始积蓄能量，能量续满后，他的射击将使敌人在开镜状态下丢失准星。`,
 			skillUltimateName: `脉冲过载`,
 			skillUltimateDescription: `信原地部署一个向四周不断发射脉冲波的脉冲装置，被脉冲波命中的敌人将被透视给全体队友且进入一段时间的沉默状态。`,
-			subName: `subName`,
-			subDescription: `subDescription`,
+			subName: `脉冲地雷`,
+			subDescription: `信向目标方向投出一个地雷，地雷部署完毕后会进入敌方靠近后才会显形的隐身状态，当地雷检测到敌人后会引爆并对范围内的敌人造成持续伤害。`,
 		},
 		Kokona: {
 			Name: "心夏",
@@ -244,8 +244,8 @@ export default {
 			skillPassiveDescription: `心夏会在未受击时缓慢回复自身生命值，同时在救援友方角色时，心夏会放出援护无人机自动扶起队友。`,
 			skillUltimateName: `卡丘重塑`,
 			skillUltimateDescription: `心夏选择一个阵亡的友方角色，将其复活在自己附近。`,
-			subName: `subName`,
-			subDescription: `subDescription`,
+			subName: `医疗站点`,
+			subDescription: `心夏可以定点部署一个治疗无人机，无人机会制造一大片治疗场，处在区域内的队友会持续恢复生命值，该恢复效果不会被伤害中断。`,
 		},
 		Yvette: {
 			Name: "伊薇特",
@@ -256,8 +256,8 @@ export default {
 			skillPassiveDescription: `伊薇特站立不动一段时间后，会进入迷彩状态，远处的敌人看不见伊薇特，当愈发靠近时才会慢慢显示其轮廓。`,
 			skillUltimateName: `爽爽霜风`,
 			skillUltimateDescription: `伊薇特召唤出一只巨大的冰霜熊，分三段展开极寒领域，敌人在此将受到打滑和易伤，降低射速及人机工效的效果。`,
-			subName: `subName`,
-			subDescription: `subDescription`,
+			subName: `坚坚冰柱`,
+			subDescription: `伊薇特可以投掷出一个冰球，冰球落在地面后会在落点生成一块巨大的冰柱，冰柱拥有高额生命值且会阻挡敌我双方的子弹，站在冰柱附近的敌人会受到打滑和易伤的效果，冰柱无法在有角色或召唤物的地方生成。`,
 		},
 		Flavia: {
 			Name: "芙拉薇娅",
@@ -268,8 +268,8 @@ export default {
 			skillPassiveDescription: `芙拉薇娅累计受到少量伤害时会减少主动技能的冷却时间；累计受到大量伤害时会获得临时绝招点数，通过此方式获得的绝招点数当前回合有效。`,
 			skillUltimateName: `幻梦化蝶`,
 			skillUltimateDescription: `芙拉薇娅以自身为中心释放致幻领域，领域内的敌方单位造成致命伤害时，芙拉薇娅会化身为蝴蝶，短时间后重塑身体，继续战斗。领域外敌方无视重塑规则但仅在被攻击时可视芙拉薇娅。`,
-			subName: `subName`,
-			subDescription: `subDescription`,
+			subName: `遁入幻境`,
+			subDescription: `芙拉薇娅引动弦能，以自身为中心生成遮蔽视野的烟雾。芙拉薇娅可以在化蝶状态使用该技能，这样做将立即解除化蝶状态。`,
 		},
 		Yugiri: {
 			Name: "忧雾",
@@ -280,8 +280,8 @@ export default {
 			skillPassiveDescription: `使用主武器对敌方角色造成一定量的生命值伤害后，会引爆敌人体内的腐蚀性毒素，临时腐蚀附近敌方角色的护甲。`,
 			skillUltimateName: `凌毒侵蚀`,
 			skillUltimateDescription: `召唤大范围的毒雾向前方缓慢推进，腐蚀范围内敌方角色的护甲上限。`,
-			subName: `subName`,
-			subDescription: `subDescription`,
+			subName: `腐蚀溶液`,
+			subDescription: `忧雾向目标区域投掷毒液装置，毒液装置落地时会爆开并制造一片腐蚀区域，对区域内的敌人造成伤害与减速效果，弦化状态的敌人受到额外伤害。`,
 		},
 		Ming: {
 			Name: "明",
@@ -292,8 +292,8 @@ export default {
 			skillPassiveDescription: `明使用枪械和主动技能对敌方护甲或护盾造成伤害时，自己的护甲将得到基于该伤害量的回复。绝招持续时间内，被动会回复临时护甲并增加回复量。`,
 			skillUltimateName: `强雷铸甲`,
 			skillUltimateDescription: `明获得临时护甲并使自己的射击附带可叠加的减速效果。明使用枪械和主动技能对敌人的护甲造成伤害时，可延长该技能持续时间并回复临时护甲。`,
-			subName: `subName`,
-			subDescription: `subDescription`,
+			subName: `爆闪电球`,
+			subDescription: `明可以发射一个闪光电球，再次按下技能键后或是到达最大飞行时间后引爆，并对周围所有敌人造成致盲效果，引爆前有一段延迟，延迟期间内闪光电球可以被摧毁。`,
 		},
 		Lawine: {
 			Name: "拉薇",
@@ -304,8 +304,8 @@ export default {
 			skillPassiveDescription: `拉薇主武器命中敌方单位时，会将其短暂透视给自己。`,
 			skillUltimateName: `遁影藏踪`,
 			skillUltimateDescription: `拉薇于自身正前方生成一片矩形磁场。进入磁场时，拉薇将进入隐身状态。隐身状态下的拉薇无法射击。`,
-			subName: `subName`,
-			subDescription: `subDescription`,
+			subName: `闪影猎刃`,
+			subDescription: `拉薇可以扔出一把闪光脉冲刀，脉冲刀插在障碍物上后引爆，并对周围所有敌人造成致盲效果，引爆前有一段延迟，延迟期间内飞刀可以被摧毁。`,
 		},
 		Meredith: {
 			Name: "梅瑞狄斯",
@@ -316,8 +316,8 @@ export default {
 			skillPassiveDescription: `滞空状态下，当梅瑞狄斯进入技能瞄准、武器瞄准或者战术瞄准的状态时，自身的下落速度会被降低。`,
 			skillUltimateName: `流沙大葬`,
 			skillUltimateDescription: `梅瑞狄斯投掷出一个能制造巨大沙暴领域的金字塔。沙暴领域可以遮蔽视野，并暂时削减敌方角色生命值。`,
-			subName: `subName`,
-			subDescription: `subDescription`,
+			subName: `盲眼迷沙`,
+			subDescription: `梅瑞狄斯向目标方向发射弦能球体，于落点处创造一片完全遮蔽视野的环状黄沙领域。`,
 		},
 		Reiichi: {
 			Name: "令",
@@ -328,8 +328,8 @@ export default {
 			skillPassiveDescription: `在保持开镜状态时，令每一段时间会扫描一遍前方敌人及其召唤物，使其透视，仅令可见。`,
 			skillUltimateName: `庇护圣屏`,
 			skillUltimateDescription: `立即刷新主动技能，在持续时间内增强光幕，使其能够格挡所有来自敌方角色的子弹。`,
-			subName: `subName`,
-			subDescription: `subDescription`,
+			subName: `圣屏突进`,
+			subDescription: `令释放一个可以向前推进的光幕，该光幕在准备释放阶段能够设置最终落点。`,
 		},
 		Kanami: {
 			Name: "香奈美",
@@ -340,8 +340,8 @@ export default {
 			skillPassiveDescription: `香奈美的主武器发射子弹之后，会以子弹落点范围产生一个圆形音波区，处在音波区内的敌人信息会被暴露给香奈美自己。`,
 			skillUltimateName: `演出开始`,
 			skillUltimateDescription: `香奈美在战场内展开舞台，舞台展开后开始播放音乐，所有在舞台一定范围内的敌人都会被歌声吸引、减速、丢失准星的同时还会被晕眩，降低射速。`,
-			subName: `subName`,
-			subDescription: `subDescription`,
+			subName: `律动旋风`,
+			subDescription: `香奈美可以扔出一个迷你音响，制造一大片声风场区域，该风场会将所有进入风场内的角色吹起。在被吹起期间，敌方角色受到晕眩效果，友方角色获得移速提升效果，上述效果在离开风场区域后还会持续一段时间。`,
 		},
 		Eika: {
 			Name: "艾卡",
@@ -352,8 +352,8 @@ export default {
 			skillPassiveDescription: `每次射击命中敌人会积攒热量，最多100值。满热时对弦化敌人造伤能力增强。满热下，其他技能可以消耗热量获得强化。`,
 			skillUltimateName: `烈焰风暴`,
 			skillUltimateDescription: `本回合内最多丢出3道烈焰风暴，吹飞敌人并造成火焰伤害。每发消耗100热量所获增益：风暴更大，伤害更高，且敌人高亮。`,
-			subName: `subName`,
-			subDescription: `subDescription`,
+			subName: `爆焰热弹`,
+			subDescription: `艾卡可以快速丢出一枚爆焰火球，火球落地时造成伤害，对弦化状态的敌人造成额外伤害。消耗100热量所获增益：提升伤害并附带减速效果。`,
 		},
 		Fragrans: {
 			Name: "珐格兰丝",
@@ -364,8 +364,8 @@ export default {
 			skillPassiveDescription: `珐格兰丝会散发淡淡的恢复香氛，附近的队友和自己都会缓慢恢复生命值。`,
 			skillUltimateName: `激昂芬芳`,
 			skillUltimateDescription: `珐格兰丝会以自己为中心制造强烈香氛区域，区域内友军会获得高额射速、移速提升和生命值恢复，该效果不会衰减且生命值恢复不会被伤害中断，释放期间珐格兰丝无法使用武器，但会获得大幅减伤。`,
-			subName: `subName`,
-			subDescription: `subDescription`,
+			subName: `香语众氛`,
+			subDescription: `珐格兰丝投掷出一瓶治疗香水，治疗香水触碰到障碍物时爆炸生效，制造一片回复生命区域，进入区域内的人会被赋予一段缓慢回复生命效果，即使离开区域也会持续一段时间。`,
 		},
 		Celestia: {
 			Name: "星绘",
@@ -376,8 +376,8 @@ export default {
 			skillPassiveDescription: `星绘周围有友方角色时，可缓慢恢复该角色与自身的护甲值。`,
 			skillUltimateName: `星空之门`,
 			skillUltimateDescription: `星绘选择一个友方角色，为该队友和自身提供临时护甲值，并开始蓄能。蓄能完毕后，星绘将传送到该角色身边，蓄能期间按下大招键可取消传送（不取消护甲增益）。`,
-			subName: `subName`,
-			subDescription: `subDescription`,
+			subName: `塑甲星芒`,
+			subDescription: `星绘向目标区域掷出星芒，星芒触碰到障碍物时爆炸生效，制造一片回复护甲区域，进入区域内的人会被赋予一段缓慢回复护甲效果，即使离开区域也会持续一段时间。`,
 		},
 		Audrey: {
 			Name: "奥黛丽",
@@ -388,8 +388,8 @@ export default {
 			skillPassiveDescription: `奥黛丽进入架枪模式或进入开镜模式时，召唤护盾守护自身正面，且架枪模式下会获得额外护盾最大值。`,
 			skillUltimateName: `狂轰滥炸`,
 			skillUltimateDescription: `奥黛丽架设一把榴弹发射器，可发射六枚榴弹炮。榴弹炮爆炸后会分裂成弹跳炸弹，弹跳炸弹爆炸时将于地面生成火海。`,
-			subName: `subName`,
-			subDescription: `subDescription`,
+			subName: `警报雷达`,
+			subDescription: `奥黛丽丢出一个警报雷达，雷达落地后展开并对周围持续进行扫描，扫描到敌人时提示敌人的数量并对敌人施加短暂透视效果。`,
 		},
 		Maddelena: {
 			Name: "玛德蕾娜",
@@ -400,8 +400,8 @@ export default {
 			skillPassiveDescription: `玛德蕾娜使用主武器命中敌方角色时，可使敌方角色减速并暴露脚印。`,
 			skillUltimateName: `颜料泡泡`,
 			skillUltimateDescription: `玛德蕾娜发射巨大泡泡，泡泡内的敌人将被禁止弦化且暴露脚印。泡泡爆炸后将对爆炸范围内的敌人施加额外的减速和易伤效果。`,
-			subName: `subName`,
-			subDescription: `subDescription`,
+			subName: `颜料泡涌`,
+			subDescription: `玛德蕾娜向前方发射颜料泡，再次按下技能键后颜料泡会停留在原地，颜料泡会对碰到的敌人造成减速和弦化禁止效果。`,
 		},
 		Fuchsia: {
 			Name: "绯莎",
@@ -412,8 +412,8 @@ export default {
 			skillPassiveDescription: `绯莎参与击破时，死亡的敌人将原地掉落能量晶体。绯莎可以靠近并吸收能量晶体，回复自身生命值。绯莎第一次吸取能量晶体时可增加自身生命值上限。`,
 			skillUltimateName: `浴血狂戮`,
 			skillUltimateDescription: `绯莎大幅度提升自身的射速和人机工效，并使得主动技能可令视野内敌人高亮。吸收能量晶体将延长该效果持续时间。`,
-			subName: `subName`,
-			subDescription: `subDescription`,
+			subName: `猩红猛冲`,
+			subDescription: `绯莎消耗当前一定百分比生命值，获得移速提升效果，持续一段时间。`,
 		},
 		BaiMo: {
 			Name: "白墨",
@@ -424,8 +424,8 @@ export default {
 			skillPassiveDescription: `白墨的主武器单次射击命中敌人造成至少50点伤害后，使其弦化禁止。`,
 			skillUltimateName: `重返街头`,
 			skillUltimateDescription: `白墨原地放置一个重生信标，死亡或倒地时可以立即在信标处重生。白墨可以选择主动返回信标，并回复全部生命值。`,
-			subName: `subName`,
-			subDescription: `subDescription`,
+			subName: `爆炸涂鸦`,
+			subDescription: `白墨快速向前投掷出颜料罐，颜料罐爆炸时对周围敌人造成禁止弦化效果。`,
 		},
 		Galatea: {
 			Name: "加拉蒂亚",
@@ -436,8 +436,8 @@ export default {
 			skillPassiveDescription: `当加拉蒂亚脱离墙面时，会在贴墙位置留下一个分身，每次下墙都会重新生成分身，当分身受伤时该被动进入冷却。加拉蒂亚的每一个分身在生成时都可以短暂探测周围无建筑障碍物遮挡的敌人给加拉蒂亚及全体友方，攻击分身的敌人也会被暂时暴露。`,
 			skillUltimateName: `牌影戏法`,
 			skillUltimateDescription: `加拉蒂亚朝前方随意投出大量卡牌，每一个卡牌都可以生成分身并让加拉蒂亚传送。`,
-			subName: `subName`,
-			subDescription: `subDescription`,
+			subName: `致盲牌影`,
+			subDescription: `加拉蒂亚可以释放一个特殊的卡片分身，加拉蒂亚无法传送到该分身的位置，该分身被敌人摧毁时，会对周围所有敌人造成闪光效果。`,
 		}
 	},
 	characterTypes: {
@@ -445,7 +445,7 @@ export default {
 		Support: '支援',
 		Controller: '控场',
 		Duellist: '决斗',
-		Vanguard: '先锋'
+		Initiator: '先锋'
 	},
 	grenades: {
 		Flashbang: '闪光弹',

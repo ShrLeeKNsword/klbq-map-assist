@@ -46,7 +46,7 @@ export const CharacterSiderItem: React.FC<CharacterSiderItemProps> = ({ data, si
               {currentLanguage.characterInfo[data.id].Type == currentLanguage.characterTypes.Support ? <img draggable="false" src="https://s2.loli.net/2024/11/11/seAIvkZLtWGrlwd.png" style={{ filter: "invert(100%)", height: "25px" }} /> : <></>}
               {currentLanguage.characterInfo[data.id].Type == currentLanguage.characterTypes.Controller ? <img draggable="false" src="https://s2.loli.net/2024/11/11/oLVSxJBTrynRv7F.png" style={{ filter: "invert(100%)", height: "25px" }} /> : <></>}
               {currentLanguage.characterInfo[data.id].Type == currentLanguage.characterTypes.Sentinel ? <img draggable="false" src="https://s2.loli.net/2024/11/11/jEuQg1bt2veBrTP.png" style={{ filter: "invert(100%)", height: "25px" }} /> : <></>}
-              {currentLanguage.characterInfo[data.id].Type == currentLanguage.characterTypes.Vanguard ? <img draggable="false" src="https://s2.loli.net/2024/11/11/OfZRtlo2ICDKNHG.png" style={{ filter: "invert(100%)", height: "25px" }} /> : <></>}
+              {currentLanguage.characterInfo[data.id].Type == currentLanguage.characterTypes.Initiator ? <img draggable="false" src="https://s2.loli.net/2024/11/11/OfZRtlo2ICDKNHG.png" style={{ filter: "invert(100%)", height: "25px" }} /> : <></>}
               <span style={{ fontSize: "18px", margin: "1.5px", marginLeft: "5px", color: "white" }}><strong>{currentLanguage.characterInfo[data.id].Type}</strong></span>
             </div>
             <div style={{ position: "absolute", left: "35px", bottom: "90px", height: "25px", display: "flex", alignContent: "center", filter: "drop-shadow(0 0 5px rgba(var(--semi-grey-7))" }}>

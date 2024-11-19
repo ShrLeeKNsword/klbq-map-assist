@@ -445,7 +445,7 @@ export default {
 		Support: 'サポート',
 		Controller: 'コントローラー',
 		Duellist: 'デュエリスト',
-		Vanguard: 'イニシエーター'
+		Initiator: 'イニシエーター'
 	},
 	grenades: {
 		Flashbang: '閃光弹',

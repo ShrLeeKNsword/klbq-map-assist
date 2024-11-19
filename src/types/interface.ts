@@ -13,7 +13,7 @@ interface CharacterTypes {
 	Support: string,
 	Controller: string,
 	Duellist: string,
-	Vanguard: string
+	Initiator: string
 }
 
 interface CharacterInfo {
