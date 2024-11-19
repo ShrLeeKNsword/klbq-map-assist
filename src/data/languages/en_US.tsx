@@ -296,7 +296,7 @@ export default {
 		},
 		Lawine: {
 			Name: "Lawine",
-			Type: "Vanguard",
+			Type: "Initiator",
 			skillActiveName: `Pulse Knife`,
 			skillActiveDescription: `Throws the Pulse Knife to create a large magnetic field, slowly highlight enemies within range to Lawine and her teammates. The pulse knife will disappear immediately after a failed scan. The pulse knife can scan up to 3 times and can be destroyed by any weapons & nades.`,
 			skillPassiveName: `Exposure Trace`,
@@ -332,7 +332,7 @@ export default {
 		},
 		Kanami: {
 			Name: "Kanami",
-			Type: "Vanguard",
+			Type: "Initiator",
 			skillActiveName: `Symphony`,
 			skillActiveDescription: `Kanami infuses her sniper with her melody, then shoot to any surface which will resonate and hightlight all enemy in it radius for Kanami & teammates.`,
 			skillPassiveName: `Sonic Boom`,
@@ -428,7 +428,7 @@ export default {
 		},
 		Galatea: {
 			Name: "Galatea",
-			Type: "Vanguard",
+			Type: "Initiator",
 			skillActiveName: `Flying Cards Flash`,
 			skillActiveDescription: `Galatea releases a card that flies out in an arc, and when the card touches the ground or wall, a clone will be generated, and Galatea can teleport to the location of the clone by pressing the interaction button, and the clone can be destroyed. Each clone can detect visible enemies within a 10-meter radius and expose them to Galatea and all of her teammates, as well as enemies attacking the clone for a short period of time`,
 			skillPassiveName: `Fraudulent Shadow`,
@@ -442,7 +442,7 @@ export default {
 		Support: 'Support',
 		Controller: 'Controller',
 		Duellist: 'Duellist',
-		Vanguard: 'Vanguard'
+		Initiator: 'Initiator'
 	},
 	grenades: {
 		Flashbang: 'Flashbang',
