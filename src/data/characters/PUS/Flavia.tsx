@@ -20,6 +20,10 @@ const character: characterData = {
 			ultimate: {
 				skillIcon: 'https://s2.loli.net/2024/09/25/ezsVQS62bY5iBcG.png',
 				generateOnCanvas: ultimate
+			},
+			sub: {
+				skillIcon: 'https://cdn.sa.net/2024/11/19/lYbBufA6raXvQ1n.png',
+				generateOnCanvas: sub
 			}
 		}
 	}
@@ -34,6 +38,10 @@ function passive() {
 }
 
 function ultimate() {
+	return;
+}
+
+function sub() {
 	return;
 }
 

@@ -25,6 +25,8 @@ interface CharacterInfo {
 	skillPassiveDescription: string,
 	skillUltimateName: string,
 	skillUltimateDescription: string
+	subName: string
+	subDescription: string
 }
 
 interface MarkBox {

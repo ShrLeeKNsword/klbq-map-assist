@@ -51,6 +51,10 @@ export interface sideData {
 			skillIcon: string;
 			generateOnCanvas: () => void;
 		}
+		sub: {
+			skillIcon: string;
+			generateOnCanvas: () => void;
+		}
 	}
 }
 
