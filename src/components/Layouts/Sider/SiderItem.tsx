@@ -37,7 +37,7 @@ export const CharacterSiderItem: React.FC<CharacterSiderItemProps> = ({ data, si
   return (
     <Popover
       position='rightTop' trigger='click'
-      content={<Card style={{ width: '500px', height: "100%", margin: "0 auto", overflow: "hidden" }}>
+      content={<Card style={{ width: '540px', height: "100%", margin: "0 auto", overflow: "hidden" }}>
         <div style={{ display: "flex", height: "100%" }}>
           <div style={{ height: "360px", width: "200px", margin: "0 auto" }}>
             <img draggable="false" src={sideData.bodyImage} style={{ height: "360px", filter: "drop-shadow(0 0 5px rgba(var(--semi-grey-7))" }} />
@@ -104,6 +104,23 @@ export const CharacterSiderItem: React.FC<CharacterSiderItemProps> = ({ data, si
                 <div style={{ fontWeight: "bold" }}>{currentLanguage.characterInfo[data.id].skillUltimateName}</div>
                 <div style={{ margin: "2px", maxHeight: "100%", overflowY: "scroll", filter: "drop-shadow(0 0 5px rgba(var(--semi-grey-2))" }} className='none-scrollbar'>
                   {currentLanguage.characterInfo[data.id].skillUltimateDescription}
+                </div>
+              </TabPane>
+              <TabPane
+                tab={
+                  <span draggable onDragStart={(e) => { onDragStartImage(e, sideData.skills.sub.skillIcon) }}>
+                    <Avatar
+                      src={sideData.skills.sub.skillIcon}
+                      style={{ margin: '0 auto', height: "40px", width: "40px" }}
+                      hoverMask={<HoverMask />}
+                    />
+                  </span>
+                }
+                itemKey="4"
+              >
+                <div style={{ fontWeight: "bold" }}>{currentLanguage.characterInfo[data.id].subName}</div>
+                <div style={{ margin: "2px", maxHeight: "100%", overflowY: "scroll", filter: "drop-shadow(0 0 5px rgba(var(--semi-grey-2))" }} className='none-scrollbar'>
+                  {currentLanguage.characterInfo[data.id].subDescription}
                 </div>
               </TabPane>
             </Tabs>

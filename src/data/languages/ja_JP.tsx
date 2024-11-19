@@ -219,7 +219,9 @@ export default {
 			skillPassiveName: `索敵ジャミング`,
 			skillPassiveDescription: `ミシェルが敵からダメージを受けると、その敵は可視化状態になる`,
 			skillUltimateName: `ネコ型ガンドローン`,
-			skillUltimateDescription: `ミシェルは強力な火力を持つガンドローンを配置する。ガンドローンは一定範囲内の敵を自動で攻撃する`
+			skillUltimateDescription: `ミシェルは強力な火力を持つガンドローンを配置する。ガンドローンは一定範囲内の敵を自動で攻撃する`,
+			subName: `subName`,
+			subDescription: `subDescription`,
 		},
 		Nobunaga: {
 			Name: "信長",
@@ -229,7 +231,9 @@ export default {
 			skillPassiveName: `ブラインドパルス`,
 			skillPassiveDescription: `信長はADSモードで弾をチャージできる。完全にチャージされた弾が敵に命中すると、敵の照準線が消える`,
 			skillUltimateName: `オーバーロード`,
-			skillUltimateDescription: `信長はパルス発生装置を設置する。この装置から発射されるパルスにスキャンされた敵は可視化され、沈黙状態になる。可視化された敵の姿はチーム全体に共有される`
+			skillUltimateDescription: `信長はパルス発生装置を設置する。この装置から発射されるパルスにスキャンされた敵は可視化され、沈黙状態になる。可視化された敵の姿はチーム全体に共有される`,
+			subName: `subName`,
+			subDescription: `subDescription`,
 		},
 		Kokona: {
 			Name: "心夏",
@@ -239,7 +243,9 @@ export default {
 			skillPassiveName: `救急処置`,
 			skillPassiveDescription: `戦闘を離脱すると自身のHPをゆっくり回復する。心夏が味方を救援する時に、ヒーリングドローンを放出してチームメイトを戦場に復帰させる`,
 			skillUltimateName: `リモデリング`,
-			skillUltimateDescription: `心夏は死亡した味方を一人選び、自分の近くで復活させる`
+			skillUltimateDescription: `心夏は死亡した味方を一人選び、自分の近くで復活させる`,
+			subName: `subName`,
+			subDescription: `subDescription`,
 		},
 		Yvette: {
 			Name: "イヴェット",
@@ -249,7 +255,9 @@ export default {
 			skillPassiveName: `コソコソゆきがくれ`,
 			skillPassiveDescription: `イヴェットは静止した状態で一定時間が経過するとカモフラージュ状態に入り、遠方の敵には見えなくなり、敵が近づくと徐々に姿が現れる`,
 			skillUltimateName: `ブルブルぶりざーど`,
-			skillUltimateDescription: `イヴェットは巨大なシロクマを召喚し、3回連続で極寒フィールドを展開する。フィールド内の敵はスリップ状態と弱体化状態になり、発射速度とエルゴノミクスが低下する`
+			skillUltimateDescription: `イヴェットは巨大なシロクマを召喚し、3回連続で極寒フィールドを展開する。フィールド内の敵はスリップ状態と弱体化状態になり、発射速度とエルゴノミクスが低下する`,
+			subName: `subName`,
+			subDescription: `subDescription`,
 		},
 		Flavia: {
 			Name: "フラヴィア",
@@ -259,7 +267,9 @@ export default {
 			skillPassiveName: `生々流転`,
 			skillPassiveDescription: `フラヴィアはダメージを受けるたびにアクティブスキルのクールダウンが短縮される。大きなダメージを受けると、一時的なアルティメットポイントを獲得する。スキルで獲得したポイントはそのラウンド内のみ有効`,
 			skillUltimateName: `胡蝶の夢`,
-			skillUltimateDescription: `フラヴィアは自身を中心にフィールドを生成する。フィールド内の敵に倒されると、フラヴィアは蝶に変身し、短時間後に戦闘を続ける。フィールド外の敵にはこの効果は適用されない。フィールド外の敵はフラヴィアからの攻撃を受けると、フラヴィアを可視化できる`
+			skillUltimateDescription: `フラヴィアは自身を中心にフィールドを生成する。フィールド内の敵に倒されると、フラヴィアは蝶に変身し、短時間後に戦闘を続ける。フィールド外の敵にはこの効果は適用されない。フィールド外の敵はフラヴィアからの攻撃を受けると、フラヴィアを可視化できる`,
+			subName: `subName`,
+			subDescription: `subDescription`,
 		},
 		Yugiri: {
 			Name: "ユウギリ",
@@ -269,7 +279,9 @@ export default {
 			skillPassiveName: `トキシックミスト`,
 			skillPassiveDescription: `メインウェポンを使用して敵のHPに一定量のダメージを与えたとき、敵の体内の腐食性毒素が爆発し、周囲の敵のアーマーを一時的に低下させる`,
 			skillUltimateName: `ポイズンフォグ`,
-			skillUltimateDescription: `広範囲の毒霧を召喚してゆっくりと前進し、範囲内の敵キャラクターのアーマー上限を減少させる、腐食性の毒素を注入する`
+			skillUltimateDescription: `広範囲の毒霧を召喚してゆっくりと前進し、範囲内の敵キャラクターのアーマー上限を減少させる、腐食性の毒素を注入する`,
+			subName: `subName`,
+			subDescription: `subDescription`,
 		},
 		Ming: {
 			Name: "明",
@@ -279,7 +291,9 @@ export default {
 			skillPassiveName: `エナジードレイン`,
 			skillPassiveDescription: `明は、武器やアクティブスキルで敵のアーマーやシールドにダメージを与えると、そのダメージに基づいて自身のアーマーを回復できる。アルティメットの持続時間中、パッシブで一時的なアーマーが回復し、回復量が増加する`,
 			skillUltimateName: `プラズマアーマー`,
-			skillUltimateDescription: `明は一時的なアーマーを獲得し、バレットが敵にヒットするとスロー効果を付与する。この効果は最大4層まで重ねられる。敵のアーマーにダメージを与えると、アルティメットの持続時間が延長され、アーマーも回復する`
+			skillUltimateDescription: `明は一時的なアーマーを獲得し、バレットが敵にヒットするとスロー効果を付与する。この効果は最大4層まで重ねられる。敵のアーマーにダメージを与えると、アルティメットの持続時間が延長され、アーマーも回復する`,
+			subName: `subName`,
+			subDescription: `subDescription`,
 		},
 		Lawine: {
 			Name: "ラヴィーネ",
@@ -289,7 +303,9 @@ export default {
 			skillPassiveName: `影映し`,
 			skillPassiveDescription: `メイン武器で敵にダメージを与えると、敵が一時的にラヴィーネに可視化される`,
 			skillUltimateName: `影の帳`,
-			skillUltimateDescription: `ラヴィーネは前方に長方形の地場を生成する。磁場に入るとラヴィーネはステルス状態になり、攻撃とスキル発動が禁止される`
+			skillUltimateDescription: `ラヴィーネは前方に長方形の地場を生成する。磁場に入るとラヴィーネはステルス状態になり、攻撃とスキル発動が禁止される`,
+			subName: `subName`,
+			subDescription: `subDescription`,
 		},
 		Meredith: {
 			Name: "メレディス",
@@ -299,7 +315,9 @@ export default {
 			skillPassiveName: `マミータイム`,
 			skillPassiveDescription: `メレディスが滞空中に武器、スキル、または戦術アイテムを使用し、敵を照準すると、落下速度が減少する`,
 			skillUltimateName: `ドゥアトへの砂葬`,
-			skillUltimateDescription: `メレディスはピラミッドを投げだし、巨大な砂嵐フィールドを生成する。砂嵐は敵の視界を遮り、HPを継続的に減少する`
+			skillUltimateDescription: `メレディスはピラミッドを投げだし、巨大な砂嵐フィールドを生成する。砂嵐は敵の視界を遮り、HPを継続的に減少する`,
+			subName: `subName`,
+			subDescription: `subDescription`,
 		},
 		Reiichi: {
 			Name: "令一",
@@ -309,7 +327,9 @@ export default {
 			skillPassiveName: `夜明けのインサイト`,
 			skillPassiveDescription: `ADSモード中、令一は周期的に前方の敵と召喚物をスキャンする。検出された敵の姿が一時的に令一に可視化される`,
 			skillUltimateName: `聖光のバリア`,
-			skillUltimateDescription: `令一のアクティブスキルは即座にリセットされ、光の幕がバリアにアップグレードされる。敵の弾丸はバリアに遮断される`
+			skillUltimateDescription: `令一のアクティブスキルは即座にリセットされ、光の幕がバリアにアップグレードされる。敵の弾丸はバリアに遮断される`,
+			subName: `subName`,
+			subDescription: `subDescription`,
 		},
 		Kanami: {
 			Name: "香奈美",
@@ -319,7 +339,9 @@ export default {
 			skillPassiveName: `サウンドポップ`,
 			skillPassiveDescription: `メイン武器の弾丸が着地するとソナーゾーンを生成する。ソナーゾーン内の敵は香奈美に短時間表示される`,
 			skillUltimateName: `ショータイム`,
-			skillUltimateDescription: `香奈美はホログラムライブを展開し、周囲の敵を引き寄せる。香奈美の歌に魅了された敵は減速し、照準もジャミングされる同時に、スタンされ、発射速度が低下する`
+			skillUltimateDescription: `香奈美はホログラムライブを展開し、周囲の敵を引き寄せる。香奈美の歌に魅了された敵は減速し、照準もジャミングされる同時に、スタンされ、発射速度が低下する`,
+			subName: `subName`,
+			subDescription: `subDescription`,
 		},
 		Eika: {
 			Name: "アイカ",
@@ -329,7 +351,9 @@ export default {
 			skillPassiveName: `イグナイト`,
 			skillPassiveDescription: `銃撃が敵にあたると、最大100ヒートを獲得する。ヒートが最大のとき、弦化している敵に追加ダメージを与える。また、最大ヒート時に全てのヒートを消費して次のスキルを強化する`,
 			skillUltimateName: `プロミネンス`,
-			skillUltimateDescription: `最大3つの火炎嵐を放つ。嵐は敵を強制的に吹き飛ばして炎ダメージを与える。100ヒート：範囲が拡大、ダメージが増加して、敵が強調表示される`
+			skillUltimateDescription: `最大3つの火炎嵐を放つ。嵐は敵を強制的に吹き飛ばして炎ダメージを与える。100ヒート：範囲が拡大、ダメージが増加して、敵が強調表示される`,
+			subName: `subName`,
+			subDescription: `subDescription`,
 		},
 		Fragrans: {
 			Name: "フラグランス",
@@ -339,7 +363,9 @@ export default {
 			skillPassiveName: `癒しのアロマ`,
 			skillPassiveDescription: `フラグランスは周囲の味方と自身のヘルスを徐々に回復する`,
 			skillUltimateName: `激情のパルファム`,
-			skillUltimateDescription: `フラグランスが自身を中心とした強力な香水エリアを生成し、エリア内の味方の射撃速度、移動速度を大幅に上昇させ、ヘルスを回復させる。効果時間中、フラグランスは弦化および武器の使用ができなくなる代わりに大幅なダメージ軽減効果を獲得する`
+			skillUltimateDescription: `フラグランスが自身を中心とした強力な香水エリアを生成し、エリア内の味方の射撃速度、移動速度を大幅に上昇させ、ヘルスを回復させる。効果時間中、フラグランスは弦化および武器の使用ができなくなる代わりに大幅なダメージ軽減効果を獲得する`,
+			subName: `subName`,
+			subDescription: `subDescription`,
 		},
 		Celestia: {
 			Name: "星理恵",
@@ -349,7 +375,9 @@ export default {
 			skillPassiveName: `ステラリング`,
 			skillPassiveDescription: `星理恵は周囲の味方と自身のアーマーを徐々に回復する`,
 			skillUltimateName: `ステラゲート`,
-			skillUltimateDescription: `アルティメット発動後、味方の距離マーカーが表示される。星理恵は味方を一人選び、自身とその味方のアーマーを増加し、相手の位置にテレポートする。ゲージが消える前に、アルティメットキーを押すと、テレポートはキャンセルされる。(アーマーの増加は維持される)`
+			skillUltimateDescription: `アルティメット発動後、味方の距離マーカーが表示される。星理恵は味方を一人選び、自身とその味方のアーマーを増加し、相手の位置にテレポートする。ゲージが消える前に、アルティメットキーを押すと、テレポートはキャンセルされる。(アーマーの増加は維持される)`,
+			subName: `subName`,
+			subDescription: `subDescription`,
 		},
 		Audrey: {
 			Name: "オードリー",
@@ -359,7 +387,9 @@ export default {
 			skillPassiveName: `ロイヤルシールド`,
 			skillPassiveDescription: `オードリーがADSモードまたは展開モードに入ると、正面に防御シールドを生成する。展開モード中はシールドの最大値が増加する`,
 			skillUltimateName: `戦術爆撃`,
-			skillUltimateDescription: `オードリーは6発のグレネードを発射できるグレネードランチャーを設置する。グレネードが着地すると爆発し、破片が敵と自身にダメージを与える火炎地帯を生成する`
+			skillUltimateDescription: `オードリーは6発のグレネードを発射できるグレネードランチャーを設置する。グレネードが着地すると爆発し、破片が敵と自身にダメージを与える火炎地帯を生成する`,
+			subName: `subName`,
+			subDescription: `subDescription`,
 		},
 		Maddelena: {
 			Name: "マダレーナ",
@@ -369,7 +399,9 @@ export default {
 			skillPassiveName: `ペイントトラック`,
 			skillPassiveDescription: `マダレーナのメイン武器で敵にダメージを与えると、敵にスロー状態になり、足跡が可視化される`,
 			skillUltimateName: `ペイントバブル`,
-			skillUltimateDescription: `マダレーナは巨大なバブルを発射する。バブル内の敵は弦化禁止状態になり、足跡が可視化される。バブルが破裂すると、爆発範囲内の敵にスロー効果と弱体化を追加で付与する`
+			skillUltimateDescription: `マダレーナは巨大なバブルを発射する。バブル内の敵は弦化禁止状態になり、足跡が可視化される。バブルが破裂すると、爆発範囲内の敵にスロー効果と弱体化を追加で付与する`,
+			subName: `subName`,
+			subDescription: `subDescription`,
 		},
 		Fuchsia: {
 			Name: "フューシャ",
@@ -379,7 +411,9 @@ export default {
 			skillPassiveName: `ホエールフォール`,
 			skillPassiveDescription: `フューシャがキルまたはアシストを取ると、倒された敵はその位置にエネルギー結晶をドロップする。フューシャが結晶に近づくと、自動的に吸収して自身のHPを回復する。ラウンド中に初めて結晶を獲得するとヒュｰシャのHPの最大値が増加する。この増加効果はラウンドが終了するまで継続する`,
 			skillUltimateName: `アドレナリン`,
-			skillUltimateDescription: `発射速度とエルゴノミクスが大幅に上昇する。アクティブスキルが発動すると、視界内の敵全体がハイライト表示される。エネルギー結晶を吸収すると、アルティメットの持続時間が延長される`
+			skillUltimateDescription: `発射速度とエルゴノミクスが大幅に上昇する。アクティブスキルが発動すると、視界内の敵全体がハイライト表示される。エネルギー結晶を吸収すると、アルティメットの持続時間が延長される`,
+			subName: `subName`,
+			subDescription: `subDescription`,
 		},
 		BaiMo: {
 			Name: "ハクボク",
@@ -389,7 +423,9 @@ export default {
 			skillPassiveName: `セイ・ホー！`,
 			skillPassiveDescription: `白墨のメイン武器からの単発射撃が敵に50以上のダメージを与えると、敵に弦化禁止状態を付与する`,
 			skillUltimateName: `リサイタルだ！`,
-			skillUltimateDescription: `ハクボクはビーコンを設置する。設置後、キーを再度押すと、ビーコンの位置にテレポートし、HPが完全に回復する。死亡またはダウンした場合も、ビーコンの位置でリスポーンできる`
+			skillUltimateDescription: `ハクボクはビーコンを設置する。設置後、キーを再度押すと、ビーコンの位置にテレポートし、HPが完全に回復する。死亡またはダウンした場合も、ビーコンの位置でリスポーンできる`,
+			subName: `subName`,
+			subDescription: `subDescription`,
 		},
 		Galatea: {
 			Name: "ガラテア",
@@ -399,7 +435,9 @@ export default {
 			skillPassiveName: `ミスディレクション`,
 			skillPassiveDescription: `ガラテアが壁張りつきを解除すると分身を残す。分身が破壊されるとクールダウンが発生する`,
 			skillUltimateName: `イリュージョン`,
-			skillUltimateDescription: `ガラテアがカードを3枚放ち、3体の分身を生成する。各分身にテレポートすることができる`
+			skillUltimateDescription: `ガラテアがカードを3枚放ち、3体の分身を生成する。各分身にテレポートすることができる`,
+			subName: `subName`,
+			subDescription: `subDescription`,
 		}
 	},
 	characterTypes: {

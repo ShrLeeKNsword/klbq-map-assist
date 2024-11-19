@@ -218,7 +218,9 @@ export default {
 			skillPassiveName: `Cat Sense`,
 			skillPassiveDescription: `Enemy that damaged Michele will be highlighted for Michele and her teammates.`,
 			skillUltimateName: `Ultra! Meow Meow!`,
-			skillUltimateDescription: `Michele deploy a big Meow Meow Drone with powerful firepower. It will automaticaly attack enemy with bigger damage & range.`
+			skillUltimateDescription: `Michele deploy a big Meow Meow Drone with powerful firepower. It will automaticaly attack enemy with bigger damage & range.`,
+			subName: `subName`,
+			subDescription: `subDescription`,
 		},
 		Nobunaga: {
 			Name: "Nobunaga",
@@ -228,7 +230,9 @@ export default {
 			skillPassiveName: `Blinding Pulse`,
 			skillPassiveDescription: `When ADS, Nobunaga will build energy with his rifle. When fully charged, if enemy got hit by this charged shot, their crosshairs in ADS will be glitched out. Nobunaga's base Armor +10`,
 			skillUltimateName: `E.M.P`,
-			skillUltimateDescription: `Place a pulse device on the ground which emit large range pulse wave. Enemy within range will be highlighted & silenced continuously. It can be detroyed by any weapons.`
+			skillUltimateDescription: `Place a pulse device on the ground which emit large range pulse wave. Enemy within range will be highlighted & silenced continuously. It can be detroyed by any weapons.`,
+			subName: `subName`,
+			subDescription: `subDescription`,
 		},
 		Kokona: {
 			Name: "Kokona",
@@ -238,7 +242,9 @@ export default {
 			skillPassiveName: `Emergency Rescue`,
 			skillPassiveDescription: `Kokona can summon a drone to auto-revive downed allies. Can revive multiple allies at the same time. Revived ally has 50 HP. Also Kokona restores 2 HP per second.`,
 			skillUltimateName: `Rebuild`,
-			skillUltimateDescription: `Kokona open up K.I.A terminal and choose an ally to resurrect using drones. The resurected ally will has full HP & Armor. It can be canceled either kill Kokona before she ults or destroy the drones when they resurrecting.`
+			skillUltimateDescription: `Kokona open up K.I.A terminal and choose an ally to resurrect using drones. The resurected ally will has full HP & Armor. It can be canceled either kill Kokona before she ults or destroy the drones when they resurrecting.`,
+			subName: `subName`,
+			subDescription: `subDescription`,
 		},
 		Yvette: {
 			Name: "Yvette",
@@ -248,7 +254,9 @@ export default {
 			skillPassiveName: `Hidden Snow`,
 			skillPassiveDescription: `Yvette will go stealth after standing still for few secs. She can only be detected if going near her stealth range.`,
 			skillUltimateName: `Cold Breeze`,
-			skillUltimateDescription: `Yvette summon raging Fei that that slam the ground 3 times & create an icy ground which get bigger each slam. Enemy inside will slides, take more damage, slower Reload Speed, slower ADS Speed & slower Rate Of Fire.`
+			skillUltimateDescription: `Yvette summon raging Fei that that slam the ground 3 times & create an icy ground which get bigger each slam. Enemy inside will slides, take more damage, slower Reload Speed, slower ADS Speed & slower Rate Of Fire.`,
+			subName: `subName`,
+			subDescription: `subDescription`,
 		},
 		Flavia: {
 			Name: "Flavia",
@@ -258,7 +266,9 @@ export default {
 			skillPassiveName: `Rebirth Circle`,
 			skillPassiveDescription: `Whenever Flavia takes 15 Damage, reduces Illusory Phantom's cooldown by 1 second. For every 160 damage taken, she gains 1 temporary Ultimate Point, which remains valid for the current round. Flavia's base armor +5'`,
 			skillUltimateName: `Dream Butterfly Transformation`,
-			skillUltimateDescription: `Flavia creates an illusionary field centered around herself. If she knocked out while in the field, Flavia'll transforms into a butterfly & revives herself after 3 seconds (repeat till ult ends). Enemies outside the field cannot see Flavia but they still can attack Flavia & will see Flavia if they attacked by her. If Flavia is killed by enemies outside the field, it will not trigger auto-revive & she'll die instantly.`
+			skillUltimateDescription: `Flavia creates an illusionary field centered around herself. If she knocked out while in the field, Flavia'll transforms into a butterfly & revives herself after 3 seconds (repeat till ult ends). Enemies outside the field cannot see Flavia but they still can attack Flavia & will see Flavia if they attacked by her. If Flavia is killed by enemies outside the field, it will not trigger auto-revive & she'll die instantly.`,
+			subName: `subName`,
+			subDescription: `subDescription`,
 		},
 		Yugiri: {
 			Name: "Yugiri",
@@ -268,7 +278,9 @@ export default {
 			skillPassiveName: `Toxic Fog Eruption`,
 			skillPassiveDescription: `After dealing a set amount of HP, she will cause an explosion within the enemy, affecting it with corrosion, temporarily corroding the nearby enemy’s shield. `,
 			skillUltimateName: `Poison Erosion`,
-			skillUltimateDescription: `Summons a large wave of mist that slowly advances forwards, reducing the max shields of any enemy struck and also applying the Corrosion effect. `
+			skillUltimateDescription: `Summons a large wave of mist that slowly advances forwards, reducing the max shields of any enemy struck and also applying the Corrosion effect. `,
+			subName: `subName`,
+			subDescription: `subDescription`,
 		},
 		Ming: {
 			Name: "Ming",
@@ -278,7 +290,9 @@ export default {
 			skillPassiveName: `Armor Absorbing`,
 			skillPassiveDescription: `When Ming uses firearms and active skills to damage the enemy's armor or shield, his armor will be restored based on the amount of damage. During the duration of the ultimate, the passive will restore temporary armor and increase the amount restored.`,
 			skillUltimateName: `Plasma Armor`,
-			skillUltimateDescription: `Ming gains temporary armor and applies a stackable slow to his shots. When Ming uses a gun or active skill to damage an enemy's armor, the skill's duration is extended and temporary armor is restored.`
+			skillUltimateDescription: `Ming gains temporary armor and applies a stackable slow to his shots. When Ming uses a gun or active skill to damage an enemy's armor, the skill's duration is extended and temporary armor is restored.`,
+			subName: `subName`,
+			subDescription: `subDescription`,
 		},
 		Lawine: {
 			Name: "Lawine",
@@ -288,7 +302,9 @@ export default {
 			skillPassiveName: `Exposure Trace`,
 			skillPassiveDescription: `Enemy hit by Lawine's Primary Weapon will be highlighted. Only Lawine can see.`,
 			skillUltimateName: `Escape The Shadow`,
-			skillUltimateDescription: `Lawine creates a rectangular magnetic field in front. When entering the magnetic field, Lawine becomes invisible. Lawine cannot use any weapons while invisible.`
+			skillUltimateDescription: `Lawine creates a rectangular magnetic field in front. When entering the magnetic field, Lawine becomes invisible. Lawine cannot use any weapons while invisible.`,
+			subName: `subName`,
+			subDescription: `subDescription`,
 		},
 		Meredith: {
 			Name: "Meredith",
@@ -298,7 +314,9 @@ export default {
 			skillPassiveName: `Time Warp`,
 			skillPassiveDescription: `Reduce Meredith's falling speed when aiming, using skills and nades.`,
 			skillUltimateName: `Quicksand Burial`,
-			skillUltimateDescription: `Meredith throws a pyramid artifact and create a massive sandstorm. All enemy inside will be near-sighted, HP reduced overtime, slowed down while being pulled to the center. Allies also got near-sighted.`
+			skillUltimateDescription: `Meredith throws a pyramid artifact and create a massive sandstorm. All enemy inside will be near-sighted, HP reduced overtime, slowed down while being pulled to the center. Allies also got near-sighted.`,
+			subName: `subName`,
+			subDescription: `subDescription`,
 		},
 		Reiichi: {
 			Name: "Reiichi",
@@ -308,7 +326,9 @@ export default {
 			skillPassiveName: `Dawn Insight`,
 			skillPassiveDescription: `When in ADS, Reiichi will build up energy with his sniper. When fully charged, it will scan a small are in front of him & hightlight all enemy for himself & teammates.`,
 			skillUltimateName: `Sacred Screen of Refuge`,
-			skillUltimateDescription: `Immediately refresh Dawn Curtain, and enchance Dawn Curtain which now can block bullets from enemy. The blocking effect also applies to pre-use Dawn Curtain.`
+			skillUltimateDescription: `Immediately refresh Dawn Curtain, and enchance Dawn Curtain which now can block bullets from enemy. The blocking effect also applies to pre-use Dawn Curtain.`,
+			subName: `subName`,
+			subDescription: `subDescription`,
 		},
 		Kanami: {
 			Name: "Kanami",
@@ -318,7 +338,9 @@ export default {
 			skillPassiveName: `Sonic Boom`,
 			skillPassiveDescription: `When a bullet hit a target it will highlight enemy and ultilities through wall briefly.`,
 			skillUltimateName: `Showtime`,
-			skillUltimateDescription: `Kanami summon a hologram of herself, the music start playing which glitch out enemy scope in ADS while slowing & pulling them to the center.`
+			skillUltimateDescription: `Kanami summon a hologram of herself, the music start playing which glitch out enemy scope in ADS while slowing & pulling them to the center.`,
+			subName: `subName`,
+			subDescription: `subDescription`,
 		},
 		Eika: {
 			Name: "Eika",
@@ -328,7 +350,9 @@ export default {
 			skillPassiveName: `Reserve Flare`,
 			skillPassiveDescription: `When Aika deals damage to enemies, She gathers a small amount of heat for her heat gauge, up to a max of 100. At max heat, Aika deals bonus damage against paper-mode enemies and empowers her abilities.`,
 			skillUltimateName: `Firestorm`,
-			skillUltimateDescription: `Throws out up to 3 fireball that can explode into a tornado, lifting (like wind bomb effect) and pulling in enemies, dealing continuous fire damage to them. Casting the skill with 100 heat, increases the tornado's size, damage, as well as highlighting (Not through wall) any enemies caught within.`
+			skillUltimateDescription: `Throws out up to 3 fireball that can explode into a tornado, lifting (like wind bomb effect) and pulling in enemies, dealing continuous fire damage to them. Casting the skill with 100 heat, increases the tornado's size, damage, as well as highlighting (Not through wall) any enemies caught within.`,
+			subName: `subName`,
+			subDescription: `subDescription`,
 		},
 		Fragrans: {
 			Name: "Fragrans",
@@ -338,7 +362,9 @@ export default {
 			skillPassiveName: `Revive The Aroma`,
 			skillPassiveDescription: `Fragrans emits a faint scent of recovery, and nearby teammates and herself slowly regenerate health.`,
 			skillUltimateName: `Intense Fragrance`,
-			skillUltimateDescription: `Fragrans will create an area of intense fragrance centered on herself, and allies in the area will gain a high rate of fire, increased movement speed, and health regeneration, the effect will not be decayed, and Fragrans will not be able to use weapons during the release, but will receive a significant damage reduction.`
+			skillUltimateDescription: `Fragrans will create an area of intense fragrance centered on herself, and allies in the area will gain a high rate of fire, increased movement speed, and health regeneration, the effect will not be decayed, and Fragrans will not be able to use weapons during the release, but will receive a significant damage reduction.`,
+			subName: `subName`,
+			subDescription: `subDescription`,
 		},
 		Celestia: {
 			Name: "Celestia",
@@ -348,7 +374,9 @@ export default {
 			skillPassiveName: `Cosmos`,
 			skillPassiveDescription: `When allies is near Huxing, both allies & herself will regain Armor overtime (+2/s). `,
 			skillUltimateName: `Stargate`,
-			skillUltimateDescription: `Huxing open the Stargate and choose an ally across the map, immediately gains her & the chosen ally a huge Extra Armor, then she'll start build up enegry. When fully charged, Huxing will teleports to the chosen ally. It can be canceled if Huxing takes certain amount of damage or uses the skill again. When canceled Huxing will teleport back to where she used the skill, the Extra Armor Buff will not lost.`
+			skillUltimateDescription: `Huxing open the Stargate and choose an ally across the map, immediately gains her & the chosen ally a huge Extra Armor, then she'll start build up enegry. When fully charged, Huxing will teleports to the chosen ally. It can be canceled if Huxing takes certain amount of damage or uses the skill again. When canceled Huxing will teleport back to where she used the skill, the Extra Armor Buff will not lost.`,
+			subName: `subName`,
+			subDescription: `subDescription`,
 		},
 		Audrey: {
 			Name: "Audrey",
@@ -358,7 +386,9 @@ export default {
 			skillPassiveName: `Royal Shield`,
 			skillPassiveDescription: `Audrey will gains 30 Extra Armor when ADS. This Extra Armor will be restored shortly after the shield is broken. Audrey's base armor +5`,
 			skillUltimateName: `Bombardment`,
-			skillUltimateDescription: `Audrey enters stationary state & summon her grenade launcher that shoot out 6 incendiary round. Each round will bounce off the wall and explodes when hit the ground, creating 3 small area of fire causing damage overtime.`
+			skillUltimateDescription: `Audrey enters stationary state & summon her grenade launcher that shoot out 6 incendiary round. Each round will bounce off the wall and explodes when hit the ground, creating 3 small area of fire causing damage overtime.`,
+			subName: `subName`,
+			subDescription: `subDescription`,
 		},
 		Maddelena: {
 			Name: "Maddelena",
@@ -368,7 +398,9 @@ export default {
 			skillPassiveName: `Color Footprint`,
 			skillPassiveDescription: `Enemy hit by Maddelena' Primary Weapon or her skills will be slowed and leave footprints behind.`,
 			skillUltimateName: `Color Bubble`,
-			skillUltimateDescription: `Maddelena fires a giant bubble which will becomes bigger overtime, enemies within the bubble won't be able to use Paper Mode and leave their footprints. When the bubble explodes, it will apply slow and vulnerability effect to enemies within the blast area.`
+			skillUltimateDescription: `Maddelena fires a giant bubble which will becomes bigger overtime, enemies within the bubble won't be able to use Paper Mode and leave their footprints. When the bubble explodes, it will apply slow and vulnerability effect to enemies within the blast area.`,
+			subName: `subName`,
+			subDescription: `subDescription`,
 		},
 		Fuchsia: {
 			Name: "Fuchsia",
@@ -378,7 +410,9 @@ export default {
 			skillPassiveName: `Fight To Feed`,
 			skillPassiveDescription: `When Fuchsia get a kill or assist, dead enemy will drop an Energy Crystal. She can go near and absorb it which will quickly restores herself 50HP.`,
 			skillUltimateName: `Bloodbath`,
-			skillUltimateDescription: `Fuchsia gains massive Rate Of Fire, faster Reload Speed, ADS Speed & Movement Speed. Predator's Sense will be enchanced & hightlight all enemies in her view. Absorbing Energy Crystal will extend the duration.`
+			skillUltimateDescription: `Fuchsia gains massive Rate Of Fire, faster Reload Speed, ADS Speed & Movement Speed. Predator's Sense will be enchanced & hightlight all enemies in her view. Absorbing Energy Crystal will extend the duration.`,
+			subName: `subName`,
+			subDescription: `subDescription`,
 		},
 		BaiMo: {
 			Name: "BaiMo",
@@ -388,7 +422,9 @@ export default {
 			skillPassiveName: `Hip-Hop Boom Color`,
 			skillPassiveDescription: `When BaiMo deals atleast 50 Damage to enemy, they Paper Mode is disabled for few secs.`,
 			skillUltimateName: `Let's Rock!`,
-			skillUltimateDescription: `BaiMo place a respawn beacon at selected area and the music starts playing. When killed or press the skill again, Baimo will teleport back to the beacon fully restore his HP.`
+			skillUltimateDescription: `BaiMo place a respawn beacon at selected area and the music starts playing. When killed or press the skill again, Baimo will teleport back to the beacon fully restore his HP.`,
+			subName: `subName`,
+			subDescription: `subDescription`,
 		},
 		Galatea: {
 			Name: "Galatea",
