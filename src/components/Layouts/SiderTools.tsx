@@ -73,6 +73,8 @@ const SiderTools: React.FC<SiderToolsProps> = ({
   const refArrow = React.useRef<HTMLSpanElement>(null)
   const refText = React.useRef<HTMLSpanElement>(null)
   const refImageSave = React.useRef<HTMLSpanElement>(null)
+  const refLoad = React.useRef<HTMLSpanElement>(null)
+  const refSave = React.useRef<HTMLSpanElement>(null)
 
   useLayoutEffect(() => {
     const bindGlobalHotKeys = (e: KeyboardEvent) => {
@@ -82,8 +84,8 @@ const SiderTools: React.FC<SiderToolsProps> = ({
       else if (!e.ctrlKey && !e.shiftKey && !e.altKey && !e.metaKey && e.code === 'KeyA') { (refArrow.current?.firstChild as HTMLElement).click() }
       else if (!e.ctrlKey && !e.shiftKey && !e.altKey && !e.metaKey && e.code === 'KeyT') { (refText.current?.firstChild as HTMLElement).click() }
       else if ((e.ctrlKey || e.metaKey) && !e.shiftKey && !e.altKey && e.code === 'KeyI') { e.preventDefault(); (refImageSave.current?.firstChild as HTMLElement).click() }
-      else if ((e.ctrlKey || e.metaKey) && !e.shiftKey && !e.altKey && e.code === 'KeyS') { e.preventDefault(); save() }
-      else if ((e.ctrlKey || e.metaKey) && !e.shiftKey && !e.altKey && e.code === 'KeyO') { e.preventDefault(); load() }
+      else if ((e.ctrlKey || e.metaKey) && !e.shiftKey && !e.altKey && e.code === 'KeyS') { e.preventDefault(); (refSave.current?.firstChild as HTMLElement).click() }
+      else if ((e.ctrlKey || e.metaKey) && !e.shiftKey && !e.altKey && e.code === 'KeyO') { e.preventDefault(); (refLoad.current?.firstChild as HTMLElement).click() }
     }
     document.body.addEventListener('keydown', bindGlobalHotKeys)
     return () => {
@@ -208,8 +210,12 @@ const SiderTools: React.FC<SiderToolsProps> = ({
           })
         }} />
       </span>
-      <ToolNormalButton Icon={FaUpload} isActiveTool={false} onClick={() => { load() }} />
-      <ToolNormalButton Icon={FaDownload} isActiveTool={false} onClick={() => { save() }} />
+      <span ref={refLoad}>
+        <ToolNormalButton Icon={FaUpload} isActiveTool={false} onClick={() => { load() }} />
+      </span>
+      <span ref={refSave}>
+        <ToolNormalButton Icon={FaDownload} isActiveTool={false} onClick={() => { save() }} />
+      </span>
     </div>
   )
 }
