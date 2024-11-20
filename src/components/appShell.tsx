@@ -6,7 +6,7 @@ import { characterRegistry } from '../data/characters/characterRegistry';
 import { MapName, mapList } from '../data/maplist';
 import { save, load, loadCurrentAppState } from '../data/stateManagement';
 import { initShare, share, rebindShare, cleanUpShare, updateLobbyRefs, updateLiveMap } from '../data/liveShare.ts';
-import { mapTools, colorPalette } from '../utils/canvasConstants';
+import { mapTools, loadColors } from '../utils/canvasConstants';
 import DrawMap from './Layouts/Canvas/drawCanvas';
 import MapCanvas from './Layouts/Canvas/mapCanvas';
 import FooterContent from './Layouts/Footer/FooterContent.tsx';
@@ -63,8 +63,11 @@ const AppShell: React.FC<AppShellProps> = ({ characterData }) => {
 	const [presentTheme, setPresentTheme] = useState<ThemeType>(getTheme)
 	const [panelcollaps, setPanelcollaps] = useState(false)
 
+	const colorPalette = loadColors()
 	const [canvasTool, setTool] = useState<mapTools>('SELECT')
 	const [penColor, setpenColor] = useState(colorPalette[2])
+	const [colors, setColors] = useState<Array<string>>(colorPalette)
+	const [selectedColor, setSelectedColor] = useState(-1)
 
 	const [penWidth, setpenWidth] = useState(2)
 	const [lineWidth, setLineWidth] = useState(2)
@@ -150,6 +153,7 @@ const AppShell: React.FC<AppShellProps> = ({ characterData }) => {
 				pikasoEditor={drawCanvasEditor}
 				currentMap={mapPrepareMode ? presentMapURL.imgPrepareLink : presentMapURL.imgBlankLink}
 				canvasTool={canvasTool}
+				setTool={setTool}
 				lineWidth={lineWidth}
 				fontSize={fontSize}
 				penColor={penColor}
@@ -226,6 +230,10 @@ const AppShell: React.FC<AppShellProps> = ({ characterData }) => {
 									setFontSize={setFontSize}
 									editor={drawCanvasEditor}
 									setPenColor={setpenColor}
+									colors={colors}
+									setColors={setColors}
+									selectedColor={selectedColor}
+									setSelectedColor={setSelectedColor}
 									save={saveFile}
 									load={loadFile}
 								/>
