@@ -434,7 +434,9 @@ export default {
 			skillPassiveName: `Fraudulent Shadow`,
 			skillPassiveDescription: `When Galatea detaches from a wall, it leaves a clone at the wall sticker, and each time she gets off the wall, it will respawn again, and when the clone is damaged, it will passively enter the cooldown.`,
 			skillUltimateName: `Shadow Card Trick`,
-			skillUltimateDescription: `Galatea throws a bunch of cards in front of her, each of which spawns a clone and teleports Galatea.`
+			skillUltimateDescription: `Galatea throws a bunch of cards in front of her, each of which spawns a clone and teleports Galatea.`,
+			subName: `subName`,
+			subDescription: `subDescription`,
 		}
 	},
 	characterTypes: {

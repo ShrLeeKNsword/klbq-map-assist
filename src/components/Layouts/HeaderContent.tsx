@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { i18nData } from '../../data/i18n'
-import { ButtonGroup, Button, Nav, Select } from '@douyinfe/semi-ui'
+import { Button, Nav, Select } from '@douyinfe/semi-ui'
 import Title from '@douyinfe/semi-ui/lib/es/typography/title'
 import { MapName } from '../../data/maplist'
 import { MdOutlineTranslate, MdLightMode, MdDarkMode, MdCastConnected, MdContentCopy } from 'react-icons/md'
@@ -48,9 +48,9 @@ const HeaderContent: React.FC<HeaderContentProps> = ({
 
   return (
     <div style={{ width: '100%' }}>
-      <Nav mode='horizontal'>
+      <Nav mode='horizontal' style={{ overflow: 'auto hidden', maxWidth: '100svw' }}>
         <Nav.Header>
-          <Title>{currentLanguage.title}</Title>
+          <Title style={{ whiteSpace: 'nowrap' }}>{currentLanguage.title}</Title>
         </Nav.Header>
         <Nav.Item style={{ flexDirection: 'column', justifyContent: 'center' }}>
           <ChangeMapButton
@@ -65,10 +65,10 @@ const HeaderContent: React.FC<HeaderContentProps> = ({
           <ChangeHighlightButton content={currentLanguage.mapsetting.TeamHighlight} mapPrepareMode={mapPrepareMode} setMapPrepareMode={setMapPrepareMode} />
         </Nav.Item>
         <Nav.Item style={{ flexDirection: 'column', justifyContent: 'center' }}>
-          <ButtonGroup>
+          <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
             <Button icon={<MdCastConnected style={{ fontSize: 32 }} />} size={'large'} onClick={() => { share() }} />
             <Button icon={<MdContentCopy style={{ fontSize: 32 }} />} size={'large'} onClick={() => { copyUrl() }} />
-          </ButtonGroup>
+          </div>
         </Nav.Item>
         <Nav.Footer>
           <Announcement name={currentLanguage.announcement} content={currentLanguage.announcementdata} />

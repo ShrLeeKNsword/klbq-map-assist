@@ -18,9 +18,7 @@ export const loadColors = () => {
 		if (localColors.length > 0) {
 			colors = localColors
 		}
-	} catch (e) {
-		console.error(e)
-	}
+	} catch (e) {}
 	return colors
 }
 
