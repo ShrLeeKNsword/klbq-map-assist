@@ -121,8 +121,6 @@ const AppShell: React.FC<AppShellProps> = ({ characterData }) => {
 			}
 			window.addEventListener('hashchange', onHashChange)
 		}
-		requestAnimationFrame(()=>{
-		})
 		 return () => {
 			window.removeEventListener('hashchange', onHashChange)
 			cleanUpShare()
@@ -147,6 +145,7 @@ const AppShell: React.FC<AppShellProps> = ({ characterData }) => {
 				setCurrentMap={setPresentMap}
 				pikasoRef={drawMapRef}
 				style={{ position: 'absolute', top: '0', left: '0' }}
+				panelcollaps={panelcollaps}
 			/>
 			<DrawMap
 				pikasoRef={drawCanvasRef}
@@ -159,6 +158,7 @@ const AppShell: React.FC<AppShellProps> = ({ characterData }) => {
 				penColor={penColor}
 				penWidth={penWidth}
 				load={loadJson}
+				panelcollaps={panelcollaps}
 			/>
 		</div>
 	);
@@ -180,8 +180,6 @@ const AppShell: React.FC<AppShellProps> = ({ characterData }) => {
 							border: '1px solid var(--semi-color-border)',
 							height: '100%',
 							width: '100%',
-							minHeight: '720px',
-							minWidth: '1280px'
 						}}>
 						<Header style={{ backgroundColor: 'var(--semi-color-bg-1)' }}>
 							{/* This takes language mode because of the language switcher */}
@@ -217,27 +215,31 @@ const AppShell: React.FC<AppShellProps> = ({ characterData }) => {
 								}}>
 								{canvases}
 							</Content>
-							<Sider style={{ backgroundColor: 'var(--semi-color-bg-1)', width: '4rem' }}>
-								<SiderTools
-									canvasTool={canvasTool}
-									setTool={setTool}
-									penColor={penColor}
-									penWidth={penWidth}
-									setpenWidth={setpenWidth}
-									setLineWidth={setLineWidth}
-									lineWidth={lineWidth}
-									fontSize={fontSize}
-									setFontSize={setFontSize}
-									editor={drawCanvasEditor}
-									setPenColor={setpenColor}
-									colors={colors}
-									setColors={setColors}
-									selectedColor={selectedColor}
-									setSelectedColor={setSelectedColor}
-									save={saveFile}
-									load={loadFile}
-								/>
-							</Sider>
+							<span style={{ overflowX: 'hidden', overflowY: 'auto', maxHeight: 'calc(100svh - 7.5rem)', minWidth:'4rem' }}>
+								<span style={{display: 'table'}}>
+									<Sider style={{ backgroundColor: 'var(--semi-color-bg-1)', width: '4rem' }}>
+										<SiderTools
+											canvasTool={canvasTool}
+											setTool={setTool}
+											penColor={penColor}
+											penWidth={penWidth}
+											setpenWidth={setpenWidth}
+											setLineWidth={setLineWidth}
+											lineWidth={lineWidth}
+											fontSize={fontSize}
+											setFontSize={setFontSize}
+											editor={drawCanvasEditor}
+											setPenColor={setpenColor}
+											colors={colors}
+											setColors={setColors}
+											selectedColor={selectedColor}
+											setSelectedColor={setSelectedColor}
+											save={saveFile}
+											load={loadFile}
+										/>
+									</Sider>
+								</span>
+							</span>
 						</Layout>
 						<Footer style={{ backgroundColor: 'var(--semi-color-bg-1)' }}>
 							<FooterContent />

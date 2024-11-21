@@ -12,6 +12,7 @@ interface PikasoMapProps {
   penWidth: number
   lineWidth: number
   fontSize: number
+  panelcollaps: boolean
   load: React.Dispatch<React.SetStateAction<void>>
 }
 
@@ -25,13 +26,20 @@ const DrawMap: React.FC<PikasoMapProps> = ({
   penWidth,
   lineWidth,
   fontSize,
+  panelcollaps,
   load
 }) => {
-  const rescaleEditor = () => {
-    if (!pikasoEditor) return
-    const scaleSize = 1000
-    pikasoEditor?.board.stage.setSize({width: scaleSize, height: scaleSize}) 
-    pikasoEditor?.board.rescale()
+  let rescaleTO: any
+  const rescaleEditor = (timeout: number = 0) => {
+    clearTimeout(rescaleTO)
+    rescaleTO = setTimeout(() => {
+      requestAnimationFrame(() => {
+        if (!pikasoEditor) return
+        const scaleSize = 1000
+        pikasoEditor?.board.stage.setSize({width: scaleSize, height: scaleSize}) 
+        pikasoEditor?.board.rescale()
+      })
+    },timeout)
   }
 
   useLayoutEffect(() => {
@@ -62,9 +70,9 @@ const DrawMap: React.FC<PikasoMapProps> = ({
         break
     }
     rescaleEditor()
-    window.addEventListener('resize', rescaleEditor)
+    window.addEventListener('resize', ()=>rescaleEditor())
     return () => {
-      window.removeEventListener('resize', rescaleEditor)
+      window.removeEventListener('resize', ()=>rescaleEditor())
     }
   }, [
     currentMap,
@@ -78,8 +86,12 @@ const DrawMap: React.FC<PikasoMapProps> = ({
     pikasoEditor?.board.stage,
     pikasoEditor?.shapes.line,
     pikasoEditor?.shapes.pencil,
-    pikasoEditor?.shapes.arrow
+    pikasoEditor?.shapes.arrow,
   ])
+
+  useLayoutEffect(() => {
+    rescaleEditor(100)
+  }, [panelcollaps])
 
   const handleCanvasMouseDown = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     switch (canvasTool) {
