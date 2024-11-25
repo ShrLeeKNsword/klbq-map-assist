@@ -1,5 +1,6 @@
 //@ts-ignore
 import { Peer } from "peerjs/dist/bundler.mjs";
+import { Toast } from '@douyinfe/semi-ui';
 
 import { getCurrentAppState, loadCurrentAppState } from './stateManagement';
 
@@ -197,6 +198,7 @@ export class Lobby {
     this.connections = []
     this.peerIds = ['', '', '', '', '', '', '', '', '', '']
     this.id = this.peer = this.conn = undefined
+    Toast.success('Sharing closed')
   }
 }
 

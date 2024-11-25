@@ -48,7 +48,7 @@ const HeaderContent: React.FC<HeaderContentProps> = ({
 
   return (
     <div style={{ width: '100%' }}>
-      <Nav mode='horizontal' style={{ overflow: 'auto hidden', maxWidth: '100svw' }}>
+      <Nav mode='horizontal' className='none-scrollbar' style={{ overflow: 'auto hidden', maxWidth: '100svw' }}>
         <Nav.Header>
           <Title style={{ whiteSpace: 'nowrap' }}>{currentLanguage.title}</Title>
         </Nav.Header>
