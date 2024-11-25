@@ -27,6 +27,7 @@ export class Lobby {
     this.args = args
   }
   listen() {
+    Toast.info('Processing')
     const s = this
     const { presentMap, setPresentMap, setPresentMapURL, mapPrepareMode, setMapPrepareMode, drawCanvasEditor } = s.args
     if (s.peer) return
@@ -37,6 +38,7 @@ export class Lobby {
       s.connectionState = ConnectionState.CONNECTED
       if (location.hash == '') {
         location.hash = id
+        Toast.success('Sharing started')
       } else {
         s.connect({ id: location.hash.replace('#', '') })
         setTimeout(() => {
