@@ -7,6 +7,7 @@ const character: characterData = {
 	id: Urbino.Audrey,
 	attack: {
 		canvasImage: 'https://s2.loli.net/2024/09/29/qD7YufUpTmbzX1x.png',
+		bodyImage: 'https://s2.loli.net/2024/11/10/zptL813DSxi7CEB.png',
 		skills: {
 			active: {
 				skillIcon: 'https://s2.loli.net/2024/09/26/9PqOBd7owjJrRVp.png',
@@ -19,11 +20,16 @@ const character: characterData = {
 			ultimate: {
 				skillIcon: 'https://s2.loli.net/2024/09/26/E6tTWi1Suls5Y9R.png',
 				generateOnCanvas: ultimate
+			},
+			sub: {
+				skillIcon: 'https://cdn.sa.net/2024/11/19/iUDp2MuxwXVcd7a.png',
+				generateOnCanvas: sub
 			}
 		}
 	},
 	defense: {
 		canvasImage: 'https://s2.loli.net/2024/09/29/IVhuSTZvYmk4CNj.png',
+		bodyImage: 'https://s2.loli.net/2024/11/10/zptL813DSxi7CEB.png',
 		skills: {
 			active: {
 				skillIcon: 'https://s2.loli.net/2024/09/26/9PqOBd7owjJrRVp.png',
@@ -36,6 +42,10 @@ const character: characterData = {
 			ultimate: {
 				skillIcon: 'https://s2.loli.net/2024/09/26/E6tTWi1Suls5Y9R.png',
 				generateOnCanvas: ultimate
+			},
+			sub: {
+				skillIcon: 'https://cdn.sa.net/2024/11/19/iUDp2MuxwXVcd7a.png',
+				generateOnCanvas: sub
 			}
 		}
 	}
@@ -50,6 +60,10 @@ function passive() {
 }
 
 function ultimate() {
+	return;
+}
+
+function sub() {
 	return;
 }
 

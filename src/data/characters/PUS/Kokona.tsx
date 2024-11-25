@@ -6,6 +6,7 @@ const character: characterData = {
 	id: PUS.Kokona,
 	defense: {
 		canvasImage: 'https://s2.loli.net/2024/09/29/jtlryiY8WHIGAMq.png',
+		bodyImage: 'https://s2.loli.net/2024/11/10/QtjKmEz3ycWBkwS.png',
 		skills: {
 			active: {
 				skillIcon: 'https://s2.loli.net/2024/09/25/9zFsMYumpwJZrTg.png',
@@ -18,6 +19,10 @@ const character: characterData = {
 			ultimate: {
 				skillIcon: 'https://s2.loli.net/2024/09/25/tilQp18zRheBMaJ.png',
 				generateOnCanvas: ultimate
+			},
+			sub: {
+				skillIcon: 'https://cdn.sa.net/2024/11/19/7lenAEosyt96kbZ.png',
+				generateOnCanvas: sub
 			}
 		}
 	}
@@ -32,6 +37,10 @@ function passive() {
 }
 
 function ultimate() {
+	return;
+}
+
+function sub() {
 	return;
 }
 

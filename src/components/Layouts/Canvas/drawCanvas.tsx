@@ -8,8 +8,12 @@ interface PikasoMapProps {
   currentMap: string
   penColor: string
   canvasTool: mapTools
+  setTool: React.Dispatch<React.SetStateAction<mapTools>>
   penWidth: number
   lineWidth: number
+  fontSize: number
+  panelcollaps: boolean
+  load: React.Dispatch<React.SetStateAction<void>>
 }
 
 const DrawMap: React.FC<PikasoMapProps> = ({
@@ -18,9 +22,26 @@ const DrawMap: React.FC<PikasoMapProps> = ({
   currentMap,
   penColor,
   canvasTool,
+  setTool,
   penWidth,
-  lineWidth
+  lineWidth,
+  fontSize,
+  panelcollaps,
+  load
 }) => {
+  let rescaleTO: any
+  const rescaleEditor = (timeout: number = 0) => {
+    clearTimeout(rescaleTO)
+    rescaleTO = setTimeout(() => {
+      requestAnimationFrame(() => {
+        if (!pikasoEditor) return
+        const scaleSize = 1000
+        pikasoEditor?.board.stage.setSize({width: scaleSize, height: scaleSize}) 
+        pikasoEditor?.board.rescale()
+      })
+    },timeout)
+  }
+
   useLayoutEffect(() => {
     switch (canvasTool) {
       case DrawType.Arrow:
@@ -43,23 +64,36 @@ const DrawMap: React.FC<PikasoMapProps> = ({
         break
       case 'SELECT':
         pikasoEditor?.shapes.pencil.stopDrawing()
-
         break
+      case 'TEXT':
+        pikasoEditor?.shapes.pencil.stopDrawing()
+        break
+    }
+    rescaleEditor()
+    window.addEventListener('resize', ()=>rescaleEditor())
+    return () => {
+      window.removeEventListener('resize', ()=>rescaleEditor())
     }
   }, [
     currentMap,
     penColor,
     canvasTool,
+    setTool,
     penWidth,
     lineWidth,
+    fontSize,
     pikasoEditor?.board.background,
     pikasoEditor?.board.stage,
     pikasoEditor?.shapes.line,
     pikasoEditor?.shapes.pencil,
-    pikasoEditor?.shapes.arrow
+    pikasoEditor?.shapes.arrow,
   ])
 
-  const handleCanvasMouseDown = () => {
+  useLayoutEffect(() => {
+    rescaleEditor(100)
+  }, [panelcollaps])
+
+  const handleCanvasMouseDown = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     switch (canvasTool) {
       case DrawType.Line:
         pikasoEditor?.shapes.line.stopDrawing()
@@ -85,26 +119,61 @@ const DrawMap: React.FC<PikasoMapProps> = ({
       case 'SELECT':
         pikasoEditor?.shapes.pencil.stopDrawing()
         break
+      case 'TEXT':
+        pikasoEditor?.shapes.pencil.stopDrawing()
+        const rect = (e.target as HTMLCanvasElement)?.getBoundingClientRect()
+        const pikasoSize = pikasoEditor?.board.stage.getSize()
+        const scale = { x: pikasoSize!.width / rect!.width, y: pikasoSize!.height / rect!.height }
+        const diff = { x: e.clientX - rect!.left, y: e.clientY - rect!.top }
+        const textPos = { x: diff.x * scale.x, y: diff.y * scale.y }
+
+        const label = pikasoEditor?.shapes.label.insert({
+          container: {
+            x: textPos.x,
+            y: textPos.y
+          },
+          text: {
+            text: 'Type here',
+            fill: penColor,
+            fontSize: fontSize * 16
+          }
+        })
+        label?.select()
+        setTool('SELECT')
+        break
     }
   }
 
   const handleOnDrop = (e: React.DragEvent<HTMLDivElement>) => {
     const imgLink = e.dataTransfer.getData("imageLink")
-
-    const rect = pikasoRef.current?.getBoundingClientRect()
-
-    const img = new Image()
-    img.src = imgLink
-    img.onload = () => {
-      const size = 35
-      const ratio = img.width / img.height
-
-      pikasoEditor?.shapes.image.insert(imgLink, {
-        x: e.clientX - rect!.left - size / 2,
-        y: e.clientY - rect!.top - size / 2,
-        width: size * ratio,
-        height: size
-      })
+    if(imgLink) {
+      const img = new Image()
+      img.src = imgLink
+      img.onload = () => {
+        const size = 35
+        const ratio = img.width / img.height
+  
+        const rect = (e.target as HTMLCanvasElement)?.getBoundingClientRect()
+        const pikasoSize = pikasoEditor?.board.stage.getSize()
+        const scale = { x: pikasoSize!.width / rect!.width, y: pikasoSize!.height / rect!.height }
+        const diff = { x: e.clientX - rect!.left, y: e.clientY - rect!.top }
+        const imgPos = { x: diff.x * scale.x, y: diff.y * scale.y }
+  
+        pikasoEditor?.shapes.image.insert(imgLink, {
+          x: imgPos.x - size / 2,
+          y: imgPos.y - size / 2,
+          width: size * ratio,
+          height: size
+        })
+      }
+    } else if(e.dataTransfer.files[0]?.type == 'application/json') {
+      let reader = new FileReader();
+      reader.onload = function(re) {
+        const json = JSON.parse(re.target!.result as string);
+        load(json)
+      };
+      reader.readAsText(e.dataTransfer.files[0]);
+      e.preventDefault()
     }
   }
 
@@ -115,7 +184,7 @@ const DrawMap: React.FC<PikasoMapProps> = ({
   return (
     <div
       ref={pikasoRef}
-      style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', minHeight: '600px' }}
+      style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
       className='drawCanvas'
       onDrop={handleOnDrop}
       onDragOver={handleDragOver}

@@ -7,6 +7,7 @@ const character: characterData = {
 	id: TheScissors.Eika,
 	attack: {
 		canvasImage: 'https://s2.loli.net/2024/09/29/SrnDsxX5bAiBNcE.png',
+		bodyImage: 'https://s2.loli.net/2024/11/10/jXaL6kc8unqSFJ3.png',
 		skills: {
 			active: {
 				skillIcon: 'https://s2.loli.net/2024/09/25/SPYXJZwHGObnrmV.png',
@@ -19,6 +20,10 @@ const character: characterData = {
 			ultimate: {
 				skillIcon: 'https://s2.loli.net/2024/09/25/sFgyUNK7iWtcvfp.png',
 				generateOnCanvas: ultimate
+			},
+			sub: {
+				skillIcon: 'https://cdn.sa.net/2024/11/19/to7dWPDVuUFRsIn.png',
+				generateOnCanvas: sub
 			}
 		}
 	}
@@ -33,6 +38,10 @@ function passive() {
 }
 
 function ultimate() {
+	return;
+}
+
+function sub() {
 	return;
 }
 

@@ -7,6 +7,7 @@ const character: characterData = {
 	id: Urbino.Celestia,
 	attack: {
 		canvasImage: 'https://s2.loli.net/2024/09/29/PI6eiLuZfcAQ2aR.png',
+		bodyImage: 'https://s2.loli.net/2024/11/10/A2NZUdIRi365Erp.png',
 		skills: {
 			active: {
 				skillIcon: 'https://s2.loli.net/2024/09/25/WmtSU2hFLBPaf85.png',
@@ -19,11 +20,16 @@ const character: characterData = {
 			ultimate: {
 				skillIcon: 'https://s2.loli.net/2024/09/25/bJalMyBfZ7iXVtx.png',
 				generateOnCanvas: ultimate
+			},
+			sub: {
+				skillIcon: 'https://cdn.sa.net/2024/11/19/xm5Io68zcXSZAn1.png',
+				generateOnCanvas: sub
 			}
 		}
 	},
 	defense: {
 		canvasImage: 'https://s2.loli.net/2024/09/29/Zt93QEgreUnvaxX.png',
+		bodyImage: 'https://s2.loli.net/2024/11/10/A2NZUdIRi365Erp.png',
 		skills: {
 			active: {
 				skillIcon: 'https://s2.loli.net/2024/09/25/WmtSU2hFLBPaf85.png',
@@ -36,6 +42,10 @@ const character: characterData = {
 			ultimate: {
 				skillIcon: 'https://s2.loli.net/2024/09/25/bJalMyBfZ7iXVtx.png',
 				generateOnCanvas: ultimate
+			},
+			sub: {
+				skillIcon: 'https://cdn.sa.net/2024/11/19/xm5Io68zcXSZAn1.png',
+				generateOnCanvas: sub
 			}
 		}
 	},
@@ -50,6 +60,10 @@ function passive() {
 }
 
 function ultimate() {
+	return;
+}
+
+function sub() {
 	return;
 }
 

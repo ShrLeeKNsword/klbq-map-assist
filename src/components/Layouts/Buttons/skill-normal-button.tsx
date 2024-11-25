@@ -1,15 +1,15 @@
 import { Button } from '@douyinfe/semi-ui'
 import React, { forwardRef } from 'react'
-import { abilityData } from '../../../data/characters/characters'
+import type { sideData } from '../../../data/characters/characterRegistry'
 interface StandardButtonProps {
-  abilityData: abilityData
+  sideData: sideData
   onClick: () => void
 }
 
 const SkillNormalButton: React.FC<StandardButtonProps> = forwardRef<Button, StandardButtonProps>(
-  ({ onClick, abilityData }, ref) => {
+  ({ onClick, sideData }, ref) => {
 
-    const buttons = Object.keys(abilityData).map((key) => {
+    const buttons = Object.keys(sideData!.skills).map((key) => {
       return (
         <Button
           ref={ref}
@@ -22,13 +22,13 @@ const SkillNormalButton: React.FC<StandardButtonProps> = forwardRef<Button, Stan
             alignItems: 'center'
           }}
           onClick={() => onClick()}>
-          <img width={'100%'} height={'100%'} src={abilityData[key as keyof typeof abilityData].canvasImage} alt={key} />
-          </Button>
+          <img width={'100%'} height={'100%'} src={sideData.skills[key as keyof typeof sideData.skills].skillIcon} alt={key} />
+        </Button>
       )
     })
     return (
       <div>
-      {buttons}
+        {buttons}
       </div>
     )
   }

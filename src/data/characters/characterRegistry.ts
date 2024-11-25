@@ -34,8 +34,9 @@ export async function loadAllCharacters() {
 
 export default characterRegistry;
 
-interface sideData {
+export interface sideData {
 	canvasImage: string;
+	bodyImage: string;
 	skills: {
 		passive: {
 			skillIcon: string;
@@ -47,6 +48,10 @@ interface sideData {
 
 		},
 		ultimate: {
+			skillIcon: string;
+			generateOnCanvas: () => void;
+		}
+		sub: {
 			skillIcon: string;
 			generateOnCanvas: () => void;
 		}

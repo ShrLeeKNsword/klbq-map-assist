@@ -1,32 +1,34 @@
 import { characterData } from "../characterRegistry";
 import { factions, PUS } from "../factions";
 
+
 const character: characterData = {
 	faction: factions.PUS,
-	id: PUS.Michele,
+	id: PUS.Yugiri,
 	defense: {
-		canvasImage: 'https://s2.loli.net/2024/09/29/29JH5SlaTdCwgFR.png',
-		bodyImage: 'https://s2.loli.net/2024/11/10/L91feWEuwqX3sog.png',
+		canvasImage: 'https://s2.loli.net/2024/11/10/Jq58o4vKDYUCcl1.png',
+		bodyImage: 'https://s2.loli.net/2024/11/10/ApQHRnSsdcv1N2y.png',
 		skills: {
 			active: {
-				skillIcon: 'https://s2.loli.net/2024/09/25/8iCzWDaNQPSxqvw.png',
+				skillIcon: 'https://s2.loli.net/2024/11/10/oW4UsSziGHnhLx2.png',
 				generateOnCanvas: active
 			},
 			passive: {
-				skillIcon: 'https://s2.loli.net/2024/09/25/ANhKZ6GDzOIjPtf.png',
+				skillIcon: 'https://s2.loli.net/2024/11/10/jBC3dyGxKzmpQf2.png',
 				generateOnCanvas: passive
 			},
 			ultimate: {
-				skillIcon: 'https://s2.loli.net/2024/09/25/UGeEvYfXiSgD4zr.png',
+				skillIcon: 'https://s2.loli.net/2024/11/10/T3huK4YzAXmrV8N.png',
 				generateOnCanvas: ultimate
 			},
 			sub: {
-				skillIcon: 'https://cdn.sa.net/2024/11/19/fvrVnE8Ocl21Dpz.png',
+				skillIcon: 'https://cdn.sa.net/2024/11/19/T4QIuUewCitmjbM.png',
 				generateOnCanvas: sub
 			}
 		}
 	}
 }
+
 function active() {
 	return;
 }
