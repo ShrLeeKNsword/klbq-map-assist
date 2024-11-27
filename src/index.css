@@ -27,7 +27,7 @@ body {
   margin: auto;
   display: flex;
   min-width: 720px;
-  min-height: 100vh;
+  min-height: 100svh;
 }
 
 h1 {

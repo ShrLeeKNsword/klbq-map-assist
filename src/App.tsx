@@ -21,7 +21,7 @@ const App: React.FC = () => {
 
   if (loading) {
     return (
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100svh', width: '100%' }}>
+      <div className='minHeightAvailable' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100svh', width: '100%' }}>
         <Spin size='large' />
       </div>
     )
