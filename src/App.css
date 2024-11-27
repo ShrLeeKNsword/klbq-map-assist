@@ -28,3 +28,13 @@ body::-webkit-scrollbar {
   user-select: none;
   -webkit-user-drag: none;
 }
+
+.minWidthAvailable {
+  min-width: -webkit-fill-available;
+  min-width: -moz-available;
+}
+
+.minHeightAvailable {
+  min-height: -webkit-fill-available;
+  min-height: -moz-available;
+}

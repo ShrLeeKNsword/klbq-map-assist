@@ -30,6 +30,12 @@ export const CharacterSiderItem: React.FC<CharacterSiderItemProps> = ({ data, si
     // setSelectedCharacter(data)
   }
 
+  const onTouchStart = (e: React.TouchEvent<HTMLSpanElement>) => {
+    console.log(e)
+    // e.dataTransfer.setData('imageLink', sideData.canvasImage);
+    // setSelectedCharacter(data)
+  }
+
   const onDragStartImage = (e: React.DragEvent<HTMLSpanElement>, imageLink: string) => {
     e.dataTransfer.setData('imageLink', imageLink);
   }
@@ -128,7 +134,7 @@ export const CharacterSiderItem: React.FC<CharacterSiderItemProps> = ({ data, si
         </div>
       </Card>}
     >
-      <span draggable onDragStart={onDragStart}>
+      <span draggable onDragStart={onDragStart} onTouchStart={onTouchStart}>
         <Avatar
           src={sideData.canvasImage}
           style={{ padding: '0.25rem' }}
