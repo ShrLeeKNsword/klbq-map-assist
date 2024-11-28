@@ -1,6 +1,7 @@
 import React, { useLayoutEffect } from 'react'
 import { DrawType, Pikaso, type BaseShapes } from 'pikaso'
 import { mapTools } from '../../../utils/canvasConstants'
+import { getDragValue, setDragValue } from '../../../data/dragAndDrop.ts'
 
 interface PikasoMapProps {
   pikasoRef: React.RefObject<HTMLDivElement>
@@ -144,19 +145,21 @@ const DrawMap: React.FC<PikasoMapProps> = ({
     }
   }
 
-  const handleOnDrop = (e: React.DragEvent<HTMLDivElement>) => {
-    const imgLink = e.dataTransfer.getData("imageLink")
+  const handleOnDrop = (e: React.DragEvent<HTMLDivElement>| any) => {
+    const dragValue = getDragValue()
+    const imgLink = dragValue?.type == 'imageLink' ? dragValue.value : null
     if(imgLink) {
       const img = new Image()
       img.src = imgLink
       img.onload = () => {
         const size = 35
         const ratio = img.width / img.height
-  
+
+        const clientPos = e.clientX ? e : e.changedTouches[0]
         const rect = (e.target as HTMLCanvasElement)?.getBoundingClientRect()
         const pikasoSize = pikasoEditor?.board.stage.getSize()
         const scale = { x: pikasoSize!.width / rect!.width, y: pikasoSize!.height / rect!.height }
-        const diff = { x: e.clientX - rect!.left, y: e.clientY - rect!.top }
+        const diff = { x: clientPos.clientX - rect!.left, y: clientPos.clientY - rect!.top }
         const imgPos = { x: diff.x * scale.x, y: diff.y * scale.y }
   
         pikasoEditor?.shapes.image.insert(imgLink, {
@@ -166,7 +169,7 @@ const DrawMap: React.FC<PikasoMapProps> = ({
           height: size
         })
       }
-    } else if(e.dataTransfer.files[0]?.type == 'application/json') {
+    } else if(e.dataTransfer && e.dataTransfer.files[0]?.type == 'application/json') {
       let reader = new FileReader();
       reader.onload = function(re) {
         const json = JSON.parse(re.target!.result as string);
@@ -175,6 +178,7 @@ const DrawMap: React.FC<PikasoMapProps> = ({
       reader.readAsText(e.dataTransfer.files[0]);
       e.preventDefault()
     }
+    setDragValue(null)
   }
 
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
@@ -187,6 +191,7 @@ const DrawMap: React.FC<PikasoMapProps> = ({
       style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
       className='drawCanvas'
       onDrop={handleOnDrop}
+      onTouchEnd={handleOnDrop}
       onDragOver={handleDragOver}
       onClick={handleCanvasMouseDown}></div>
   )
