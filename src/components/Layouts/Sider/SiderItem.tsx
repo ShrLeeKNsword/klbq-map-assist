@@ -4,6 +4,7 @@ import { characterData } from '../../../data/characters/characterRegistry.ts'
 import { grenadeData } from '../../../data/grenades.ts'
 import { LanguageContext } from '../../../contexts/LanguageContext.ts'
 import { GrDrag } from "react-icons/gr";
+import { setDragValue } from '../../../data/dragAndDrop.ts'
 
 interface CharacterSiderItemProps {
   data: characterData
@@ -25,19 +26,20 @@ export const CharacterSiderItem: React.FC<CharacterSiderItemProps> = ({ data, si
 
   const sideData = data[side]!;
 
-  const onDragStart = (e: React.DragEvent<HTMLSpanElement>) => {
-    e.dataTransfer.setData('imageLink', sideData.canvasImage);
-    // setSelectedCharacter(data)
+  const onDragStart = () => {
+    setDragValue({ type: 'imageLink', value: sideData.canvasImage })
   }
 
-  const onTouchStart = (e: React.TouchEvent<HTMLSpanElement>) => {
-    console.log(e)
-    // e.dataTransfer.setData('imageLink', sideData.canvasImage);
-    // setSelectedCharacter(data)
+  const onTouchStart = () => {
+    setDragValue({ type: 'imageLink', value: sideData.canvasImage })
   }
 
-  const onDragStartImage = (e: React.DragEvent<HTMLSpanElement>, imageLink: string) => {
-    e.dataTransfer.setData('imageLink', imageLink);
+  const onDragStartImage = (_e: React.DragEvent<HTMLSpanElement>, imageLink: string) => {
+    setDragValue({ type: 'imageLink', value: imageLink })
+  }
+
+  const onTouchStartImage = (_e: React.TouchEvent<HTMLSpanElement>, imageLink: string) => {
+    setDragValue({ type: 'imageLink', value: imageLink })
   }
 
   return (
@@ -63,7 +65,7 @@ export const CharacterSiderItem: React.FC<CharacterSiderItemProps> = ({ data, si
             <Tabs type="button">
               <TabPane
                 tab={
-                  <span draggable onDragStart={(e) => { onDragStartImage(e, sideData.skills.active.skillIcon) }}>
+                  <span draggable onDragStart={(e) => { onDragStartImage(e, sideData.skills.active.skillIcon) }} onTouchStart={(e) => { onTouchStartImage(e, sideData.skills.active.skillIcon) }}>
                     <Avatar
                       src={sideData.skills.active.skillIcon}
                       style={{ margin: '0 auto', height: "40px", width: "40px" }}
@@ -80,7 +82,7 @@ export const CharacterSiderItem: React.FC<CharacterSiderItemProps> = ({ data, si
               </TabPane>
               <TabPane
                 tab={
-                  <span draggable onDragStart={(e) => { onDragStartImage(e, sideData.skills.passive.skillIcon) }}>
+                  <span draggable onDragStart={(e) => { onDragStartImage(e, sideData.skills.passive.skillIcon) }} onTouchStart={(e) => { onTouchStartImage(e, sideData.skills.passive.skillIcon) }}>
                     <Avatar
                       src={sideData.skills.passive.skillIcon}
                       style={{ margin: '0 auto', height: "40px", width: "40px" }}
@@ -97,7 +99,7 @@ export const CharacterSiderItem: React.FC<CharacterSiderItemProps> = ({ data, si
               </TabPane>
               <TabPane
                 tab={
-                  <span draggable onDragStart={(e) => { onDragStartImage(e, sideData.skills.ultimate.skillIcon) }}>
+                  <span draggable onDragStart={(e) => { onDragStartImage(e, sideData.skills.ultimate.skillIcon) }} onTouchStart={(e) => { onTouchStartImage(e, sideData.skills.ultimate.skillIcon) }}>
                     <Avatar
                       src={sideData.skills.ultimate.skillIcon}
                       style={{ margin: '0 auto', height: "40px", width: "40px" }}
@@ -114,7 +116,7 @@ export const CharacterSiderItem: React.FC<CharacterSiderItemProps> = ({ data, si
               </TabPane>
               <TabPane
                 tab={
-                  <span draggable onDragStart={(e) => { onDragStartImage(e, sideData.skills.sub.skillIcon) }}>
+                  <span draggable onDragStart={(e) => { onDragStartImage(e, sideData.skills.sub.skillIcon) }} onTouchStart={(e) => { onTouchStartImage(e, sideData.skills.sub.skillIcon) }}>
                     <Avatar
                       src={sideData.skills.sub.skillIcon}
                       style={{ margin: '0 auto', height: "40px", width: "40px" }}
@@ -152,13 +154,17 @@ interface GrenadeSiderItemProps {
 export const GrenadeSiderItem: React.FC<GrenadeSiderItemProps> = ({ data }) => {
   const currentLanguage = useContext(LanguageContext)
 
-  const onDragStart = (e: React.DragEvent<HTMLSpanElement>, data: grenadeData) => {
-    e.dataTransfer.setData('imageLink', data.imageLink);
+  const onDragStart = (_e: React.DragEvent<HTMLSpanElement>, data: grenadeData) => {
+    setDragValue({ type: 'imageLink', value: data.imageLink })
+  }
+
+  const onTouchStart = (_e: React.TouchEvent<HTMLSpanElement>, data: grenadeData) => {
+    setDragValue({ type: 'imageLink', value: data.imageLink })
   }
 
   return (
     <Tooltip position='topLeft' content={currentLanguage.grenades[data.grenade]}>
-      <span draggable onDragStart={(e) => { onDragStart(e, data) }}>
+      <span draggable onDragStart={(e) => { onDragStart(e, data) }} onTouchStart={(e) => { onTouchStart(e, data) }}>
         <Avatar
           src={data.imageLink}
           style={{ margin: '0.25rem', backgroundColor: "grey", height: "48px", width: "48px" }}
