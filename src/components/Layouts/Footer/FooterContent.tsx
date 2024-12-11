@@ -11,8 +11,8 @@ const FooterContent: React.FC = () => {
   const currentLanguage = useContext(LanguageContext)
 
   return (
-    <div style={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-      <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginLeft: '80px', color: "rgba(var(--semi-grey-9), 1)", overflow: 'auto hidden', maxWidth: '100svw', height: '4rem' }}>
+    <div className="minWidthAvailable" style={{ marginLeft: '80px', display: 'flex', justifyContent: 'center', alignItems: 'center', overflow: 'auto hidden', maxWidth: '100svw' }}>
+      <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', color: "rgba(var(--semi-grey-9), 1)", height: '4rem' }}>
         <a href='https://creativecommons.org/licenses/by-nc-sa/4.0/' target='_blank' rel='nofollow' style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
           <img
             decoding='async'

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { i18nData } from '../../data/i18n'
-import { Button, Nav, Select } from '@douyinfe/semi-ui'
+import { Button, Nav, Select,Toast } from '@douyinfe/semi-ui'
 import Title from '@douyinfe/semi-ui/lib/es/typography/title'
 import { MapName } from '../../data/maplist'
 import { MdOutlineTranslate, MdLightMode, MdDarkMode, MdCastConnected, MdContentCopy } from 'react-icons/md'
@@ -44,11 +44,12 @@ const HeaderContent: React.FC<HeaderContentProps> = ({
 
   const copyUrl = () => {
     navigator.clipboard.writeText(location.href).then(function () {/* on clipboard success */ }, function () {/* on clipboard failed */ })
+    Toast.success('Copied')
   }
 
   return (
     <div style={{ width: '100%' }}>
-      <Nav mode='horizontal' style={{ overflow: 'auto hidden', maxWidth: '100svw' }}>
+      <Nav mode='horizontal' className='none-scrollbar minWidthAvailable' style={{ overflow: 'auto hidden', maxWidth: '100svw' }}>
         <Nav.Header>
           <Title style={{ whiteSpace: 'nowrap' }}>{currentLanguage.title}</Title>
         </Nav.Header>
